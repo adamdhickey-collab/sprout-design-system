@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>myCargill · Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="Cargill%20Fonts/HelveticaNowForCargill.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="Cargill%20Fonts/BigCaslonForCargill.otf" as="font" type="font/otf" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..700,0..1,-25..0&display=block" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Page chrome — composed from Sprout tokens (no new colors/fonts/radii) */
+    body { background: var(--bg); }
+    .appbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,0.92); backdrop-filter: saturate(140%) blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .appbar-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 var(--space-6);
+      height: 64px; display: flex; align-items: center; gap: var(--space-6);
+    }
+    .appbar-brand { display: inline-flex; align-items: center; }
+    .appbar-brand img { height: 26px; width: auto; display: block; }
+    .appbar-nav { display: flex; gap: var(--space-2); margin-left: var(--space-5); }
+    .appbar-link {
+      font-family: var(--font-sans); font-size: 14px; color: var(--text-soft);
+      text-decoration: none; padding: 7px var(--space-3); border-radius: var(--corner-radius-base);
+      transition: background-color 120ms ease, color 120ms ease;
+    }
+    .appbar-link:hover { background: var(--neutral-50); color: var(--text); }
+    .appbar-link--active { color: var(--brand-deep); font-weight: 700; background: var(--soft-green-50); }
+    .appbar-actions { margin-left: auto; display: flex; align-items: center; gap: var(--space-3); }
+    .page { max-width: 1200px; margin: 0 auto; padding: var(--space-7) var(--space-6) var(--space-8); }
+    .page-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-5); margin: var(--space-4) 0 var(--space-6); flex-wrap: wrap; }
+    .page-title { font-family: var(--font-display); font-size: clamp(34px, 4vw, 48px); line-height: 1; color: var(--brand-deep); letter-spacing: -0.01em; }
+    .page-sub { font-family: var(--font-sans); font-size: 17px; color: var(--text-soft); margin-top: var(--space-3); }
+    .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-bottom: var(--space-6); }
+    .dash-grid { display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-5); align-items: start; }
+    .panel-title { font-family: var(--font-sans); font-weight: 700; font-size: 18px; color: var(--text); margin-bottom: var(--space-4); }
+    @media (max-width: 1000px) { .metric-grid { grid-template-columns: repeat(2,1fr); } .dash-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .metric-grid { grid-template-columns: 1fr; } .appbar-nav { display: none; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+    <symbol id="cargill-logo" viewBox="0 0 432 202">
+      <g fill="currentColor">
+        <path d="M423.825 174.37C422.325 174.37 420.925 173.97 419.725 173.27C418.425 172.57 417.525 171.57 416.725 170.37C416.025 169.17 415.625 167.87 415.625 166.37C415.625 164.87 416.025 163.57 416.725 162.37C417.425 161.17 418.425 160.17 419.725 159.47C421.025 158.77 422.325 158.37 423.825 158.37C425.325 158.37 426.725 158.77 427.925 159.47C429.125 160.17 430.125 161.17 430.925 162.37C431.625 163.57 432.025 164.87 432.025 166.37C432.025 167.87 431.625 169.17 430.925 170.37C430.225 171.57 429.225 172.57 427.925 173.27C426.625 173.97 425.325 174.37 423.825 174.37ZM423.825 173.07C425.125 173.07 426.225 172.77 427.325 172.17C428.325 171.57 429.225 170.77 429.825 169.77C430.425 168.77 430.725 167.57 430.725 166.37C430.725 165.17 430.425 163.97 429.825 162.97C429.225 161.97 428.425 161.17 427.325 160.57C426.225 159.97 425.125 159.67 423.825 159.67C422.525 159.67 421.425 159.97 420.325 160.57C419.225 161.17 418.425 161.97 417.825 162.97C417.225 163.97 416.925 165.17 416.925 166.37C416.925 167.57 417.225 168.77 417.825 169.77C418.425 170.77 419.225 171.57 420.325 172.17C421.425 172.77 422.625 173.07 423.825 173.07ZM420.725 170.67V161.97H424.325C424.925 161.97 425.425 162.07 425.925 162.27C426.325 162.47 426.725 162.77 426.925 163.07C427.125 163.47 427.325 163.87 427.325 164.37C427.325 164.77 427.225 165.17 427.125 165.47C426.925 165.77 426.725 166.07 426.425 166.27C426.125 166.47 425.625 166.57 425.125 166.67V166.27C425.625 166.27 425.925 166.37 426.225 166.57C426.525 166.67 426.725 166.87 426.925 167.17C427.025 167.47 427.125 167.77 427.225 168.17L427.325 169.57C427.325 169.87 427.425 170.07 427.425 170.27C427.525 170.47 427.625 170.67 427.725 170.77H426.525C426.425 170.67 426.325 170.47 426.325 170.27C426.225 170.07 426.225 169.87 426.225 169.57L426.125 168.47C426.125 168.07 426.025 167.87 425.925 167.67C425.825 167.47 425.725 167.37 425.425 167.27C425.225 167.17 424.925 167.17 424.625 167.17H421.225V165.97H424.525C424.925 165.97 425.225 165.87 425.425 165.77C425.725 165.67 425.825 165.47 426.025 165.27C426.225 165.07 426.225 164.77 426.225 164.47C426.225 164.17 426.125 163.87 426.025 163.67C425.925 163.47 425.725 163.27 425.425 163.17C425.125 163.07 424.825 162.97 424.425 162.97H421.425L421.925 162.47V170.67H420.725Z"/>
+        <path d="M432.025 55.4702C431.125 59.6702 408.725 167.97 408.125 170.77C405.625 170.77 385.625 170.77 381.925 170.77C382.725 166.57 405.225 58.2702 405.725 55.4702C408.325 55.4702 428.325 55.4702 432.025 55.4702Z"/>
+        <path d="M390.025 55.4702C389.125 59.6702 366.725 167.97 366.125 170.77C363.625 170.77 343.625 170.77 339.925 170.77C340.725 166.57 363.225 58.2702 363.725 55.4702C366.325 55.4702 386.325 55.4702 390.025 55.4702Z"/>
+        <path d="M341.925 84.2702C341.025 88.4702 324.625 167.97 324.025 170.67C321.525 170.67 301.525 170.67 297.825 170.67C298.725 166.47 315.125 86.9702 315.725 84.2702C318.225 84.2702 338.225 84.2702 341.925 84.2702Z"/>
+        <path d="M248.525 126.37C245.925 139.17 246.025 144.07 248.525 147.27C249.825 148.87 251.725 149.67 254.425 149.67C261.825 149.67 265.425 145.17 269.125 127.17C271.825 114.27 272.125 106.07 269.525 102.87C268.325 101.37 266.425 100.57 263.925 100.57C256.325 100.57 252.225 108.27 248.525 126.37ZM224.525 162.97C219.225 156.47 218.225 146.37 221.825 128.27C229.725 88.8702 244.725 81.9702 257.725 81.9702C263.925 81.9702 273.225 84.2702 274.325 95.1702L274.425 96.8702H276.225C276.225 96.8702 278.325 86.6702 278.825 84.3702C281.225 84.3702 299.425 84.3702 303.025 84.3702C302.125 88.5702 285.025 170.77 285.025 170.77C280.725 191.47 267.525 201.67 243.225 201.67C220.625 201.67 217.325 188.37 216.825 184.27C216.625 182.67 217.125 178.07 217.125 178.07C219.725 178.07 237.425 178.07 240.725 178.07C240.725 180.17 240.825 183.27 241.525 184.17C242.525 185.37 243.325 186.77 247.025 186.77C251.925 186.77 256.725 185.37 259.025 174.07L263.025 154.67H261.125L260.525 155.57C255.725 163.97 246.725 168.17 237.225 168.17C231.625 168.27 227.325 166.47 224.525 162.97Z"/>
+        <path d="M224.725 81.8702C216.125 81.8702 205.925 87.8702 200.925 97.5702L200.425 98.5702H198.525C198.525 98.5702 200.825 87.4702 201.525 84.2702C201.025 84.2702 200.225 84.2702 199.225 84.2702C196.325 84.2702 177.925 84.2702 174.325 84.2702C174.425 85.3702 174.625 86.4702 174.625 87.7702C174.625 90.5702 174.225 93.7702 173.525 97.5702C168.725 121.07 159.025 167.57 158.425 170.77C162.125 170.77 182.125 170.77 184.625 170.77C186.225 162.67 194.425 123.07 194.425 123.07C196.925 111.17 203.825 105.67 216.325 105.67C218.525 105.67 220.425 105.77 222.225 106.07C222.825 103.27 226.525 85.5702 227.225 82.0702C226.025 81.8702 224.725 81.8702 224.725 81.8702Z"/>
+        <path d="M131.725 127.17C131.725 127.17 131.225 127.57 130.325 127.97C128.725 128.57 125.225 129.17 123.125 129.67C121.425 130.07 119.525 130.57 117.525 131.47C112.025 133.77 109.325 137.57 107.825 144.47C107.025 148.47 107.525 151.87 109.325 154.07C110.625 155.67 112.625 156.57 115.025 156.57C124.725 156.57 127.725 147.27 129.225 140.27L131.725 127.17ZM132.025 81.8702C145.325 81.8702 153.425 84.1702 157.425 89.1702C159.625 91.8702 160.725 95.4702 160.825 100.07C160.825 102.67 160.525 105.47 159.825 108.57L150.725 152.57C149.525 158.67 148.725 163.27 148.725 167.17C148.725 168.37 148.825 169.57 149.025 170.57C145.325 170.57 126.925 170.57 124.125 170.57C124.125 170.27 124.125 170.07 124.125 169.77C124.125 167.97 124.225 165.97 124.425 163.97L124.725 160.37H123.325L122.825 161.17C118.325 168.37 108.125 172.87 99.4255 172.87C92.2255 172.87 87.0255 171.07 84.0255 167.37C80.8255 163.37 80.0255 157.07 81.7255 148.67C85.1255 132.27 92.6255 125.27 111.325 121.07L123.725 118.27C131.125 116.67 134.625 113.37 136.025 107.07C136.725 103.57 136.325 100.87 134.825 99.0702C133.425 97.3702 131.225 96.5702 128.225 96.5702C121.525 96.5702 118.025 99.9702 115.825 108.57C113.525 108.57 97.2255 108.57 93.6255 108.57C99.5255 85.4702 120.125 81.8702 132.025 81.8702Z"/>
+        <path d="M5.12538 166.17C-1.37462 158.17 -1.67462 143.37 4.12538 115.17C13.5254 70.0702 26.9254 54.8702 57.5254 54.8702C69.7254 54.8702 78.3254 57.7702 83.0254 63.5702C86.0254 67.2702 87.6254 72.3702 87.6254 78.7702C87.6254 82.2702 87.2254 86.0702 86.3254 90.2702C86.3254 90.2702 85.5254 94.0702 85.0254 96.2702C82.5254 96.2702 59.2254 96.2702 59.2254 96.2702C59.2254 96.2702 61.1254 83.9702 61.1254 81.2702C61.1254 78.1702 61.0254 76.5702 59.8254 75.0702C58.6254 73.4702 56.8254 72.1702 54.0254 72.1702C42.6254 72.1702 38.8254 83.0702 32.3254 114.47C27.3254 138.87 25.4254 149.97 29.3254 154.77C30.8254 156.57 33.0254 157.47 36.1254 157.47C45.1254 157.47 48.6254 149.77 53.2254 128.37C55.6254 128.37 75.5254 128.37 79.2254 128.37C78.7254 130.87 77.8254 134.97 77.8254 134.97C72.4254 161.37 56.8254 174.77 31.8254 174.77C18.4254 174.67 9.92538 171.97 5.12538 166.17Z"/>
+      </g>
+      <path style="fill: var(--leaf-fill, #00843D)" d="M344.125 74.0702C344.125 74.0702 326.725 75.4702 314.625 73.7702C286.825 69.9702 261.025 50.7702 249.625 44.3702C224.825 30.5702 214.725 29.6702 201.925 33.3702C180.825 39.0702 168.525 56.3702 156.625 76.5702C154.325 75.4702 151.925 74.5702 149.425 73.9702C156.225 59.5702 182.125 13.0702 235.425 2.07022C288.925 -9.12978 346.225 26.5702 344.125 74.0702Z"/>
+    </symbol>
+  </svg>
+
+
+  <header class="appbar">
+    <div class="appbar-inner">
+      <a class="appbar-brand" href="#" aria-label="myCargill home"><img src="assets/cargill-logo.svg" alt="Cargill" /></a>
+      <nav class="appbar-nav" aria-label="Primary">
+        <a href="#" class="appbar-link appbar-link--active">Dashboard</a>
+        <a href="#" class="appbar-link">Orders</a>
+        <a href="#" class="appbar-link">Shipments</a>
+        <a href="#" class="appbar-link">Reports</a>
+      </nav>
+      <div class="appbar-actions">
+        <button class="btn btn-ghost btn--icon" aria-label="Search"><span class="material-symbols-rounded">search</span></button>
+        <button class="btn btn-ghost btn--icon" aria-label="Notifications"><span class="material-symbols-rounded">notifications</span></button>
+        <span class="avatar-wrap"><span class="avatar avatar--md avatar--image"></span><span class="avatar-status status-indicator--online"></span></span>
+      </div>
+    </div>
+  </header>
+
+  <div class="banner banner--info" style="border-radius:0;">
+    <p class="banner-message">Scheduled maintenance Sunday 2&ndash;4 AM CST. Some reports may be briefly unavailable.</p>
+    <button class="banner-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button>
+  </div>
+
+  <main id="main-content" tabindex="-1" class="page">
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="#" class="breadcrumb-item">Home</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-item breadcrumb-item--current">Dashboard</span>
+    </nav>
+
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">Good morning, Adam</h1>
+        <p class="page-sub">Here's where your operations stand today.</p>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary"><span class="material-symbols-rounded">download</span>Export</button>
+        <button class="btn btn-primary"><span class="material-symbols-rounded">add</span>New order</button>
+      </div>
+    </div>
+
+    <!-- KPI metric cards -->
+    <div class="metric-grid">
+      <article class="card card-metric card-metric--with-chart">
+        <span class="card-eyebrow">Revenue (QTD)</span>
+                <div class="card-metric-row">
+                  <div class="card-metric-figures">
+                    <span class="card-metric-value">$1.24M</span>
+          <span class="card-metric-delta card-metric-delta--up"><span class="material-symbols-rounded">arrow_upward</span>+8%</span>
+                  </div>
+                  <div class="card-metric-chart">
+          <svg viewBox="0 0 96 64" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points="0,52 16,46 32,38 48,30 64,26 80,16 96,8" stroke="var(--green-600)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="0,52 16,46 32,38 48,30 64,26 80,16 96,8 96,64 0,64" fill="var(--soft-green-50)"/>
+          </svg>
+        </div>
+                </div>
+      </article>
+      <article class="card card-metric">
+        <span class="card-eyebrow">Open orders</span>
+        <span class="card-metric-value">312</span>
+        <span class="card-metric-delta card-metric-delta--up"><span class="material-symbols-rounded">arrow_upward</span>+24</span>
+        <div class="card-metric-foot"><span>vs. last week</span><span>18 urgent</span></div>
+      </article>
+      <article class="card card-metric">
+        <span class="card-eyebrow">On-time delivery</span>
+        <span class="card-metric-value">96.4%</span>
+        <span class="card-metric-delta card-metric-delta--down"><span class="material-symbols-rounded">arrow_downward</span>&minus;1.2%</span>
+        <div class="card-metric-foot"><span>30-day</span><span>Target 95%</span></div>
+      </article>
+      <article class="card card-metric card-metric--with-chart">
+        <span class="card-eyebrow">Suppliers traceable</span>
+                <div class="card-metric-row">
+                  <div class="card-metric-figures">
+                    <span class="card-metric-value">87%</span>
+          <span class="card-metric-delta card-metric-delta--up"><span class="material-symbols-rounded">arrow_upward</span>+12 pts</span>
+                  </div>
+                  <div class="card-metric-chart">
+          <svg viewBox="0 0 96 64" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points="0,56 16,50 32,44 48,34 64,30 80,22 96,14" stroke="var(--green-600)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="0,56 16,50 32,44 48,34 64,30 80,22 96,14 96,64 0,64" fill="var(--soft-green-50)"/>
+          </svg>
+        </div>
+                </div>
+      </article>
+    </div>
+
+    <div class="dash-grid">
+      <!-- Recent shipments table with tabs + status badges -->
+      <section>
+        <p class="panel-title">Recent shipments</p>
+        <div class="tabs" role="tablist">
+          <button class="tab tab--active" role="tab" aria-selected="true">All <span class="tab-count">312</span></button>
+          <button class="tab" role="tab" aria-selected="false">In transit <span class="tab-count">87</span></button>
+          <button class="tab" role="tab" aria-selected="false">Delivered <span class="tab-count">214</span></button>
+          <button class="tab" role="tab" aria-selected="false">Delayed <span class="tab-count">11</span></button>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr>
+              <th>Order</th><th>Destination</th><th>Status</th><th class="table-cell--num">Units</th><th class="table-cell--num">ETA</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>CG-48201</td><td>Cedar Rapids, IA</td><td><span class="badge badge--green">Delivered</span></td><td class="table-cell--num">12,400</td><td class="table-cell--num">&mdash;</td></tr>
+              <tr><td>CG-48198</td><td>Wichita, KS</td><td><span class="badge badge--blue">In transit</span></td><td class="table-cell--num">8,150</td><td class="table-cell--num">Jun 9</td></tr>
+              <tr><td>CG-48190</td><td>Sioux Falls, SD</td><td><span class="badge badge--orange">Delayed</span></td><td class="table-cell--num">5,600</td><td class="table-cell--num">Jun 11</td></tr>
+              <tr><td>CG-48185</td><td>Omaha, NE</td><td><span class="badge badge--green">Delivered</span></td><td class="table-cell--num">9,300</td><td class="table-cell--num">&mdash;</td></tr>
+              <tr><td>CG-48177</td><td>Fargo, ND</td><td><span class="badge badge--purple">Scheduled</span></td><td class="table-cell--num">7,020</td><td class="table-cell--num">Jun 12</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Side column: quarterly goal + quick actions -->
+      <aside style="display:flex; flex-direction:column; gap:var(--space-5);">
+        <div class="container-box">
+          <span class="container-box-title">Quarterly traceability goal</span>
+          <span class="container-box-body">87% of 95% target reached.</span>
+          <div class="progress-bar-row" style="margin-top:var(--space-2);">
+            <div class="progress-bar progress-bar--success"><div class="progress-bar-fill" style="width:91%;"></div></div>
+          </div>
+          <div class="container-box-actions">
+            <span class="container-box-action">View breakdown</span>
+          </div>
+        </div>
+
+        <article class="card card-expressive">
+          <p class="card-eyebrow">Sustainability</p>
+          <h3 class="card-headline">38.2 kt carbon avoided this season.</h3>
+          <p class="card-body">Cover crops and partnered measurement across 320,000 acres.</p>
+          <div class="btn-row" style="margin-top:4px;">
+            <button class="btn btn-secondary btn--sm">Read the report</button>
+          </div>
+        </article>
+      </aside>
+    </div>
+
+  </main>
+
+  <footer class="site-footer-demo site-footer-demo--dark" style="border-radius:0;">
+    <div class="site-footer-demo-main">
+      <div class="site-footer-cols">
+        <div class="site-footer-logo">
+          <svg class="cargill-logo cargill-logo--white" viewBox="0 0 432 202" role="img" aria-label="Cargill"><use href="#cargill-logo"/></svg>
+        </div>
+        <div class="site-footer-col">
+          <a class="site-footer-link" href="#">Orders</a>
+          <a class="site-footer-link" href="#">Shipments</a>
+          <a class="site-footer-link" href="#">Invoices</a>
+        </div>
+        <div class="site-footer-col">
+          <a class="site-footer-link" href="#">Reports</a>
+          <a class="site-footer-link" href="#">Suppliers</a>
+          <a class="site-footer-link" href="#">Support</a>
+        </div>
+        <div class="site-footer-col">
+          <a class="site-footer-link" href="#">Account</a>
+          <a class="site-footer-link" href="#">Settings</a>
+          <a class="site-footer-link" href="#">Contact us</a>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer-demo-sub">
+      <span>&copy; 2026 Cargill, Incorporated. All Rights Reserved.</span>
+      <div class="site-footer-sub-links"><a href="#">Privacy Notices</a><a href="#">Fraud Notice</a><a href="#">Manage Cookies</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>
