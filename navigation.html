@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Navigation & feedback · Sprout Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="Cargill%20Fonts/HelveticaNowForCargill.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="Cargill%20Fonts/BigCaslonForCargill.otf" as="font" type="font/otf" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..700,0..1,-25..0&display=block" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Cargill logo SVG symbol. Wordmark paths use currentColor, leaf uses --leaf-fill. -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+    <symbol id="cargill-logo" viewBox="0 0 432 202">
+      <g fill="currentColor">
+        <path d="M423.825 174.37C422.325 174.37 420.925 173.97 419.725 173.27C418.425 172.57 417.525 171.57 416.725 170.37C416.025 169.17 415.625 167.87 415.625 166.37C415.625 164.87 416.025 163.57 416.725 162.37C417.425 161.17 418.425 160.17 419.725 159.47C421.025 158.77 422.325 158.37 423.825 158.37C425.325 158.37 426.725 158.77 427.925 159.47C429.125 160.17 430.125 161.17 430.925 162.37C431.625 163.57 432.025 164.87 432.025 166.37C432.025 167.87 431.625 169.17 430.925 170.37C430.225 171.57 429.225 172.57 427.925 173.27C426.625 173.97 425.325 174.37 423.825 174.37ZM423.825 173.07C425.125 173.07 426.225 172.77 427.325 172.17C428.325 171.57 429.225 170.77 429.825 169.77C430.425 168.77 430.725 167.57 430.725 166.37C430.725 165.17 430.425 163.97 429.825 162.97C429.225 161.97 428.425 161.17 427.325 160.57C426.225 159.97 425.125 159.67 423.825 159.67C422.525 159.67 421.425 159.97 420.325 160.57C419.225 161.17 418.425 161.97 417.825 162.97C417.225 163.97 416.925 165.17 416.925 166.37C416.925 167.57 417.225 168.77 417.825 169.77C418.425 170.77 419.225 171.57 420.325 172.17C421.425 172.77 422.625 173.07 423.825 173.07ZM420.725 170.67V161.97H424.325C424.925 161.97 425.425 162.07 425.925 162.27C426.325 162.47 426.725 162.77 426.925 163.07C427.125 163.47 427.325 163.87 427.325 164.37C427.325 164.77 427.225 165.17 427.125 165.47C426.925 165.77 426.725 166.07 426.425 166.27C426.125 166.47 425.625 166.57 425.125 166.67V166.27C425.625 166.27 425.925 166.37 426.225 166.57C426.525 166.67 426.725 166.87 426.925 167.17C427.025 167.47 427.125 167.77 427.225 168.17L427.325 169.57C427.325 169.87 427.425 170.07 427.425 170.27C427.525 170.47 427.625 170.67 427.725 170.77H426.525C426.425 170.67 426.325 170.47 426.325 170.27C426.225 170.07 426.225 169.87 426.225 169.57L426.125 168.47C426.125 168.07 426.025 167.87 425.925 167.67C425.825 167.47 425.725 167.37 425.425 167.27C425.225 167.17 424.925 167.17 424.625 167.17H421.225V165.97H424.525C424.925 165.97 425.225 165.87 425.425 165.77C425.725 165.67 425.825 165.47 426.025 165.27C426.225 165.07 426.225 164.77 426.225 164.47C426.225 164.17 426.125 163.87 426.025 163.67C425.925 163.47 425.725 163.27 425.425 163.17C425.125 163.07 424.825 162.97 424.425 162.97H421.425L421.925 162.47V170.67H420.725Z"/>
+        <path d="M432.025 55.4702C431.125 59.6702 408.725 167.97 408.125 170.77C405.625 170.77 385.625 170.77 381.925 170.77C382.725 166.57 405.225 58.2702 405.725 55.4702C408.325 55.4702 428.325 55.4702 432.025 55.4702Z"/>
+        <path d="M390.025 55.4702C389.125 59.6702 366.725 167.97 366.125 170.77C363.625 170.77 343.625 170.77 339.925 170.77C340.725 166.57 363.225 58.2702 363.725 55.4702C366.325 55.4702 386.325 55.4702 390.025 55.4702Z"/>
+        <path d="M341.925 84.2702C341.025 88.4702 324.625 167.97 324.025 170.67C321.525 170.67 301.525 170.67 297.825 170.67C298.725 166.47 315.125 86.9702 315.725 84.2702C318.225 84.2702 338.225 84.2702 341.925 84.2702Z"/>
+        <path d="M248.525 126.37C245.925 139.17 246.025 144.07 248.525 147.27C249.825 148.87 251.725 149.67 254.425 149.67C261.825 149.67 265.425 145.17 269.125 127.17C271.825 114.27 272.125 106.07 269.525 102.87C268.325 101.37 266.425 100.57 263.925 100.57C256.325 100.57 252.225 108.27 248.525 126.37ZM224.525 162.97C219.225 156.47 218.225 146.37 221.825 128.27C229.725 88.8702 244.725 81.9702 257.725 81.9702C263.925 81.9702 273.225 84.2702 274.325 95.1702L274.425 96.8702H276.225C276.225 96.8702 278.325 86.6702 278.825 84.3702C281.225 84.3702 299.425 84.3702 303.025 84.3702C302.125 88.5702 285.025 170.77 285.025 170.77C280.725 191.47 267.525 201.67 243.225 201.67C220.625 201.67 217.325 188.37 216.825 184.27C216.625 182.67 217.125 178.07 217.125 178.07C219.725 178.07 237.425 178.07 240.725 178.07C240.725 180.17 240.825 183.27 241.525 184.17C242.525 185.37 243.325 186.77 247.025 186.77C251.925 186.77 256.725 185.37 259.025 174.07L263.025 154.67H261.125L260.525 155.57C255.725 163.97 246.725 168.17 237.225 168.17C231.625 168.27 227.325 166.47 224.525 162.97Z"/>
+        <path d="M224.725 81.8702C216.125 81.8702 205.925 87.8702 200.925 97.5702L200.425 98.5702H198.525C198.525 98.5702 200.825 87.4702 201.525 84.2702C201.025 84.2702 200.225 84.2702 199.225 84.2702C196.325 84.2702 177.925 84.2702 174.325 84.2702C174.425 85.3702 174.625 86.4702 174.625 87.7702C174.625 90.5702 174.225 93.7702 173.525 97.5702C168.725 121.07 159.025 167.57 158.425 170.77C162.125 170.77 182.125 170.77 184.625 170.77C186.225 162.67 194.425 123.07 194.425 123.07C196.925 111.17 203.825 105.67 216.325 105.67C218.525 105.67 220.425 105.77 222.225 106.07C222.825 103.27 226.525 85.5702 227.225 82.0702C226.025 81.8702 224.725 81.8702 224.725 81.8702Z"/>
+        <path d="M131.725 127.17C131.725 127.17 131.225 127.57 130.325 127.97C128.725 128.57 125.225 129.17 123.125 129.67C121.425 130.07 119.525 130.57 117.525 131.47C112.025 133.77 109.325 137.57 107.825 144.47C107.025 148.47 107.525 151.87 109.325 154.07C110.625 155.67 112.625 156.57 115.025 156.57C124.725 156.57 127.725 147.27 129.225 140.27L131.725 127.17ZM132.025 81.8702C145.325 81.8702 153.425 84.1702 157.425 89.1702C159.625 91.8702 160.725 95.4702 160.825 100.07C160.825 102.67 160.525 105.47 159.825 108.57L150.725 152.57C149.525 158.67 148.725 163.27 148.725 167.17C148.725 168.37 148.825 169.57 149.025 170.57C145.325 170.57 126.925 170.57 124.125 170.57C124.125 170.27 124.125 170.07 124.125 169.77C124.125 167.97 124.225 165.97 124.425 163.97L124.725 160.37H123.325L122.825 161.17C118.325 168.37 108.125 172.87 99.4255 172.87C92.2255 172.87 87.0255 171.07 84.0255 167.37C80.8255 163.37 80.0255 157.07 81.7255 148.67C85.1255 132.27 92.6255 125.27 111.325 121.07L123.725 118.27C131.125 116.67 134.625 113.37 136.025 107.07C136.725 103.57 136.325 100.87 134.825 99.0702C133.425 97.3702 131.225 96.5702 128.225 96.5702C121.525 96.5702 118.025 99.9702 115.825 108.57C113.525 108.57 97.2255 108.57 93.6255 108.57C99.5255 85.4702 120.125 81.8702 132.025 81.8702Z"/>
+        <path d="M5.12538 166.17C-1.37462 158.17 -1.67462 143.37 4.12538 115.17C13.5254 70.0702 26.9254 54.8702 57.5254 54.8702C69.7254 54.8702 78.3254 57.7702 83.0254 63.5702C86.0254 67.2702 87.6254 72.3702 87.6254 78.7702C87.6254 82.2702 87.2254 86.0702 86.3254 90.2702C86.3254 90.2702 85.5254 94.0702 85.0254 96.2702C82.5254 96.2702 59.2254 96.2702 59.2254 96.2702C59.2254 96.2702 61.1254 83.9702 61.1254 81.2702C61.1254 78.1702 61.0254 76.5702 59.8254 75.0702C58.6254 73.4702 56.8254 72.1702 54.0254 72.1702C42.6254 72.1702 38.8254 83.0702 32.3254 114.47C27.3254 138.87 25.4254 149.97 29.3254 154.77C30.8254 156.57 33.0254 157.47 36.1254 157.47C45.1254 157.47 48.6254 149.77 53.2254 128.37C55.6254 128.37 75.5254 128.37 79.2254 128.37C78.7254 130.87 77.8254 134.97 77.8254 134.97C72.4254 161.37 56.8254 174.77 31.8254 174.77C18.4254 174.67 9.92538 171.97 5.12538 166.17Z"/>
+      </g>
+      <path style="fill: var(--leaf-fill, #00843D)" d="M344.125 74.0702C344.125 74.0702 326.725 75.4702 314.625 73.7702C286.825 69.9702 261.025 50.7702 249.625 44.3702C224.825 30.5702 214.725 29.6702 201.925 33.3702C180.825 39.0702 168.525 56.3702 156.625 76.5702C154.325 75.4702 151.925 74.5702 149.425 73.9702C156.225 59.5702 182.125 13.0702 235.425 2.07022C288.925 -9.12978 346.225 26.5702 344.125 74.0702Z"/>
+    </symbol>
+  </svg>
+
+  <div class="app-layout">
+
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <a href="index.html" style="text-decoration:none; display:block;"><svg class="cargill-logo cargill-logo--black" viewBox="0 0 432 202" role="img" aria-label="Cargill"><use href="#cargill-logo"/></svg></a>
+        <span class="sidebar-brand-title">Sprout</span>
+        <span class="sidebar-brand-tagline">Design System · v0.1</span>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Design system sections">
+        <div class="sidebar-section">
+          <span class="sidebar-section-title">Foundations</span>
+          <a href="index.html#color" class="sidebar-link"><span class="sidebar-link-num">01</span><span>Color</span></a>
+          <a href="index.html#type" class="sidebar-link"><span class="sidebar-link-num">02</span><span>Typography</span></a>
+          <a href="index.html#space" class="sidebar-link"><span class="sidebar-link-num">03</span><span>Layout &amp; shape</span></a>
+          <a href="index.html#icons" class="sidebar-link"><span class="sidebar-link-num">04</span><span>Iconography</span></a>
+          <a href="index.html#logo" class="sidebar-link"><span class="sidebar-link-num">05</span><span>Logo</span></a>
+        </div>
+        <div class="sidebar-section">
+          <span class="sidebar-section-title">System</span>
+          <a href="index.html#themes" class="sidebar-link"><span class="sidebar-link-num">06</span><span>Themes</span></a>
+          <a href="index.html#elevation" class="sidebar-link"><span class="sidebar-link-num">07</span><span>Elevation</span></a>
+        </div>
+        <div class="sidebar-section">
+          <span class="sidebar-section-title">Components</span>
+          <a href="forms.html" class="sidebar-link sidebar-group"><span class="sidebar-link-num">·</span><span>Forms &amp; inputs</span></a>
+          <a href="content.html" class="sidebar-link sidebar-group"><span class="sidebar-link-num">·</span><span>Layout &amp; content</span></a>
+          <a href="navigation.html" class="sidebar-link sidebar-group sidebar-group--active"><span class="sidebar-link-num">·</span><span>Navigation &amp; feedback</span></a>
+          <div class="sidebar-group-children">
+            <a href="#alert" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Alert</span></a>
+            <a href="#banner" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Banner</span></a>
+            <a href="#breadcrumb" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Breadcrumb</span></a>
+            <a href="#footer" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Footer</span></a>
+            <a href="#link" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Link</span></a>
+            <a href="#modal" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Modal</span></a>
+            <a href="#page-indicator" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Page indicator</span></a>
+            <a href="#pagination" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Pagination</span></a>
+            <a href="#popover" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Popover</span></a>
+            <a href="#sheet" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Sheet</span></a>
+            <a href="#snackbar" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Snackbar</span></a>
+            <a href="#spinner" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Spinner</span></a>
+            <a href="#stepper" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Stepper</span></a>
+            <a href="#toast" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Toast</span></a>
+            <a href="#tooltip" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Tooltip</span></a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="sidebar-foot">
+        Updated 2026.06.06<br>Tokens synced from Figma
+      </div>
+    </aside>
+
+    <div class="app-main" id="main-content" tabindex="-1">
+
+  <main>
+    <section class="block" id="navigation-top">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow">Components</p>
+            <h1 class="section-title">Navigation &amp; feedback</h1>
+          </div>
+          <p class="section-lede">Wayfinding, overlays, and system messaging.</p>
+        </div>
+        <div class="component-grid">
+<div class="component-heading" id="alert">
+            <h2 class="component-heading-title">Alert</h2>
+            <p class="component-heading-desc">Displays important, time-sensitive information to the user.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Alert · light</p>
+            <div class="alert-stack">
+              <div class="alert alert--success">
+                <span class="alert-icon"><span class="material-symbols-rounded">check</span></span>
+                <div class="alert-content">
+                  <span class="alert-title">Success!</span>
+                  <span class="alert-body">Account created successfully. Welcome aboard!</span>
+                </div>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+              </div>
+              <div class="alert alert--error">
+                <span class="alert-icon"><span class="material-symbols-rounded">error</span></span>
+                <div class="alert-content">
+                  <span class="alert-title">Error</span>
+                  <span class="alert-body">Incorrect username or password.</span>
+                </div>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+              </div>
+              <div class="alert alert--warning">
+                <span class="alert-icon"><span class="material-symbols-rounded">warning</span></span>
+                <div class="alert-content">
+                  <span class="alert-title">Warning</span>
+                  <span class="alert-body">This action cannot be undone. Are you sure you want to proceed?</span>
+                </div>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+              </div>
+              <div class="alert alert--info">
+                <span class="alert-icon"><span class="material-symbols-rounded">info</span></span>
+                <div class="alert-content">
+                  <span class="alert-title">Informational</span>
+                  <span class="alert-body">New version available. Please update to the latest version.</span>
+                </div>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+              </div>
+              <div class="alert alert--neutral">
+                <span class="alert-icon"><span class="material-symbols-rounded">campaign</span></span>
+                <div class="alert-content">
+                  <span class="alert-title">Announcement</span>
+                  <span class="alert-body">We've just launched Dark Mode! You can enable it in your settings for a better viewing experience at night.</span>
+                </div>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Alert · dark</p>
+            <div class="alert-stack alert-stack--dark">
+              <div class="alert alert--success">
+                <span class="alert-icon"><span class="material-symbols-rounded">check</span></span>
+                <div class="alert-content">
+                  <span class="alert-title">Success!</span>
+                  <span class="alert-body">Account created successfully. Welcome aboard!</span>
+                </div>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+              </div>
+              <div class="alert alert--error">
+                <span class="alert-icon"><span class="material-symbols-rounded">error</span></span>
+                <div class="alert-content">
+                  <span class="alert-title">Error</span>
+                  <span class="alert-body">Incorrect username or password.</span>
+                </div>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+              </div>
+              <div class="alert alert--warning">
+                <span class="alert-icon"><span class="material-symbols-rounded">warning</span></span>
+                <div class="alert-content">
+                  <span class="alert-title">Warning</span>
+                  <span class="alert-body">This action cannot be undone. Are you sure you want to proceed?</span>
+                </div>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+              </div>
+              <div class="alert alert--info">
+                <span class="alert-icon"><span class="material-symbols-rounded">info</span></span>
+                <div class="alert-content">
+                  <span class="alert-title">Informational</span>
+                  <span class="alert-body">New version available. Please update to the latest version.</span>
+                </div>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+              </div>
+              <div class="alert alert--neutral">
+                <span class="alert-icon"><span class="material-symbols-rounded">campaign</span></span>
+                <div class="alert-content">
+                  <span class="alert-title">Announcement</span>
+                  <span class="alert-body">We've just launched Dark Mode! You can enable it in your settings for a better viewing experience at night.</span>
+                </div>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+              </div>
+            </div>
+          </div>
+<div class="component-heading" id="banner">
+            <h2 class="component-heading-title">Banner</h2>
+            <p class="component-heading-desc">A full-width system message that sits at the top of a page or surface. Use sparingly for time‑sensitive, account‑wide events. Five semantic variants.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Banner · semantic variants</p>
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+              <div class="banner banner--critical">
+                <p class="banner-message">Suspicious activity detected on your account. Please verify immediately.</p>
+                <button class="banner-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button>
+              </div>
+              <div class="banner banner--warning">
+                <p class="banner-message">Your subscription expires in 3 days. Renew now to avoid interruption.</p>
+                <button class="banner-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button>
+              </div>
+              <div class="banner banner--info">
+                <p class="banner-message">Scheduled maintenance on Sunday, 2 AM&nbsp;–&nbsp;4 AM CST. Some features may be temporarily unavailable.</p>
+                <button class="banner-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button>
+              </div>
+              <div class="banner banner--success">
+                <p class="banner-message">Your account has been successfully verified.</p>
+                <button class="banner-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button>
+              </div>
+              <div class="banner banner--neutral">
+                <p class="banner-message">We've updated our Terms of Service. Review the changes by November 15.</p>
+                <button class="banner-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Banner · non‑dismissible</p>
+            <p class="card-body" style="margin-bottom: var(--space-4); max-width: 56ch;">Drop the close button when the message must be acknowledged via the call to action instead of dismissed.</p>
+            <div class="banner banner--critical">
+              <p class="banner-message">Suspicious activity detected on your account. Please verify immediately.</p>
+            </div>
+          </div>
+<div class="component-heading" id="breadcrumb">
+            <h2 class="component-heading-title">Breadcrumb</h2>
+            <p class="component-heading-desc">A navigational aid that gives users context to where they are within an app or site. Previous levels link back; the current page sits muted at the end.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Breadcrumb · depths</p>
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+              <nav class="breadcrumb" aria-label="Breadcrumb">
+                <span class="breadcrumb-item breadcrumb-item--current">Home</span>
+              </nav>
+              <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="#" class="breadcrumb-item">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-item breadcrumb-item--current">Books</span>
+              </nav>
+              <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="#" class="breadcrumb-item">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="#" class="breadcrumb-item">Books</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-item breadcrumb-item--current">New Releases</span>
+              </nav>
+              <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="#" class="breadcrumb-item">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="#" class="breadcrumb-item">Books</a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="#" class="breadcrumb-item">New Releases</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-item breadcrumb-item--current">Fiction</span>
+              </nav>
+            </div>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Breadcrumb · themes</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4);">
+              <div class="breadcrumb-row">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                  <a href="#" class="breadcrumb-item">Home</a>
+                  <span class="breadcrumb-separator">/</span>
+                  <a href="#" class="breadcrumb-item">Books</a>
+                  <span class="breadcrumb-separator">/</span>
+                  <span class="breadcrumb-item breadcrumb-item--current">New Releases</span>
+                </nav>
+              </div>
+              <div class="breadcrumb-row breadcrumb-row--paper">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                  <a href="#" class="breadcrumb-item">Home</a>
+                  <span class="breadcrumb-separator">/</span>
+                  <a href="#" class="breadcrumb-item">Books</a>
+                  <span class="breadcrumb-separator">/</span>
+                  <span class="breadcrumb-item breadcrumb-item--current">New Releases</span>
+                </nav>
+              </div>
+              <div class="breadcrumb-row breadcrumb-row--dark">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                  <a href="#" class="breadcrumb-item">Home</a>
+                  <span class="breadcrumb-separator">/</span>
+                  <a href="#" class="breadcrumb-item">Books</a>
+                  <span class="breadcrumb-separator">/</span>
+                  <span class="breadcrumb-item breadcrumb-item--current">New Releases</span>
+                </nav>
+              </div>
+              <div class="breadcrumb-row breadcrumb-row--neutral">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                  <a href="#" class="breadcrumb-item">Home</a>
+                  <span class="breadcrumb-separator">/</span>
+                  <a href="#" class="breadcrumb-item">Books</a>
+                  <span class="breadcrumb-separator">/</span>
+                  <span class="breadcrumb-item breadcrumb-item--current">New Releases</span>
+                </nav>
+              </div>
+            </div>
+          </div>
+<div class="component-heading" id="footer">
+            <h2 class="component-heading-title">Footer</h2>
+            <p class="component-heading-desc">The section at the bottom of a page or application. Carries the Cargill mark, secondary navigation, and utility links like privacy and cookie preferences.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Footer · default</p>
+            <div class="site-footer-demo">
+              <div class="site-footer-demo-main">
+                <div class="site-footer-cols">
+                  <div class="site-footer-logo">
+                    <svg class="cargill-logo cargill-logo--white" viewBox="0 0 432 202" role="img" aria-label="Cargill"><use href="#cargill-logo"/></svg>
+                  </div>
+                  <div class="site-footer-col">
+                    <a class="site-footer-link" href="#">Reimagine What's Possible</a>
+                    <a class="site-footer-link" href="#">Cargill at a glance</a>
+                    <a class="site-footer-link" href="#">Executive Team</a>
+                    <a class="site-footer-link" href="#">Innovation</a>
+                  </div>
+                  <div class="site-footer-col">
+                    <a class="site-footer-link" href="#">2024 Annual Report</a>
+                    <a class="site-footer-link" href="#">Our History</a>
+                    <a class="site-footer-link" href="#">Community Engagement</a>
+                    <a class="site-footer-link" href="#">Research &amp; Development</a>
+                  </div>
+                  <div class="site-footer-col">
+                    <a class="site-footer-link" href="#">Diversity, Equity and Inclusion</a>
+                    <a class="site-footer-link" href="#">Ethics &amp; Compliance</a>
+                    <a class="site-footer-link" href="#">Supplier Central</a>
+                    <a class="site-footer-link" href="#">Contact Us</a>
+                  </div>
+                </div>
+              </div>
+              <div class="site-footer-demo-sub">
+                <span>© 2026 Cargill, Incorporated. All Rights Reserved.</span>
+                <div class="site-footer-sub-links">
+                  <a href="#">Privacy Notices</a>
+                  <a href="#">Fraud Notice</a>
+                  <a href="#">Manage Cookies</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Footer · dark theme</p>
+            <div class="site-footer-demo site-footer-demo--dark">
+              <div class="site-footer-demo-main">
+                <div class="site-footer-cols">
+                  <div class="site-footer-logo">
+                    <svg class="cargill-logo cargill-logo--white" viewBox="0 0 432 202" role="img" aria-label="Cargill"><use href="#cargill-logo"/></svg>
+                  </div>
+                  <div class="site-footer-col">
+                    <a class="site-footer-link" href="#">Reimagine What's Possible</a>
+                    <a class="site-footer-link" href="#">Cargill at a glance</a>
+                    <a class="site-footer-link" href="#">Executive Team</a>
+                    <a class="site-footer-link" href="#">Innovation</a>
+                  </div>
+                  <div class="site-footer-col">
+                    <a class="site-footer-link" href="#">2024 Annual Report</a>
+                    <a class="site-footer-link" href="#">Our History</a>
+                    <a class="site-footer-link" href="#">Community Engagement</a>
+                    <a class="site-footer-link" href="#">Research &amp; Development</a>
+                  </div>
+                  <div class="site-footer-col">
+                    <a class="site-footer-link" href="#">Diversity, Equity and Inclusion</a>
+                    <a class="site-footer-link" href="#">Ethics &amp; Compliance</a>
+                    <a class="site-footer-link" href="#">Supplier Central</a>
+                    <a class="site-footer-link" href="#">Contact Us</a>
+                  </div>
+                </div>
+              </div>
+              <div class="site-footer-demo-sub">
+                <span>© 2026 Cargill, Incorporated. All Rights Reserved.</span>
+                <div class="site-footer-sub-links">
+                  <a href="#">Privacy Notices</a>
+                  <a href="#">Fraud Notice</a>
+                  <a href="#">Manage Cookies</a>
+                </div>
+              </div>
+            </div>
+          </div>
+<div class="component-heading" id="link">
+            <h2 class="component-heading-title">Link</h2>
+            <p class="component-heading-desc">Inline text links that redirect users to another location. Underlined brand‑green by default, with focus, small, and external variants.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Link · in body copy</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4);">
+
+              <div class="link-demo">
+                <p>To receive this promotional offer be sure to <a href="#">visit our website</a>.</p>
+                <p>For accessibility purposes, users should be able to <a href="#" class="lnk--focus">focus on links</a> using their keyboard.</p>
+                <p>This <a href="#" class="lnk--sm">promotional offer</a> is slightly smaller than the one above.</p>
+                <p>Links can redirect you to an <a href="#" class="lnk--external">external website <span class="material-symbols-rounded">open_in_new</span></a>.</p>
+              </div>
+
+              <div class="link-row--neutral">
+                <div class="link-demo">
+                  <p>To receive this promotional offer be sure to <a href="#">visit our website</a>.</p>
+                  <p>For accessibility purposes, users should be able to <a href="#" class="lnk--focus">focus on links</a> using their keyboard.</p>
+                  <p>This <a href="#" class="lnk--sm">promotional offer</a> is slightly smaller than the one above.</p>
+                  <p>Links can redirect you to an <a href="#" class="lnk--external">external website <span class="material-symbols-rounded">open_in_new</span></a>.</p>
+                </div>
+              </div>
+
+              <div class="link-row--dark">
+                <div class="link-demo">
+                  <p>To receive this promotional offer be sure to <a href="#">visit our website</a>.</p>
+                  <p>For accessibility purposes, users should be able to <a href="#" class="lnk--focus">focus on links</a> using their keyboard.</p>
+                  <p>This <a href="#" class="lnk--sm">promotional offer</a> is slightly smaller than the one above.</p>
+                  <p>Links can redirect you to an <a href="#" class="lnk--external">external website <span class="material-symbols-rounded">open_in_new</span></a>.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+<div class="component-heading" id="modal">
+            <h2 class="component-heading-title">Modal</h2>
+            <p class="component-heading-desc">A larger, more prominent overlay that takes over the screen, blocking interaction with the rest of the page until it's dismissed.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Modal · simple</p>
+            <div class="modal-frame">
+              <div class="modal">
+                <button class="modal-close" aria-label="Close"><span class="material-symbols-rounded">close</span></button>
+                <h3 class="modal-title">Title</h3>
+                <p class="modal-body">Lorem ipsum dolor sit amet consectetur adipiscing elit. A egestas at vehicula faucibus mauris suspendisse cras.</p>
+                <div class="modal-actions modal-actions--center">
+                  <button class="btn btn-primary">Button Text</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Modal · confirmation</p>
+            <div class="modal-frame">
+              <div class="modal">
+                <button class="modal-close" aria-label="Close"><span class="material-symbols-rounded">close</span></button>
+                <h3 class="modal-title">Are you sure you want to delete this member?</h3>
+                <p class="modal-body">Removing this member will have no impact on the trips however these trips will no longer be associated with this person.</p>
+                <div class="modal-actions">
+                  <button class="btn btn-secondary">Cancel</button>
+                  <button class="btn btn-primary btn--danger">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Modal · form</p>
+            <div class="modal-frame">
+              <div class="modal">
+                <button class="modal-close" aria-label="Close"><span class="material-symbols-rounded">close</span></button>
+                <h3 class="modal-title">Create new project</h3>
+                <div class="modal-form">
+                  <label class="input-field">
+                    <span class="input-field-label">Label</span>
+                    <span class="input-wrap"><input class="input-el" value="Sprout" /></span>
+                  </label>
+                  <div class="modal-form-row">
+                    <label class="input-field">
+                      <span class="input-field-label">Label</span>
+                      <span class="input-wrap"><input class="input-el" value="Will Smith" /></span>
+                    </label>
+                    <label class="input-field">
+                      <span class="input-field-label">Label</span>
+                      <span class="input-wrap"><input class="input-el" value="Design System" /></span>
+                    </label>
+                  </div>
+                  <label class="input-field">
+                    <span class="input-field-label">Label</span>
+                    <textarea class="modal-textarea" placeholder="Enter your description"></textarea>
+                  </label>
+                </div>
+                <div class="modal-actions">
+                  <button class="btn btn-secondary">Cancel</button>
+                  <button class="btn btn-primary">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Modal · dark theme</p>
+            <div class="modal-frame" style="background: var(--neutral-1000);">
+              <div class="modal modal--dark">
+                <button class="modal-close" aria-label="Close"><span class="material-symbols-rounded">close</span></button>
+                <h3 class="modal-title">Are you sure you want to delete this member?</h3>
+                <p class="modal-body">Removing this member will have no impact on the trips however these trips will no longer be associated with this person.</p>
+                <div class="modal-actions">
+                  <button class="btn btn-secondary">Cancel</button>
+                  <button class="btn btn-primary btn--danger">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+<div class="component-heading" id="page-indicator">
+            <h2 class="component-heading-title">Page indicator</h2>
+            <p class="component-heading-desc">A row of dots representing a sequence of pages or steps, with the current position highlighted.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Page indicator · default</p>
+            <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+              <span class="page-indicator"><span class="page-indicator-dot page-indicator-dot--active"></span><span class="page-indicator-dot"></span><span class="page-indicator-dot"></span><span class="page-indicator-dot"></span></span>
+              <span class="page-indicator"><span class="page-indicator-dot"></span><span class="page-indicator-dot page-indicator-dot--active"></span><span class="page-indicator-dot"></span><span class="page-indicator-dot"></span></span>
+              <span class="page-indicator"><span class="page-indicator-dot"></span><span class="page-indicator-dot"></span><span class="page-indicator-dot"></span><span class="page-indicator-dot page-indicator-dot--active"></span></span>
+            </div>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Page indicator · dark</p>
+            <div style="background: var(--brand-deep); padding: var(--padding-xl); border-radius: var(--corner-radius-md);">
+              <span class="page-indicator page-indicator--dark"><span class="page-indicator-dot"></span><span class="page-indicator-dot page-indicator-dot--active"></span><span class="page-indicator-dot"></span><span class="page-indicator-dot"></span><span class="page-indicator-dot"></span></span>
+            </div>
+          </div>
+<div class="component-heading" id="pagination">
+            <h2 class="component-heading-title">Pagination</h2>
+            <p class="component-heading-desc">Numbered navigation through paged content. Includes prev/next, ellipsis for skipped ranges, and an active page indicator.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Pagination · default</p>
+            <nav class="pagination" aria-label="Pagination">
+              <button class="pagination-btn pagination-btn--icon" aria-label="Previous" disabled><span class="material-symbols-rounded">chevron_left</span></button>
+              <button class="pagination-btn pagination-btn--active" aria-current="page">1</button>
+              <button class="pagination-btn">2</button>
+              <button class="pagination-btn">3</button>
+              <span class="pagination-ellipsis">…</span>
+              <button class="pagination-btn">12</button>
+              <button class="pagination-btn pagination-btn--icon" aria-label="Next"><span class="material-symbols-rounded">chevron_right</span></button>
+            </nav>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Pagination · middle</p>
+            <nav class="pagination" aria-label="Pagination">
+              <button class="pagination-btn pagination-btn--icon" aria-label="Previous"><span class="material-symbols-rounded">chevron_left</span></button>
+              <button class="pagination-btn">1</button>
+              <span class="pagination-ellipsis">…</span>
+              <button class="pagination-btn">4</button>
+              <button class="pagination-btn pagination-btn--active" aria-current="page">5</button>
+              <button class="pagination-btn">6</button>
+              <span class="pagination-ellipsis">…</span>
+              <button class="pagination-btn">12</button>
+              <button class="pagination-btn pagination-btn--icon" aria-label="Next"><span class="material-symbols-rounded">chevron_right</span></button>
+            </nav>
+          </div>
+<div class="component-heading" id="popover">
+            <h2 class="component-heading-title">Popover</h2>
+            <p class="component-heading-desc">A small floating panel anchored to a trigger, used for contextual content like quick actions or extra info.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Popover · variants</p>
+            <div style="display: flex; gap: var(--space-5); flex-wrap: wrap;">
+              <div class="popover">
+                <p class="popover-title">Title</p>
+                <p class="popover-body">A short message that helps the user understand more about this element.</p>
+              </div>
+              <div class="popover">
+                <p class="popover-title">Confirm</p>
+                <p class="popover-body">Are you sure you want to do this?</p>
+                <div class="popover-actions">
+                  <button class="btn btn-ghost btn--sm">Cancel</button>
+                  <button class="btn btn-primary btn--sm">Confirm</button>
+                </div>
+              </div>
+              <div class="popover popover--dark">
+                <p class="popover-title">Dark theme</p>
+                <p class="popover-body">Popover on a dark surface uses brand‑deep with white text.</p>
+              </div>
+            </div>
+          </div>
+<div class="component-heading" id="sheet">
+            <h2 class="component-heading-title">Sheet</h2>
+            <p class="component-heading-desc">A side panel that slides in from the edge of the screen for secondary content like settings, details, or filters.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Sheet · right</p>
+            <div class="sheet-frame">
+              <div class="sheet">
+                <div class="sheet-header">
+                  <span class="sheet-title">Filter results</span>
+                  <button class="modal-close" aria-label="Close"><span class="material-symbols-rounded">close</span></button>
+                </div>
+                <div class="sheet-body">
+                  <p>Narrow the list by category, status, or date.</p>
+                  <label class="checkbox"><input type="checkbox" class="checkbox-input" checked /><span class="checkbox-text"><span class="checkbox-label">Active</span></span></label>
+                  <label class="checkbox"><input type="checkbox" class="checkbox-input" /><span class="checkbox-text"><span class="checkbox-label">Archived</span></span></label>
+                  <label class="checkbox"><input type="checkbox" class="checkbox-input" /><span class="checkbox-text"><span class="checkbox-label">Draft</span></span></label>
+                </div>
+                <div class="sheet-footer">
+                  <button class="btn btn-ghost btn--sm">Reset</button>
+                  <button class="btn btn-primary btn--sm">Apply</button>
+                </div>
+              </div>
+            </div>
+          </div>
+<div class="component-heading" id="snackbar">
+            <h2 class="component-heading-title">Snackbar</h2>
+            <p class="component-heading-desc">A small message bar at the bottom of the screen for brief notifications, with an optional inline action.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Snackbar · variants</p>
+            <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+              <div class="snackbar"><span class="snackbar-message">Project saved.</span><button class="snackbar-action">Undo</button></div>
+              <div class="snackbar"><span class="snackbar-message">Connection lost. Reconnecting…</span><span class="spinner spinner--sm spinner--dark"></span></div>
+              <div class="snackbar"><span class="snackbar-message">3 invitations sent.</span><button class="snackbar-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button></div>
+            </div>
+          </div>
+<div class="component-heading" id="spinner">
+            <h2 class="component-heading-title">Spinner</h2>
+            <p class="component-heading-desc">A circular loading indicator used while an asynchronous action is in progress.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Spinner · sizes</p>
+            <div style="display: flex; align-items: center; gap: var(--space-6);">
+              <span class="spinner spinner--sm"></span>
+              <span class="spinner"></span>
+              <span class="spinner spinner--lg"></span>
+              <span style="display: inline-flex; align-items: center; gap: var(--spacing-md); padding: var(--padding-base) var(--padding-lg); background: var(--brand-deep); border-radius: var(--corner-radius-base); color: #fff; font-family: var(--font-sans); font-size: 14px;"><span class="spinner spinner--sm spinner--dark"></span>Loading…</span>
+            </div>
+          </div>
+<div class="component-heading" id="stepper">
+            <h2 class="component-heading-title">Stepper</h2>
+            <p class="component-heading-desc">A numbered progress indicator used for multi‑step flows like checkout or onboarding.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Stepper · default</p>
+            <div style="display: flex; flex-direction: column; gap: var(--space-5);">
+              <div class="stepper">
+                <div class="stepper-item stepper-item--complete"><span class="stepper-circle"><span class="material-symbols-rounded">check</span></span><span class="stepper-label">Account</span></div>
+                <div class="stepper-divider"></div>
+                <div class="stepper-item stepper-item--complete"><span class="stepper-circle"><span class="material-symbols-rounded">check</span></span><span class="stepper-label">Profile</span></div>
+                <div class="stepper-divider"></div>
+                <div class="stepper-item stepper-item--active"><span class="stepper-circle">3</span><span class="stepper-label">Preferences</span></div>
+                <div class="stepper-divider"></div>
+                <div class="stepper-item"><span class="stepper-circle">4</span><span class="stepper-label">Review</span></div>
+              </div>
+            </div>
+          </div>
+<div class="component-heading" id="toast">
+            <h2 class="component-heading-title">Toast</h2>
+            <p class="component-heading-desc">A transient notification that appears in a corner of the screen. Use for non‑blocking feedback from a recent action.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Toast · semantic variants</p>
+            <div style="display: flex; flex-direction: column; gap: var(--space-3); align-items: flex-start;">
+              <div class="toast toast--success"><span class="toast-icon"><span class="material-symbols-rounded">check_circle</span></span><div class="toast-content"><span class="toast-title">Project saved</span><span class="toast-message">Your changes are now live.</span></div><button class="toast-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button></div>
+              <div class="toast toast--error"><span class="toast-icon"><span class="material-symbols-rounded">error</span></span><div class="toast-content"><span class="toast-title">Upload failed</span><span class="toast-message">The file exceeded 10 MB. Try a smaller image.</span></div><button class="toast-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button></div>
+              <div class="toast toast--warning"><span class="toast-icon"><span class="material-symbols-rounded">warning</span></span><div class="toast-content"><span class="toast-title">Storage almost full</span><span class="toast-message">You've used 92% of your monthly quota.</span></div><button class="toast-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button></div>
+              <div class="toast toast--info"><span class="toast-icon"><span class="material-symbols-rounded">info</span></span><div class="toast-content"><span class="toast-title">New version available</span><span class="toast-message">Refresh to load the latest update.</span></div><button class="toast-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button></div>
+            </div>
+          </div>
+<div class="component-heading" id="tooltip">
+            <h2 class="component-heading-title">Tooltip</h2>
+            <p class="component-heading-desc">A small label that appears on hover or focus to clarify the function of an element.</p>
+          </div>
+
+          <div class="component" style="grid-column: 1 / -1;">
+            <p class="component-label">Tooltip · variants</p>
+            <div style="display: flex; gap: var(--space-6); flex-wrap: wrap; align-items: flex-start; padding-top: var(--space-6);">
+              <span class="tooltip-anchor"><button class="btn btn-secondary btn--icon" aria-label="More"><span class="material-symbols-rounded">more_vert</span></button><span class="tooltip" style="position: absolute; top: -36px; left: 0;">More actions</span></span>
+              <span class="tooltip-anchor"><button class="btn btn-secondary btn--sm">Hover me</button><span class="tooltip" style="position: absolute; top: -36px; left: 0;">Helpful info about this control.</span></span>
+              <span class="tooltip"><span>Tooltip on its own — anchored to whatever you place it near.</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-mark">Sprout<span class="sub"> Design System</span></p>
+        <p class="footer-meta" style="margin-top: 6px;">A Cargill product · v0.1</p>
+      </div>
+      <p class="footer-meta">A working styleguide. Refine as tokens land.</p>
+    </div>
+  </footer>
+
+    </div><!-- /.app-main -->
+  </div><!-- /.app-layout -->
+
+  <script src="app.js"></script>
+
+</body>
+</html>
