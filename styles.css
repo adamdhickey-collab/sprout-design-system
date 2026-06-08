@@ -1321,14 +1321,14 @@
     .btn {
       font-family: var(--font-sans);
       font-weight: 700;
-      font-size: 15px;
-      line-height: 1;
-      padding: 12px 20px;
-      border-radius: var(--radius-pill);
+      font-size: 16px;
+      line-height: 24px;
+      padding: 8px 16px;
+      border-radius: var(--corner-radius-base);
       border: 1px solid transparent;
       cursor: pointer;
       transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease, transform 120ms ease, box-shadow 120ms ease;
-      letter-spacing: 0.005em;
+      letter-spacing: normal;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -1350,19 +1350,19 @@
     }
 
     /* Sizes */
-    .btn--sm { padding: 8px 14px; font-size: 13px; }
-    .btn--lg { padding: 16px 28px; font-size: 17px; }
+    .btn--sm { padding: 8px 12px; font-size: 12px; line-height: 18px; }
+    .btn--lg { padding: 16px 24px; font-size: 20px; line-height: 26px; gap: 16px; border-radius: var(--corner-radius-md); }
 
     /* Icon-only */
     .btn--icon {
-      padding: 12px;
-      width: 44px;
-      height: 44px;
+      padding: 8px;
+      width: 40px;
+      height: 40px;
     }
-    .btn--icon.btn--sm { padding: 8px; width: 36px; height: 36px; }
-    .btn--icon.btn--lg { padding: 14px; width: 52px; height: 52px; }
-    .btn .material-symbols-rounded { font-size: 18px; }
-    .btn--lg .material-symbols-rounded { font-size: 20px; }
+    .btn--icon.btn--sm { padding: 8px; width: 34px; height: 34px; }
+    .btn--icon.btn--lg { padding: 16px; width: 58px; height: 58px; }
+    .btn .material-symbols-rounded { font-size: 20px; }
+    .btn--lg .material-symbols-rounded { font-size: 24px; }
     .btn--sm .material-symbols-rounded { font-size: 16px; }
 
     /* Styles · light theme */
