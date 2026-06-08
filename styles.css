@@ -307,8 +307,8 @@
     .sidebar-brand-tagline {
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
       margin-top: 2px;
     }
@@ -328,8 +328,8 @@
     .sidebar-section-title {
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
       font-weight: 700;
       padding: 0 var(--space-3) 6px;
@@ -369,7 +369,7 @@
       font-family: var(--font-micro);
       font-size: 11px;
       color: var(--neutral-400);
-      letter-spacing: 0.04em;
+      letter-spacing: normal;
       font-variant-numeric: tabular-nums;
     }
     .sidebar-link--active .sidebar-link-num { color: var(--brand); }
@@ -382,7 +382,7 @@
       font-family: var(--font-micro);
       font-size: 11px;
       color: var(--text-muted);
-      letter-spacing: 0.04em;
+      letter-spacing: normal;
       line-height: 1.6;
     }
 
@@ -424,8 +424,8 @@
       font-family: var(--font-micro);
       font-weight: 700;
       font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
       margin-bottom: var(--space-5);
     }
@@ -452,8 +452,8 @@
       margin-top: var(--space-7);
       font-family: var(--font-micro);
       font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
     }
     .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
@@ -482,8 +482,8 @@
     .section-eyebrow {
       font-family: var(--font-micro);
       font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
       margin-bottom: var(--space-4);
     }
@@ -510,8 +510,8 @@
     .swatch-label {
       font-family: var(--font-micro);
       font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
       margin-bottom: var(--space-3);
     }
@@ -553,7 +553,7 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 12px;
       color: var(--text-muted);
-      text-transform: uppercase;
+      text-transform: none;
     }
 
     /* Figma-style palette columns */
@@ -592,7 +592,7 @@
     .palette-swatch-hex {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 12px;
-      text-transform: uppercase;
+      text-transform: none;
       opacity: 0.85;
     }
     .palette-swatch--header {
@@ -640,8 +640,8 @@
     .type-meta {
       font-family: var(--font-micro);
       font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
       line-height: 1.6;
     }
@@ -649,7 +649,7 @@
       display: block;
       color: var(--text);
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: normal;
     }
     /* Semantic text styles — Desktop, from Cargill Sprout · Foundations · Typography */
     .type-h1 {
@@ -902,8 +902,8 @@
     .scale-label {
       font-family: var(--font-micro);
       font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
       margin-bottom: var(--space-3);
     }
@@ -1074,8 +1074,8 @@
       left: var(--space-4);
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
     }
     .logo-card[data-bg="green"] .logo-card-label,
@@ -1159,8 +1159,8 @@
     .token-table th {
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
       font-weight: 700;
       background: var(--neutral-50);
@@ -1222,8 +1222,8 @@
     .theme-demo-eyebrow {
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--sds-text-muted);
     }
     .theme-demo-title {
@@ -1312,8 +1312,8 @@
     .component-label {
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
     }
 
@@ -1447,8 +1447,8 @@
     .btn-grid-label {
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
     }
 
@@ -1465,8 +1465,8 @@
     .btn-matrix-row-label {
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
       font-weight: 700;
     }
@@ -1514,8 +1514,8 @@
       color: var(--soft-green-900);
       font-family: var(--font-micro);
       font-size: 12px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       font-weight: 700;
     }
     .tag-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
@@ -1532,9 +1532,14 @@
     .card-eyebrow {
       font-family: var(--font-micro);
       font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
+    }
+    /* Metric card headings: bold, default dark text */
+    .card-metric .card-eyebrow {
+      font-weight: 700;
+      color: var(--text);
     }
     .card-title {
       font-family: var(--font-sans);
@@ -1648,15 +1653,26 @@
       font-family: var(--font-micro);
       font-size: 12px;
       color: var(--text-muted);
-      letter-spacing: 0.02em;
+      letter-spacing: normal;
     }
 
     /* Metric card with sparkline chart on the right */
     .card-metric--with-chart {
-      display: grid;
-      grid-template-columns: 1fr auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+    .card-metric-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
       gap: var(--spacing-lg);
-      align-items: end;
+    }
+    .card-metric-figures {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+      min-width: 0;
     }
     .card-metric-chart {
       width: 96px;
@@ -1753,8 +1769,8 @@
     .field label {
       font-family: var(--font-micro);
       font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-soft);
       font-weight: 700;
     }
@@ -1794,8 +1810,8 @@
     .kpi-label {
       font-family: var(--font-micro);
       font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
     }
 
@@ -1937,7 +1953,7 @@
       font-family: var(--font-micro);
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      letter-spacing: normal;
       color: var(--text-muted);
     }
     .alert-body {
@@ -2441,8 +2457,8 @@
     .avatar-matrix-row-label {
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
       font-weight: 700;
     }
@@ -2602,8 +2618,8 @@
       text-align: center;
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
       margin: var(--spacing-base) 0;
     }
@@ -2966,8 +2982,8 @@
     .chip-matrix-row-label {
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
       font-weight: 700;
     }
@@ -3535,8 +3551,8 @@
     .hero-component-eyebrow {
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--soft-green-300);
       margin-bottom: var(--space-3);
     }
@@ -3828,8 +3844,8 @@
     .carousel-eyebrow {
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: rgba(255, 255, 255, 0.9);
     }
     .carousel-title {
@@ -4070,8 +4086,8 @@
     .checkbox-matrix-row-label {
       font-family: var(--font-micro);
       font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text-muted);
       font-weight: 700;
     }
@@ -4104,8 +4120,8 @@
     .footer-meta {
       font-family: var(--font-micro);
       font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--soft-green-200);
     }
 
@@ -4170,7 +4186,7 @@
     .progress-gauge { position: relative; display: inline-flex; align-items: center; justify-content: center; }
     .progress-gauge svg { display: block; transform: rotate(-90deg); }
     .progress-gauge-value { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: var(--font-display); font-size: 28px; color: var(--brand-deep); line-height: 1; }
-    .progress-gauge-value span { font-family: var(--font-micro); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
+    .progress-gauge-value span { font-family: var(--font-micro); font-size: 11px; letter-spacing: normal; text-transform: none; color: var(--text-muted); margin-top: 4px; }
 
     /* Radio */
     .radio { display: inline-flex; align-items: center; gap: var(--spacing-md); cursor: pointer; font-family: var(--font-sans); font-size: 15px; color: var(--text); line-height: 22px; }
@@ -4253,7 +4269,7 @@
     /* Snackbar */
     .snackbar { display: inline-flex; align-items: center; gap: var(--spacing-lg); padding: var(--padding-base) var(--padding-lg); background: var(--brand-deep); color: #fff; border-radius: var(--corner-radius-base); font-family: var(--font-sans); font-size: 14px; box-shadow: var(--shadow-md); min-width: 280px; max-width: 480px; }
     .snackbar-message { color: rgba(255,255,255,0.95); flex: 1; }
-    .snackbar-action { color: var(--soft-green-400); background: transparent; border: none; cursor: pointer; font-family: var(--font-sans); font-size: 13px; font-weight: 700; padding: 0; text-transform: uppercase; letter-spacing: 0.04em; }
+    .snackbar-action { color: var(--soft-green-400); background: transparent; border: none; cursor: pointer; font-family: var(--font-sans); font-size: 13px; font-weight: 700; padding: 0; text-transform: none; letter-spacing: normal; }
     .snackbar-action:hover { color: var(--soft-green-300); }
     .snackbar-close { width: 24px; height: 24px; border: none; background: transparent; cursor: pointer; color: rgba(255,255,255,0.7); display: inline-flex; align-items: center; justify-content: center; }
     .snackbar-close:hover { color: #fff; }
@@ -4293,7 +4309,7 @@
     .table { width: 100%; border-collapse: collapse; }
     .table th, .table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); font-family: var(--font-sans); font-size: 14px; color: var(--text); }
     .table tr:last-child td { border-bottom: none; }
-    .table th { background: var(--neutral-50); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+    .table th { background: var(--neutral-50); font-weight: 700; font-size: 11px; text-transform: none; letter-spacing: normal; color: var(--text-muted); }
     .table th .material-symbols-rounded { font-size: 14px; color: inherit; vertical-align: middle; margin-left: 4px; }
     .table tbody tr { transition: background-color 100ms ease; }
     .table tbody tr:hover { background: var(--soft-green-50); }
