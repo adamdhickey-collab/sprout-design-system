@@ -37,7 +37,7 @@
       <div class="sidebar-brand">
         <a href="index.html" style="text-decoration:none; display:block;"><svg class="cargill-logo cargill-logo--black" viewBox="0 0 432 202" role="img" aria-label="Cargill"><use href="#cargill-logo"/></svg></a>
         <span class="sidebar-brand-title">Sprout</span>
-        <span class="sidebar-brand-tagline">Design System · v0.1</span>
+        <span class="sidebar-brand-tagline">Design System · <span class="js-version">v1.0</span></span>
       </div>
 
       <nav class="sidebar-nav" aria-label="Design system sections">
@@ -81,8 +81,15 @@
         </div>
       </nav>
 
+      <div class="sidebar-theme">
+        <div class="segmented" role="group" aria-label="Theme">
+          <button type="button" class="segmented-btn theme-btn" data-theme-value="light">Light</button>
+          <button type="button" class="segmented-btn theme-btn" data-theme-value="dark">Dark</button>
+        </div>
+      </div>
+
       <div class="sidebar-foot">
-        Updated 2026.06.06<br>Tokens synced from Figma
+        Updated <span class="js-updated">2026.06.06</span><br>Tokens synced from Figma
       </div>
     </aside>
 
@@ -1102,7 +1109,7 @@
     <div class="container footer-inner">
       <div>
         <p class="footer-mark">Sprout<span class="sub"> Design System</span></p>
-        <p class="footer-meta" style="margin-top: 6px;">A Cargill product · v0.1</p>
+        <p class="footer-meta" style="margin-top: 6px;">A Cargill product · <span class="js-version">v1.0</span></p>
       </div>
       <p class="footer-meta">A working styleguide. Refine as tokens land.</p>
     </div>

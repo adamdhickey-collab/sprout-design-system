@@ -150,6 +150,17 @@
       --brand:      var(--green-600);
       --brand-deep: var(--green-900);
 
+      /* Extended semantic surfaces / borders / accents.
+         Light defaults below; overridden in [data-theme="dark"] (REAP Runner palette). */
+      --surface-header: var(--surface);        /* top app bars / header bands */
+      --surface-input:  var(--surface);         /* input + recessed field background */
+      --surface-pill:   var(--neutral-100);     /* pills, chips, raised rows, table heads */
+      --border-subtle:  var(--border);          /* hairline dividers */
+      --border-input:   var(--neutral-300);     /* input borders */
+      --accent-lime:    var(--green-600);        /* dark-mode accent (lime) lives here */
+      --accent-gold:    #C7A86A;                 /* secondary accent */
+      --on-accent:      #FFFFFF;                 /* text/icon color on top of --brand */
+
       /* Padding scale, from Cargill Sprout · Foundations · Padding & Spacing */
       --padding-xs:   2px;
       --padding-sm:   4px;
@@ -3892,14 +3903,13 @@
     .carousel-dot {
       width: 8px;
       height: 8px;
-      border-radius: 50%;
+      border-radius: 999px;
       background: rgba(255, 255, 255, 0.5);
-      transition: background-color 120ms ease, transform 120ms ease;
+      transition: background-color 120ms ease, width 120ms ease;
     }
     .carousel-dot--active {
+      width: 20px;
       background: #fff;
-      transform: scaleX(2);
-      border-radius: 4px;
     }
 
     /* Mini carousel — thumbnail strip */
@@ -4143,8 +4153,8 @@
 
     /* Page Indicator */
     .page-indicator { display: inline-flex; gap: 8px; align-items: center; }
-    .page-indicator-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--neutral-300); transition: background-color 120ms ease, transform 120ms ease; }
-    .page-indicator-dot--active { background: var(--brand); transform: scaleX(2); border-radius: 4px; }
+    .page-indicator-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--neutral-300); transition: background-color 120ms ease, width 120ms ease; }
+    .page-indicator-dot--active { width: 20px; background: var(--brand); }
     .page-indicator--dark .page-indicator-dot { background: rgba(255,255,255,0.25); }
     .page-indicator--dark .page-indicator-dot--active { background: var(--soft-green-400); }
 
@@ -4446,4 +4456,86 @@
       border-radius: 1px;
       background: var(--brand);
     }
+
+    /* ====================================================================
+       Dark theme · REAP Runner palette
+       Usage:  <html data-theme="dark">   (or any ancestor [data-theme="dark"] / .theme-dark)
+       Most components flip automatically because the surface / border / muted
+       primitives are re-pointed below; the few rules that hard-code a light
+       value get explicit fixes after the token block.
+       ==================================================================== */
+    [data-theme="dark"], .theme-dark {
+      /* Semantic surfaces */
+      --bg:             #1D2621;  /* page background        (surface/page)   */
+      --surface:        #101D16;  /* cards, tables, modals, sidebar (surface/card) */
+      --surface-header: #0F1714;  /* top app / header bands (surface/header) */
+      --surface-input:  #0B1410;  /* recessed input fields  (surface/input)  */
+      --surface-pill:   #1A2520;  /* pills, chips, raised rows, table heads (surface/pill) */
+      /* Borders */
+      --border:         #2F3F36;  /* default border   */
+      --border-subtle:  #243027;  /* hairline divider */
+      --border-input:   #3A4A41;  /* input border     */
+      /* Text */
+      --text:           #FFFFFF;
+      --text-soft:      #9EB3A6;
+      --text-muted:     #809285;
+      /* Brand / accent — lime is the dark-mode accent, gold the secondary */
+      --brand:          #BDE588;
+      --brand-deep:     #BDE588;
+      --accent-lime:    #BDE588;
+      --accent-gold:    #C7A86A;
+      --on-accent:      #0B1410;  /* text/icon color on top of lime --brand  */
+
+      /* Re-point the light-surface primitives so every component that
+         references them inherits dark mode without a per-component rule. */
+      --neutral-10:   #101D16;    /* "white" surfaces become card            */
+      --neutral-50:   #1A2520;
+      --neutral-100:  #1A2520;
+      --neutral-200:  #2F3F36;
+      --neutral-300:  #3A4A41;
+      --neutral-350:  #3A4A41;
+      --neutral-400:  #809285;
+      --soft-green-50:  #18241C;  /* light-green hover/selected → subtle dark */
+      --soft-green-100: #1F2D23;
+      --soft-green-200: #2F5A3C;  /* focus ring stays visible on dark        */
+    }
+
+    /* ---- Dark theme · fixes for rules that hard-code a light value ---- */
+    [data-theme="dark"] body { background: var(--bg); color: var(--text); }
+    [data-theme="dark"] a:hover { color: #CFEF9D; }
+
+    /* Primary buttons: the lime fill needs dark text */
+    [data-theme="dark"] .btn-primary { color: var(--on-accent); }
+    [data-theme="dark"] .btn-primary:hover  { background: #CFEF9D; }
+    [data-theme="dark"] .btn-primary:active { background: var(--accent-lime); }
+    /* Outline / ghost hovers read in lime, not deep green */
+    [data-theme="dark"] .btn-secondary:hover,
+    [data-theme="dark"] .btn-ghost:hover { color: #CFEF9D; border-color: #CFEF9D; }
+
+    /* Recessed input surfaces (darker than cards, per REAP) */
+    [data-theme="dark"] .input-wrap,
+    [data-theme="dark"] .combobox,
+    [data-theme="dark"] .combobox-input,
+    [data-theme="dark"] .select,
+    [data-theme="dark"] .search-input,
+    [data-theme="dark"] .textarea,
+    [data-theme="dark"] .modal-textarea,
+    [data-theme="dark"] .date-input-trigger { background: var(--surface-input); }
+
+    /* Tag: its baked text color is a deep green — switch to lime on dark */
+    [data-theme="dark"] .tag { color: var(--accent-lime); }
+
+    /* Brand wordmark stays white; lime is reserved for accents */
+    [data-theme="dark"] .sidebar-brand-title { color: #FFFFFF; }
+
+    /* ---------- Sidebar theme toggle ---------- */
+    .sidebar-theme {
+      padding: var(--space-3) var(--space-3) 0;
+      margin-top: auto;
+    }
+    .sidebar-theme .segmented { display: flex; width: 100%; }
+    .sidebar-theme .segmented-btn { flex: 1; }
+
+    /* Dark mode swaps the sidebar wordmark to the white treatment (white text, green leaf) */
+    [data-theme="dark"] .sidebar-brand .cargill-logo--black { color: #FFFFFF; }
 

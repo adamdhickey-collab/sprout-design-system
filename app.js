@@ -68,3 +68,49 @@
 
       update();
     })();
+
+    // Theme toggle · light / dark, persisted across pages
+    (function () {
+      const KEY = 'sprout-theme';
+      const root = document.documentElement;
+      const btns = Array.from(document.querySelectorAll('.theme-btn'));
+      function apply(theme) {
+        if (theme === 'dark') root.setAttribute('data-theme', 'dark');
+        else root.removeAttribute('data-theme');
+        btns.forEach(b => b.classList.toggle('segmented-btn--active', b.dataset.themeValue === theme));
+        document.querySelectorAll('.theme-label').forEach(el => {
+          el.textContent = theme === 'dark' ? 'Dark theme' : 'Light theme';
+        });
+      }
+      let saved = null;
+      try { saved = localStorage.getItem(KEY); } catch (e) {}
+      apply(saved || (root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'));
+      btns.forEach(b => {
+        b.addEventListener('click', () => {
+          const theme = b.dataset.themeValue;
+          apply(theme);
+          try { localStorage.setItem(KEY, theme); } catch (e) {}
+        });
+      });
+    })();
+
+    // Version + last-updated · single source of truth.
+    // Bump SPROUT_VERSION on each release; the updated date is derived from the
+    // page's own last-modified timestamp so it never needs manual editing.
+    (function () {
+      const SPROUT_VERSION = '1.0';
+
+      document.querySelectorAll('.js-version').forEach(el => {
+        el.textContent = 'v' + SPROUT_VERSION;
+      });
+
+      const updatedEls = document.querySelectorAll('.js-updated');
+      if (updatedEls.length) {
+        const d = new Date(document.lastModified);
+        if (!isNaN(d.getTime())) {
+          const pad = n => String(n).padStart(2, '0');
+          const stamp = d.getFullYear() + '.' + pad(d.getMonth() + 1) + '.' + pad(d.getDate());
+          updatedEls.forEach(el => { el.textContent = stamp; });
+        }
+      }
+    })();
