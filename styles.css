@@ -467,8 +467,8 @@
       text-transform: none;
       color: var(--text-muted);
     }
-    .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
-    .hero-meta span::before {
+    .hero-meta > span { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-meta > span::before {
       content: '';
       width: 6px;
       height: 6px;

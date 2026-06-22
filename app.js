@@ -109,7 +109,7 @@
         const d = new Date(document.lastModified);
         if (!isNaN(d.getTime())) {
           const pad = n => String(n).padStart(2, '0');
-          const stamp = d.getFullYear() + '.' + pad(d.getMonth() + 1) + '.' + pad(d.getDate());
+          const stamp = pad(d.getMonth() + 1) + '.' + pad(d.getDate()) + '.' + d.getFullYear();
           updatedEls.forEach(el => { el.textContent = stamp; });
         }
       }
