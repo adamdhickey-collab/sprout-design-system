@@ -1210,24 +1210,27 @@
       color: var(--sds-text-primary);
       border: 1px solid var(--sds-border);
     }
+    /* These two demo cards intentionally show BOTH themes at once, regardless of
+       the page's current theme. They use literal SDS token values so the global
+       [data-theme="dark"] palette can't repoint --brand/--brand-deep underneath them. */
     .theme-demo--light {
       --sds-bg-page: #FFFFFF;
-      --sds-bg-component: var(--soft-green-50);
-      --sds-bg-brand: var(--brand);
-      --sds-text-primary: var(--neutral-1000);
-      --sds-text-secondary: var(--neutral-700);
-      --sds-text-muted: var(--neutral-500);
+      --sds-bg-component: #F5F9ED;
+      --sds-bg-brand: #00843D;
+      --sds-text-primary: #101C16;
+      --sds-text-secondary: #404945;
+      --sds-text-muted: #707773;
       --sds-text-on-brand: #FFFFFF;
-      --sds-border: var(--neutral-300);
+      --sds-border: #DBDDDC;
     }
     .theme-demo--dark {
-      --sds-bg-page: var(--brand-deep);
-      --sds-bg-component: var(--green-800);
-      --sds-bg-brand: var(--soft-green-400);
+      --sds-bg-page: #023719;
+      --sds-bg-component: #03441F;
+      --sds-bg-brand: #BDE588;
       --sds-text-primary: #FFFFFF;
       --sds-text-secondary: rgba(255, 255, 255, 0.85);
       --sds-text-muted: rgba(255, 255, 255, 0.7);
-      --sds-text-on-brand: var(--neutral-1000);
+      --sds-text-on-brand: #101C16;
       --sds-border: rgba(255, 255, 255, 0.12);
     }
     .theme-demo-eyebrow {
