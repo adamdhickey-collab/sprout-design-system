@@ -40,7 +40,19 @@
         <span class="sidebar-brand-tagline">Design System · <span class="js-version">v1.0</span></span>
       </div>
 
+      <div class="sidebar-search">
+        <button type="button" class="sidebar-search-trigger" id="search-trigger" aria-haspopup="dialog">
+          <span class="material-symbols-rounded">search</span>
+          <span class="sidebar-search-trigger-label">Search</span>
+          <span class="sidebar-search-kbd">⌘K</span>
+        </button>
+      </div>
+
       <nav class="sidebar-nav" aria-label="Design system sections">
+        <div class="sidebar-section">
+          <span class="sidebar-section-title">Start here</span>
+          <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num">·</span><span>Getting started</span></a>
+        </div>
         <div class="sidebar-section">
           <span class="sidebar-section-title">Foundations</span>
           <a href="#color" class="sidebar-link"><span class="sidebar-link-num">01</span><span>Color</span></a>
@@ -1042,6 +1054,17 @@
 
     </div><!-- /.app-main -->
   </div><!-- /.app-layout -->
+
+  <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search Sprout" hidden>
+    <div class="search-panel">
+      <div class="search-input-row">
+        <span class="material-symbols-rounded">search</span>
+        <input type="text" class="search-input" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" />
+        <kbd class="search-esc">Esc</kbd>
+      </div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 

@@ -4202,3 +4202,275 @@
       box-shadow: -8px 0 24px rgba(0, 0, 0, 0.5);
     }
 
+    /* ==========================================================================
+       Sidebar search trigger + Cmd/Ctrl+K palette
+       ========================================================================== */
+    .sidebar-search { margin: 0 var(--space-3) var(--space-5); }
+    .sidebar-search-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: 8px var(--space-3);
+      border: 1px solid var(--border);
+      border-radius: var(--corner-radius-base);
+      background: var(--surface-input);
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      cursor: pointer;
+      transition: border-color 120ms ease, color 120ms ease;
+    }
+    .sidebar-search-trigger:hover { border-color: var(--brand); color: var(--text); }
+    .sidebar-search-trigger .material-symbols-rounded { font-size: 18px; color: inherit; }
+    .sidebar-search-trigger-label { flex: 1; text-align: left; }
+    .sidebar-search-kbd {
+      font-family: var(--font-micro);
+      font-size: 10px;
+      letter-spacing: normal;
+      text-transform: none;
+      padding: 2px 5px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 12, 6, 0.55);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 12vh var(--space-5) var(--space-5);
+      z-index: 100;
+    }
+    .search-overlay[hidden] { display: none; }
+    .search-panel {
+      width: 100%;
+      max-width: 560px;
+      max-height: 70vh;
+      background: var(--surface);
+      border-radius: var(--corner-radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .search-input-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-5);
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .search-input-row .material-symbols-rounded { font-size: 20px; }
+    .search-input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--text);
+    }
+    .search-input::placeholder { color: var(--text-muted); }
+    .search-esc {
+      font-family: var(--font-micro);
+      font-size: 10px;
+      letter-spacing: normal;
+      text-transform: none;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .search-results { overflow-y: auto; padding: var(--space-3); }
+    .search-result-item {
+      width: 100%;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: 10px var(--space-4);
+      border: none;
+      background: transparent;
+      border-radius: var(--corner-radius-base);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+    }
+    .search-result-title { flex: 1; font-weight: 700; }
+    .search-result-category {
+      font-family: var(--font-micro);
+      font-size: 11px;
+      letter-spacing: normal;
+      text-transform: none;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .search-result-item--active,
+    .search-result-item:hover { background: var(--soft-green-50); }
+    .search-empty {
+      padding: var(--space-6);
+      text-align: center;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 14px;
+    }
+
+    /* ==========================================================================
+       Component section numbering — mirrors the Foundations "01 / Title" pattern
+       so the long Components pages get the same visual rhythm, CSS-only.
+       ========================================================================== */
+    .component-grid { counter-reset: component-counter; }
+    .component-heading::before {
+      counter-increment: component-counter;
+      content: counter(component-counter, decimal-leading-zero);
+      display: block;
+      font-family: var(--font-micro);
+      font-size: 12px;
+      letter-spacing: normal;
+      text-transform: none;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       Per-component "View code" toggle — reveals the example's actual markup
+       instead of hand-written snippets, so it can never drift out of sync.
+       ========================================================================== */
+    .component { position: relative; }
+    .component-code-toggle {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-4);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--corner-radius-base);
+      padding: 4px 10px;
+      font-family: var(--font-micro);
+      font-size: 11px;
+      letter-spacing: normal;
+      text-transform: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+    }
+    .component-code-toggle:hover,
+    .component-code-toggle[aria-pressed="true"] {
+      background: var(--soft-green-50);
+      color: var(--brand-deep);
+      border-color: var(--brand);
+    }
+    .component-code-toggle .material-symbols-rounded { font-size: 14px; }
+    .component-code {
+      display: none;
+      margin: 0;
+      padding: var(--padding-lg);
+      background: var(--neutral-1000);
+      color: var(--green-100);
+      border-radius: var(--corner-radius-base);
+      font-family: 'SF Mono', 'Menlo', Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      max-height: 320px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .component-code--visible { display: block; }
+
+    /* ==========================================================================
+       Live-vs-static demo legend, shown once near the top of each Components page
+       ========================================================================== */
+    .component-legend {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--padding-base) var(--padding-lg);
+      background: var(--soft-green-50);
+      border: 1px solid var(--soft-green-100);
+      border-radius: var(--corner-radius-base);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 20px;
+      color: var(--text-soft);
+      margin-bottom: var(--space-2);
+    }
+    .component-legend .material-symbols-rounded { font-size: 18px; color: var(--brand-deep); flex-shrink: 0; }
+    .component-legend strong { color: var(--text); }
+
+    /* ==========================================================================
+       Empty state
+       ========================================================================== */
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--spacing-md);
+      padding: var(--space-7) var(--space-6);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-md);
+    }
+    .empty-state-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--soft-green-50);
+      color: var(--brand-deep);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .empty-state-icon .material-symbols-rounded { font-size: 28px; }
+    .empty-state-title {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+    }
+    .empty-state-body {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--text-soft);
+      max-width: 40ch;
+    }
+    .empty-state--compact { padding: var(--space-5); gap: var(--spacing-sm); flex-direction: row; text-align: left; }
+    .empty-state--compact .empty-state-icon { width: 40px; height: 40px; }
+    .empty-state--compact .empty-state-icon .material-symbols-rounded { font-size: 20px; }
+
+    /* ==========================================================================
+       Getting Started page — checklist pattern
+       ========================================================================== */
+    .checklist { display: flex; flex-direction: column; gap: var(--space-3); }
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 22px;
+      color: var(--text-soft);
+    }
+    .checklist-item .material-symbols-rounded {
+      color: var(--brand-deep);
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .checklist-item strong { color: var(--text); }
+

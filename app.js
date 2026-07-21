@@ -3,6 +3,39 @@
       cb.indeterminate = true;
     });
 
+    // Reliably jump to a same-page anchor. `scroll-behavior: smooth` on <html>
+    // doesn't always complete the browser's native hash-scroll — on initial page
+    // load in particular, it can silently no-op. Anything that needs to land on
+    // a section (sidebar links, search results) goes through this instead.
+    function sproutJumpToHash(hash) {
+      const id = hash.replace(/^#/, '');
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (!el) return;
+      // The `behavior` option alone doesn't reliably beat the CSS scroll-behavior
+      // rule in every engine, so force it via inline style for this one jump.
+      const root = document.documentElement;
+      const prevBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+      el.scrollIntoView({ block: 'start' });
+      root.style.scrollBehavior = prevBehavior;
+    }
+    if (location.hash) {
+      const hashToJump = location.hash;
+      // Let any (possibly broken) native browser attempt at the hash-scroll
+      // happen and finish first, so ours is the one that actually sticks.
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          sproutJumpToHash(hashToJump);
+          const link = document.querySelector('.sidebar-link[href="' + hashToJump + '"]');
+          if (link) {
+            document.querySelectorAll('.sidebar-link--active').forEach((l) => l.classList.remove('sidebar-link--active'));
+            link.classList.add('sidebar-link--active');
+          }
+        }, 150);
+      });
+    }
+
     // Sidebar scroll-spy · highlight the section closest to (and above) the viewport top
     (function () {
       const links = Array.from(document.querySelectorAll('.sidebar-link[href^="#"]'));
@@ -59,10 +92,15 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onScroll, { passive: true });
 
-      // Snap immediately on click so the highlight doesn't lag the smooth scroll
+      // Snap immediately on click, and drive the scroll ourselves — see
+      // sproutJumpToHash above for why the native hash-scroll can't be trusted.
       links.forEach(l => {
-        l.addEventListener('click', () => {
-          setActive(l.getAttribute('href').substring(1));
+        l.addEventListener('click', (e) => {
+          const id = l.getAttribute('href').substring(1);
+          setActive(id);
+          e.preventDefault();
+          sproutJumpToHash('#' + id);
+          history.pushState(null, '', '#' + id);
         });
       });
 
@@ -84,13 +122,218 @@
       }
       let saved = null;
       try { saved = localStorage.getItem(KEY); } catch (e) {}
-      apply(saved || (root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'));
+      let systemPrefersDark = false;
+      try { systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches; } catch (e) {}
+      apply(saved || (root.getAttribute('data-theme') === 'dark' || systemPrefersDark ? 'dark' : 'light'));
       btns.forEach(b => {
         b.addEventListener('click', () => {
           const theme = b.dataset.themeValue;
           apply(theme);
           try { localStorage.setItem(KEY, theme); } catch (e) {}
         });
+      });
+    })();
+
+    // Search · Cmd/Ctrl+K palette across every Foundations section and component
+    (function () {
+      const INDEX = [
+        { title: 'Getting started', category: 'Start here', page: 'getting-started.html', anchor: '' },
+        { title: 'Color', category: 'Foundations', page: 'index.html', anchor: '#color' },
+        { title: 'Typography', category: 'Foundations', page: 'index.html', anchor: '#type' },
+        { title: 'Layout & shape', category: 'Foundations', page: 'index.html', anchor: '#space' },
+        { title: 'Iconography', category: 'Foundations', page: 'index.html', anchor: '#icons' },
+        { title: 'Logo', category: 'Foundations', page: 'index.html', anchor: '#logo' },
+        { title: 'Themes', category: 'System', page: 'index.html', anchor: '#themes' },
+        { title: 'Elevation', category: 'System', page: 'index.html', anchor: '#elevation' },
+        { title: 'Authentication', category: 'Forms & inputs', page: 'forms.html', anchor: '#authentication' },
+        { title: 'Button', category: 'Forms & inputs', page: 'forms.html', anchor: '#buttons' },
+        { title: 'Checkbox', category: 'Forms & inputs', page: 'forms.html', anchor: '#checkbox' },
+        { title: 'Combobox', category: 'Forms & inputs', page: 'forms.html', anchor: '#combobox' },
+        { title: 'Date input', category: 'Forms & inputs', page: 'forms.html', anchor: '#date-input' },
+        { title: 'File upload', category: 'Forms & inputs', page: 'forms.html', anchor: '#file-upload' },
+        { title: 'Input', category: 'Forms & inputs', page: 'forms.html', anchor: '#input' },
+        { title: 'Label', category: 'Forms & inputs', page: 'forms.html', anchor: '#label' },
+        { title: 'Number input', category: 'Forms & inputs', page: 'forms.html', anchor: '#number-input' },
+        { title: 'Radio button', category: 'Forms & inputs', page: 'forms.html', anchor: '#radio' },
+        { title: 'Search', category: 'Forms & inputs', page: 'forms.html', anchor: '#search' },
+        { title: 'Segmented control', category: 'Forms & inputs', page: 'forms.html', anchor: '#segmented-control' },
+        { title: 'Select', category: 'Forms & inputs', page: 'forms.html', anchor: '#select' },
+        { title: 'Slider', category: 'Forms & inputs', page: 'forms.html', anchor: '#slider' },
+        { title: 'Textarea', category: 'Forms & inputs', page: 'forms.html', anchor: '#textarea' },
+        { title: 'Time input', category: 'Forms & inputs', page: 'forms.html', anchor: '#time-input' },
+        { title: 'Toggle', category: 'Forms & inputs', page: 'forms.html', anchor: '#toggle' },
+        { title: 'Accordion', category: 'Layout & content', page: 'content.html', anchor: '#accordion' },
+        { title: 'Avatar', category: 'Layout & content', page: 'content.html', anchor: '#avatar' },
+        { title: 'Badge', category: 'Layout & content', page: 'content.html', anchor: '#badge' },
+        { title: 'Card', category: 'Layout & content', page: 'content.html', anchor: '#card' },
+        { title: 'Carousel', category: 'Layout & content', page: 'content.html', anchor: '#carousel' },
+        { title: 'Chip', category: 'Layout & content', page: 'content.html', anchor: '#chip' },
+        { title: 'Container', category: 'Layout & content', page: 'content.html', anchor: '#container' },
+        { title: 'Divider', category: 'Layout & content', page: 'content.html', anchor: '#divider' },
+        { title: 'Empty state', category: 'Layout & content', page: 'content.html', anchor: '#empty-state' },
+        { title: 'Hero', category: 'Layout & content', page: 'content.html', anchor: '#hero' },
+        { title: 'Marquee', category: 'Layout & content', page: 'content.html', anchor: '#marquee' },
+        { title: 'Progress bar', category: 'Layout & content', page: 'content.html', anchor: '#progress-bar' },
+        { title: 'Progress gauge', category: 'Layout & content', page: 'content.html', anchor: '#progress-gauge' },
+        { title: 'Ratings', category: 'Layout & content', page: 'content.html', anchor: '#ratings' },
+        { title: 'Status indicator', category: 'Layout & content', page: 'content.html', anchor: '#status-indicator' },
+        { title: 'Table', category: 'Layout & content', page: 'content.html', anchor: '#tables' },
+        { title: 'Tabs', category: 'Layout & content', page: 'content.html', anchor: '#tabs' },
+        { title: 'Tree view', category: 'Layout & content', page: 'content.html', anchor: '#tree-view' },
+        { title: 'Alert', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#alert' },
+        { title: 'Banner', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#banner' },
+        { title: 'Breadcrumb', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#breadcrumb' },
+        { title: 'Footer', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#footer' },
+        { title: 'Link', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#link' },
+        { title: 'Modal', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#modal' },
+        { title: 'Page indicator', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#page-indicator' },
+        { title: 'Pagination', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#pagination' },
+        { title: 'Popover', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#popover' },
+        { title: 'Sheet', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#sheet' },
+        { title: 'Snackbar', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#snackbar' },
+        { title: 'Spinner', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#spinner' },
+        { title: 'Stepper', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#stepper' },
+        { title: 'Toast', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#toast' },
+        { title: 'Tooltip', category: 'Navigation & feedback', page: 'navigation.html', anchor: '#tooltip' }
+      ];
+
+      const overlay = document.getElementById('search-overlay');
+      const input = document.getElementById('search-input');
+      const results = document.getElementById('search-results');
+      const trigger = document.getElementById('search-trigger');
+      if (!overlay || !input || !results) return;
+
+      let activeIndex = -1;
+      let filtered = [];
+
+      function currentPage() {
+        const p = location.pathname.split('/').pop();
+        return p === '' ? 'index.html' : p;
+      }
+
+      function setActive(i) {
+        activeIndex = i;
+        Array.from(results.children).forEach((el, idx) => {
+          el.classList.toggle('search-result-item--active', idx === i);
+        });
+        const el = results.children[i];
+        if (el) el.scrollIntoView({ block: 'nearest' });
+      }
+
+      function go(item) {
+        close();
+        if (item.page === currentPage() && item.anchor) {
+          sproutJumpToHash(item.anchor);
+          history.pushState(null, '', item.anchor);
+        } else {
+          location.href = item.page + item.anchor;
+        }
+      }
+
+      function render(list) {
+        filtered = list;
+        results.innerHTML = '';
+        if (!list.length) {
+          results.innerHTML = '<p class="search-empty">No matches.</p>';
+          activeIndex = -1;
+          return;
+        }
+        list.forEach((item, i) => {
+          const row = document.createElement('button');
+          row.type = 'button';
+          row.className = 'search-result-item';
+          row.innerHTML =
+            '<span class="search-result-title"></span><span class="search-result-category"></span>';
+          row.querySelector('.search-result-title').textContent = item.title;
+          row.querySelector('.search-result-category').textContent = item.category;
+          row.addEventListener('mouseenter', () => setActive(i));
+          row.addEventListener('click', () => go(item));
+          results.appendChild(row);
+        });
+        setActive(0);
+      }
+
+      function filter(query) {
+        const q = query.trim().toLowerCase();
+        if (!q) return render(INDEX);
+        render(INDEX.filter((i) => i.title.toLowerCase().includes(q) || i.category.toLowerCase().includes(q)));
+      }
+
+      function open() {
+        overlay.hidden = false;
+        input.value = '';
+        render(INDEX);
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => input.focus());
+      }
+      function close() {
+        overlay.hidden = true;
+        document.body.style.overflow = '';
+      }
+
+      if (trigger) trigger.addEventListener('click', open);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) close();
+      });
+      input.addEventListener('input', () => filter(input.value));
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          setActive(Math.min(activeIndex + 1, filtered.length - 1));
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          setActive(Math.max(activeIndex - 1, 0));
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (filtered[activeIndex]) go(filtered[activeIndex]);
+        } else if (e.key === 'Escape') {
+          close();
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        const isTypingField = /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName);
+        if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) {
+          e.preventDefault();
+          overlay.hidden ? open() : close();
+        } else if (e.key === '/' && !isTypingField) {
+          e.preventDefault();
+          open();
+        } else if (e.key === 'Escape' && !overlay.hidden) {
+          close();
+        }
+      });
+    })();
+
+    // "View code" toggle · injected once per .component, reveals the example's own
+    // markup rather than a hand-written snippet, so it can never drift out of sync.
+    (function () {
+      document.querySelectorAll('.component').forEach((comp) => {
+        const label = comp.querySelector('.component-label');
+        if (!label) return;
+
+        const snippet = comp.innerHTML.replace(label.outerHTML, '').replace(/\n\s*\n/g, '\n').trim();
+        if (!snippet) return;
+
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'component-code-toggle';
+        toggle.setAttribute('aria-pressed', 'false');
+        toggle.innerHTML = '<span class="material-symbols-rounded">code</span><span>Code</span>';
+
+        const pre = document.createElement('pre');
+        pre.className = 'component-code';
+        const code = document.createElement('code');
+        code.textContent = snippet;
+        pre.appendChild(code);
+
+        toggle.addEventListener('click', () => {
+          const isOpen = pre.classList.toggle('component-code--visible');
+          toggle.setAttribute('aria-pressed', String(isOpen));
+          toggle.querySelector('span:last-child').textContent = isOpen ? 'Hide' : 'Code';
+        });
+
+        comp.appendChild(toggle);
+        comp.appendChild(pre);
       });
     })();
 
