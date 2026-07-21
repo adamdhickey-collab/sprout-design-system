@@ -1078,12 +1078,17 @@
       position: relative;
       overflow: hidden;
     }
-    .logo-card[data-bg="light"]   { background: var(--surface);    border: 1px solid var(--border); }
-    .logo-card[data-bg="paper"]   { background: var(--green-50);   border: 1px solid var(--green-100); }
-    .logo-card[data-bg="green"]   { background: var(--brand); }
+    /* Every swatch below is a fixed real-world background — "this logo goes on a light
+       page," "this logo goes on our brand green" — not a demo of the site's own light/dark
+       toggle. They intentionally use literal values instead of --surface/--brand so the
+       logo + background pairing (and its contrast) can't be repointed out from under it by
+       [data-theme="dark"]. */
+    .logo-card[data-bg="light"]   { background: #FFFFFF;          border: 1px solid #DBDDDC; }
+    .logo-card[data-bg="paper"]   { background: var(--green-50);  border: 1px solid var(--green-100); }
+    .logo-card[data-bg="green"]   { background: var(--green-600); }
     .logo-card[data-bg="deep"]    { background: var(--surface-deep); }
     .logo-card[data-bg="dark"]    { background: var(--neutral-1000); }
-    .logo-card[data-bg="white"]   { background: var(--surface);    border: 1px solid var(--border); }
+    .logo-card[data-bg="white"]   { background: #FFFFFF;          border: 1px solid #DBDDDC; }
 
     .logo-card-label {
       position: absolute;
@@ -1093,7 +1098,7 @@
       font-size: 11px;
       letter-spacing: normal;
       text-transform: none;
-      color: var(--text-muted);
+      color: rgba(0, 0, 0, 0.55);
     }
     .logo-card[data-bg="green"] .logo-card-label,
     .logo-card[data-bg="deep"] .logo-card-label,
