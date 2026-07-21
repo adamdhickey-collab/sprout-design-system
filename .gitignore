@@ -1,2 +1,5 @@
+# Source design files — too large for git (GitHub 100MB limit); kept in Figma / locally
 *.fig
+
+# OS cruft
 .DS_Store

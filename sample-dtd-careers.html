@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DT&amp;D Careers · Digital Technology &amp; Data</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="Cargill%20Fonts/HelveticaNowForCargill.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="Cargill%20Fonts/BigCaslonForCargill.otf" as="font" type="font/otf" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..700,0..1,-25..0&display=block" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Page chrome — composed entirely from Sprout tokens (no new colors, fonts, or radii) */
+    body { background: var(--bg); }
+
+    /* ---------- App bar ---------- */
+    .appbar {
+      position: sticky; top: 0; z-index: 30;
+      background: rgba(255,255,255,0.92); backdrop-filter: saturate(140%) blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .appbar-inner {
+      max-width: 1400px; margin: 0 auto; padding: 0 var(--space-6);
+      height: 64px; display: flex; align-items: center; gap: var(--space-5);
+    }
+    .appbar-brand { display: inline-flex; align-items: center; gap: var(--space-4); }
+    .appbar-brand img { height: 24px; width: auto; display: block; }
+    .appbar-divider { width: 1px; height: 28px; background: var(--border); }
+    .appbar-mark {
+      display: inline-flex; align-items: center; gap: var(--space-3);
+      text-decoration: none;
+    }
+    .appbar-mark-badge {
+      font-family: var(--font-sans); font-weight: 700; font-size: 13px; letter-spacing: 0.02em;
+      color: #fff; background: var(--brand); border-radius: var(--radius-sm);
+      padding: 4px 7px; line-height: 1;
+    }
+    .appbar-mark-title {
+      font-family: var(--font-display); font-size: 19px; line-height: 1; color: var(--brand-deep);
+      letter-spacing: -0.005em; white-space: nowrap;
+    }
+    .appbar-nav { display: flex; gap: 2px; margin-left: var(--space-4); }
+    .appbar-link {
+      font-family: var(--font-sans); font-size: 14px; color: var(--text-soft);
+      text-decoration: none; padding: 7px var(--space-3); border-radius: var(--corner-radius-base);
+      display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
+      transition: background-color 120ms ease, color 120ms ease;
+    }
+    .appbar-link:hover { background: var(--neutral-50); color: var(--text); }
+    .appbar-link .material-symbols-rounded { font-size: 16px; }
+    .appbar-link--active { color: var(--brand-deep); font-weight: 700; background: var(--soft-green-50); }
+    .appbar-actions { margin-left: auto; display: flex; align-items: center; gap: var(--space-2); }
+    @media (max-width: 1180px) { .appbar-nav { display: none; } }
+
+    /* ---------- Page ---------- */
+    .page { max-width: 1400px; margin: 0 auto; padding: var(--space-5) var(--space-6) var(--space-7); }
+
+    .page-head {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: var(--space-5); margin: var(--space-3) 0 var(--space-5); flex-wrap: wrap;
+    }
+    .page-title { font-family: var(--font-display); font-size: clamp(32px, 3.4vw, 44px); line-height: 1; color: var(--brand-deep); letter-spacing: -0.01em; }
+    .page-sub { font-family: var(--font-sans); font-size: 16px; color: var(--text-soft); margin-top: var(--space-3); max-width: 60ch; }
+
+    /* ---------- Filter toolbar ---------- */
+    .toolbar {
+      display: flex; align-items: flex-end; gap: var(--space-4); flex-wrap: wrap;
+      padding: var(--space-4) var(--space-5);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+      margin-bottom: var(--space-5);
+    }
+    .toolbar-field { display: flex; flex-direction: column; gap: 6px; }
+    .toolbar-field-label {
+      font-family: var(--font-micro); font-size: 12px; font-weight: 700; color: var(--text-soft);
+    }
+    .toolbar .search-input { min-width: 280px; min-height: 42px; }
+    .toolbar-grow { flex: 1 1 240px; }
+    .toolbar-spacer { flex: 1 1 auto; }
+    .toolbar-actions { display: flex; align-items: flex-end; gap: var(--space-3); }
+
+    /* Select — composed from Sprout tokens to mirror .search-input.
+       Named .tb-select to avoid colliding with the design system's own .select component. */
+    .tb-select {
+      position: relative; display: inline-flex; align-items: center;
+    }
+    .tb-select select {
+      appearance: none; -webkit-appearance: none;
+      font-family: var(--font-sans); font-size: 15px; color: var(--text);
+      background: var(--surface); border: 1px solid var(--neutral-300);
+      border-radius: var(--corner-radius-base);
+      padding: 10px 38px 10px 14px; min-height: 42px; min-width: 150px; cursor: pointer;
+      transition: border-color 120ms ease, box-shadow 120ms ease;
+    }
+    .tb-select select:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--soft-green-200); }
+    .tb-select .material-symbols-rounded {
+      position: absolute; right: 10px; pointer-events: none; color: var(--text-soft); font-size: 20px;
+    }
+    /* The design system's .search-clear sets display:inline-flex, which overrides the
+       [hidden] attribute — restore hidden so the clear button only shows when typing */
+    .search-clear[hidden] { display: none; }
+
+    /* ---------- Lattice canvas ---------- */
+    .lattice-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .lattice-stage {
+      position: relative;
+      display: grid; grid-template-columns: 132px 1fr;
+      height: 560px;
+    }
+
+    /* Vertical scope axis */
+    .scope-axis {
+      position: relative; padding: var(--space-5) 0;
+      border-right: 1px solid var(--border); background: var(--soft-green-50);
+      display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+    }
+    .scope-cap {
+      font-family: var(--font-sans); font-weight: 700; font-size: 13px; color: var(--brand-deep);
+      text-align: center; padding: 0 var(--space-3);
+    }
+    .scope-cap--muted { color: var(--text-muted); font-weight: 700; }
+    .scope-arrow {
+      flex: 1; width: 2px; background: var(--soft-green-300);
+      margin: var(--space-3) 0; position: relative; min-height: 200px;
+    }
+    .scope-arrow::before {
+      content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+      border-left: 6px solid transparent; border-right: 6px solid transparent;
+      border-bottom: 9px solid var(--brand);
+    }
+    .scope-note {
+      font-family: var(--font-micro); font-size: 11px; color: var(--text-muted);
+      text-align: center; padding: 0 var(--space-3); line-height: 1.45;
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 108px; background: var(--soft-green-50); padding: var(--space-2) var(--space-1);
+    }
+
+    /* Lattice viewport — scroll area + custom Sprout scrollbars */
+    .lattice-viewport { position: relative; height: 560px; }
+    .lattice-view {
+      position: absolute; inset: 0; overflow: auto;
+      /* hide native bars — custom ones below stand in across platforms */
+      scrollbar-width: none;
+    }
+    .lattice-view::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+    /* Custom Sprout scrollbars */
+    .lv-bar {
+      position: absolute; z-index: 6;
+      background: var(--neutral-100); border-radius: var(--radius-pill);
+      opacity: 1; transition: opacity 180ms ease;
+    }
+    .lv-bar--y { top: 8px; bottom: 16px; right: 6px; width: 10px; }
+    .lv-bar--x { left: 8px; right: 16px; bottom: 6px; height: 10px; }
+    .lv-thumb {
+      position: absolute; background: var(--neutral-350);
+      border-radius: var(--radius-pill); cursor: grab;
+      transition: background-color 120ms ease;
+    }
+    .lv-thumb:hover, .lv-thumb.is-drag { background: var(--brand); }
+    .lv-thumb.is-drag { cursor: grabbing; }
+    .lv-bar--y .lv-thumb { left: 0; width: 100%; }
+    .lv-bar--x .lv-thumb { top: 0; height: 100%; }
+    .lattice-zoom {
+      position: absolute; top: var(--space-4); right: var(--space-4); z-index: 5;
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid var(--border); border-radius: var(--corner-radius-base);
+      background: var(--surface); box-shadow: var(--shadow-sm); overflow: hidden;
+    }
+    .lattice-zoom button {
+      width: 40px; height: 40px; border: none; background: var(--surface); cursor: pointer;
+      color: var(--text); display: inline-flex; align-items: center; justify-content: center;
+      transition: background-color 120ms ease;
+    }
+    .lattice-zoom button:hover { background: var(--soft-green-50); color: var(--brand-deep); }
+    .lattice-zoom button + button { border-top: 1px solid var(--border); }
+    .lattice-zoom .material-symbols-rounded { font-size: 22px; }
+
+    .honeycomb-scaler { transform-origin: top left; transition: transform 160ms ease; }
+    /* Large canvas — placeholder for the lattice image; shows only the light grid */
+    .lattice-canvas {
+      width: 2200px; height: 1100px;
+      background:
+        radial-gradient(circle at 1px 1px, var(--neutral-300) 1px, transparent 0) 0 0 / 24px 24px,
+        var(--surface);
+    }
+
+    /* ---------- Legend ---------- */
+    .legend {
+      margin-top: var(--space-5); padding: var(--space-5);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+    }
+    .legend-head {
+      display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4);
+      flex-wrap: wrap; margin-bottom: var(--space-4);
+    }
+    .legend-title { font-family: var(--font-sans); font-weight: 700; font-size: 15px; color: var(--text); }
+    .legend-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--space-3) var(--space-4);
+    }
+    .legend-item { display: flex; align-items: center; gap: var(--space-3); }
+    .legend-swatch {
+      width: 26px; height: 30px; flex-shrink: 0;
+      clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    }
+    .legend-label { font-family: var(--font-sans); font-size: 13px; color: var(--text-soft); line-height: 1.3; }
+    .legend-markers { display: flex; gap: var(--space-5); flex-wrap: wrap; }
+    .legend-marker { display: flex; align-items: center; gap: var(--space-2); font-family: var(--font-sans); font-size: 13px; color: var(--text-soft); }
+    .legend-marker-num {
+      width: 18px; height: 18px; border-radius: 50%; background: var(--green-600); color: #fff;
+      font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
+    }
+    .legend-marker-star {
+      width: 14px; height: 14px; border-radius: 50%; background: var(--yellow-400); border: 1.5px solid #fff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .lattice-caption {
+      font-family: var(--font-sans); font-size: 13px; color: var(--text-muted);
+      text-align: center; margin-top: var(--space-5); padding: 0 var(--space-5);
+    }
+
+    @media (max-width: 720px) {
+      .scope-axis { display: none; }
+      .lattice-stage { grid-template-columns: 1fr; }
+      .toolbar .search-input { min-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Cargill logo symbol -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+    <symbol id="cargill-logo" viewBox="0 0 432 202">
+      <g fill="currentColor">
+        <path d="M423.825 174.37C422.325 174.37 420.925 173.97 419.725 173.27C418.425 172.57 417.525 171.57 416.725 170.37C416.025 169.17 415.625 167.87 415.625 166.37C415.625 164.87 416.025 163.57 416.725 162.37C417.425 161.17 418.425 160.17 419.725 159.47C421.025 158.77 422.325 158.37 423.825 158.37C425.325 158.37 426.725 158.77 427.925 159.47C429.125 160.17 430.125 161.17 430.925 162.37C431.625 163.57 432.025 164.87 432.025 166.37C432.025 167.87 431.625 169.17 430.925 170.37C430.225 171.57 429.225 172.57 427.925 173.27C426.625 173.97 425.325 174.37 423.825 174.37ZM423.825 173.07C425.125 173.07 426.225 172.77 427.325 172.17C428.325 171.57 429.225 170.77 429.825 169.77C430.425 168.77 430.725 167.57 430.725 166.37C430.725 165.17 430.425 163.97 429.825 162.97C429.225 161.97 428.425 161.17 427.325 160.57C426.225 159.97 425.125 159.67 423.825 159.67C422.525 159.67 421.425 159.97 420.325 160.57C419.225 161.17 418.425 161.97 417.825 162.97C417.225 163.97 416.925 165.17 416.925 166.37C416.925 167.57 417.225 168.77 417.825 169.77C418.425 170.77 419.225 171.57 420.325 172.17C421.425 172.77 422.625 173.07 423.825 173.07ZM420.725 170.67V161.97H424.325C424.925 161.97 425.425 162.07 425.925 162.27C426.325 162.47 426.725 162.77 426.925 163.07C427.125 163.47 427.325 163.87 427.325 164.37C427.325 164.77 427.225 165.17 427.125 165.47C426.925 165.77 426.725 166.07 426.425 166.27C426.125 166.47 425.625 166.57 425.125 166.67V166.27C425.625 166.27 425.925 166.37 426.225 166.57C426.525 166.67 426.725 166.87 426.925 167.17C427.025 167.47 427.125 167.77 427.225 168.17L427.325 169.57C427.325 169.87 427.425 170.07 427.425 170.27C427.525 170.47 427.625 170.67 427.725 170.77H426.525C426.425 170.67 426.325 170.47 426.325 170.27C426.225 170.07 426.225 169.87 426.225 169.57L426.125 168.47C426.125 168.07 426.025 167.87 425.925 167.67C425.825 167.47 425.725 167.37 425.425 167.27C425.225 167.17 424.925 167.17 424.625 167.17H421.225V165.97H424.525C424.925 165.97 425.225 165.87 425.425 165.77C425.725 165.67 425.825 165.47 426.025 165.27C426.225 165.07 426.225 164.77 426.225 164.47C426.225 164.17 426.125 163.87 426.025 163.67C425.925 163.47 425.725 163.27 425.425 163.17C425.125 163.07 424.825 162.97 424.425 162.97H421.425L421.925 162.47V170.67H420.725Z"/>
+        <path d="M432.025 55.4702C431.125 59.6702 408.725 167.97 408.125 170.77C405.625 170.77 385.625 170.77 381.925 170.77C382.725 166.57 405.225 58.2702 405.725 55.4702C408.325 55.4702 428.325 55.4702 432.025 55.4702Z"/>
+        <path d="M390.025 55.4702C389.125 59.6702 366.725 167.97 366.125 170.77C363.625 170.77 343.625 170.77 339.925 170.77C340.725 166.57 363.225 58.2702 363.725 55.4702C366.325 55.4702 386.325 55.4702 390.025 55.4702Z"/>
+        <path d="M341.925 84.2702C341.025 88.4702 324.625 167.97 324.025 170.67C321.525 170.67 301.525 170.67 297.825 170.67C298.725 166.47 315.125 86.9702 315.725 84.2702C318.225 84.2702 338.225 84.2702 341.925 84.2702Z"/>
+        <path d="M248.525 126.37C245.925 139.17 246.025 144.07 248.525 147.27C249.825 148.87 251.725 149.67 254.425 149.67C261.825 149.67 265.425 145.17 269.125 127.17C271.825 114.27 272.125 106.07 269.525 102.87C268.325 101.37 266.425 100.57 263.925 100.57C256.325 100.57 252.225 108.27 248.525 126.37ZM224.525 162.97C219.225 156.47 218.225 146.37 221.825 128.27C229.725 88.8702 244.725 81.9702 257.725 81.9702C263.925 81.9702 273.225 84.2702 274.325 95.1702L274.425 96.8702H276.225C276.225 96.8702 278.325 86.6702 278.825 84.3702C281.225 84.3702 299.425 84.3702 303.025 84.3702C302.125 88.5702 285.025 170.77 285.025 170.77C280.725 191.47 267.525 201.67 243.225 201.67C220.625 201.67 217.325 188.37 216.825 184.27C216.625 182.67 217.125 178.07 217.125 178.07C219.725 178.07 237.425 178.07 240.725 178.07C240.725 180.17 240.825 183.27 241.525 184.17C242.525 185.37 243.325 186.77 247.025 186.77C251.925 186.77 256.725 185.37 259.025 174.07L263.025 154.67H261.125L260.525 155.57C255.725 163.97 246.725 168.17 237.225 168.17C231.625 168.27 227.325 166.47 224.525 162.97Z"/>
+        <path d="M224.725 81.8702C216.125 81.8702 205.925 87.8702 200.925 97.5702L200.425 98.5702H198.525C198.525 98.5702 200.825 87.4702 201.525 84.2702C201.025 84.2702 200.225 84.2702 199.225 84.2702C196.325 84.2702 177.925 84.2702 174.325 84.2702C174.425 85.3702 174.625 86.4702 174.625 87.7702C174.625 90.5702 174.225 93.7702 173.525 97.5702C168.725 121.07 159.025 167.57 158.425 170.77C162.125 170.77 182.125 170.77 184.625 170.77C186.225 162.67 194.425 123.07 194.425 123.07C196.925 111.17 203.825 105.67 216.325 105.67C218.525 105.67 220.425 105.77 222.225 106.07C222.825 103.27 226.525 85.5702 227.225 82.0702C226.025 81.8702 224.725 81.8702 224.725 81.8702Z"/>
+        <path d="M131.725 127.17C131.725 127.17 131.225 127.57 130.325 127.97C128.725 128.57 125.225 129.17 123.125 129.67C121.425 130.07 119.525 130.57 117.525 131.47C112.025 133.77 109.325 137.57 107.825 144.47C107.025 148.47 107.525 151.87 109.325 154.07C110.625 155.67 112.625 156.57 115.025 156.57C124.725 156.57 127.725 147.27 129.225 140.27L131.725 127.17ZM132.025 81.8702C145.325 81.8702 153.425 84.1702 157.425 89.1702C159.625 91.8702 160.725 95.4702 160.825 100.07C160.825 102.67 160.525 105.47 159.825 108.57L150.725 152.57C149.525 158.67 148.725 163.27 148.725 167.17C148.725 168.37 148.825 169.57 149.025 170.57C145.325 170.57 126.925 170.57 124.125 170.57C124.125 170.27 124.125 170.07 124.125 169.77C124.125 167.97 124.225 165.97 124.425 163.97L124.725 160.37H123.325L122.825 161.17C118.325 168.37 108.125 172.87 99.4255 172.87C92.2255 172.87 87.0255 171.07 84.0255 167.37C80.8255 163.37 80.0255 157.07 81.7255 148.67C85.1255 132.27 92.6255 125.27 111.325 121.07L123.725 118.27C131.125 116.67 134.625 113.37 136.025 107.07C136.725 103.57 136.325 100.87 134.825 99.0702C133.425 97.3702 131.225 96.5702 128.225 96.5702C121.525 96.5702 118.025 99.9702 115.825 108.57C113.525 108.57 97.2255 108.57 93.6255 108.57C99.5255 85.4702 120.125 81.8702 132.025 81.8702Z"/>
+        <path d="M5.12538 166.17C-1.37462 158.17 -1.67462 143.37 4.12538 115.17C13.5254 70.0702 26.9254 54.8702 57.5254 54.8702C69.7254 54.8702 78.3254 57.7702 83.0254 63.5702C86.0254 67.2702 87.6254 72.3702 87.6254 78.7702C87.6254 82.2702 87.2254 86.0702 86.3254 90.2702C86.3254 90.2702 85.5254 94.0702 85.0254 96.2702C82.5254 96.2702 59.2254 96.2702 59.2254 96.2702C59.2254 96.2702 61.1254 83.9702 61.1254 81.2702C61.1254 78.1702 61.0254 76.5702 59.8254 75.0702C58.6254 73.4702 56.8254 72.1702 54.0254 72.1702C42.6254 72.1702 38.8254 83.0702 32.3254 114.47C27.3254 138.87 25.4254 149.97 29.3254 154.77C30.8254 156.57 33.0254 157.47 36.1254 157.47C45.1254 157.47 48.6254 149.77 53.2254 128.37C55.6254 128.37 75.5254 128.37 79.2254 128.37C78.7254 130.87 77.8254 134.97 77.8254 134.97C72.4254 161.37 56.8254 174.77 31.8254 174.77C18.4254 174.67 9.92538 171.97 5.12538 166.17Z"/>
+      </g>
+      <path style="fill: var(--leaf-fill, #00843D)" d="M344.125 74.0702C344.125 74.0702 326.725 75.4702 314.625 73.7702C286.825 69.9702 261.025 50.7702 249.625 44.3702C224.825 30.5702 214.725 29.6702 201.925 33.3702C180.825 39.0702 168.525 56.3702 156.625 76.5702C154.325 75.4702 151.925 74.5702 149.425 73.9702C156.225 59.5702 182.125 13.0702 235.425 2.07022C288.925 -9.12978 346.225 26.5702 344.125 74.0702Z"/>
+    </symbol>
+  </svg>
+
+  <main id="main-content" tabindex="-1" class="page">
+
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">DT&amp;D Careers</h1>
+        <p class="page-sub">Explore the career lattice across Digital Technology &amp; Data. Filter by family or search a skill to find the roles and pathways that fit your growth.</p>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary"><span class="material-symbols-rounded">map</span>My Career Pathway</button>
+      </div>
+    </div>
+
+    <!-- ---------- Filter toolbar ---------- -->
+    <div class="toolbar" role="search">
+      <div class="toolbar-field toolbar-grow">
+        <label class="toolbar-field-label" for="kw">Search roles &amp; skills</label>
+        <div class="search-input">
+          <span class="search-input-icon"><span class="material-symbols-rounded">search</span></span>
+          <input id="kw" type="text" placeholder="Enter keyword (e.g., skills)" />
+          <button class="search-clear" type="button" aria-label="Clear search" hidden><span class="material-symbols-rounded">close</span></button>
+        </div>
+      </div>
+
+      <div class="toolbar-field">
+        <label class="toolbar-field-label" for="contrib">Contributor type</label>
+        <span class="tb-select">
+          <select id="contrib">
+            <option>All</option>
+            <option>Individual contributor</option>
+            <option>People leader</option>
+          </select>
+          <span class="material-symbols-rounded">expand_more</span>
+        </span>
+      </div>
+
+      <div class="toolbar-field">
+        <label class="toolbar-field-label" for="subfam">SubFamily</label>
+        <span class="tb-select">
+          <select id="subfam">
+            <option>All</option>
+            <option>Data Engineering</option>
+            <option>Data Management &amp; Governance</option>
+            <option>Data Analytics</option>
+            <option>Application Development</option>
+            <option>Architecture</option>
+            <option>Info Security</option>
+            <option>Infrastructure &amp; Operations</option>
+            <option>Product Management</option>
+            <option>Software Engineering</option>
+            <option>UX Design</option>
+          </select>
+          <span class="material-symbols-rounded">expand_more</span>
+        </span>
+      </div>
+
+      <div class="toolbar-spacer" aria-hidden="true"></div>
+
+      <div class="toolbar-actions">
+        <button class="btn btn-ghost" id="reset"><span class="material-symbols-rounded">restart_alt</span>Reset filters</button>
+      </div>
+    </div>
+
+    <!-- ---------- Lattice ---------- -->
+    <section class="lattice-card" aria-label="DT&amp;D career lattice">
+      <div class="lattice-stage">
+        <div class="scope-axis" aria-hidden="true">
+          <span class="scope-cap">Leadership</span>
+          <div class="scope-arrow"></div>
+          <span class="scope-note">As you move up the lattice, roles increase in scope</span>
+          <span class="scope-cap scope-cap--muted">Entry level</span>
+        </div>
+
+        <div class="lattice-viewport">
+          <div class="lattice-zoom" role="group" aria-label="Zoom controls">
+            <button type="button" id="zoom-in" aria-label="Zoom in"><span class="material-symbols-rounded">add</span></button>
+            <button type="button" id="zoom-out" aria-label="Zoom out"><span class="material-symbols-rounded">remove</span></button>
+          </div>
+          <div class="lattice-view" id="lview">
+            <div class="honeycomb-scaler" id="scaler">
+              <div class="lattice-canvas" id="canvas" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="lv-bar lv-bar--y" id="vbar"><span class="lv-thumb" id="vthumb"></span></div>
+          <div class="lv-bar lv-bar--x" id="hbar"><span class="lv-thumb" id="hthumb"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Legend ---------- -->
+    <div class="legend">
+      <div class="legend-head">
+        <span class="legend-title">Key</span>
+        <div class="legend-markers">
+          <span class="legend-marker"><span class="legend-marker-num">#</span> My pathway roles and order</span>
+          <span class="legend-marker"><span class="legend-marker-star"></span> Includes example pathways on how to get there</span>
+        </div>
+      </div>
+      <div class="legend-grid" id="legend-grid"></div>
+    </div>
+
+    <p class="lattice-caption">Lattice represents the most common roles, not all roles across DT&amp;D. As you move vertically within the lattice, roles increase in scope and complexity.</p>
+
+  </main>
+
+  <script>
+    // ---------- Category palette (derived from Sprout tokens, harmonized to the brand) ----------
+    const CATS = [
+      { key: 'data-eng',     name: 'Data Engineering',                     fill: '#C6DAD3', ink: '#2E4A43', icon: 'database' },
+      { key: 'data-mgmt',    name: 'Data Management & Governance',         fill: '#CDE7F5', ink: '#15425C', icon: 'inventory_2' },
+      { key: 'data-analytics', name: 'Data Analytics',                     fill: '#BFC9D9', ink: '#2A3950', icon: 'insights' },
+      { key: 'app-dev',      name: 'Application Development',              fill: '#D8D3EE', ink: '#3A3270', icon: 'code' },
+      { key: 'architecture', name: 'Architecture',                         fill: '#E6C7CC', ink: '#7A2F39', icon: 'architecture' },
+      { key: 'info-sec',     name: 'Info Security',                        fill: '#DCEFBE', ink: '#3E5417', icon: 'shield' },
+      { key: 'infra-ops',    name: 'Infrastructure & Operations',          fill: '#C2EFD2', ink: '#01632D', icon: 'dns' },
+      { key: 'product',      name: 'Product Management',                   fill: '#F7CBD0', ink: '#9E2A2F', icon: 'lightbulb' },
+      { key: 'software-eng', name: 'Software Engineering',                 fill: '#C6D2C8', ink: '#33493B', icon: 'terminal' },
+      { key: 'ux',           name: 'UX Design',                            fill: '#FBD9BE', ink: '#8A4A1B', icon: 'design_services' },
+      { key: 'leadership',   name: 'Digital Technology Enterprise / Function Leadership', fill: '#FEEDA0', ink: '#7A3F00', icon: 'star' },
+    ];
+    // ---------- Legend ----------
+    function buildLegend() {
+      const grid = document.getElementById('legend-grid');
+      CATS.forEach(c => {
+        const item = document.createElement('div');
+        item.className = 'legend-item';
+        item.innerHTML =
+          '<span class="legend-swatch" style="background:' + c.fill + ';"></span>' +
+          '<span class="legend-label">' + c.name + '</span>';
+        grid.appendChild(item);
+      });
+    }
+
+    // ---------- Canvas + zoom ----------
+    const BASE_W = 2200, BASE_H = 1100, CELL = 24;
+    const lview = document.getElementById('lview');
+    const canvas = document.getElementById('canvas');
+    let zoom = 1;
+    function applyZoom() {
+      canvas.style.width = (BASE_W * zoom) + 'px';
+      canvas.style.height = (BASE_H * zoom) + 'px';
+      canvas.style.backgroundSize = (CELL * zoom) + 'px ' + (CELL * zoom) + 'px, auto';
+      syncBars();
+    }
+    document.getElementById('zoom-in').addEventListener('click', () => { zoom = Math.min(2, zoom + 0.2); applyZoom(); });
+    document.getElementById('zoom-out').addEventListener('click', () => { zoom = Math.max(0.6, zoom - 0.2); applyZoom(); });
+
+    // ---------- Custom Sprout scrollbars ----------
+    const vbar = document.getElementById('vbar'), vthumb = document.getElementById('vthumb');
+    const hbar = document.getElementById('hbar'), hthumb = document.getElementById('hthumb');
+
+    function syncBars() {
+      const ch = lview.clientHeight, sh = lview.scrollHeight, trackH = vbar.clientHeight;
+      if (sh <= ch + 1) { vbar.style.display = 'none'; }
+      else {
+        vbar.style.display = '';
+        const th = Math.max(32, trackH * ch / sh);
+        vthumb.style.height = th + 'px';
+        vthumb.style.top = ((trackH - th) * (lview.scrollTop / (sh - ch))) + 'px';
+      }
+      const cw = lview.clientWidth, sw = lview.scrollWidth, trackW = hbar.clientWidth;
+      if (sw <= cw + 1) { hbar.style.display = 'none'; }
+      else {
+        hbar.style.display = '';
+        const tw = Math.max(32, trackW * cw / sw);
+        hthumb.style.width = tw + 'px';
+        hthumb.style.left = ((trackW - tw) * (lview.scrollLeft / (sw - cw))) + 'px';
+      }
+    }
+    lview.addEventListener('scroll', syncBars);
+    window.addEventListener('resize', syncBars);
+
+    function makeDraggable(thumb, bar, axis) {
+      thumb.addEventListener('pointerdown', e => {
+        e.preventDefault();
+        thumb.setPointerCapture(e.pointerId);
+        thumb.classList.add('is-drag');
+        const start = axis === 'y' ? e.clientY : e.clientX;
+        const startScroll = axis === 'y' ? lview.scrollTop : lview.scrollLeft;
+        const track = axis === 'y' ? bar.clientHeight : bar.clientWidth;
+        const thumbSize = axis === 'y' ? thumb.offsetHeight : thumb.offsetWidth;
+        const range = axis === 'y' ? (lview.scrollHeight - lview.clientHeight) : (lview.scrollWidth - lview.clientWidth);
+        const move = ev => {
+          const delta = (axis === 'y' ? ev.clientY : ev.clientX) - start;
+          const ns = startScroll + (delta / (track - thumbSize)) * range;
+          if (axis === 'y') lview.scrollTop = ns; else lview.scrollLeft = ns;
+        };
+        const up = () => {
+          thumb.classList.remove('is-drag');
+          document.removeEventListener('pointermove', move);
+          document.removeEventListener('pointerup', up);
+        };
+        document.addEventListener('pointermove', move);
+        document.addEventListener('pointerup', up);
+      });
+    }
+    makeDraggable(vthumb, vbar, 'y');
+    makeDraggable(hthumb, hbar, 'x');
+
+    // ---------- Search field behaviour ----------
+    const subfam = document.getElementById('subfam');
+    const kw = document.getElementById('kw');
+    const clearBtn = document.querySelector('.search-clear');
+
+    kw.addEventListener('input', () => { clearBtn.hidden = kw.value.length === 0; });
+    clearBtn.addEventListener('click', () => { kw.value = ''; clearBtn.hidden = true; kw.focus(); });
+
+    document.getElementById('reset').addEventListener('click', () => {
+      kw.value = ''; clearBtn.hidden = true;
+      document.getElementById('contrib').value = 'All';
+      subfam.value = 'All';
+    });
+
+    buildLegend();
+    syncBars();
+  </script>
+</body>
+</html>
