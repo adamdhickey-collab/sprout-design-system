@@ -42,7 +42,7 @@
 
       <div class="sidebar-search">
         <button type="button" class="sidebar-search-trigger" id="search-trigger" aria-haspopup="dialog">
-          <span class="material-symbols-rounded">search</span>
+          <span class="material-symbols-rounded" aria-hidden="true">search</span>
           <span class="sidebar-search-trigger-label">Search</span>
           <span class="sidebar-search-kbd">⌘K</span>
         </button>
@@ -115,10 +115,10 @@
         <div class="scale-block">
           <p class="scale-label">Adding Sprout to a codebase</p>
           <div class="checklist">
-            <div class="checklist-item"><span class="material-symbols-rounded">looks_one</span><span><strong>Copy the source.</strong> <code>styles.css</code>, the <code>Cargill Fonts/</code> folder, and <code>assets/</code> are the entire dependency — no build step, no package manager. Copy all three into your project.</span></div>
-            <div class="checklist-item"><span class="material-symbols-rounded">looks_two</span><span><strong>Link the stylesheet</strong> and keep the font <code>&lt;link&gt;</code>/<code>&lt;preload&gt;</code> tags from any page's <code>&lt;head&gt;</code> here as a reference — Big Caslon and Helvetica Now won't load without them.</span></div>
-            <div class="checklist-item"><span class="material-symbols-rounded">looks_3</span><span><strong>Copy markup from the source, not the screenshot.</strong> Every example throughout this site has a <strong>Code</strong> toggle in its top-right corner that reveals the exact HTML behind it — copy that instead of rebuilding it from what you see.</span></div>
-            <div class="checklist-item"><span class="material-symbols-rounded">looks_4</span><span><strong>Toggle dark mode before you trust anything.</strong> A component that looks right in Light hasn't been verified until you've flipped the switch in the sidebar and looked again.</span></div>
+            <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">looks_one</span><span><strong>Copy the source.</strong> <code>styles.css</code>, the <code>Cargill Fonts/</code> folder, and <code>assets/</code> are the entire dependency — no build step, no package manager. Copy all three into your project.</span></div>
+            <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">looks_two</span><span><strong>Link the stylesheet</strong> and keep the font <code>&lt;link&gt;</code>/<code>&lt;preload&gt;</code> tags from any page's <code>&lt;head&gt;</code> here as a reference — Big Caslon and Helvetica Now won't load without them.</span></div>
+            <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">looks_3</span><span><strong>Copy markup from the source, not the screenshot.</strong> Every example throughout this site has a <strong>Code</strong> toggle in its top-right corner that reveals the exact HTML behind it — copy that instead of rebuilding it from what you see.</span></div>
+            <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">looks_4</span><span><strong>Toggle dark mode before you trust anything.</strong> A component that looks right in Light hasn't been verified until you've flipped the switch in the sidebar and looked again.</span></div>
           </div>
         </div>
 
@@ -126,10 +126,10 @@
           <p class="scale-label">Before you ship a new component</p>
           <p class="card-body" style="max-width: 68ch; margin-bottom: var(--space-5);">This checklist exists because of a real bug class found in this system: components that looked correct in Light mode broke under Dark — a wordmark that went invisible, destructive-red text that dropped to 2.9:1 contrast, white text baked onto a fill that turns lime in Dark mode. All from the same root cause below.</p>
           <div class="checklist">
-            <div class="checklist-item"><span class="material-symbols-rounded">toggle_on</span><span><strong>Know which tokens re-point in Dark mode.</strong> <code>--brand</code>, <code>--brand-deep</code>, <code>--surface</code>, and the <code>--text-*</code> family intentionally change value under <code>[data-theme="dark"]</code>. Most primitives (<code>--green-600</code>, <code>--red-400</code>, <code>--neutral-1000</code>) do not.</span></div>
-            <div class="checklist-item"><span class="material-symbols-rounded">lock</span><span><strong>If a surface must never change with the visitor's theme</strong> — a badge fill, a footer band that's always dark, a floating control that's always a light pill — reach for a fixed primitive, not a semantic token. Using <code>--surface</code> or <code>--brand</code> out of habit is exactly how this bug class happens.</span></div>
-            <div class="checklist-item"><span class="material-symbols-rounded">contrast</span><span><strong>Never hardcode a foreground color against a token background.</strong> White text baked onto an element filled with <code>--brand</code> reads fine in Light (a dark green fill) and disappears in Dark (a lime fill). Use <code>--on-accent</code> instead, which flips with the fill.</span></div>
-            <div class="checklist-item"><span class="material-symbols-rounded">visibility</span><span><strong>Check every state, in both themes.</strong> Default, focused, error, disabled, and skeleton — each one, with the sidebar toggle flipped to Dark. This is the single check that would have caught every bug in this list before it shipped.</span></div>
+            <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">toggle_on</span><span><strong>Know which tokens re-point in Dark mode.</strong> <code>--brand</code>, <code>--brand-deep</code>, <code>--surface</code>, and the <code>--text-*</code> family intentionally change value under <code>[data-theme="dark"]</code>. Most primitives (<code>--green-600</code>, <code>--red-400</code>, <code>--neutral-1000</code>) do not.</span></div>
+            <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">lock</span><span><strong>If a surface must never change with the visitor's theme</strong> — a badge fill, a footer band that's always dark, a floating control that's always a light pill — reach for a fixed primitive, not a semantic token. Using <code>--surface</code> or <code>--brand</code> out of habit is exactly how this bug class happens.</span></div>
+            <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">contrast</span><span><strong>Never hardcode a foreground color against a token background.</strong> White text baked onto an element filled with <code>--brand</code> reads fine in Light (a dark green fill) and disappears in Dark (a lime fill). Use <code>--on-accent</code> instead, which flips with the fill.</span></div>
+            <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">visibility</span><span><strong>Check every state, in both themes.</strong> Default, focused, error, disabled, and skeleton — each one, with the sidebar toggle flipped to Dark. This is the single check that would have caught every bug in this list before it shipped.</span></div>
           </div>
         </div>
 
@@ -156,11 +156,11 @@
   <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search Sprout" hidden>
     <div class="search-panel">
       <div class="search-input-row">
-        <span class="material-symbols-rounded">search</span>
-        <input type="text" class="search-input" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" />
+        <span class="material-symbols-rounded" aria-hidden="true">search</span>
+        <input type="text" class="search-input" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search Sprout" />
         <kbd class="search-esc">Esc</kbd>
       </div>
-      <div class="search-results" id="search-results"></div>
+      <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>
     </div>
   </div>
 

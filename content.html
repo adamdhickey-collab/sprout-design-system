@@ -42,7 +42,7 @@
 
       <div class="sidebar-search">
         <button type="button" class="sidebar-search-trigger" id="search-trigger" aria-haspopup="dialog">
-          <span class="material-symbols-rounded">search</span>
+          <span class="material-symbols-rounded" aria-hidden="true">search</span>
           <span class="sidebar-search-trigger-label">Search</span>
           <span class="sidebar-search-kbd">⌘K</span>
         </button>
@@ -120,7 +120,7 @@
         </div>
         <div class="component-grid">
 <div class="component-legend">
-            <span class="material-symbols-rounded">info</span>
+            <span class="material-symbols-rounded" aria-hidden="true">info</span>
             <span><strong>A note on these demos:</strong> controls are live where it matters — checkboxes, accordions, toggles, and combobox menus genuinely respond — but actions like Log In, Save, or Delete are illustrative only and won’t submit or persist anything.</span>
           </div>
 <div class="component-heading" id="accordion">
@@ -669,7 +669,7 @@
           <div class="component" style="grid-column: 1 / -1;">
             <p class="component-label">Empty state · default</p>
             <div class="empty-state">
-              <span class="empty-state-icon"><span class="material-symbols-rounded">folder</span></span>
+              <span class="empty-state-icon" aria-hidden="true"><span class="material-symbols-rounded">folder</span></span>
               <p class="empty-state-title">No projects yet</p>
               <p class="empty-state-body">Projects you create or get added to will show up here.</p>
               <button class="btn btn-primary btn--sm">Create a project</button>
@@ -679,7 +679,7 @@
           <div class="component" style="grid-column: 1 / -1;">
             <p class="component-label">Empty state · no search results</p>
             <div class="empty-state">
-              <span class="empty-state-icon"><span class="material-symbols-rounded">search_off</span></span>
+              <span class="empty-state-icon" aria-hidden="true"><span class="material-symbols-rounded">search_off</span></span>
               <p class="empty-state-title">No results for "regenerative wheat"</p>
               <p class="empty-state-body">Try a different search term, or clear your filters to see everything.</p>
               <button class="btn btn-secondary btn--sm">Clear filters</button>
@@ -689,7 +689,7 @@
           <div class="component" style="grid-column: 1 / -1;">
             <p class="component-label">Empty state · compact (inline, e.g. inside a table)</p>
             <div class="empty-state empty-state--compact">
-              <span class="empty-state-icon"><span class="material-symbols-rounded">inbox</span></span>
+              <span class="empty-state-icon" aria-hidden="true"><span class="material-symbols-rounded">inbox</span></span>
               <div>
                 <p class="empty-state-title">No invitations sent</p>
                 <p class="empty-state-body">Invite teammates from the members panel.</p>
@@ -985,11 +985,11 @@
   <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search Sprout" hidden>
     <div class="search-panel">
       <div class="search-input-row">
-        <span class="material-symbols-rounded">search</span>
-        <input type="text" class="search-input" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" />
+        <span class="material-symbols-rounded" aria-hidden="true">search</span>
+        <input type="text" class="search-input" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search Sprout" />
         <kbd class="search-esc">Esc</kbd>
       </div>
-      <div class="search-results" id="search-results"></div>
+      <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>
     </div>
   </div>
 

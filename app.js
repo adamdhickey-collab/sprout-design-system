@@ -205,6 +205,7 @@
 
       let activeIndex = -1;
       let filtered = [];
+      let previouslyFocused = null;
 
       function currentPage() {
         const p = location.pathname.split('/').pop();
@@ -214,10 +215,17 @@
       function setActive(i) {
         activeIndex = i;
         Array.from(results.children).forEach((el, idx) => {
-          el.classList.toggle('search-result-item--active', idx === i);
+          const isActive = idx === i;
+          el.classList.toggle('search-result-item--active', isActive);
+          if (el.id) el.setAttribute('aria-selected', String(isActive));
         });
         const el = results.children[i];
-        if (el) el.scrollIntoView({ block: 'nearest' });
+        if (el) {
+          el.scrollIntoView({ block: 'nearest' });
+          input.setAttribute('aria-activedescendant', el.id);
+        } else {
+          input.removeAttribute('aria-activedescendant');
+        }
       }
 
       function go(item) {
@@ -236,12 +244,17 @@
         if (!list.length) {
           results.innerHTML = '<p class="search-empty">No matches.</p>';
           activeIndex = -1;
+          input.removeAttribute('aria-activedescendant');
           return;
         }
         list.forEach((item, i) => {
           const row = document.createElement('button');
           row.type = 'button';
           row.className = 'search-result-item';
+          row.id = 'search-result-' + i;
+          row.setAttribute('role', 'option');
+          row.setAttribute('aria-selected', 'false');
+          row.setAttribute('tabindex', '-1');
           row.innerHTML =
             '<span class="search-result-title"></span><span class="search-result-category"></span>';
           row.querySelector('.search-result-title').textContent = item.title;
@@ -260,15 +273,23 @@
       }
 
       function open() {
+        previouslyFocused = document.activeElement;
         overlay.hidden = false;
         input.value = '';
+        input.setAttribute('aria-expanded', 'true');
         render(INDEX);
         document.body.style.overflow = 'hidden';
         requestAnimationFrame(() => input.focus());
       }
       function close() {
         overlay.hidden = true;
+        input.setAttribute('aria-expanded', 'false');
+        input.removeAttribute('aria-activedescendant');
         document.body.style.overflow = '';
+        if (previouslyFocused && typeof previouslyFocused.focus === 'function') {
+          previouslyFocused.focus();
+        }
+        previouslyFocused = null;
       }
 
       if (trigger) trigger.addEventListener('click', open);
@@ -286,6 +307,11 @@
         } else if (e.key === 'Enter') {
           e.preventDefault();
           if (filtered[activeIndex]) go(filtered[activeIndex]);
+        } else if (e.key === 'Tab') {
+          // Result rows aren't tab-stops (arrow keys drive selection), so the
+          // input is the only focusable element in the dialog — trap Tab here
+          // rather than letting it escape to the page underneath.
+          e.preventDefault();
         } else if (e.key === 'Escape') {
           close();
         }
@@ -307,6 +333,7 @@
     // "View code" toggle · injected once per .component, reveals the example's own
     // markup rather than a hand-written snippet, so it can never drift out of sync.
     (function () {
+      let counter = 0;
       document.querySelectorAll('.component').forEach((comp) => {
         const label = comp.querySelector('.component-label');
         if (!label) return;
@@ -314,21 +341,24 @@
         const snippet = comp.innerHTML.replace(label.outerHTML, '').replace(/\n\s*\n/g, '\n').trim();
         if (!snippet) return;
 
+        const codeId = 'component-code-' + counter++;
         const toggle = document.createElement('button');
         toggle.type = 'button';
         toggle.className = 'component-code-toggle';
-        toggle.setAttribute('aria-pressed', 'false');
-        toggle.innerHTML = '<span class="material-symbols-rounded">code</span><span>Code</span>';
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-controls', codeId);
+        toggle.innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">code</span><span>Code</span>';
 
         const pre = document.createElement('pre');
         pre.className = 'component-code';
+        pre.id = codeId;
         const code = document.createElement('code');
         code.textContent = snippet;
         pre.appendChild(code);
 
         toggle.addEventListener('click', () => {
           const isOpen = pre.classList.toggle('component-code--visible');
-          toggle.setAttribute('aria-pressed', String(isOpen));
+          toggle.setAttribute('aria-expanded', String(isOpen));
           toggle.querySelector('span:last-child').textContent = isOpen ? 'Hide' : 'Code';
         });
 
