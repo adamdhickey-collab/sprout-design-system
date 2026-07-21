@@ -1690,6 +1690,7 @@
     .card-expressive--brand .card-eyebrow { color: var(--soft-green-200); }
     .card-expressive--brand .card-headline { color: #fff; }
     .card-expressive--brand .card-body { color: rgba(255, 255, 255, 0.9); }
+    .card-expressive--brand-btn { color: #fff; border-color: #fff; }
 
     /* Expressive layout with side chart graphic */
     .card-expressive--chart {
@@ -3727,7 +3728,7 @@
       font-size: 12px;
       letter-spacing: normal;
       text-transform: none;
-      color: var(--soft-green-200);
+      color: var(--soft-green-400);
     }
 
     /* ---------- Responsive ---------- */
@@ -4125,4 +4126,74 @@
 
     /* Dark mode swaps the sidebar wordmark to the white treatment (white text, green leaf) */
     [data-theme="dark"] .sidebar-brand .cargill-logo--black { color: #FFFFFF; }
+
+    /* Same swap for the Authentication card wordmark — its card surface goes dark too */
+    [data-theme="dark"] .auth-card .cargill-logo--black { color: #FFFFFF; --leaf-fill: var(--soft-green-400); }
+
+    /* Destructive red: --red-600 is tuned for light surfaces (2.9:1 on the dark surface,
+       fails WCAG AA). Swap in the lighter --red-400 wherever it reads as text/icon/border
+       directly on a page surface. Solid red fills (badges, primary danger button) keep
+       --red-600 as-is since white-on-red-600 already has plenty of contrast. */
+    [data-theme="dark"] .btn-secondary.btn--danger,
+    [data-theme="dark"] .btn-ghost.btn--danger,
+    [data-theme="dark"] .combobox-field-error,
+    [data-theme="dark"] .date-input-field-error,
+    [data-theme="dark"] .input-error,
+    [data-theme="dark"] .label-required,
+    [data-theme="dark"] .toast--error .toast-icon { color: var(--red-400); }
+    [data-theme="dark"] .btn-secondary.btn--danger,
+    [data-theme="dark"] .btn-ghost.btn--danger { border-color: var(--red-400); }
+    [data-theme="dark"] .btn-secondary.btn--danger:hover,
+    [data-theme="dark"] .btn-ghost.btn--danger:hover {
+      background: rgba(235, 86, 85, 0.12);
+      color: var(--red-300);
+      border-color: var(--red-300);
+    }
+    /* The global on-accent rule below is for lime primary buttons; the danger primary
+       button keeps its red-600 fill, so its text stays white, not near-black. */
+    [data-theme="dark"] .btn-primary.btn--danger { color: #fff; }
+
+    /* On-accent: anything filled with --brand (lime in dark mode) needs dark text/icons,
+       not the white/near-white foreground that reads fine on the light-mode green fill. */
+    [data-theme="dark"] .combobox-option--active,
+    [data-theme="dark"] .chip[aria-pressed="true"],
+    [data-theme="dark"] .chip.chip--selected,
+    [data-theme="dark"] .label-tooltip,
+    [data-theme="dark"] .avatar,
+    [data-theme="dark"] .avatar .material-symbols-rounded,
+    [data-theme="dark"] .stepper-item--complete .stepper-circle,
+    [data-theme="dark"] .stepper-item--complete .stepper-circle .material-symbols-rounded,
+    [data-theme="dark"] .pagination-btn--active {
+      color: var(--on-accent);
+    }
+    [data-theme="dark"] .chip--selected .chip-lead { color: var(--on-accent); }
+    [data-theme="dark"] .checkbox-input:checked::after,
+    [data-theme="dark"] .checkbox-input:indeterminate::after { border-color: var(--on-accent); }
+    [data-theme="dark"] .checkbox-input:indeterminate::after { background: var(--on-accent); border-color: transparent; }
+
+    /* Card metric "up" delta and the expressive card's eyebrow both sit on a --soft-green-50
+       chip whose dark-mode value is a deep green; their fixed --green-600/700/800 text needs
+       to lighten to match instead of nearly disappearing. */
+    [data-theme="dark"] .card-metric-delta--up,
+    [data-theme="dark"] .card-expressive .card-eyebrow { color: var(--soft-green-300); }
+
+    /* Expressive · brand-green variant: its background tracks --brand too, so it needs the
+       same on-accent treatment as the other --brand-filled components above. */
+    [data-theme="dark"] .card-expressive--brand .card-eyebrow,
+    [data-theme="dark"] .card-expressive--brand .card-headline,
+    [data-theme="dark"] .card-expressive--brand .card-body,
+    [data-theme="dark"] .card-expressive--brand-btn { color: var(--on-accent); }
+    [data-theme="dark"] .card-expressive--brand-btn { border-color: var(--on-accent); }
+
+    /* Carousel prev/next controls float on the image in a fixed near-white pill regardless
+       of page theme; their icon color must stay a fixed dark green, not follow --brand-deep
+       into lime (which would vanish against the light pill). */
+    [data-theme="dark"] .carousel-nav { color: var(--green-700); }
+
+    /* Sheet: give the slide-in panel a visible seam against its frame, since both surfaces
+       are close in tone once neutral-100/surface repoint to dark. */
+    [data-theme="dark"] .sheet {
+      border-left: 1px solid var(--border-input);
+      box-shadow: -8px 0 24px rgba(0, 0, 0, 0.5);
+    }
 
