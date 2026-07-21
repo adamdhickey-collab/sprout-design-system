@@ -644,6 +644,28 @@
       }
     }
 
+    /* Plain-language glossary of UI terms, used on the Color foundation page */
+    .term-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-5) var(--space-6);
+      margin: 0;
+    }
+    .term-item dt {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .term-item dd {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 21px;
+      color: var(--text-soft);
+    }
+
     /* ---------- Type specimen ---------- */
     .type-stack { display: grid; gap: var(--space-6); }
     .type-row {

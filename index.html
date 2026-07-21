@@ -442,6 +442,113 @@
           </div>
           </div>
         </div>
+
+        <div class="scale-block">
+          <p class="scale-label">Core UI tokens · what to reach for</p>
+          <p class="palette-note" style="margin-bottom: var(--space-4);">The primitives above are raw material. In practice, components reference a smaller set of semantic tokens that point at a primitive for a specific job — change the token's target once and every component using it updates together. These are the ones you'll use most when building a screen.</p>
+          <table class="token-table">
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Swatch</th>
+                <th>Use in the interface</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="token-name">--bg</td>
+                <td><span class="token-swatch" style="--c:#F8F8F8">#F8F8F8</span></td>
+                <td>Page canvas — the back-most layer everything else sits on.</td>
+              </tr>
+              <tr>
+                <td class="token-name">--surface</td>
+                <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
+                <td>Cards, panels, modals, popovers — anything that reads as raised above the page.</td>
+              </tr>
+              <tr>
+                <td class="token-name">--surface-input</td>
+                <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
+                <td>Text field and textarea backgrounds — a recessed surface, kept as its own token so it can be tuned independently of cards.</td>
+              </tr>
+              <tr>
+                <td class="token-name">--surface-pill</td>
+                <td><span class="token-swatch" style="--c:#F3F4F3">#F3F4F3</span></td>
+                <td>Pills, chips, table header rows — compact, grouped UI.</td>
+              </tr>
+              <tr>
+                <td class="token-name">--border / --border-input</td>
+                <td><span class="token-swatch" style="--c:#DBDDDC">#DBDDDC</span></td>
+                <td>Dividers, card outlines, input borders.</td>
+              </tr>
+              <tr>
+                <td class="token-name">--text</td>
+                <td><span class="token-swatch" style="--c:#101C16">#101C16</span></td>
+                <td>Default body copy and headings — the highest-contrast foreground.</td>
+              </tr>
+              <tr>
+                <td class="token-name">--text-soft</td>
+                <td><span class="token-swatch" style="--c:#404945">#404945</span></td>
+                <td>Supporting copy and descriptions — one step down from primary.</td>
+              </tr>
+              <tr>
+                <td class="token-name">--text-muted</td>
+                <td><span class="token-swatch" style="--c:#58605C">#58605C</span></td>
+                <td>Helper text, timestamps, placeholders — the lowest-emphasis foreground.</td>
+              </tr>
+              <tr>
+                <td class="token-name">--brand</td>
+                <td><span class="token-swatch" style="--c:#00843D">#00843D</span></td>
+                <td>Primary buttons, links, the active nav item, focus rings — the one color reserved for "this is the primary action."</td>
+              </tr>
+              <tr>
+                <td class="token-name">--brand-deep</td>
+                <td><span class="token-swatch" style="--c:#023719">#023719</span></td>
+                <td>Hover / pressed state for brand elements, and text set on a light brand tint.</td>
+              </tr>
+              <tr>
+                <td class="token-name">--on-accent</td>
+                <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
+                <td>Text and icons placed on top of a <code>--brand</code> fill. Always pair the two — hardcoding white here is the most common dark-mode bug in this system.</td>
+              </tr>
+              <tr>
+                <td class="token-name">--accent-gold</td>
+                <td><span class="token-swatch" style="--c:#C7A86A">#C7A86A</span></td>
+                <td>Secondary accent — sparing use for decorative emphasis, never a primary action.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="palette-note" style="margin-top: var(--space-4); margin-bottom: 0;">Status colors — <code>--red-600</code> (error), <code>--yellow-500</code> (warning), <code>--green-600</code> (success), <code>--blue-600</code> (info) — are primitives, not semantic tokens: they're pulled straight from the scales above rather than a <code>--error</code>/<code>--success</code> alias. Check contrast by hand any time one lands on a dark surface; see the <a href="getting-started.html">Getting started</a> checklist for the exact failure mode this catches.</p>
+        </div>
+
+        <div class="scale-block">
+          <p class="scale-label">UI terminology, in plain language</p>
+          <dl class="term-grid">
+            <div class="term-item">
+              <dt>Surface</dt>
+              <dd>Any shape that holds content and sits above the page: a card, a modal, a menu, a tooltip. Sprout gives each kind its own token (<code>--surface</code>, <code>--surface-pill</code>, <code>--surface-input</code>) so they can be tuned independently.</dd>
+            </div>
+            <div class="term-item">
+              <dt>Foreground</dt>
+              <dd>Whatever sits on top of a surface and needs to read clearly against it — text, icons, borders. See <a href="#themes">Themes</a> for why foreground tokens have to re-point whenever the surface behind them does.</dd>
+            </div>
+            <div class="term-item">
+              <dt>Accent / brand color</dt>
+              <dd>The one color reserved for "this is interactive, and it's the primary path": primary buttons, links, the active nav item, focus rings. Spend it deliberately — if everything is accented, nothing is.</dd>
+            </div>
+            <div class="term-item">
+              <dt>On-accent</dt>
+              <dd>Shorthand for "the text or icon color that reads correctly on top of an accent fill." Reference <code>--on-accent</code> instead of hardcoding white — it's what lets a button's label survive the fill flipping color in Dark mode.</dd>
+            </div>
+            <div class="term-item">
+              <dt>State / functional color</dt>
+              <dd>Color that carries meaning independent of brand: red for error, yellow for warning, green for success, blue for informational. These come straight from the primitive scales, not a semantic alias.</dd>
+            </div>
+            <div class="term-item">
+              <dt>Primitive vs. semantic token</dt>
+              <dd>Primitives are raw values (<code>--green-600</code>). Semantic tokens point at a primitive for a specific purpose (<code>--brand</code>) and are what components should actually reference — full explanation on <a href="getting-started.html">Getting started</a>.</dd>
+            </div>
+          </dl>
+        </div>
       </div>
     </section>
 
