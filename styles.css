@@ -221,7 +221,7 @@
       --radius-pill: 999px;
 
       /* Type */
-      --font-display: 'BigCaslonForCargill', 'Big Caslon', Georgia, serif;
+      --font-display: 'BigCaslonForCargill', 'Big Caslon', 'EB Garamond', Georgia, serif;
       --font-sans:    'HelveticaNowForCargill', 'Helvetica Neue', Arial, sans-serif;
       --font-micro:   'HelveticaNowMicroForCargill', 'HelveticaNowForCargill', Arial, sans-serif;
 
