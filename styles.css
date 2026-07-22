@@ -258,6 +258,16 @@
       border-radius: var(--radius-sm);
       color: var(--text-soft);
     }
+    /* Inside a <pre> block the chip treatment above must not apply — the block
+       supplies its own dark background and text color. */
+    pre code {
+      background: none;
+      padding: 0;
+      border-radius: 0;
+      font-size: inherit;
+      font-family: inherit;
+      color: inherit;
+    }
 
     /* ---------- Layout primitives ---------- */
     .container {
@@ -326,7 +336,7 @@
       font-size: 24px;
       line-height: 28px;
       letter-spacing: -0.005em;
-      color: var(--brand-deep);
+      color: var(--brand);
     }
     .sidebar-brand-tagline {
       font-family: var(--font-micro);
@@ -458,7 +468,7 @@
       font-size: clamp(48px, 6vw, 88px);
       line-height: 0.98;
       letter-spacing: -0.01em;
-      color: var(--brand-deep);
+      color: var(--brand);
     }
     .hero-sub {
       font-family: var(--font-sans);
@@ -515,7 +525,7 @@
       font-family: var(--font-display);
       font-size: clamp(40px, 5vw, 64px);
       line-height: 1;
-      color: var(--brand-deep);
+      color: var(--brand);
       letter-spacing: -0.005em;
     }
     .section-lede {
@@ -738,7 +748,7 @@
       font-size: 56px;
       line-height: 60px;
       font-weight: 400;
-      color: var(--brand-deep);
+      color: var(--brand);
       letter-spacing: -0.005em;
     }
     .type-h1-italic {
@@ -747,7 +757,7 @@
       line-height: 60px;
       font-style: italic;
       font-weight: 400;
-      color: var(--brand-deep);
+      color: var(--brand);
     }
     .type-h2 {
       font-family: var(--font-sans);
@@ -818,7 +828,7 @@
       font-size: 72px;
       line-height: 80px;
       font-weight: 400;
-      color: var(--brand-deep);
+      color: var(--brand);
       letter-spacing: -0.01em;
     }
 
@@ -1011,7 +1021,7 @@
       font-size: 36px;
       line-height: 40px;
       letter-spacing: -0.005em;
-      color: var(--brand-deep);
+      color: var(--brand);
     }
     .component-heading-desc {
       font-family: var(--font-sans);
@@ -1749,7 +1759,7 @@
       font-family: var(--font-display);
       font-size: 28px;
       line-height: 32px;
-      color: var(--brand-deep);
+      color: var(--brand);
       letter-spacing: -0.005em;
     }
     /* Expressive · brand-green variant */
@@ -1822,7 +1832,7 @@
       font-family: var(--font-display);
       font-size: 56px;
       line-height: 1;
-      color: var(--brand-deep);
+      color: var(--brand);
     }
     .kpi-label {
       font-family: var(--font-micro);
@@ -3856,7 +3866,7 @@
     /* Progress Gauge */
     .progress-gauge { position: relative; display: inline-flex; align-items: center; justify-content: center; }
     .progress-gauge svg { display: block; transform: rotate(-90deg); }
-    .progress-gauge-value { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: var(--font-display); font-size: 28px; color: var(--brand-deep); line-height: 1; }
+    .progress-gauge-value { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: var(--font-display); font-size: 28px; color: var(--brand); line-height: 1; }
     .progress-gauge-value span { font-family: var(--font-micro); font-size: 11px; letter-spacing: normal; text-transform: none; color: var(--text-muted); margin-top: 4px; }
 
     /* Radio */
