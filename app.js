@@ -605,7 +605,7 @@
     // derived from the page's own last-modified timestamp so it never needs
     // manual editing.
     (function () {
-      const SPROUT_VERSION = '1.1';
+      const SPROUT_VERSION = '1.2';
 
       document.querySelectorAll('.js-version').forEach(el => {
         el.textContent = 'v' + SPROUT_VERSION;

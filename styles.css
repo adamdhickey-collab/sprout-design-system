@@ -148,7 +148,10 @@
       --midnight-blue-light:   #99ADC2;
 
       /* Semantic */
-      --bg:         var(--neutral-50);
+      /* Page background is White Green — one of the six fixed brand values —
+         rather than a neutral gray, so the brand palette carries the whole
+         surface. Dark mode repoints this separately below. */
+      --bg:         var(--soft-green-50);
       --surface:    var(--neutral-10);
       --text:       var(--neutral-1000);
       --text-soft:  var(--neutral-700);
