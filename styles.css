@@ -4198,18 +4198,13 @@
 
     /* ---------- Sidebar theme toggle ---------- */
     /* Lives inside .sidebar-brand, directly under the "Design System · v1.0"
-       tagline and above the brand block's own border-bottom separator — no
-       extra wrapper, so it doesn't add space below the separator. */
+       tagline and above the brand block's own border-bottom separator. The
+       margin-top below is the only spacing it adds — search/nav still start
+       right after the separator, untouched by this block. */
     .theme-toggle-row {
       display: flex;
       align-items: center;
-      gap: var(--spacing-md);
-      margin-top: var(--spacing-md);
-    }
-    .theme-toggle-state {
-      font-family: var(--font-sans);
-      font-size: 13px;
-      color: var(--text-soft);
+      margin-top: var(--spacing-xl);
     }
     .theme-toggle {
       all: unset;
@@ -4227,8 +4222,8 @@
       position: relative;
       display: inline-flex;
       align-items: center;
-      width: 44px;
-      height: 24px;
+      width: 52px;
+      height: 28px;
       background: var(--surface-pill);
       border: 1px solid var(--border);
       border-radius: var(--radius-pill);
@@ -4236,10 +4231,10 @@
     }
     .theme-toggle-thumb {
       position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 18px;
-      height: 18px;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: var(--surface);
       /* --border-subtle reads under 1.3:1 against the thumb/track fill in both
@@ -4255,12 +4250,13 @@
     }
     /* Monochrome by request — --text already resolves to near-black in light
        mode and white in dark mode, so the glyph stays black-and-white in
-       both themes without a separate dark-mode rule. */
+       both themes without a separate dark-mode rule. Circle grew more than
+       the glyph did, on purpose — more breathing room around the icon. */
     .theme-toggle-glyph {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text);
     }
-    [data-theme="dark"] .theme-toggle-thumb { transform: translateX(22px); }
+    [data-theme="dark"] .theme-toggle-thumb { transform: translateX(24px); }
 
     /* Dark mode swaps the sidebar wordmark to the white treatment (white text, green leaf) */
     [data-theme="dark"] .sidebar-brand .cargill-logo--black { color: #FFFFFF; }
