@@ -3,6 +3,9 @@
 **Figma library:** [Sprout Design System](https://www.figma.com/design/XAB4MCp5V8WdayPlEDvLAE)
 (file key `XAB4MCp5V8WdayPlEDvLAE`, RBA org, built 2026-07-21)
 
+**Published team library key:** `lk-ca4b9f36212696a42e787ef3c66690f1ac642ea98df4fe4a7a7e4e8d988ec7f7172aec323e74bac3521c31d992125772a7a6d7f89c1ceb88ce48fc090aefbd7b`
+(published 2026-07-22 — subscribe to it from any other RBA file via Assets → team libraries)
+
 **Sync model: code-first.** `styles.css` is the source of truth for token *values*.
 The Figma file mirrors it with Variables; every variable carries WEB code syntax
 (`var(--brand)`, `var(--padding-lg)`, …) matching the exact CSS custom property name.
@@ -50,3 +53,6 @@ and diffs by the code-syntax name. Anything added/changed on either side shows u
   syntax per the table above.
 - **Figma-side experiments** are fine, but they are not real until they land in
   `styles.css`.
+- **After any Figma-side edit** (new/changed variable, style, or page), republish the
+  library (Assets panel → Publish) so subscribed files pick up the change — edits sit
+  as local, unpublished changes until then.
