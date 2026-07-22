@@ -2294,7 +2294,7 @@
       justify-content: center;
       border-radius: 50%;
       background: var(--brand);
-      color: #fff;
+      color: var(--on-accent);
       font-family: var(--font-sans);
       font-weight: 700;
       flex-shrink: 0;
@@ -2308,7 +2308,7 @@
     .avatar--xl  { width: 56px; height: 56px; font-size: 18px; }
     .avatar--xxl { width: 80px; height: 80px; font-size: 28px; }
     .avatar .material-symbols-rounded {
-      color: #fff;
+      color: var(--on-accent);
       font-size: 55%;
     }
     .avatar--xxl .material-symbols-rounded { font-size: 44px; }
@@ -2669,7 +2669,7 @@
     .combobox-option:hover { background: var(--soft-green-50); }
     .combobox-option--active {
       background: var(--brand);
-      color: #fff;
+      color: var(--on-accent);
     }
     .combobox-option--active:hover { background: var(--brand); }
     .combobox-option .checkbox-input { pointer-events: none; }
@@ -2713,7 +2713,7 @@
     .chip.chip--selected {
       background: var(--brand);
       border-color: var(--brand);
-      color: #fff;
+      color: var(--on-accent);
     }
     .chip[aria-pressed="true"]:hover,
     .chip.chip--selected:hover {
@@ -2760,7 +2760,7 @@
       justify-content: center;
       color: var(--text-muted);
     }
-    .chip--selected .chip-lead { background: rgba(255, 255, 255, 0.2); color: #fff; }
+    .chip--selected .chip-lead { background: rgba(255, 255, 255, 0.2); color: var(--on-accent); }
     .chip-lead .material-symbols-rounded { font-size: 12px; }
     .chip--lg .chip-lead { width: 22px; height: 22px; }
     .chip--sm .chip-lead { width: 14px; height: 14px; }
@@ -3121,7 +3121,7 @@
       height: 16px;
       border-radius: 50%;
       background: var(--brand);
-      color: #fff;
+      color: var(--on-accent);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -3716,7 +3716,7 @@
       top: 1px;
       width: 6px;
       height: 11px;
-      border: solid #fff;
+      border: solid var(--on-accent);
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
     }
@@ -3727,7 +3727,7 @@
       top: 8px;
       width: 11px;
       height: 2px;
-      background: #fff;
+      background: var(--on-accent);
       border-radius: 1px;
     }
     .checkbox-input:disabled {
@@ -3836,7 +3836,7 @@
     .pagination { display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
     .pagination-btn { min-width: 36px; height: 36px; padding: 0 10px; border: 1px solid var(--neutral-300); border-radius: var(--corner-radius-base); background: var(--surface); color: var(--text); font-family: var(--font-sans); font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease; }
     .pagination-btn:hover { background: var(--soft-green-50); border-color: var(--brand); color: var(--brand-deep); }
-    .pagination-btn--active { background: var(--brand); color: #fff; border-color: var(--brand); }
+    .pagination-btn--active { background: var(--brand); color: var(--on-accent); border-color: var(--brand); }
     .pagination-btn--active:hover { background: var(--green-700); border-color: var(--green-700); color: #fff; }
     .pagination-btn--icon { width: 36px; padding: 0; }
     .pagination-btn .material-symbols-rounded { font-size: 18px; color: inherit; }
@@ -3974,8 +3974,8 @@
     .stepper { display: flex; align-items: center; gap: var(--spacing-md); flex-wrap: wrap; }
     .stepper-item { display: flex; align-items: center; gap: 8px; }
     .stepper-circle { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--neutral-300); display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-sans); font-weight: 700; font-size: 13px; color: var(--text-muted); background: var(--surface); flex-shrink: 0; }
-    .stepper-item--complete .stepper-circle { background: var(--brand); border-color: var(--brand); color: #fff; }
-    .stepper-item--complete .stepper-circle .material-symbols-rounded { font-size: 16px; color: #fff; }
+    .stepper-item--complete .stepper-circle { background: var(--brand); border-color: var(--brand); color: var(--on-accent); }
+    .stepper-item--complete .stepper-circle .material-symbols-rounded { font-size: 16px; color: var(--on-accent); }
     .stepper-item--active .stepper-circle { border-color: var(--brand); color: var(--brand); background: var(--soft-green-50); }
     .stepper-label { font-family: var(--font-sans); font-size: 13px; color: var(--text-muted); }
     .stepper-item--complete .stepper-label, .stepper-item--active .stepper-label { color: var(--text); font-weight: 700; }
@@ -4287,23 +4287,12 @@
        button keeps its red-600 fill, so its text stays white, not near-black. */
     [data-theme="dark"] .btn-primary.btn--danger { color: #fff; }
 
-    /* On-accent: anything filled with --brand (lime in dark mode) needs dark text/icons,
-       not the white/near-white foreground that reads fine on the light-mode green fill. */
-    [data-theme="dark"] .combobox-option--active,
-    [data-theme="dark"] .chip[aria-pressed="true"],
-    [data-theme="dark"] .chip.chip--selected,
-    [data-theme="dark"] .label-tooltip,
-    [data-theme="dark"] .avatar,
-    [data-theme="dark"] .avatar .material-symbols-rounded,
-    [data-theme="dark"] .stepper-item--complete .stepper-circle,
-    [data-theme="dark"] .stepper-item--complete .stepper-circle .material-symbols-rounded,
-    [data-theme="dark"] .pagination-btn--active {
-      color: var(--on-accent);
-    }
-    [data-theme="dark"] .chip--selected .chip-lead { color: var(--on-accent); }
-    [data-theme="dark"] .checkbox-input:checked::after,
-    [data-theme="dark"] .checkbox-input:indeterminate::after { border-color: var(--on-accent); }
-    [data-theme="dark"] .checkbox-input:indeterminate::after { background: var(--on-accent); border-color: transparent; }
+    /* The dark-mode override that used to live here (combobox-option--active, chip
+       selected/pressed + chip-lead, label-tooltip, avatar + its icon, stepper-circle
+       complete + its icon, pagination-btn--active, checkbox checked/indeterminate
+       marks) is gone — those components now reference var(--on-accent) directly in
+       their base rules, so they resolve correctly per theme without a parallel
+       override block. */
 
     /* Card metric "up" delta and the expressive card's eyebrow both sit on a --soft-green-50
        chip whose dark-mode value is a deep green; their fixed --green-600/700/800 text needs
