@@ -364,6 +364,14 @@
         code.textContent = snippet;
         pre.appendChild(code);
 
+        const copyBtn = document.createElement('button');
+        copyBtn.type = 'button';
+        copyBtn.className = 'component-code-copy';
+        copyBtn.setAttribute('aria-label', 'Copy this markup');
+        copyBtn.innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">content_copy</span><span>Copy</span>';
+        copyBtn.addEventListener('click', () => sproutCopy(snippet, 'Copied markup'));
+        pre.appendChild(copyBtn);
+
         toggle.addEventListener('click', () => {
           const isOpen = pre.classList.toggle('component-code--visible');
           toggle.setAttribute('aria-expanded', String(isOpen));
@@ -372,6 +380,221 @@
 
         comp.appendChild(toggle);
         comp.appendChild(pre);
+      });
+    })();
+
+    // Clipboard helper + toast · shared by code blocks, swatches, and playgrounds.
+    function sproutToast(message) {
+      let toast = document.getElementById('sprout-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'sprout-toast';
+        toast.className = 'sprout-toast';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
+        document.body.appendChild(toast);
+      }
+      toast.textContent = message;
+      // force reflow so re-triggering restarts the transition
+      void toast.offsetWidth;
+      toast.classList.add('sprout-toast--visible');
+      clearTimeout(toast._sproutTimer);
+      toast._sproutTimer = setTimeout(() => {
+        toast.classList.remove('sprout-toast--visible');
+      }, 1800);
+    }
+    function sproutCopy(text, message) {
+      const done = () => sproutToast(message || 'Copied');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => sproutCopyFallback(text, done));
+      } else {
+        sproutCopyFallback(text, done);
+      }
+    }
+    function sproutCopyFallback(text, done) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) { /* no-op */ }
+      document.body.removeChild(ta);
+      done();
+    }
+    function sproutEscape(str) {
+      return String(str).replace(/[&<>"]/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+      });
+    }
+
+    // Click-to-copy on tonal-ramp token swatches · copies the displayed hex.
+    (function () {
+      document.querySelectorAll('.palette-swatch').forEach((swatch) => {
+        const hexEl = swatch.querySelector('.palette-swatch-hex');
+        if (!hexEl) return;
+        const hex = hexEl.textContent.trim();
+        swatch.setAttribute('role', 'button');
+        swatch.setAttribute('tabindex', '0');
+        swatch.setAttribute('aria-label', 'Copy ' + hex);
+        const copy = () => sproutCopy(hex, 'Copied ' + hex);
+        swatch.addEventListener('click', copy);
+        swatch.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copy(); }
+        });
+      });
+    })();
+
+    // Interactive playgrounds · live variant controls + synced code readout.
+    (function () {
+      const PLAYGROUNDS = {
+        button: {
+          title: 'Button playground',
+          controls: [
+            { key: 'variant', label: 'Style', options: [['primary', 'Primary'], ['secondary', 'Secondary'], ['ghost', 'Ghost']] },
+            { key: 'size', label: 'Size', options: [['sm', 'Small'], ['', 'Medium'], ['lg', 'Large']], def: '' },
+            { key: 'danger', label: 'Intent', options: [['', 'Default'], ['danger', 'Destructive']], def: '' },
+            { key: 'state', label: 'State', options: [['', 'Enabled'], ['disabled', 'Disabled']], def: '' },
+            { key: 'label', label: 'Label', type: 'text', def: 'Get started' }
+          ],
+          render: function (s) {
+            const cls = ['btn', 'btn-' + s.variant];
+            if (s.size) cls.push('btn--' + s.size);
+            if (s.danger) cls.push('btn--danger');
+            if (s.state === 'disabled') cls.push('btn--disabled');
+            const dis = s.state === 'disabled' ? ' disabled' : '';
+            return '<button class="' + cls.join(' ') + '"' + dis + '>' + sproutEscape(s.label) + '</button>';
+          }
+        },
+        alert: {
+          title: 'Alert playground',
+          controls: [
+            { key: 'variant', label: 'Type', options: [['success', 'Success'], ['error', 'Error'], ['warning', 'Warning'], ['info', 'Info'], ['neutral', 'Neutral']] },
+            { key: 'title', label: 'Title', type: 'text', def: 'Heads up' },
+            { key: 'body', label: 'Message', type: 'text', def: 'This is what an alert of this type looks like.' }
+          ],
+          render: function (s) {
+            const icons = { success: 'check', error: 'error', warning: 'warning', info: 'info', neutral: 'campaign' };
+            return [
+              '<div class="alert alert--' + s.variant + '" style="max-width: 460px;">',
+              '  <span class="alert-icon"><span class="material-symbols-rounded">' + icons[s.variant] + '</span></span>',
+              '  <div class="alert-content">',
+              '    <span class="alert-title">' + sproutEscape(s.title) + '</span>',
+              '    <span class="alert-body">' + sproutEscape(s.body) + '</span>',
+              '  </div>',
+              '  <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button>',
+              '</div>'
+            ].join('\n');
+          }
+        },
+        card: {
+          title: 'Card playground',
+          controls: [
+            { key: 'layout', label: 'Layout', options: [['', 'Rich media'], ['card-rich--side', 'Side'], ['card-rich--overlay', 'Overlay']], def: '' },
+            { key: 'eyebrow', label: 'Eyebrow', type: 'text', def: 'Field report · 2026' },
+            { key: 'title', label: 'Title', type: 'text', def: 'Regenerative wheat' },
+            { key: 'body', label: 'Body', type: 'text', def: 'Image, caption, title, body, and a primary action.' }
+          ],
+          render: function (s) {
+            const cls = ['card', 'card-rich'];
+            if (s.layout) cls.push(s.layout);
+            return [
+              '<article class="' + cls.join(' ') + '" style="max-width: 340px;">',
+              '  <div class="card-media" role="presentation"></div>',
+              '  <div class="card-content">',
+              '    <p class="card-eyebrow">' + sproutEscape(s.eyebrow) + '</p>',
+              '    <h3 class="card-title">' + sproutEscape(s.title) + '</h3>',
+              '    <p class="card-body">' + sproutEscape(s.body) + '</p>',
+              '    <div class="btn-row" style="margin-top: 4px;">',
+              '      <button class="btn btn-primary btn--sm">Read more</button>',
+              '    </div>',
+              '  </div>',
+              '</article>'
+            ].join('\n');
+          }
+        }
+      };
+
+      document.querySelectorAll('.playground[data-playground]').forEach((container) => {
+        const cfg = PLAYGROUNDS[container.dataset.playground];
+        if (!cfg) return;
+
+        const state = {};
+        cfg.controls.forEach((c) => {
+          state[c.key] = c.def !== undefined ? c.def : (c.type === 'text' ? '' : c.options[0][0]);
+        });
+
+        container.innerHTML =
+          '<div class="playground-head">' +
+            '<span class="playground-eyebrow">Try it live</span>' +
+            '<span class="playground-title">' + cfg.title + '</span>' +
+          '</div>' +
+          '<div class="playground-stage"></div>' +
+          '<div class="playground-controls"></div>' +
+          '<div class="playground-code-wrap">' +
+            '<pre class="playground-code"><code></code></pre>' +
+            '<button class="playground-copy" type="button" aria-label="Copy this markup">' +
+              '<span class="material-symbols-rounded" aria-hidden="true">content_copy</span><span>Copy</span>' +
+            '</button>' +
+          '</div>';
+
+        const stage = container.querySelector('.playground-stage');
+        const controlsEl = container.querySelector('.playground-controls');
+        const codeEl = container.querySelector('.playground-code code');
+
+        cfg.controls.forEach((c) => {
+          const group = document.createElement('div');
+          group.className = 'playground-control';
+          const lbl = document.createElement('span');
+          lbl.className = 'playground-control-label';
+          lbl.textContent = c.label;
+          group.appendChild(lbl);
+
+          if (c.type === 'text') {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'playground-input';
+            input.value = state[c.key];
+            input.setAttribute('aria-label', c.label);
+            input.addEventListener('input', () => { state[c.key] = input.value; update(); });
+            group.appendChild(input);
+          } else {
+            const seg = document.createElement('div');
+            seg.className = 'playground-segmented';
+            seg.setAttribute('role', 'group');
+            seg.setAttribute('aria-label', c.label);
+            c.options.forEach((opt) => {
+              const val = opt[0], text = opt[1];
+              const b = document.createElement('button');
+              b.type = 'button';
+              b.className = 'playground-seg-btn';
+              b.textContent = text;
+              b.setAttribute('aria-pressed', String(val === state[c.key]));
+              b.addEventListener('click', () => {
+                state[c.key] = val;
+                seg.querySelectorAll('.playground-seg-btn').forEach((x) => x.setAttribute('aria-pressed', 'false'));
+                b.setAttribute('aria-pressed', 'true');
+                update();
+              });
+              seg.appendChild(b);
+            });
+            group.appendChild(seg);
+          }
+          controlsEl.appendChild(group);
+        });
+
+        function update() {
+          const markup = cfg.render(state);
+          stage.innerHTML = markup;
+          codeEl.textContent = markup;
+        }
+
+        container.querySelector('.playground-copy').addEventListener('click', () => {
+          sproutCopy(codeEl.textContent, 'Copied markup');
+        });
+
+        update();
       });
     })();
 
