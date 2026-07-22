@@ -27,8 +27,9 @@ Known intentional divergences:
 - Figma has 10 `dark/*` primitives with **no code syntax** — they exist in code only as
   raw hexes in the dark block. The audit must not flag them.
 - Fonts: BigCaslonForCargill / HelveticaNow are licensed and not installed in the RBA
-  Figma org. Stand-ins: **Libre Caslon Display/Text** and **Inter** (noted in every text
-  style description). Swap when the real fonts are installed org-wide.
+  Figma org. Stand-ins: **Tinos** (metric-compatible Times New Roman equivalent; actual
+  TNR is not in Figma's font library) for the serif, **Inter** for the sans (noted in
+  every text style description). Swap when the real fonts are installed org-wide.
 
 ## The drift audit (run any time, e.g. before a release)
 
