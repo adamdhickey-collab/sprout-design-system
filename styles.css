@@ -1500,9 +1500,9 @@
     .btn-primary.btn--danger    { background: var(--red-600); }
     .btn-primary.btn--danger:hover  { background: var(--red-700); }
     .btn-secondary.btn--danger  { color: var(--red-600); border-color: var(--red-600); }
-    .btn-secondary.btn--danger:hover { background: #FEF2F2; color: var(--red-700); border-color: var(--red-700); }
+    .btn-secondary.btn--danger:hover { background: var(--red-50); color: var(--red-700); border-color: var(--red-700); }
     .btn-ghost.btn--danger      { color: var(--red-600); }
-    .btn-ghost.btn--danger:hover { background: #FEF2F2; color: var(--red-700); }
+    .btn-ghost.btn--danger:hover { background: var(--red-50); color: var(--red-700); }
 
     .btn-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
     .btn-grid {
