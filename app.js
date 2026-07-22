@@ -112,18 +112,16 @@
       const KEY = 'sprout-theme';
       const root = document.documentElement;
       const toggle = document.getElementById('theme-toggle');
-      const glyph = toggle ? toggle.querySelector('.theme-toggle-glyph') : null;
       function apply(theme) {
         if (theme === 'dark') root.setAttribute('data-theme', 'dark');
         else root.removeAttribute('data-theme');
         if (toggle) {
           toggle.setAttribute('aria-checked', theme === 'dark' ? 'true' : 'false');
-          // No visible label next to the icon-only switch — aria-label is the
-          // only accessible name, so it has to carry the same info the glyph
-          // conveys visually.
+          // Both options are drawn in the track and the active one is styled off
+          // [data-theme] in CSS, so nothing here swaps glyphs — the only job left
+          // is keeping the switch's accessible name in step with what's shown.
           toggle.setAttribute('aria-label', theme === 'dark' ? 'Dark mode' : 'Light mode');
         }
-        if (glyph) glyph.textContent = theme === 'dark' ? 'dark_mode' : 'light_mode';
         document.querySelectorAll('.theme-label').forEach(el => {
           el.textContent = theme === 'dark' ? 'Dark theme' : 'Light theme';
         });

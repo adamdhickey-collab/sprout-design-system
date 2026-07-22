@@ -4221,12 +4221,18 @@
       outline: none;
       box-shadow: 0 0 0 3px var(--soft-green-200);
     }
+    /* Segmented pill: both options (icon + label) are always visible inside the
+       track, and a sliding thumb sits behind whichever one is active. The
+       inactive option stays legible rather than fully ghosted — see the opacity
+       note below. */
+    /* Grid (not flex) so both columns are exactly equal regardless of label
+       length — the thumb is sized off 50% and has to line up with either side. */
     .theme-toggle-track {
       position: relative;
-      display: inline-flex;
-      align-items: center;
-      width: 52px;
-      height: 28px;
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      padding: 3px;
       background: var(--surface-pill);
       border: 1px solid var(--border);
       border-radius: var(--radius-pill);
@@ -4236,9 +4242,9 @@
       position: absolute;
       top: 3px;
       left: 3px;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
+      width: calc(50% - 3px);
+      height: calc(100% - 6px);
+      border-radius: var(--radius-pill);
       background: var(--surface);
       /* --border-subtle reads under 1.3:1 against the thumb/track fill in both
          themes — too faint to register as a boundary (WCAG 1.4.11 wants 3:1).
@@ -4246,20 +4252,36 @@
          theme-aware, so the thumb stays legible without a new token. */
       border: 1px solid var(--text-muted);
       box-shadow: var(--shadow-sm);
+      transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .theme-toggle-opt {
+      position: relative;
+      z-index: 1;
+      flex: 1 1 0;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    /* Monochrome by request — --text already resolves to near-black in light
-       mode and white in dark mode, so the glyph stays black-and-white in
-       both themes without a separate dark-mode rule. Circle grew more than
-       the glyph did, on purpose — more breathing room around the icon. */
-    .theme-toggle-glyph {
-      font-size: 14px;
+      gap: 4px;
+      padding: 4px 10px;
+      white-space: nowrap;
+      font-family: var(--font-micro);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: normal;
+      text-transform: none;
       color: var(--text);
+      /* The unselected side is dimmed rather than hidden. 0.62 is the most
+         transparent this can go while the label still clears 4.5:1 against the
+         track in BOTH themes — measured, not eyeballed. Going lower reads
+         nicer but drops the inactive label below AA. */
+      opacity: 0.62;
+      transition: opacity 160ms ease;
     }
-    [data-theme="dark"] .theme-toggle-thumb { transform: translateX(24px); }
+    .theme-toggle-glyph { font-size: 14px; color: inherit; }
+    /* Active side: html has no data-theme in light, data-theme="dark" in dark. */
+    html:not([data-theme="dark"]) .theme-toggle-opt--light,
+    [data-theme="dark"] .theme-toggle-opt--dark { opacity: 1; }
+    [data-theme="dark"] .theme-toggle-thumb { transform: translateX(100%); }
 
     /* Dark mode swaps the sidebar wordmark to the white treatment (white text, green leaf) */
     [data-theme="dark"] .sidebar-brand .cargill-logo--black { color: #FFFFFF; }
