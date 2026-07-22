@@ -41,6 +41,16 @@
         <span class="sidebar-brand-tagline">Design System · <span class="js-version">v1.0</span></span>
       </div>
 
+      <div class="sidebar-theme">
+        <button type="button" id="theme-toggle" class="theme-toggle" role="switch" aria-checked="false" aria-label="Dark theme">
+          <span class="theme-toggle-track" aria-hidden="true">
+            <span class="theme-toggle-thumb">
+              <span class="material-symbols-rounded theme-toggle-glyph">light_mode</span>
+            </span>
+          </span>
+        </button>
+      </div>
+
       <div class="sidebar-search">
         <button type="button" class="sidebar-search-trigger" id="search-trigger" aria-haspopup="dialog">
           <span class="material-symbols-rounded" aria-hidden="true">search</span>
@@ -75,12 +85,6 @@
         </div>
       </nav>
 
-      <div class="sidebar-theme">
-        <div class="segmented" role="group" aria-label="Theme">
-          <button type="button" class="segmented-btn theme-btn" data-theme-value="light">Light</button>
-          <button type="button" class="segmented-btn theme-btn" data-theme-value="dark">Dark</button>
-        </div>
-      </div>
 
       <div class="sidebar-foot">
         Updated <span class="js-updated">2026.06.06</span><br>Tokens mirrored in Figma · audited 07.22.2026

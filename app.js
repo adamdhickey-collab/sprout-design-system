@@ -111,11 +111,13 @@
     (function () {
       const KEY = 'sprout-theme';
       const root = document.documentElement;
-      const btns = Array.from(document.querySelectorAll('.theme-btn'));
+      const toggle = document.getElementById('theme-toggle');
+      const glyph = toggle ? toggle.querySelector('.theme-toggle-glyph') : null;
       function apply(theme) {
         if (theme === 'dark') root.setAttribute('data-theme', 'dark');
         else root.removeAttribute('data-theme');
-        btns.forEach(b => b.classList.toggle('segmented-btn--active', b.dataset.themeValue === theme));
+        if (toggle) toggle.setAttribute('aria-checked', theme === 'dark' ? 'true' : 'false');
+        if (glyph) glyph.textContent = theme === 'dark' ? 'dark_mode' : 'light_mode';
         document.querySelectorAll('.theme-label').forEach(el => {
           el.textContent = theme === 'dark' ? 'Dark theme' : 'Light theme';
         });
@@ -125,13 +127,13 @@
       let systemPrefersDark = false;
       try { systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches; } catch (e) {}
       apply(saved || (root.getAttribute('data-theme') === 'dark' || systemPrefersDark ? 'dark' : 'light'));
-      btns.forEach(b => {
-        b.addEventListener('click', () => {
-          const theme = b.dataset.themeValue;
-          apply(theme);
-          try { localStorage.setItem(KEY, theme); } catch (e) {}
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          apply(next);
+          try { localStorage.setItem(KEY, next); } catch (e) {}
         });
-      });
+      }
     })();
 
     // Search · Cmd/Ctrl+K palette across every Foundations section and component
