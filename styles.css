@@ -4197,27 +4197,14 @@
     [data-theme="dark"] .sidebar-brand-title { color: #FFFFFF; }
 
     /* ---------- Sidebar theme toggle ---------- */
-    /* Sits directly under the wordmark block; horizontal padding matches
-       .sidebar-brand so the switch lines up flush with "Sprout" above it. */
-    .sidebar-theme {
-      padding: 0 var(--space-6) var(--space-5);
-      margin-bottom: var(--space-5);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .theme-toggle-caption {
-      font-family: var(--font-micro);
-      font-size: 11px;
-      letter-spacing: normal;
-      text-transform: none;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
+    /* Lives inside .sidebar-brand, directly under the "Design System · v1.0"
+       tagline and above the brand block's own border-bottom separator — no
+       extra wrapper, so it doesn't add space below the separator. */
     .theme-toggle-row {
       display: flex;
       align-items: center;
       gap: var(--spacing-md);
+      margin-top: var(--spacing-md);
     }
     .theme-toggle-state {
       font-family: var(--font-sans);

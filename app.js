@@ -372,10 +372,13 @@
     })();
 
     // Version + last-updated · single source of truth.
-    // Bump SPROUT_VERSION on each release; the updated date is derived from the
-    // page's own last-modified timestamp so it never needs manual editing.
+    // Bump SPROUT_VERSION on each release and mirror the same string onto the
+    // Figma Cover page (node 3:14) in the same change — see the "Versioning"
+    // section of FIGMA-SYNC.md for the exact contract. The updated date is
+    // derived from the page's own last-modified timestamp so it never needs
+    // manual editing.
     (function () {
-      const SPROUT_VERSION = '1.0';
+      const SPROUT_VERSION = '1.1';
 
       document.querySelectorAll('.js-version').forEach(el => {
         el.textContent = 'v' + SPROUT_VERSION;

@@ -45,6 +45,30 @@ Mechanics: Claude reads all variables via the Figma MCP (`use_figma` read-only s
 returning name → resolved value per mode → code syntax), parses the CSS token blocks,
 and diffs by the code-syntax name. Anything added/changed on either side shows up.
 
+## Versioning
+
+**One version string, bumped together, every time either surface changes.**
+There's no automatic bridge between this git repo and Figma — no webhook, no CI —
+so the sync is a manual discipline with exactly two places to touch:
+
+| Surface | Location |
+|---|---|
+| Site | `SPROUT_VERSION` constant in `app.js` (drives every `.js-version` span across all 5 pages) |
+| Figma | The version line text node on the **Cover** page (node `3:14` as of this writing — re-find by content if the node ID has since changed) |
+
+**Rule:** any time you make a change — to `styles.css`, to the HTML, or directly in
+Figma — bump `SPROUT_VERSION` by one increment (`1.1` → `1.2` …) and update the Cover
+node to the *identical* version string, in the same sitting. Never let one move without
+the other. The Cover text also carries a short scope note and an updated date — refresh
+those too so the string stays honest (e.g. `v1.2 · Full component library (50/50) ·
+Updated 2026-08-03 · code-first sync`).
+
+This is deliberately not date-based (calendar versioning wouldn't change on a second
+same-day edit) and deliberately not tied to git commit count (Figma has no way to read
+that). A plain incrementing counter, moved by hand in both places, is the simplest thing
+that can't drift silently — if you ever see the site and Cover page disagree, the more
+recently edited one is correct and the other is stale.
+
 ## Change workflow
 
 - **Token value changes** → edit `styles.css` first, then update the Figma variable
