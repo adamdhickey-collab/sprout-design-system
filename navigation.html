@@ -42,13 +42,17 @@
       </div>
 
       <div class="sidebar-theme">
-        <button type="button" id="theme-toggle" class="theme-toggle" role="switch" aria-checked="false" aria-label="Dark theme">
-          <span class="theme-toggle-track" aria-hidden="true">
-            <span class="theme-toggle-thumb">
-              <span class="material-symbols-rounded theme-toggle-glyph">light_mode</span>
+        <span class="theme-toggle-caption" id="theme-toggle-caption">Appearance</span>
+        <div class="theme-toggle-row">
+          <button type="button" id="theme-toggle" class="theme-toggle" role="switch" aria-checked="false" aria-labelledby="theme-toggle-caption theme-toggle-state">
+            <span class="theme-toggle-track" aria-hidden="true">
+              <span class="theme-toggle-thumb">
+                <span class="material-symbols-rounded theme-toggle-glyph">light_mode</span>
+              </span>
             </span>
-          </span>
-        </button>
+          </button>
+          <span class="theme-toggle-state" id="theme-toggle-state">Light mode</span>
+        </div>
       </div>
 
       <div class="sidebar-search">

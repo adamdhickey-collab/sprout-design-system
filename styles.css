@@ -4203,6 +4203,26 @@
       padding: 0 var(--space-6) var(--space-5);
       margin-bottom: var(--space-5);
       display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .theme-toggle-caption {
+      font-family: var(--font-micro);
+      font-size: 11px;
+      letter-spacing: normal;
+      text-transform: none;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .theme-toggle-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+    .theme-toggle-state {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-soft);
     }
     .theme-toggle {
       all: unset;
@@ -4210,6 +4230,7 @@
       display: inline-flex;
       align-items: center;
       border-radius: var(--radius-pill);
+      flex-shrink: 0;
     }
     .theme-toggle:focus-visible {
       outline: none;
@@ -4245,11 +4266,12 @@
       justify-content: center;
       transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
     }
-    /* --brand already resolves to the lime accent under [data-theme="dark"],
-       so the glyph recolors correctly without a separate dark-mode rule. */
+    /* Monochrome by request — --text already resolves to near-black in light
+       mode and white in dark mode, so the glyph stays black-and-white in
+       both themes without a separate dark-mode rule. */
     .theme-toggle-glyph {
       font-size: 13px;
-      color: var(--brand);
+      color: var(--text);
     }
     [data-theme="dark"] .theme-toggle-thumb { transform: translateX(22px); }
 

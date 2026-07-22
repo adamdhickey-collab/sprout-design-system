@@ -113,11 +113,13 @@
       const root = document.documentElement;
       const toggle = document.getElementById('theme-toggle');
       const glyph = toggle ? toggle.querySelector('.theme-toggle-glyph') : null;
+      const state = document.getElementById('theme-toggle-state');
       function apply(theme) {
         if (theme === 'dark') root.setAttribute('data-theme', 'dark');
         else root.removeAttribute('data-theme');
         if (toggle) toggle.setAttribute('aria-checked', theme === 'dark' ? 'true' : 'false');
         if (glyph) glyph.textContent = theme === 'dark' ? 'dark_mode' : 'light_mode';
+        if (state) state.textContent = theme === 'dark' ? 'Dark mode' : 'Light mode';
         document.querySelectorAll('.theme-label').forEach(el => {
           el.textContent = theme === 'dark' ? 'Dark theme' : 'Light theme';
         });
