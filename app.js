@@ -36,6 +36,25 @@
       });
     }
 
+    // Scroll the sidebar so the active group (or scroll-spy'd link) sits just below
+    // the top of the nav's own scroll area. The component groups are separate pages
+    // and the sidebar is its own scroll container, so a normal navigation would reset
+    // it to the top and drop the user far from the group they just opened. Returns the
+    // active element (so the drawer can focus it) or null. No-op when the sidebar isn't
+    // its own scroller (stacked no-JS mobile).
+    function sproutRevealActiveNav() {
+      const sidebar = document.querySelector('.sidebar');
+      if (!sidebar) return null;
+      const active = sidebar.querySelector('.sidebar-group--active') ||
+                     sidebar.querySelector('.sidebar-link--active');
+      if (!active) return null;
+      if (sidebar.scrollHeight - sidebar.clientHeight > 4) {
+        const delta = active.getBoundingClientRect().top - sidebar.getBoundingClientRect().top;
+        sidebar.scrollTop = Math.max(0, sidebar.scrollTop + delta - 16);
+      }
+      return active;
+    }
+
     // Sidebar scroll-spy · highlight the section closest to (and above) the viewport top
     (function () {
       const links = Array.from(document.querySelectorAll('.sidebar-link[href^="#"]'));
@@ -185,8 +204,16 @@
         trigger.setAttribute('aria-label', 'Close navigation');
         icon.textContent = 'close';
         document.body.style.overflow = 'hidden';
-        const f = focusables();
-        if (f.length) f[0].focus();
+        // Land on the current section: reveal the active group and focus it, so the
+        // focus trap has a target without .focus() scrolling the drawer back to the top.
+        const active = sproutRevealActiveNav();
+        if (active && active.focus) {
+          active.focus();
+          sproutRevealActiveNav(); // re-correct: focus() may nudge the scroll position
+        } else {
+          const f = focusables();
+          if (f.length) f[0].focus();
+        }
       }
 
       function close(returnFocus) {
@@ -231,6 +258,12 @@
 
       document.documentElement.setAttribute('data-nav', 'drawer');
     })();
+
+    // Sidebar continuity across pages · on the desktop column, keep the active group
+    // in view instead of resetting to the top of the nav (the mobile drawer handles
+    // this itself, on open, in the drawer IIFE above).
+    sproutRevealActiveNav();                                 // sync — set before first paint to avoid a jump
+    window.addEventListener('load', sproutRevealActiveNav);  // re-run once web fonts settle row heights
 
     // Search · Cmd/Ctrl+K palette across every Foundations section and component
     (function () {
@@ -543,7 +576,7 @@
     // derived from the page's own last-modified timestamp so it never needs
     // manual editing.
     (function () {
-      const SPROUT_VERSION = '1.9';
+      const SPROUT_VERSION = '2.0';
 
       document.querySelectorAll('.js-version').forEach(el => {
         el.textContent = 'v' + SPROUT_VERSION;

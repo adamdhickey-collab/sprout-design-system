@@ -128,21 +128,23 @@
       --neutral-900:  #1C2722;
       --neutral-1000: #101C16;
 
-      /* Secondary palette, per Cargill Brand Guidelines 2024 v1.0. Small-proportion use
-         only — illustration/diagram, data visualization, brand-identity flex. Mid is each
-         family's core secondary color. */
+      /* Secondary palette, per Cargill Brand Guidelines 2026 v2.0. Small-proportion use
+         ONLY — illustration/diagram, data visualization, brand-identity flex. Never for
+         the leaf, type, or rounded boxes, and never as a substitute for a primary color.
+         v2.0 removed the vibrant-purple family and added Earth (two browns). Mid tones,
+         where present, are interpolations for ramp continuity; the brand specifies the
+         deep/light stops. */
       --rich-red-deep:         #9E2A2F;
       --rich-red-mid:          #EA5062;
       --rich-red-light:        #F7B9C0;
       --bright-yellow-deep:    #FF7F4D;
       --bright-yellow-mid:     #FFBC27;
       --bright-yellow-light:   #FFD77D;
+      --earth-deep:            #4B351D;
+      --earth-light:           #D8C092;
       --sky-blue-deep:         #007681;
       --sky-blue-mid:          #57D1FF;
       --sky-blue-light:        #BCEDFF;
-      --vibrant-purple-deep:   #393380;
-      --vibrant-purple-mid:    #7166FF;
-      --vibrant-purple-light:  #C6C2FF;
       --midnight-blue-deep:    #001A33;
       --midnight-blue-mid:     #003366;
       --midnight-blue-light:   #99ADC2;
@@ -2454,7 +2456,7 @@
     }
     .badge--orange  { background: var(--bright-yellow-deep); color: var(--neutral-1000); border-color: var(--bright-yellow-deep); } /* dark text: white-on-orange fails AA (2.5:1) */
     .badge--red     { background: var(--rich-red-deep);     color: #fff; border-color: var(--rich-red-deep); }
-    .badge--purple  { background: #5C57A6;                  color: #fff; border-color: #5C57A6; }
+    .badge--earth   { background: var(--earth-deep);        color: #fff; border-color: var(--earth-deep); }
     .badge--navy    { background: var(--midnight-blue-mid); color: #fff; border-color: var(--midnight-blue-mid); }
     .badge--green   { background: var(--green-700);         color: #fff; border-color: var(--green-700); }
     .badge--blue    { background: var(--blue-600);          color: #fff; border-color: var(--blue-600); }
