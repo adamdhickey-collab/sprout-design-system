@@ -80,6 +80,15 @@ Known intentional divergences:
   Worked around with `figma.intersect()` — a static boolean intersection of the leaf
   vector and the bounding rect — instead of a live mask relationship. Revisit `isMask`
   if a future component genuinely needs a *live* mask (e.g. swappable image content).
+- `GRADIENT_RADIAL` fill `gradientTransform` does not behave like a naive "scale then
+  translate the circle" matrix — calibrated empirically (see the leaf-over-image scrim):
+  identity `[[1,0,0],[0,1,0]]` centers the circle in the shape and fades to fully
+  transparent exactly at the shape's edges. Adding translation shifts the visible center
+  in the **opposite** direction of the sign (e.g. `tx=+0.3` moves the bright spot left,
+  not right) — scale and translation are coupled, not independent axes. The working
+  values for a corner-anchored, seamlessly-fading wash: `[[1,0,0.38],[0,1,0.32]]` with a
+  4-stop ramp (0 / 0.35 / 0.65 / 1). Don't assume a formula — recalibrate with a disposable
+  test rectangle and a screenshot if a future component needs a differently-placed radial.
 
 ## The drift audit (run any time, e.g. before a release)
 
