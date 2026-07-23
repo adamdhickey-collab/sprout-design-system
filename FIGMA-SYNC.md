@@ -23,8 +23,33 @@ Neither side updates automatically — drift is caught by the audit below.
 | `--font-display/sans/micro` | **Typography** collection (STRING) |
 | `.type-*` classes | Text styles (Display/Serif 8xl … Caption Bold) |
 | `--shadow-sm/md/lg` | Effect styles Shadow/sm/md/lg |
+| `<span class="material-symbols-rounded">ligature</span>` | TEXT node in **Material Symbols Rounded**, `characters` = the same ligature, layer named after it |
+| `.component .material-symbols-rounded { font-size: N }` | That icon node's `fontSize` = N |
+| CSS `transform: rotate(Ndeg)` on an icon state | Icon node `rotation` = N, **same base glyph as code** |
+| `<symbol id="cargill-logo">` in `index.html` + `.cargill-logo--*` modifiers | **Cargill logo** component set, one variant per modifier |
+
+The logo is not a redrawn or re-traced copy — the Figma vectors were imported from the
+exact same path data the site renders, so the two cannot drift in shape. Only the fills
+differ per variant, and the ones the CSS expresses as `var()` (`green-900`,
+`soft-green-400`) are bound to those Figma variables; the ones the CSS hard-codes
+(`#000`, `#fff`, `#00843D`) stay literal, matching the code.
+
+Icons are real Material Symbols Rounded ligatures, not Unicode look-alikes — the layer
+name, the glyph, and the font size all match the CSS rule for that component, so an icon
+can be read straight off the Figma layer and typed into the markup. Where the code renders
+one glyph and rotates it by state (accordion + combobox `expand_more` at 180°, tree toggle
+`chevron_right` at 90°), Figma stores the **unrotated glyph name** and applies rotation, so
+the layer name still tells you what to type.
 
 Known intentional divergences:
+- Some characters are **literal text in the CSS, not icons**, and must stay as typed
+  characters in Figma: the Number input's `−` / `+`, the Breadcrumb separator `/`, and the
+  required-field `*` on Label. A future icon sweep must not convert these.
+- Figma's Toast has a **`Default` variant with no code counterpart** — there is no
+  `.toast--default` rule in `styles.css`. It carries `notifications` as a neutral icon.
+  Either add the CSS modifier or drop the variant; until then the audit will see it.
+- Empty state ships `folder` in Figma, but the site shows `folder`, `inbox`, and
+  `search_off` across three examples. The icon is meant to be swapped per use.
 - CSS dark mode repoints *primitives* (`--neutral-10` etc.) as a mechanism; Figma keeps
   primitives single-mode and puts dark values on the semantic layer. Rendered values match.
 - Figma has 10 `dark/*` primitives with **no code syntax** — they exist in code only as
