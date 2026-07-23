@@ -1808,6 +1808,173 @@
       color: var(--text-muted);
     }
 
+    /* ---------- Illustration & diagrams ---------- */
+    /* Line-weight demo · Brand Guidelines · Illustrations & diagrams · Line weights.
+       Reuses the sprout glyph already registered in Iconography (identical path data)
+       rendered stroke-only at the two specified weights, instead of drawing new artwork.
+       Base ratio is fixed at .75pt/1px (detail) to 1.5pt/2px (primary) on a 1"/72px
+       artboard — scale both together, never restyle one stroke independently. */
+    .line-weight-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+    }
+    .line-weight-sample {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-3);
+      width: 140px;
+      text-align: center;
+    }
+    .line-weight-sample svg {
+      width: 72px;
+      height: 72px;
+      color: var(--brand-deep);
+    }
+    .line-weight-sample-label {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .line-weight-sample-label span {
+      display: block;
+      font-family: var(--font-micro);
+      font-weight: 400;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Fill-treatment legend · the four ways a diagram shape can carry meaning without
+       adding new hues — brand rule is core palette only, never a custom tint. CSS
+       gradients stand in for the guideline's dot/line textures so no new asset is needed. */
+    .texture-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-5);
+    }
+    .texture-swatch-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .texture-swatch {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1.5px solid var(--green-600);
+      box-sizing: border-box;
+    }
+    .texture-swatch--outline { background: var(--surface); }
+    .texture-swatch--dot {
+      background-color: var(--soft-green-50);
+      background-image: radial-gradient(circle, var(--green-600) 1.6px, transparent 1.7px);
+      background-size: 8px 8px;
+    }
+    .texture-swatch--hatch {
+      background-color: var(--soft-green-50);
+      background-image: repeating-linear-gradient(45deg, var(--green-600) 0 2px, transparent 2px 7px);
+    }
+    .texture-swatch--solid { background: var(--green-600); }
+    .texture-swatch-label {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Diagram flow · a generic, worked process-flow example (Illustrations & diagrams ·
+       Diagrams — "much more functional… illustrate a process or system in a clear,
+       concise manner"). Fill treatment carries stage-of-completion (outline → dot →
+       solid) instead of new color, connected by thin/detail-weight arrows — the same
+       structure as the brand's own wheat-to-flour diagram, without redrawing its
+       ship/silo iconography. */
+    .diagram-flow {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+    .diagram-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-3);
+      width: 150px;
+      text-align: center;
+    }
+    .diagram-node {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 1.5px solid var(--green-600);
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+    .diagram-node--outline { background: var(--surface); }
+    .diagram-node--dot {
+      background-color: var(--soft-green-50);
+      background-image: radial-gradient(circle, var(--green-600) 1.6px, transparent 1.7px);
+      background-size: 8px 8px;
+    }
+    .diagram-node--solid { background: var(--green-600); }
+    .diagram-step-title {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .diagram-step-desc {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .diagram-connector {
+      color: var(--text-muted);
+      flex-shrink: 0;
+      margin-top: 30px; /* vertically center against the 72px node above */
+    }
+
+    /* Illustration placeholder · reserves the SPACE an approved illustration will
+       occupy without inventing artwork of our own — illustration is an asset
+       dependency here (see the note below). Swap the aspect ratio to match the
+       layout; never stretch the eventual asset to fit a mismatched slot. */
+    .illustration-slot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      width: 100%;
+      box-sizing: border-box;
+      border: 1.5px dashed var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--soft-green-50);
+      color: var(--text-muted);
+      padding: var(--space-4);
+    }
+    .illustration-slot .material-symbols-rounded { font-size: 28px; }
+    .illustration-slot-label {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-soft);
+      margin: 0;
+    }
+    .illustration-slot-meta {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      text-align: center;
+      max-width: 32ch;
+      margin: 0;
+    }
+    .illustration-slot--square    { aspect-ratio: 1 / 1; }
+    .illustration-slot--landscape { aspect-ratio: 16 / 9; }
+    .illustration-slot--portrait  { aspect-ratio: 3 / 4; }
+
     /* ---------- Components ---------- */
     .component-grid {
       display: grid;

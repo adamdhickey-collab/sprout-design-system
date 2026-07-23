@@ -94,6 +94,7 @@
           <a href="#themes" class="sidebar-link"><span class="sidebar-link-num">06</span><span>Themes</span></a>
           <a href="#elevation" class="sidebar-link"><span class="sidebar-link-num">07</span><span>Elevation</span></a>
           <a href="#brand-expression" class="sidebar-link"><span class="sidebar-link-num">08</span><span>Brand expression</span></a>
+          <a href="#illustration" class="sidebar-link"><span class="sidebar-link-num">09</span><span>Illustration</span></a>
         </div>
         <div class="sidebar-section">
           <span class="sidebar-section-title">Components</span>
@@ -1395,6 +1396,99 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="block" id="illustration">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow">09 / Illustration</p>
+            <h2 class="section-title">Illustration &amp; diagrams</h2>
+          </div>
+          <p class="section-lede">Illustration is a functional brand asset, used only when photography won't suffice — abstract concepts, infographics, process diagrams. There is <strong>one illustration style</strong> across the brand, built from the same primary + secondary palette as everything else in this system; the guidelines are explicit that we never invent our own tints. <strong>Diagrams</strong> are the functional half of the chapter, fully specified below: line weights, fill treatments, and a worked process-flow example.</p>
+        </div>
+
+        <div class="scale-block">
+          <p class="scale-label">Line weights · fixed 1:2 ratio, scale uniformly</p>
+          <div class="line-weight-demo">
+            <div class="line-weight-sample">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 56 V32 C24 32 16 24 16 14 C26 14 32 22 32 32 C32 22 38 14 48 14 C48 24 40 32 32 32"/></svg>
+              <p class="line-weight-sample-label">.75pt / 1px<span>Detail line</span></p>
+            </div>
+            <div class="line-weight-sample">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 56 V32 C24 32 16 24 16 14 C26 14 32 22 32 32 C32 22 38 14 48 14 C48 24 40 32 32 32"/></svg>
+              <p class="line-weight-sample-label">1.5pt / 2px<span>Primary line</span></p>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-4);">Measured on a 1&Prime; / 72px-tall artboard (the same sprout glyph from <a href="#icons">Iconography</a>, shown here in outline to isolate the stroke). Scaling to 400% scales both weights together — .75pt→3pt, 1.5pt→6pt — never restyle one stroke independently of the rest of the artwork.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Fill treatments · core palette only, no custom tints</p>
+          <div class="texture-legend">
+            <div class="texture-swatch-cell"><div class="texture-swatch texture-swatch--outline"></div><p class="texture-swatch-label">Outline only</p></div>
+            <div class="texture-swatch-cell"><div class="texture-swatch texture-swatch--dot"></div><p class="texture-swatch-label">Dot texture</p></div>
+            <div class="texture-swatch-cell"><div class="texture-swatch texture-swatch--hatch"></div><p class="texture-swatch-label">Diagonal hatch</p></div>
+            <div class="texture-swatch-cell"><div class="texture-swatch texture-swatch--solid"></div><p class="texture-swatch-label">Solid fill</p></div>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Process flow · a worked diagram example</p>
+          <div class="diagram-flow">
+            <div class="diagram-step">
+              <div class="diagram-node diagram-node--outline"></div>
+              <p class="diagram-step-title">01 Intake</p>
+              <p class="diagram-step-desc">Raw material enters the system, unprocessed.</p>
+            </div>
+            <svg class="diagram-connector" viewBox="0 0 40 12" width="40" height="12" aria-hidden="true"><line x1="0" y1="6" x2="30" y2="6" stroke="currentColor" stroke-width="1.5"/><path d="M28 1 L37 6 L28 11 Z" fill="currentColor"/></svg>
+            <div class="diagram-step">
+              <div class="diagram-node diagram-node--dot"></div>
+              <p class="diagram-step-title">02 Process</p>
+              <p class="diagram-step-desc">Material is refined and combined, mid-system.</p>
+            </div>
+            <svg class="diagram-connector" viewBox="0 0 40 12" width="40" height="12" aria-hidden="true"><line x1="0" y1="6" x2="30" y2="6" stroke="currentColor" stroke-width="1.5"/><path d="M28 1 L37 6 L28 11 Z" fill="currentColor"/></svg>
+            <div class="diagram-step">
+              <div class="diagram-node diagram-node--solid"></div>
+              <p class="diagram-step-title">03 Output</p>
+              <p class="diagram-step-desc">Finished product moves downstream, complete.</p>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">Diagrams do a different job than illustration — clear and concise, not expressive. Fill treatment carries meaning on its own (here, stage of completion) so connectors can stay at the thin, detail line weight and read as structure rather than artwork.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Illustration placeholder · reserve the space, not the artwork</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-4);">
+            <div class="illustration-slot illustration-slot--landscape">
+              <span class="material-symbols-rounded" aria-hidden="true">image</span>
+              <p class="illustration-slot-label">16:9 landscape</p>
+              <p class="illustration-slot-meta">Hero &amp; section-header illustration slots</p>
+            </div>
+            <div class="illustration-slot illustration-slot--square">
+              <span class="material-symbols-rounded" aria-hidden="true">image</span>
+              <p class="illustration-slot-label">1:1 square</p>
+              <p class="illustration-slot-meta">Card &amp; grid illustration slots</p>
+            </div>
+            <div class="illustration-slot illustration-slot--portrait">
+              <span class="material-symbols-rounded" aria-hidden="true">image</span>
+              <p class="illustration-slot-label">3:4 portrait</p>
+              <p class="illustration-slot-meta">Sidebar &amp; inset illustration slots</p>
+            </div>
+          </div>
+          <div class="icon-note" style="margin-top: var(--space-5);">
+            <p><strong>Alt text, once the real asset lands.</strong> Describe the scene's subject and action — what it shows and why — never "illustration of…" or the filename. If the illustration sits next to text that already says the same thing, mark it decorative with <code>alt=""</code> instead of describing it twice.</p>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Character illustration · asset dependency</p>
+          <div class="icon-note">
+            <p><strong>Not built here.</strong> The brand's people and object illustrations (the padlock, the corn, the test tube, every human figure) are hand-drawn in one approved style, with a dedicated skin-tone and hair-color palette (guidelines p.104) reserved for that use only — not brand colors, and not usable anywhere else. No source files for that style exist in this repo, and the guidelines explicitly warn against off-style substitutes, so this system does not attempt hand-coded stand-ins. Use the illustration placeholder above to hold the layout until the approved asset library lands, the same way <a href="assets/brand-photography/README.md">brand photography</a> is standing in for a licensed library today.</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
