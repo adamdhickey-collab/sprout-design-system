@@ -140,6 +140,98 @@
       }
     })();
 
+    // Responsive navigation · below the system's lg (1024) breakpoint the sidebar
+    // becomes an off-canvas drawer (the Sheet pattern: scrim + side panel) opened
+    // from a compact sticky bar. Everything here is additive — the [data-nav]
+    // attribute is what switches the CSS on, so if this never runs the sidebar
+    // just stacks above the content and stays usable.
+    (function () {
+      const sidebar = document.querySelector('.sidebar');
+      const layout = document.querySelector('.app-layout');
+      if (!sidebar || !layout) return;
+      if (!sidebar.id) sidebar.id = 'sidebar-nav';
+
+      const bar = document.createElement('header');
+      bar.className = 'mobile-bar';
+      bar.innerHTML =
+        '<button type="button" class="mobile-bar-trigger" aria-expanded="false" aria-controls="' + sidebar.id + '" aria-label="Open navigation">' +
+          '<span class="material-symbols-rounded" aria-hidden="true">menu</span>' +
+        '</button>' +
+        '<span class="mobile-bar-title">Sprout</span>' +
+        '<span class="mobile-bar-meta">Design System · <span class="js-version">v1.2</span></span>';
+      layout.parentNode.insertBefore(bar, layout);
+
+      const scrim = document.createElement('div');
+      scrim.className = 'nav-scrim';
+      document.body.appendChild(scrim);
+
+      const trigger = bar.querySelector('.mobile-bar-trigger');
+      const icon = trigger.querySelector('.material-symbols-rounded');
+      let lastFocus = null;
+
+      const isDrawerMode = () => window.matchMedia('(max-width: 1023.98px)').matches;
+      const isOpen = () => sidebar.classList.contains('sidebar--open');
+
+      function focusables() {
+        return Array.from(sidebar.querySelectorAll('a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'))
+          .filter(el => el.offsetParent !== null);
+      }
+
+      function open() {
+        lastFocus = document.activeElement;
+        sidebar.classList.add('sidebar--open');
+        scrim.classList.add('nav-scrim--visible');
+        trigger.setAttribute('aria-expanded', 'true');
+        trigger.setAttribute('aria-label', 'Close navigation');
+        icon.textContent = 'close';
+        document.body.style.overflow = 'hidden';
+        const f = focusables();
+        if (f.length) f[0].focus();
+      }
+
+      function close(returnFocus) {
+        sidebar.classList.remove('sidebar--open');
+        scrim.classList.remove('nav-scrim--visible');
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.setAttribute('aria-label', 'Open navigation');
+        icon.textContent = 'menu';
+        document.body.style.overflow = '';
+        if (returnFocus !== false && lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      trigger.addEventListener('click', () => { isOpen() ? close() : open(); });
+      scrim.addEventListener('click', () => close());
+
+      // Following a link should reveal the destination, not leave the drawer over it.
+      sidebar.addEventListener('click', (e) => {
+        if (e.target.closest('a') && isDrawerMode() && isOpen()) close(false);
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!isOpen()) return;
+        if (e.key === 'Escape') { e.stopPropagation(); close(); return; }
+        if (e.key !== 'Tab') return;
+        // Keep focus inside the drawer while it's acting as a modal surface.
+        const f = focusables();
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }, true);
+
+      // Crossing back above lg (window resize, tablet rotation) must never leave
+      // the page scroll-locked or the drawer half-open. matchMedia fires exactly
+      // on the breakpoint crossing; a bare resize listener proved unreliable and
+      // could strand the desktop page with body overflow:hidden.
+      const mq = window.matchMedia('(max-width: 1023.98px)');
+      const syncToBreakpoint = () => { if (!mq.matches) close(false); };
+      if (mq.addEventListener) mq.addEventListener('change', syncToBreakpoint);
+      else if (mq.addListener) mq.addListener(syncToBreakpoint);
+      window.addEventListener('resize', syncToBreakpoint);
+
+      document.documentElement.setAttribute('data-nav', 'drawer');
+    })();
+
     // Search · Cmd/Ctrl+K palette across every Foundations section and component
     (function () {
       const INDEX = [
@@ -381,7 +473,7 @@
       });
     })();
 
-    // Clipboard helper + toast · shared by code blocks, swatches, and playgrounds.
+    // Clipboard helper + toast · shared by code blocks and token swatches.
     function sproutToast(message) {
       let toast = document.getElementById('sprout-toast');
       if (!toast) {
@@ -441,158 +533,6 @@
         swatch.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copy(); }
         });
-      });
-    })();
-
-    // Interactive playgrounds · live variant controls + synced code readout.
-    (function () {
-      const PLAYGROUNDS = {
-        button: {
-          title: 'Button playground',
-          controls: [
-            { key: 'variant', label: 'Style', options: [['primary', 'Primary'], ['secondary', 'Secondary'], ['ghost', 'Ghost']] },
-            { key: 'size', label: 'Size', options: [['sm', 'Small'], ['', 'Medium'], ['lg', 'Large']], def: '' },
-            { key: 'danger', label: 'Intent', options: [['', 'Default'], ['danger', 'Destructive']], def: '' },
-            { key: 'state', label: 'State', options: [['', 'Enabled'], ['disabled', 'Disabled']], def: '' },
-            { key: 'label', label: 'Label', type: 'text', def: 'Get started' }
-          ],
-          render: function (s) {
-            const cls = ['btn', 'btn-' + s.variant];
-            if (s.size) cls.push('btn--' + s.size);
-            if (s.danger) cls.push('btn--danger');
-            if (s.state === 'disabled') cls.push('btn--disabled');
-            const dis = s.state === 'disabled' ? ' disabled' : '';
-            return '<button class="' + cls.join(' ') + '"' + dis + '>' + sproutEscape(s.label) + '</button>';
-          }
-        },
-        alert: {
-          title: 'Alert playground',
-          controls: [
-            { key: 'variant', label: 'Type', options: [['success', 'Success'], ['error', 'Error'], ['warning', 'Warning'], ['info', 'Info'], ['neutral', 'Neutral']] },
-            { key: 'title', label: 'Title', type: 'text', def: 'Heads up' },
-            { key: 'body', label: 'Message', type: 'text', def: 'This is what an alert of this type looks like.' }
-          ],
-          render: function (s) {
-            const icons = { success: 'check', error: 'error', warning: 'warning', info: 'info', neutral: 'campaign' };
-            return [
-              '<div class="alert alert--' + s.variant + '" style="max-width: 460px;">',
-              '  <span class="alert-icon"><span class="material-symbols-rounded">' + icons[s.variant] + '</span></span>',
-              '  <div class="alert-content">',
-              '    <span class="alert-title">' + sproutEscape(s.title) + '</span>',
-              '    <span class="alert-body">' + sproutEscape(s.body) + '</span>',
-              '  </div>',
-              '  <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button>',
-              '</div>'
-            ].join('\n');
-          }
-        },
-        card: {
-          title: 'Card playground',
-          controls: [
-            { key: 'layout', label: 'Layout', options: [['', 'Rich media'], ['card-rich--side', 'Side'], ['card-rich--overlay', 'Overlay']], def: '' },
-            { key: 'eyebrow', label: 'Eyebrow', type: 'text', def: 'Field report · 2026' },
-            { key: 'title', label: 'Title', type: 'text', def: 'Regenerative wheat' },
-            { key: 'body', label: 'Body', type: 'text', def: 'Image, caption, title, body, and a primary action.' }
-          ],
-          render: function (s) {
-            const cls = ['card', 'card-rich'];
-            if (s.layout) cls.push(s.layout);
-            return [
-              '<article class="' + cls.join(' ') + '" style="max-width: 340px;">',
-              '  <div class="card-media" role="presentation"></div>',
-              '  <div class="card-content">',
-              '    <p class="card-eyebrow">' + sproutEscape(s.eyebrow) + '</p>',
-              '    <h3 class="card-title">' + sproutEscape(s.title) + '</h3>',
-              '    <p class="card-body">' + sproutEscape(s.body) + '</p>',
-              '    <div class="btn-row" style="margin-top: 4px;">',
-              '      <button class="btn btn-primary btn--sm">Read more</button>',
-              '    </div>',
-              '  </div>',
-              '</article>'
-            ].join('\n');
-          }
-        }
-      };
-
-      document.querySelectorAll('.playground[data-playground]').forEach((container) => {
-        const cfg = PLAYGROUNDS[container.dataset.playground];
-        if (!cfg) return;
-
-        const state = {};
-        cfg.controls.forEach((c) => {
-          state[c.key] = c.def !== undefined ? c.def : (c.type === 'text' ? '' : c.options[0][0]);
-        });
-
-        container.innerHTML =
-          '<div class="playground-head">' +
-            '<span class="playground-eyebrow">Try it live</span>' +
-            '<span class="playground-title">' + cfg.title + '</span>' +
-          '</div>' +
-          '<div class="playground-stage"></div>' +
-          '<div class="playground-controls"></div>' +
-          '<div class="playground-code-wrap">' +
-            '<pre class="playground-code"><code></code></pre>' +
-            '<button class="playground-copy" type="button" aria-label="Copy this markup">' +
-              '<span class="material-symbols-rounded" aria-hidden="true">content_copy</span><span>Copy</span>' +
-            '</button>' +
-          '</div>';
-
-        const stage = container.querySelector('.playground-stage');
-        const controlsEl = container.querySelector('.playground-controls');
-        const codeEl = container.querySelector('.playground-code code');
-
-        cfg.controls.forEach((c) => {
-          const group = document.createElement('div');
-          group.className = 'playground-control';
-          const lbl = document.createElement('span');
-          lbl.className = 'playground-control-label';
-          lbl.textContent = c.label;
-          group.appendChild(lbl);
-
-          if (c.type === 'text') {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.className = 'playground-input';
-            input.value = state[c.key];
-            input.setAttribute('aria-label', c.label);
-            input.addEventListener('input', () => { state[c.key] = input.value; update(); });
-            group.appendChild(input);
-          } else {
-            const seg = document.createElement('div');
-            seg.className = 'playground-segmented';
-            seg.setAttribute('role', 'group');
-            seg.setAttribute('aria-label', c.label);
-            c.options.forEach((opt) => {
-              const val = opt[0], text = opt[1];
-              const b = document.createElement('button');
-              b.type = 'button';
-              b.className = 'playground-seg-btn';
-              b.textContent = text;
-              b.setAttribute('aria-pressed', String(val === state[c.key]));
-              b.addEventListener('click', () => {
-                state[c.key] = val;
-                seg.querySelectorAll('.playground-seg-btn').forEach((x) => x.setAttribute('aria-pressed', 'false'));
-                b.setAttribute('aria-pressed', 'true');
-                update();
-              });
-              seg.appendChild(b);
-            });
-            group.appendChild(seg);
-          }
-          controlsEl.appendChild(group);
-        });
-
-        function update() {
-          const markup = cfg.render(state);
-          stage.innerHTML = markup;
-          codeEl.textContent = markup;
-        }
-
-        container.querySelector('.playground-copy').addEventListener('click', () => {
-          sproutCopy(codeEl.textContent, 'Copied markup');
-        });
-
-        update();
       });
     })();
 
