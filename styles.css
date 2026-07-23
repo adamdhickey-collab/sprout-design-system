@@ -200,6 +200,13 @@
       --layout-md:    96px;
       --layout-lg:   128px;
 
+      /* Minimum hit area for anything a finger has to land on. WCAG 2.5.8 (AA)
+         floors this at 24x24; 44px matches Apple's HIG and sits comfortably
+         above Material's 48dp guidance in practice. Apply as min-height and
+         min-width — not padding — so the target holds regardless of label
+         length. Desktop-only pointer targets may be smaller. */
+      --touch-target-min: 44px;
+
       /* Step aliases used internally on this page */
       --space-1:  var(--spacing-sm);
       --space-2:  var(--spacing-base);
@@ -476,11 +483,8 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        /* 44px: comfortably above the WCAG 2.5.8 24px floor and in line with the
-           44/48px platform guidance. The system doesn't document a touch-target
-           minimum — see FIGMA-SYNC / README follow-up. */
-        width: 44px;
-        height: 44px;
+        width: var(--touch-target-min);
+        height: var(--touch-target-min);
         border-radius: var(--corner-radius-base);
         color: var(--text);
         cursor: pointer;
@@ -540,8 +544,8 @@
       [data-nav="drawer"] .sidebar--open { transform: translateX(0); }
 
       /* Bigger hit areas inside the drawer */
-      [data-nav="drawer"] .sidebar-link { min-height: 44px; padding: 10px var(--space-3); }
-      [data-nav="drawer"] .sidebar-search-trigger { min-height: 44px; }
+      [data-nav="drawer"] .sidebar-link { min-height: var(--touch-target-min); padding: 10px var(--space-3); }
+      [data-nav="drawer"] .sidebar-search-trigger { min-height: var(--touch-target-min); }
     }
 
     /* Desktop (lg+): drawer chrome must never appear */
@@ -1023,6 +1027,55 @@
       background: var(--soft-green-200);
       border-radius: var(--radius-sm);
       position: relative;
+    }
+
+    /* Touch target documentation · the two boxes are drawn at their real pixel
+       sizes so the difference between the Sprout floor and the WCAG minimum is
+       literal rather than illustrative. */
+    .touch-target-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+      align-items: flex-start;
+    }
+    .touch-target-figure {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+    .touch-target-box {
+      width: var(--touch-target-min);
+      height: var(--touch-target-min);
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--corner-radius-base);
+      background: var(--soft-green-50);
+      border: 1px dashed var(--brand);
+      color: var(--brand-deep);
+    }
+    .touch-target-box--min {
+      width: 24px;
+      height: 24px;
+      background: var(--neutral-100);
+      border-color: var(--neutral-400);
+      color: var(--text-muted);
+    }
+    .touch-target-box .material-symbols-rounded { font-size: 20px; }
+    .touch-target-box--min .material-symbols-rounded { font-size: 14px; }
+    .touch-target-caption {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .touch-target-caption span {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
     }
     .grid-bar::after {
       content: '';

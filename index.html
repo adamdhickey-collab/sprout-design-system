@@ -777,6 +777,35 @@
             <div class="grid-card"><span class="grid-name">xxl</span><span class="grid-width">1440 px</span><div class="grid-bar" style="width: 100%"></div></div>
           </div>
         </div>
+
+        <div class="scale-block">
+          <p class="scale-label">Touch targets · minimum hit area</p>
+          <p class="section-lede" style="max-width: 60ch; margin-bottom: var(--space-5);">Any control a finger has to land on gets at least <strong>44&nbsp;&times;&nbsp;44&nbsp;px</strong>, held by the <code>--touch-target-min</code> token. Set it as <code>min-height</code> and <code>min-width</code> rather than padding, so the target survives a short label. Pointer-only affordances on desktop may be smaller.</p>
+          <div class="touch-target-demo">
+            <div class="touch-target-figure">
+              <span class="touch-target-box">
+                <span class="touch-target-icon material-symbols-rounded" aria-hidden="true">menu</span>
+              </span>
+              <span class="touch-target-caption">44 px minimum<br><span>Sprout floor · <code>--touch-target-min</code></span></span>
+            </div>
+            <div class="touch-target-figure">
+              <span class="touch-target-box touch-target-box--min">
+                <span class="touch-target-icon material-symbols-rounded" aria-hidden="true">close</span>
+              </span>
+              <span class="touch-target-caption">24 px<br><span>WCAG 2.5.8 (AA) absolute floor — below Sprout&rsquo;s</span></span>
+            </div>
+          </div>
+          <table class="token-table" style="margin-top: var(--space-5);">
+            <thead>
+              <tr><th>Reference</th><th>Minimum</th><th>Applies to</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--touch-target-min</code></td><td>44 &times; 44 px</td><td>The Sprout floor. Buttons, nav links, icon buttons, toggles, close affordances — anything tapped on a touch device.</td></tr>
+              <tr><td>WCAG 2.5.8 (AA)</td><td>24 &times; 24 px</td><td>The legal minimum we sit above, not the number to design to.</td></tr>
+              <tr><td>Spacing between targets</td><td>8 px (<code>--spacing-base</code>)</td><td>Adjacent targets need clear separation so neighbouring controls aren&rsquo;t hit by mistake.</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
