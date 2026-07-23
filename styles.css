@@ -148,10 +148,12 @@
       --midnight-blue-light:   #99ADC2;
 
       /* Semantic */
-      /* Page background is White Green — one of the six fixed brand values —
-         rather than a neutral gray, so the brand palette carries the whole
-         surface. Dark mode repoints this separately below. */
-      --bg:         var(--soft-green-50);
+      /* Page background sits on the neutral ramp so the brand greens stay
+         reserved for brand moments rather than the whole canvas. Note this is
+         the same value as --surface-pill; pills and chips therefore need a
+         non-page surface behind them to stay legible (they all currently sit
+         inside --surface cards). Dark mode repoints this separately below. */
+      --bg:         var(--neutral-100);
       --surface:    var(--neutral-10);
       --text:       var(--neutral-1000);
       --text-soft:  var(--neutral-700);
@@ -258,7 +260,12 @@
     }
     h1, h2, h3, h4, h5 { margin: 0; font-weight: 400; }
     p { margin: 0; }
-    a { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; }
+    /* Prose links use --green-700, not --brand. At small sizes --brand (green-600)
+       only reaches 4.36:1 on the --neutral-100 page background, under the 4.5:1 AA
+       floor; green-700 clears it on both the page (6.74:1) and --surface (7.44:1),
+       and steps naturally into the --green-900 hover. --brand is still correct for
+       large display text and for fills carrying --on-accent. */
+    a { color: var(--green-700); text-decoration: underline; text-underline-offset: 3px; }
     a:hover { color: var(--green-900); }
     code {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
