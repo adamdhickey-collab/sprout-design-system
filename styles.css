@@ -419,7 +419,13 @@
     .sidebar-link-num {
       font-family: var(--font-micro);
       font-size: 11px;
-      color: var(--neutral-400);
+      /* --neutral-400 read 2.53:1 on the sidebar surface — well under AA for
+         11px text. --text-muted clears 6.48:1 light / 5.27:1 dark, is already
+         the system's quiet-text token (and what .sidebar-section-title uses),
+         and stays lighter than the label's --text-soft so the numeral is still
+         secondary. --neutral-500 would have passed at 4.59:1, but that margin
+         is thin enough to break on the next surface change. */
+      color: var(--text-muted);
       letter-spacing: normal;
       font-variant-numeric: tabular-nums;
     }
