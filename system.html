@@ -453,6 +453,62 @@
             </div>
           </div>
         </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Leaf usage · scale, position, color, rotation</p>
+          <dl class="term-grid">
+            <div class="term-item">
+              <dt>Scale</dt>
+              <dd>120%–200% of the canvas width. Below 120% the leaf's edges show inside the frame and the sense of growth is lost; above 200% the shape distorts. If neither works, the rounded box above is the fallback.</dd>
+            </div>
+            <div class="term-item">
+              <dt>Position &amp; cropping</dt>
+              <dd>Both edges of the leaf must extend beyond the canvas — it never terminates inside the frame. At any scale or crop, it must still read as the leaf, not just an abstract curve or wave.</dd>
+            </div>
+            <div class="term-item">
+              <dt>Color</dt>
+              <dd>Primary palette only — Leaf Green, Deep Green, Soft Green, White Green, or White. Never a secondary color, and never redrawn or recolored outside these five.</dd>
+            </div>
+            <div class="term-item">
+              <dt>Rotation &amp; reflection</dt>
+              <dd>Free to flip horizontally, vertically, or both. Once flipped, the same rotation limit still applies: 0° to ±22.5° — any more and the layout turns awkward and the leaf loses its shape.</dd>
+            </div>
+            <div class="term-item">
+              <dt>Transparency</dt>
+              <dd>Used only when it earns its place — never so subtle it might as well be solid, never so faint the leaf disappears. Never over a person or a photo's main subject, and always normal blend mode.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Rotation &amp; reflection · the same asset, three ways</p>
+          <div class="leaf-device-grid">
+            <div class="leaf-device-card" data-bg="paper">
+              <svg class="leaf-device" viewBox="0 0 1000 394" role="img" aria-label="Cargill leaf graphic device, unrotated"><use href="#cargill-leaf-device"/></svg>
+              <span class="leaf-device-card-label">0° · primary placement</span>
+            </div>
+            <div class="leaf-device-card" data-bg="green" style="--leaf-device-fill: var(--green-800);">
+              <svg class="leaf-device" viewBox="0 0 1000 394" role="img" aria-label="Cargill leaf graphic device, rotated 22.5 degrees" style="transform: rotate(22.5deg);"><use href="#cargill-leaf-device"/></svg>
+              <span class="leaf-device-card-label">22.5° · the rotation limit</span>
+            </div>
+            <div class="leaf-device-card" data-bg="deep" style="--leaf-device-fill: var(--soft-green-400);">
+              <svg class="leaf-device" viewBox="0 0 1000 394" role="img" aria-label="Cargill leaf graphic device, flipped horizontally" style="transform: scaleX(-1);"><use href="#cargill-leaf-device"/></svg>
+              <span class="leaf-device-card-label">Flipped horizontally</span>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-4);">Beyond ±22.5° the shape stops reading as a leaf and starts reading as an arbitrary curve — the same limit applies whether or not it's been flipped first.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Rounded box · corner-radius formula</p>
+          <p class="section-lede" style="max-width: 62ch;">The brand ties the radius to the box itself rather than a fixed pixel value: <strong>r = 4% of the box's diagonal</strong>. Worked example — a 100×100px box has a 141.42px diagonal, so its corner radius is 5.65px; scale the box in any dimension and scale the radius to match. When several rounded boxes appear together (a grid, a row of cards), they must all share one corner radius — boxes may differ in size, but never in roundedness.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <div class="icon-note">
+            <p><strong>Don'ts.</strong> Never use the leaf at the secondary level (inside a presentation page, a brochure spread, a fact sheet) — that's the rounded box's job. Never recolor the leaf into a secondary color, warp its shape, or use more than one leaf at once. Never round the secondary box's corners more or less than the formula calls for, and never let a set of boxes shown together use mismatched radii. And never reach for a different graphic language entirely — the retired mosaic pattern, unrelated shapes — this system has exactly one.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -685,6 +741,68 @@
             </div>
           </div>
           <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">Built from steps 1–3 only — the part of the sequence that's actually safe to ship — with a direct value label above every bar. Square corners throughout: this is functional data, not an expressive moment.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Worked example · donut chart</p>
+          <div class="dataviz-donut-wrap">
+            <svg class="dataviz-donut" viewBox="0 0 100 100" width="160" height="160" role="img" aria-label="Share by region: North 45%, South 35%, East 20%">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#00843D" stroke-width="14" stroke-dasharray="113.1 251.3" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#03441F" stroke-width="14" stroke-dasharray="87.97 251.3" stroke-dashoffset="-113.1" transform="rotate(-90 50 50)"/>
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#BDE588" stroke-width="14" stroke-dasharray="50.27 251.3" stroke-dashoffset="-201.07" transform="rotate(-90 50 50)"/>
+              <text x="50" y="54" class="dataviz-donut-center">3 regions</text>
+            </svg>
+            <div class="dataviz-donut-legend">
+              <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#00843D;"></span>North<span class="dataviz-donut-legend-value">45%</span></div>
+              <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#03441F;"></span>South<span class="dataviz-donut-legend-value">35%</span></div>
+              <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#BDE588;"></span>East<span class="dataviz-donut-legend-value">20%</span></div>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">Same three validated steps as the bar chart above, never the confusable 70%-tint pair. The legend carries a direct value next to every label — the ring's color differentiates, but the number is what actually reads.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Worked example · trend line</p>
+          <svg class="dataviz-line-chart" viewBox="0 0 280 130" role="img" aria-label="Orders per week, trending from 4.2 thousand to 11.5 thousand over six weeks">
+            <line class="dataviz-line-grid" x1="0" y1="115" x2="280" y2="115"/>
+            <polyline class="dataviz-line-path" points="10,83.5 62,70.75 114,76.75 166,56.5 218,47.5 270,28.75"/>
+            <circle class="dataviz-line-dot" cx="10" cy="83.5" r="4.5"/>
+            <circle class="dataviz-line-dot" cx="62" cy="70.75" r="4.5"/>
+            <circle class="dataviz-line-dot" cx="114" cy="76.75" r="4.5"/>
+            <circle class="dataviz-line-dot" cx="166" cy="56.5" r="4.5"/>
+            <circle class="dataviz-line-dot" cx="218" cy="47.5" r="4.5"/>
+            <circle class="dataviz-line-dot" cx="270" cy="28.75" r="4.5"/>
+            <text x="10" y="100" class="dataviz-line-label">4.2</text>
+            <text x="270" y="18" class="dataviz-line-label" text-anchor="end">11.5</text>
+          </svg>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">A single series is a magnitude-<em>over-time</em> job, not an identity job — one hue, not the categorical sequence. Only the first and last point carry a direct label; a number on every point would be noise, not signal. A real implementation adds a hover crosshair and per-point tooltip — this static demo shows the mark spec only.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Worked example · functional KPI row</p>
+          <div class="kpi-row">
+            <div class="kpi-tile">
+              <p class="kpi-tile-label">Orders processed</p>
+              <p class="kpi-tile-value">12,507</p>
+              <p class="kpi-tile-delta kpi-tile-delta--positive">▲ 8.2% vs. last quarter</p>
+            </div>
+            <div class="kpi-tile">
+              <p class="kpi-tile-label">Growth YoY</p>
+              <p class="kpi-tile-value">+44.9%</p>
+              <p class="kpi-tile-delta kpi-tile-delta--positive">▲ 12.1 pts vs. last year</p>
+            </div>
+            <div class="kpi-tile">
+              <p class="kpi-tile-label">On-time delivery</p>
+              <p class="kpi-tile-value">98.2%</p>
+              <p class="kpi-tile-delta">Flat vs. last quarter</p>
+            </div>
+            <div class="kpi-tile">
+              <p class="kpi-tile-label">Avg. response time</p>
+              <p class="kpi-tile-value">1.4h</p>
+              <p class="kpi-tile-delta kpi-tile-delta--positive">0.3h faster than last quarter</p>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">Small multiples — several single numbers side by side rather than one chart, per the "or is it even a chart?" question every data job starts with. The delta line is always plain text; a falling number can still be good news, so color never substitutes for saying so.</p>
         </div>
 
         <div class="scale-block" style="margin-top: var(--space-7);">
