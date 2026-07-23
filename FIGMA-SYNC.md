@@ -28,6 +28,16 @@ Neither side updates automatically — drift is caught by the audit below.
 | CSS `transform: rotate(Ndeg)` on an icon state | Icon node `rotation` = N, **same base glyph as code** |
 | `<symbol id="cargill-logo">` in `index.html` + `.cargill-logo--*` modifiers | **Cargill logo** component set, one variant per modifier |
 
+The Figma pages panel is grouped to mirror the site's own left-nav structure —
+Cover → Foundations (Color, Typography, Layout & shape, Logo) → System (Elevation) →
+Components → Forms & inputs / Layout & content / Navigation & feedback, each internally
+ordered to match that site page's sidebar. Figma has no plugin-API-exposed nested page
+groups, so section headers are plain pages named `─── Section ───` (0 content nodes) —
+the same convention the file already used for "Foundations"/"Components" before this
+pass. The site's Foundations group also lists "Iconography" and its System group lists
+"Themes" — neither has a dedicated Figma page (icons live inline per-component; themes
+are Color-collection modes), so those two sub-items have no Figma counterpart to slot in.
+
 The logo is not a redrawn or re-traced copy — the Figma vectors were imported from the
 exact same path data the site renders, so the two cannot drift in shape. Only the fills
 differ per variant, and the ones the CSS expresses as `var()` (`green-900`,
@@ -45,9 +55,6 @@ Known intentional divergences:
 - Some characters are **literal text in the CSS, not icons**, and must stay as typed
   characters in Figma: the Number input's `−` / `+`, the Breadcrumb separator `/`, and the
   required-field `*` on Label. A future icon sweep must not convert these.
-- Figma's Toast has a **`Default` variant with no code counterpart** — there is no
-  `.toast--default` rule in `styles.css`. It carries `notifications` as a neutral icon.
-  Either add the CSS modifier or drop the variant; until then the audit will see it.
 - Empty state ships `folder` in Figma, but the site shows `folder`, `inbox`, and
   `search_off` across three examples. The icon is meant to be swapped per use.
 - CSS dark mode repoints *primitives* (`--neutral-10` etc.) as a mechanism; Figma keeps

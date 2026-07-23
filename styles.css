@@ -4198,19 +4198,21 @@
 
     /* Toast */
     .toast { display: flex; align-items: flex-start; gap: var(--spacing-md); padding: var(--padding-lg); background: var(--surface); border: 1px solid var(--border); border-radius: var(--corner-radius-base); box-shadow: var(--shadow-md); max-width: 420px; border-left: 4px solid var(--brand); }
+    .toast--default { border-left-color: var(--text-muted); }
     .toast--success { border-left-color: var(--green-600); }
     .toast--error   { border-left-color: var(--red-600); }
     .toast--warning { border-left-color: var(--yellow-500); }
     .toast--info    { border-left-color: var(--blue-600); }
     .toast-icon { flex-shrink: 0; color: var(--brand); display: inline-flex; }
     .toast-icon .material-symbols-rounded { font-size: 22px; color: inherit; }
+    .toast--default .toast-icon { color: var(--text-muted); }
     .toast--success .toast-icon { color: var(--green-600); }
     .toast--error .toast-icon   { color: var(--red-600); }
     .toast--warning .toast-icon { color: var(--yellow-500); }
     .toast--info .toast-icon    { color: var(--blue-600); }
-    .toast-content { flex: 1; min-width: 0; }
+    .toast-content { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
     .toast-title { font-family: var(--font-sans); font-weight: 700; font-size: 14px; line-height: 20px; color: var(--text); }
-    .toast-message { font-family: var(--font-sans); font-size: 13px; line-height: 19px; color: var(--text-soft); margin-top: 2px; }
+    .toast-message { font-family: var(--font-sans); font-size: 13px; line-height: 19px; color: var(--text-soft); }
     .toast-close { width: 24px; height: 24px; border: none; background: transparent; cursor: pointer; color: var(--text-muted); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: var(--corner-radius-base); }
     .toast-close:hover { background: var(--neutral-100); color: var(--text); }
     .toast-close .material-symbols-rounded { font-size: 16px; color: inherit; }
@@ -4231,6 +4233,31 @@
     .tooltip::after { content: ''; position: absolute; top: 100%; left: 16px; border: 5px solid transparent; border-top-color: var(--surface-deep); }
     .tooltip--top::after { top: 100%; }
     .tooltip--bottom::after { top: auto; bottom: 100%; border-top-color: transparent; border-bottom-color: var(--surface-deep); }
+    /* Anchored usage: hidden until the trigger is hovered/focused, positioned off the
+       anchor's own box rather than a magic-number offset so it holds for any trigger size. */
+    .tooltip-anchor .tooltip {
+      position: absolute;
+      left: 0;
+      bottom: calc(100% + 8px);
+      z-index: 20;
+      width: max-content;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(4px);
+      transition: opacity 140ms ease-out, transform 140ms ease-out, visibility 0s linear 140ms;
+      pointer-events: none;
+    }
+    .tooltip-anchor .tooltip--bottom { bottom: auto; top: calc(100% + 8px); transform: translateY(-4px); }
+    .tooltip-anchor:hover .tooltip,
+    .tooltip-anchor:focus-within .tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition: opacity 140ms ease-out, transform 140ms ease-out;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tooltip-anchor .tooltip { transition-duration: 1ms; }
+    }
 
     /* Tree View */
     .tree-view { font-family: var(--font-sans); font-size: 14px; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: var(--corner-radius-md); padding: var(--padding-base); min-width: 240px; }

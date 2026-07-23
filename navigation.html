@@ -144,7 +144,7 @@
                   <span class="alert-title">Success!</span>
                   <span class="alert-body">Account created successfully. Welcome aboard!</span>
                 </div>
-                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button>
               </div>
               <div class="alert alert--error">
                 <span class="alert-icon"><span class="material-symbols-rounded">error</span></span>
@@ -152,7 +152,7 @@
                   <span class="alert-title">Error</span>
                   <span class="alert-body">Incorrect username or password.</span>
                 </div>
-                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button>
               </div>
               <div class="alert alert--warning">
                 <span class="alert-icon"><span class="material-symbols-rounded">warning</span></span>
@@ -160,7 +160,7 @@
                   <span class="alert-title">Warning</span>
                   <span class="alert-body">This action cannot be undone. Are you sure you want to proceed?</span>
                 </div>
-                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button>
               </div>
               <div class="alert alert--info">
                 <span class="alert-icon"><span class="material-symbols-rounded">info</span></span>
@@ -168,7 +168,7 @@
                   <span class="alert-title">Informational</span>
                   <span class="alert-body">New version available. Please update to the latest version.</span>
                 </div>
-                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button>
               </div>
               <div class="alert alert--neutral">
                 <span class="alert-icon"><span class="material-symbols-rounded">campaign</span></span>
@@ -176,7 +176,7 @@
                   <span class="alert-title">Announcement</span>
                   <span class="alert-body">We've just launched Dark Mode! You can enable it in your settings for a better viewing experience at night.</span>
                 </div>
-                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></span>
+                <button class="alert-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button>
               </div>
             </div>
           </div>
@@ -397,21 +397,21 @@
                 <h3 class="modal-title">Create new project</h3>
                 <div class="modal-form">
                   <label class="input-field">
-                    <span class="input-field-label">Label</span>
+                    <span class="input-field-label">Project name</span>
                     <span class="input-wrap"><input class="input-el" value="Sprout" /></span>
                   </label>
                   <div class="modal-form-row">
                     <label class="input-field">
-                      <span class="input-field-label">Label</span>
-                      <span class="input-wrap"><input class="input-el" value="Will Smith" /></span>
+                      <span class="input-field-label">Owner</span>
+                      <span class="input-wrap"><input class="input-el" value="Jamie Rivera" /></span>
                     </label>
                     <label class="input-field">
-                      <span class="input-field-label">Label</span>
+                      <span class="input-field-label">Team</span>
                       <span class="input-wrap"><input class="input-el" value="Design System" /></span>
                     </label>
                   </div>
                   <label class="input-field">
-                    <span class="input-field-label">Label</span>
+                    <span class="input-field-label">Description</span>
                     <textarea class="modal-textarea" placeholder="Enter your description"></textarea>
                   </label>
                 </div>
@@ -571,6 +571,7 @@
           <div class="component" style="grid-column: 1 / -1;">
             <p class="component-label">Toast · semantic variants</p>
             <div style="display: flex; flex-direction: column; gap: var(--space-3); align-items: flex-start;">
+              <div class="toast toast--default"><span class="toast-icon"><span class="material-symbols-rounded">notifications</span></span><div class="toast-content"><span class="toast-title">New comment</span><span class="toast-message">Someone replied to your thread.</span></div><button class="toast-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button></div>
               <div class="toast toast--success"><span class="toast-icon"><span class="material-symbols-rounded">check_circle</span></span><div class="toast-content"><span class="toast-title">Project saved</span><span class="toast-message">Your changes are now live.</span></div><button class="toast-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button></div>
               <div class="toast toast--error"><span class="toast-icon"><span class="material-symbols-rounded">error</span></span><div class="toast-content"><span class="toast-title">Upload failed</span><span class="toast-message">The file exceeded 10 MB. Try a smaller image.</span></div><button class="toast-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button></div>
               <div class="toast toast--warning"><span class="toast-icon"><span class="material-symbols-rounded">warning</span></span><div class="toast-content"><span class="toast-title">Storage almost full</span><span class="toast-message">You've used 92% of your monthly quota.</span></div><button class="toast-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button></div>
@@ -583,10 +584,10 @@
           </div>
 
           <div class="component" style="grid-column: 1 / -1;">
-            <p class="component-label">Tooltip · variants</p>
+            <p class="component-label">Tooltip · hover or tab to a trigger to reveal it</p>
             <div style="display: flex; gap: var(--space-6); flex-wrap: wrap; align-items: flex-start; padding-top: var(--space-6);">
-              <span class="tooltip-anchor"><button class="btn btn-secondary btn--icon" aria-label="More"><span class="material-symbols-rounded">more_vert</span></button><span class="tooltip" style="position: absolute; top: -36px; left: 0;">More actions</span></span>
-              <span class="tooltip-anchor"><button class="btn btn-secondary btn--sm">Hover me</button><span class="tooltip" style="position: absolute; top: -36px; left: 0;">Helpful info about this control.</span></span>
+              <span class="tooltip-anchor"><button class="btn btn-secondary btn--icon" aria-label="More"><span class="material-symbols-rounded">more_vert</span></button><span class="tooltip tooltip--top">More actions</span></span>
+              <span class="tooltip-anchor"><button class="btn btn-secondary btn--sm">Hover me</button><span class="tooltip tooltip--bottom">Helpful info about this control.</span></span>
               <span class="tooltip"><span>Tooltip on its own — anchored to whatever you place it near.</span></span>
             </div>
           </div>
