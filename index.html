@@ -95,6 +95,7 @@
           <a href="#elevation" class="sidebar-link"><span class="sidebar-link-num">07</span><span>Elevation</span></a>
           <a href="#brand-expression" class="sidebar-link"><span class="sidebar-link-num">08</span><span>Brand expression</span></a>
           <a href="#illustration" class="sidebar-link"><span class="sidebar-link-num">09</span><span>Illustration</span></a>
+          <a href="#dataviz" class="sidebar-link"><span class="sidebar-link-num">10</span><span>Data visualization</span></a>
         </div>
         <div class="sidebar-section">
           <span class="sidebar-section-title">Components</span>
@@ -1459,6 +1460,60 @@
         </div>
 
         <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Instructions · diagrams may pull from either palette</p>
+          <div class="diagram-instructions">
+            <div class="diagram-instruction-step">
+              <div class="diagram-instruction-circle"><span class="material-symbols-rounded" aria-hidden="true">search</span></div>
+              <p class="diagram-instruction-num">01 Locate</p>
+              <p class="diagram-instruction-desc">Find the component before starting.</p>
+            </div>
+            <div class="diagram-instruction-step">
+              <div class="diagram-instruction-circle"><span class="material-symbols-rounded" aria-hidden="true">swap_horiz</span></div>
+              <p class="diagram-instruction-num">02 Align</p>
+              <p class="diagram-instruction-desc">Line it up with the marked edge.</p>
+            </div>
+            <div class="diagram-instruction-step">
+              <div class="diagram-instruction-circle"><span class="material-symbols-rounded" aria-hidden="true">lock</span></div>
+              <p class="diagram-instruction-num">03 Secure</p>
+              <p class="diagram-instruction-desc">Fasten until it clicks into place.</p>
+            </div>
+            <div class="diagram-instruction-step">
+              <div class="diagram-instruction-circle"><span class="material-symbols-rounded" aria-hidden="true">check</span></div>
+              <p class="diagram-instruction-num">04 Confirm</p>
+              <p class="diagram-instruction-desc">Check for the confirmation indicator.</p>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">Diagrams can convey action and instruction more clearly than photography, and — unlike illustration — are free to pull color from either the primary or secondary palette. This sequence uses Rich Red Deep to keep it visually distinct from the process-flow example above.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Alternate colorways · the same diagram, reversed on a brand canvas</p>
+          <div class="diagram-colorway-row">
+            <div class="diagram-colorway-canvas" style="background: var(--green-600);">
+              <div class="diagram-colorway-flow">
+                <div class="diagram-colorway-node"></div>
+                <span class="material-symbols-rounded diagram-colorway-arrow" aria-hidden="true">arrow_forward</span>
+                <div class="diagram-colorway-node diagram-colorway-node--dot"></div>
+                <span class="material-symbols-rounded diagram-colorway-arrow" aria-hidden="true">arrow_forward</span>
+                <div class="diagram-colorway-node diagram-colorway-node--solid"></div>
+              </div>
+              <p class="diagram-colorway-label">Process flow · reversed</p>
+            </div>
+            <div class="diagram-colorway-canvas" style="background: var(--rich-red-deep);">
+              <div class="diagram-colorway-flow">
+                <div class="diagram-colorway-node"></div>
+                <span class="material-symbols-rounded diagram-colorway-arrow" aria-hidden="true">arrow_forward</span>
+                <div class="diagram-colorway-node diagram-colorway-node--dot"></div>
+                <span class="material-symbols-rounded diagram-colorway-arrow" aria-hidden="true">arrow_forward</span>
+                <div class="diagram-colorway-node diagram-colorway-node--solid"></div>
+              </div>
+              <p class="diagram-colorway-label">Process flow · secondary colorway</p>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">The same line-weight and fill-treatment system, rendered in reverse on a solid brand-color canvas — a diagram can sit on a colored background the same way <a href="#brand-expression">the leaf</a> does, as long as the line weight and fill logic stay identical to the on-white version.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
           <p class="scale-label">Illustration placeholder · reserve the space, not the artwork</p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-4);">
             <div class="illustration-slot illustration-slot--landscape">
@@ -1486,6 +1541,116 @@
           <p class="scale-label">Character illustration · asset dependency</p>
           <div class="icon-note">
             <p><strong>Not built here.</strong> The brand's people and object illustrations (the padlock, the corn, the test tube, every human figure) are hand-drawn in one approved style, with a dedicated skin-tone and hair-color palette (guidelines p.104) reserved for that use only — not brand colors, and not usable anywhere else. No source files for that style exist in this repo, and the guidelines explicitly warn against off-style substitutes, so this system does not attempt hand-coded stand-ins. Use the illustration placeholder above to hold the layout until the approved asset library lands, the same way <a href="assets/brand-photography/README.md">brand photography</a> is standing in for a licensed library today.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="block" id="dataviz">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow">10 / Data visualization</p>
+            <h2 class="section-title">Data visualization</h2>
+          </div>
+          <p class="section-lede">Data is a <strong>functional element first</strong> — the brand's own rule is that color differentiates data points, but functionality always takes precedent over color, and a chart should never lean on color alone. Series colors follow a <strong>fixed order</strong>, never a cycled or arbitrary hue rotation, and every chart is either <strong>functional</strong> (the everyday, template-driven default) or <strong>expressive</strong> (a bolder treatment earned only in high-craft moments) — never a blend of both.</p>
+        </div>
+
+        <div class="scale-block">
+          <p class="scale-label">Categorical sequence · fixed order, lead with green</p>
+          <div class="dataviz-sequence">
+            <div class="chart-color-step" style="background:#00843D;"><span class="chart-color-step-num">1</span><span class="chart-color-step-name">Leaf Green<br>100%</span></div>
+            <div class="chart-color-step" style="background:#03441F;"><span class="chart-color-step-num">2</span><span class="chart-color-step-name">Deep Green<br>100%</span></div>
+            <div class="chart-color-step chart-color-step--light" style="background:#BDE588;"><span class="chart-color-step-num">3</span><span class="chart-color-step-name">Soft Green<br>100%</span></div>
+            <div class="chart-color-step" style="background:#4DA977;"><span class="chart-color-step-num">4</span><span class="chart-color-step-name">Leaf Green<br>70%</span></div>
+            <div class="chart-color-step" style="background:#4F7C62;"><span class="chart-color-step-num">5</span><span class="chart-color-step-name">Deep Green<br>70%</span></div>
+            <div class="chart-color-step chart-color-step--light" style="background:#D1EDAC;"><span class="chart-color-step-num">6</span><span class="chart-color-step-name">Soft Green<br>70%</span></div>
+          </div>
+
+          <div class="dataviz-extension-row">
+            <div class="dataviz-extension-set">
+              <span class="dataviz-extension-label">Beyond 6 series · add one set</span>
+              <div class="dataviz-extension-swatches">
+                <span style="background:#003366;"></span><span style="background:#007681;"></span><span style="background:#BCEDFF;"></span>
+              </div>
+            </div>
+            <div class="dataviz-extension-set">
+              <span class="dataviz-extension-label">&nbsp;</span>
+              <div class="dataviz-extension-swatches">
+                <span style="background:#9E2A2F;"></span><span style="background:#FF7F4D;"></span><span style="background:#FFD77D;"></span>
+              </div>
+            </div>
+            <div class="dataviz-extension-set">
+              <span class="dataviz-extension-label">&nbsp;</span>
+              <div class="dataviz-extension-swatches">
+                <span style="background:#4B351D;"></span><span style="background:#D8C092;"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="icon-note" style="margin-top: var(--space-5);">
+            <p><strong>Validated, not just documented.</strong> Checked against the accepted color-vision-deficiency and contrast rules a chart palette needs: steps 1–3 separate cleanly, but the 4–6 tint pair (Leaf 70% vs. Deep 70%) sits close enough that even full-color vision struggles to tell them apart at a glance. Treat 4–6 as a last resort, not a default — reach for one of the secondary sets above before doubling into tints, and always pair every series with a direct value label so color is never the only thing carrying the data, per the brand's own accessibility note.</p>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Functional vs. expressive · two different jobs, never mixed</p>
+          <div class="dataviz-cards">
+            <div class="dataviz-card dataviz-card--functional">
+              <p class="dataviz-card-eyebrow">Functional data</p>
+              <p class="dataviz-card-body">The everyday default — presentations, dashboards, functional documents. Built from a template and used as it comes: square corners (rounded corners aren't replicable across every platform that renders this data), clear labels, no unnecessary styling. This is what almost every chart in this system should be.</p>
+            </div>
+            <div class="dataviz-card dataviz-card--expressive">
+              <p class="dataviz-card-eyebrow">Expressive data</p>
+              <p class="dataviz-hero-number">880,000</p>
+              <p class="dataviz-card-body">Reserved for high-craft moments — an annual report, a brochure — where design craft is earned. Rounded corners and a bolder, more bespoke label treatment are permitted here only; a dark canvas with the primary palette (black, white, Leaf Green, Soft Green) carries a single bold statistic further than a template chart could.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Worked example · functional bar chart</p>
+          <div class="bar-chart">
+            <div class="bar-chart-col">
+              <span class="bar-chart-value">4.2</span>
+              <div class="bar-chart-bar" style="height: 32%; background:#00843D;"></div>
+              <span class="bar-chart-label">Q1</span>
+            </div>
+            <div class="bar-chart-col">
+              <span class="bar-chart-value">7.8</span>
+              <div class="bar-chart-bar" style="height: 60%; background:#03441F;"></div>
+              <span class="bar-chart-label">Q2</span>
+            </div>
+            <div class="bar-chart-col">
+              <span class="bar-chart-value">13.0</span>
+              <div class="bar-chart-bar" style="height: 100%; background:#BDE588; border: 1px solid var(--border);"></div>
+              <span class="bar-chart-label">Q3</span>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">Built from steps 1–3 only — the part of the sequence that's actually safe to ship — with a direct value label above every bar. Square corners throughout: this is functional data, not an expressive moment.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Infographics · proportion by repetition</p>
+          <div class="pictogram-grid">
+            <span class="material-symbols-rounded is-active" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded is-active" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded is-active" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-4);">3 in 10 — a single repeated glyph, colored by proportion. The brand treats infographics as <strong>functional, not illustration</strong>: they may borrow the graphic language (the leaf, a single icon), but the job is still to communicate a number clearly, not to decorate.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <div class="icon-note">
+            <p><strong>Don'ts.</strong> Never round the corners on functional/template data — it isn't replicable everywhere this data renders. Never let color alone carry the difference between series; a legend or a direct label always accompanies it. Never reach for a secondary colorway "sporadically" — it's an intentional accessibility or brand-architecture choice, not decoration. And never build a chart that looks like data but communicates nothing of importance — if the content next to it is really a bullet list, use a bullet list.</p>
           </div>
         </div>
 

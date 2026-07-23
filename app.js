@@ -278,6 +278,7 @@
         { title: 'Elevation', category: 'System', page: 'index.html', anchor: '#elevation' },
         { title: 'Brand expression', category: 'System', page: 'index.html', anchor: '#brand-expression' },
         { title: 'Illustration & diagrams', category: 'System', page: 'index.html', anchor: '#illustration' },
+        { title: 'Data visualization', category: 'System', page: 'index.html', anchor: '#dataviz' },
         { title: 'Authentication', category: 'Forms & inputs', page: 'forms.html', anchor: '#authentication' },
         { title: 'Button', category: 'Forms & inputs', page: 'forms.html', anchor: '#buttons' },
         { title: 'Checkbox', category: 'Forms & inputs', page: 'forms.html', anchor: '#checkbox' },
@@ -578,7 +579,7 @@
     // derived from the page's own last-modified timestamp so it never needs
     // manual editing.
     (function () {
-      const SPROUT_VERSION = '2.5';
+      const SPROUT_VERSION = '2.6';
 
       document.querySelectorAll('.js-version').forEach(el => {
         el.textContent = 'v' + SPROUT_VERSION;

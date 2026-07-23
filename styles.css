@@ -1938,6 +1938,90 @@
       margin-top: 30px; /* vertically center against the 72px node above */
     }
 
+    /* Instructions · Illustrations & diagrams · Diagrams — a numbered action sequence,
+       distinct from a process-flow diagram. Colored with Rich Red Deep rather than green:
+       the brand's own rule for diagrams (unlike illustration) is that either palette is
+       fair game — vetted against the badge component's existing AA contrast note so this
+       reuses a combination already known to hold up, rather than reaching for
+       Bright Yellow Deep, which the badge styles already found fails white-text contrast. */
+    .diagram-instructions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+    .diagram-instruction-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      width: 130px;
+      text-align: center;
+    }
+    .diagram-instruction-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 1.5px solid var(--rich-red-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--rich-red-deep);
+      box-sizing: border-box;
+    }
+    .diagram-instruction-circle .material-symbols-rounded { font-size: 28px; }
+    .diagram-instruction-num {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .diagram-instruction-desc {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Alternate colorways · Illustrations & diagrams · Techniques to consider. The same
+       process-flow diagram, reversed (white line/fill on a solid color) the way the brand's
+       own wheat-mill example ships in both a green and an orange canvas. Kept as small,
+       dedicated white-on-color classes rather than reusing .diagram-node, since those
+       assume a light page surface and would need per-theme overrides to invert safely. */
+    .diagram-colorway-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-4);
+    }
+    .diagram-colorway-canvas {
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      color: #fff;
+    }
+    .diagram-colorway-flow {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .diagram-colorway-node {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid #fff;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+    .diagram-colorway-node--dot {
+      background-image: radial-gradient(circle, #fff 1.5px, transparent 1.6px);
+      background-size: 7px 7px;
+    }
+    .diagram-colorway-node--solid { background: #fff; }
+    .diagram-colorway-arrow { color: rgba(255,255,255,0.75); flex-shrink: 0; }
+    .diagram-colorway-label {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      margin-top: var(--space-4);
+    }
+
     /* Illustration placeholder · reserves the SPACE an approved illustration will
        occupy without inventing artwork of our own — illustration is an asset
        dependency here (see the note below). Swap the aspect ratio to match the
@@ -1974,6 +2058,168 @@
     .illustration-slot--square    { aspect-ratio: 1 / 1; }
     .illustration-slot--landscape { aspect-ratio: 16 / 9; }
     .illustration-slot--portrait  { aspect-ratio: 3 / 4; }
+
+    /* ---------- Data visualization ---------- */
+    /* Categorical sequence · Brand Guidelines · Data visualization · Process. The brand
+       fixes the series order — Leaf Green 100 → Deep Green 100 → Soft Green 100 → the same
+       three at 70% — rather than letting a chart cycle hues freely. Validated against the
+       CVD/contrast rules a chart palette actually needs (see the caveat note below): the
+       first three pass cleanly, but the two 70% tints sit close enough to fail a strict
+       normal-vision separation check, so they're marked as a last resort, not a default. */
+    .dataviz-sequence {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+    .chart-color-step {
+      flex: 1 1 90px;
+      min-width: 90px;
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      box-sizing: border-box;
+      color: #fff;
+    }
+    .chart-color-step-num {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0.85;
+    }
+    .chart-color-step-name {
+      display: block;
+      font-family: var(--font-micro);
+      font-size: 11px;
+      margin-top: var(--space-5);
+      opacity: 0.85;
+    }
+    .chart-color-step--dark,
+    .chart-color-step--light { color: var(--text); }
+
+    .dataviz-extension-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+      margin-top: var(--space-4);
+    }
+    .dataviz-extension-set {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .dataviz-extension-label {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .dataviz-extension-swatches { display: flex; gap: 4px; }
+    .dataviz-extension-swatches span {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm, 4px);
+      display: block;
+    }
+
+    /* Functional vs Expressive · Data visualization · Examples. Two different jobs, not
+       two skins: functional data is the everyday, template-driven chart (square corners —
+       rounded corners aren't replicable across every platform that renders it) while
+       expressive data is reserved for high-craft moments (reports, brochures) where a
+       bolder, bespoke treatment — rounded corners, display-type callouts — is earned. */
+    .dataviz-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-5);
+    }
+    .dataviz-card {
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .dataviz-card--functional {
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .dataviz-card--expressive {
+      background: var(--surface-deep);
+      color: #fff;
+    }
+    .dataviz-card-eyebrow {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .dataviz-card--functional .dataviz-card-eyebrow { color: var(--text-muted); }
+    .dataviz-card--expressive .dataviz-card-eyebrow { color: var(--soft-green-400); }
+    .dataviz-card-body {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .dataviz-card--functional .dataviz-card-body { color: var(--text-soft); }
+    .dataviz-card--expressive .dataviz-card-body { color: rgba(255,255,255,0.85); }
+    .dataviz-hero-number {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4vw, 56px);
+      line-height: 1;
+      letter-spacing: var(--display-tracking);
+      color: var(--soft-green-400);
+    }
+
+    /* Worked bar-chart example · uses only the three safe, validated steps from the
+       sequence above (never the confusable 70% pair), each bar carrying a direct value
+       label — color differentiates, the label is what actually reads (brand's own
+       accessibility note: "data is a functional element and functionality should always
+       take precedent over color"). */
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-4);
+      height: 180px;
+      padding: 0 var(--space-2);
+    }
+    .bar-chart-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+      gap: var(--space-2);
+    }
+    .bar-chart-value {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .bar-chart-bar {
+      width: 100%;
+      max-width: 48px;
+      border-radius: 2px 2px 0 0; /* functional data: never fully rounded, see Don'ts below */
+    }
+    .bar-chart-label {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Pictogram grid · Data visualization · Infographics ("functional... not illustration").
+       Reuses a single Material Symbols glyph rather than drawing a figure — the technique is
+       proportion-by-repetition (isotype charts), same job as the brand's silhouette grid. */
+    .pictogram-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-2);
+      max-width: 260px;
+    }
+    .pictogram-grid .material-symbols-rounded {
+      font-size: 32px;
+      color: var(--border);
+    }
+    .pictogram-grid .material-symbols-rounded.is-active { color: var(--brand); }
 
     /* ---------- Components ---------- */
     .component-grid {
