@@ -1408,6 +1408,170 @@
     .leaf-device-card[data-bg="deep"] .leaf-device-card-label,
     .leaf-device-card[data-bg="green"] .leaf-device-card-label { color: rgba(255,255,255,0.7); }
 
+    /* Brand canvas · the "single color graphic" technique (Brand Guidelines · Graphic
+       language). The leaf is the FRONT DOOR — used at top level, boldly, across the whole
+       canvas — never as a small inset stamp. Reserve this for that top-level moment (a page
+       hero, a section header, a cover); once inside the branded world, drop to .rounded-box
+       instead, per the brand's own primary/secondary device split. */
+    .brand-canvas {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      min-height: 320px;
+      padding: var(--space-7);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: var(--brand-canvas-bg, var(--green-600));
+    }
+    .brand-canvas .leaf-device {
+      position: absolute;
+      top: -10%;
+      left: -8%;
+      width: 130%;
+      height: auto;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .brand-canvas-content { position: relative; z-index: 1; max-width: 60%; }
+    .brand-canvas-eyebrow {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--brand-canvas-fg, #fff);
+      opacity: 0.75;
+      margin-bottom: var(--space-2);
+    }
+    .brand-canvas-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3vw, 40px);
+      line-height: 1.05;
+      letter-spacing: var(--display-tracking);
+      color: var(--brand-canvas-fg, #fff);
+    }
+    .brand-canvas-meta {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--brand-canvas-fg, #fff);
+      opacity: 0.7;
+      margin-top: var(--space-3);
+    }
+
+    /* Rounded box · the secondary graphic device (Brand Guidelines · Graphic language).
+       Once inside the branded world, the leaf steps aside and content lives in this "less
+       branded" container — fact sheets, detailed layouts, repeated content that would turn
+       repetitive under the leaf. Two surfaces, matching the brand's own light/dark examples;
+       never place the leaf device or a secondary palette color inside one (brand rule). */
+    .rounded-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-6); }
+    .rounded-box--deep { background: var(--surface-deep); border-color: var(--surface-deep); color: #fff; }
+
+    /* Expressive stat · the big-serif-number treatment used inside a rounded box
+       ("160,000+ employees"). Big Caslon carries the number as a display moment; the label
+       stays on the sans, matching the brand's headline/body type split. */
+    .stat-block { display: flex; flex-direction: column; gap: var(--space-2); }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1;
+      letter-spacing: var(--display-tracking);
+      color: var(--brand);
+    }
+    .rounded-box--deep .stat-value { color: var(--soft-green-400); }
+    .stat-label {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: var(--text-soft);
+    }
+    .rounded-box--deep .stat-label { color: rgba(255,255,255,0.75); }
+
+    /* Leaf as window · the leaf silhouette clips a photo (Brand Guidelines · Graphic
+       language), sitting on a solid-color canvas with a caption below. Uses
+       #cargill-leaf-clip (same path as the graphic device, converted to objectBoundingBox)
+       — aspect-ratio must stay 1000/394 or the clip stretches out of shape. The stripe
+       variant (a soft edge between photo and canvas) is a separate provided asset not yet
+       in the library; add it here once available, per the brand's "never redraw" rule. */
+    .leaf-window-canvas {
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+    .leaf-window { aspect-ratio: 1000 / 394; width: 100%; }
+    .leaf-window-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      clip-path: url(#cargill-leaf-clip);
+    }
+    .leaf-window-content {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+    .leaf-window-title {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.4vw, 28px);
+      line-height: 1.15;
+      letter-spacing: var(--display-tracking-sm);
+      color: var(--text);
+      max-width: 60%;
+    }
+
+    /* Leaf over image · the leaf sits as a solid shape ON TOP of a full-bleed photo (Brand
+       Guidelines · Graphic language), title text riding on the leaf itself for contrast —
+       distinct from leaf-as-window, which clips the photo INTO the leaf. The brand lists
+       scale/position/crop/reflection/rotation/color/transparency/stripe as the available
+       treatments for fitting a given photo; this is the base, untreated composition. */
+    .leaf-over-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      aspect-ratio: 3 / 2;
+    }
+    .leaf-over-image-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .leaf-over-image .leaf-device {
+      position: absolute;
+      top: -18%;
+      left: -12%;
+      width: 125%;
+      height: auto;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .leaf-over-image-content {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      max-width: 60%;
+      padding: var(--space-6);
+      /* The leaf covers most of this corner but thins toward its edge, and photos vary —
+         a soft scrim (same technique as .card-expressive / .carousel-title) keeps the text
+         legible over whatever's directly behind it, leaf or photo. */
+      background: linear-gradient(180deg, rgba(2, 55, 25, 0.45) 0%, rgba(2, 55, 25, 0.12) 75%, transparent 100%);
+    }
+    .leaf-over-image-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.6vw, 32px);
+      line-height: 1.1;
+      letter-spacing: var(--display-tracking-sm);
+      color: #fff;
+    }
+    .leaf-over-image-meta {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      margin-top: var(--space-2);
+    }
+
     /* Official Cargill mark, referenced via <use href="#cargill-logo"> */
     .cargill-logo {
       width: 180px;

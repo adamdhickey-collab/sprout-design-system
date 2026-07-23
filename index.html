@@ -36,6 +36,12 @@
     <symbol id="cargill-leaf-device" viewBox="0 0 1000 394">
       <path style="fill: var(--leaf-device-fill, #00843D)" d="M999.743 380.577C999.743 380.577 910.436 387.51 848.398 378.934C705.783 359.316 573.079 260.867 514.431 228.102C386.966 157.025 335.353 152.763 269.464 171.405C161.309 200.832 97.7301 289.677 36.7194 393.159C25.0616 387.459 12.6849 383.042 0 379.858C34.9219 305.7 167.677 67.2041 441.763 10.4559C716.208 -46.4976 1010.32 136.586 999.743 380.577Z"/>
     </symbol>
+    <!-- Same leaf path as a clipPath, for the "leaf as window" technique — clips a photo to
+         the leaf silhouette (.leaf-window). objectBoundingBox lets it scale to any element's
+         box without a manual viewBox-to-pixel conversion. -->
+    <clipPath id="cargill-leaf-clip" clipPathUnits="objectBoundingBox">
+      <path d="M0.999743 0.966185C0.999743 0.966185 0.910436 0.983274 0.848398 0.961761C0.705783 0.912223 0.573079 0.662099 0.514431 0.578939C0.386966 0.398540 0.335353 0.387721 0.269464 0.435038C0.161309 0.509726 0.097730 0.735221 0.036719 0.997865C0.025062 0.983140 0.012685 0.972188 0 0.964102C0.034922 0.775888 0.167677 0.170569 0.441763 0.026538C0.716208 -0.117963 1.010320 0.346670 0.999743 0.966185Z"/>
+    </clipPath>
   </svg>
 
   <div class="app-layout">
@@ -87,6 +93,7 @@
           <span class="sidebar-section-title">System</span>
           <a href="#themes" class="sidebar-link"><span class="sidebar-link-num">06</span><span>Themes</span></a>
           <a href="#elevation" class="sidebar-link"><span class="sidebar-link-num">07</span><span>Elevation</span></a>
+          <a href="#brand-expression" class="sidebar-link"><span class="sidebar-link-num">08</span><span>Brand expression</span></a>
         </div>
         <div class="sidebar-section">
           <span class="sidebar-section-title">Components</span>
@@ -1282,6 +1289,107 @@
                 <p class="container-box-body">Modal surface, floats well above the page.</p>
               </div>
               <div class="elevation-meta"><strong>shadow-lg</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="brand-expression">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow">08 / Brand expression</p>
+            <h2 class="section-title">Graphic language</h2>
+          </div>
+          <p class="section-lede">The leaf is the brand's <strong>primary device</strong> — the "front door," used boldly at top level (a hero, a section header, a cover). The <strong>rounded box</strong> is the secondary device: once inside the branded world, the leaf steps aside for a calmer, less-branded container fit for detailed, repeated content. Built from the graphic-device asset registered in <a href="#logo">Logo</a>.</p>
+        </div>
+
+        <div class="scale-block">
+          <p class="scale-label">Brand canvas · single color graphic</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-4);">
+            <div class="brand-canvas" style="--brand-canvas-bg: var(--green-600); --leaf-device-fill: var(--green-800);">
+              <svg class="leaf-device" viewBox="0 0 1000 394" aria-hidden="true"><use href="#cargill-leaf-device"/></svg>
+              <div class="brand-canvas-content">
+                <p class="brand-canvas-eyebrow">Sprout Design System</p>
+                <p class="brand-canvas-title">Nourishing the world, one interface at a time.</p>
+              </div>
+            </div>
+            <div class="brand-canvas" style="--brand-canvas-bg: var(--surface-deep); --leaf-device-fill: var(--soft-green-400); --brand-canvas-fg: var(--soft-green-400);">
+              <svg class="leaf-device" viewBox="0 0 1000 394" aria-hidden="true"><use href="#cargill-leaf-device"/></svg>
+              <div class="brand-canvas-content">
+                <p class="brand-canvas-eyebrow" style="color: #fff;">Cargill Brand Development</p>
+                <p class="brand-canvas-title" style="color: #fff;">Building a stronger Cargill brand.</p>
+                <p class="brand-canvas-meta" style="color: #fff;">February 2026 · Version 2.0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Rounded box · the secondary device</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4);">
+            <div class="rounded-box">
+              <div class="stat-block">
+                <span class="stat-value">160,000+</span>
+                <span class="stat-label">Employees worldwide</span>
+              </div>
+            </div>
+            <div class="rounded-box rounded-box--deep">
+              <div class="stat-block">
+                <span class="stat-value">70+</span>
+                <span class="stat-label">Countries with a Cargill presence</span>
+              </div>
+            </div>
+            <div class="rounded-box">
+              <p class="container-box-title" style="margin-bottom: 4px;">Fact sheet</p>
+              <p class="container-box-body">Detailed, repeated content — the kind that would turn monotonous under the leaf — lives here instead. No leaf, no secondary color; just the calm surface.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Leaf as window · a photo inside the leaf silhouette</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: var(--space-4);">
+            <div class="leaf-window-canvas" style="background: var(--soft-green-50);">
+              <div class="leaf-window">
+                <img class="leaf-window-img" src="assets/brand-photography/systems-cornfield-wide.png" alt="Cornfield under a wide sky" />
+              </div>
+              <div class="leaf-window-content">
+                <p class="leaf-window-title">A wide-spanning view of the systems we work in.</p>
+                <svg class="cargill-logo cargill-logo--leaf-mono" viewBox="0 0 432 202" role="img" aria-label="Cargill" style="width: 96px;"><use href="#cargill-logo"/></svg>
+              </div>
+            </div>
+            <div class="leaf-window-canvas" style="background: var(--surface-deep);">
+              <div class="leaf-window">
+                <img class="leaf-window-img" src="assets/brand-photography/world-farmer-tablet-field.png" alt="A farmer examining a crop with a tablet in a green field" />
+              </div>
+              <div class="leaf-window-content">
+                <p class="leaf-window-title" style="color: #fff;">Technology meets the field, everywhere we grow.</p>
+                <svg class="cargill-logo cargill-logo--white-mono" viewBox="0 0 432 202" role="img" aria-label="Cargill" style="width: 96px;"><use href="#cargill-logo"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Leaf over image · the leaf rides on top of a full-bleed photo</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: var(--space-4);">
+            <div class="leaf-over-image" style="--leaf-device-fill: var(--green-600);">
+              <img class="leaf-over-image-img" src="assets/brand-photography/systems-wind-turbine-detail.png" alt="Detail of a wind turbine against a blue sky" />
+              <svg class="leaf-device" viewBox="0 0 1000 394" aria-hidden="true"><use href="#cargill-leaf-device"/></svg>
+              <div class="leaf-over-image-content">
+                <p class="leaf-over-image-title">Powering our systems, responsibly.</p>
+                <p class="leaf-over-image-meta">Our systems · Detailed view</p>
+              </div>
+            </div>
+            <div class="leaf-over-image" style="--leaf-device-fill: var(--surface-deep);">
+              <img class="leaf-over-image-img" src="assets/brand-photography/systems-combine-harvester-sunset.png" alt="A combine harvester working a field at sunset" />
+              <svg class="leaf-device" viewBox="0 0 1000 394" aria-hidden="true"><use href="#cargill-leaf-device"/></svg>
+              <div class="leaf-over-image-content">
+                <p class="leaf-over-image-title">Strong roots, sustainable growth.</p>
+                <p class="leaf-over-image-meta">Our systems · Focused view</p>
+              </div>
             </div>
           </div>
         </div>

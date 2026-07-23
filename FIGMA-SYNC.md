@@ -28,6 +28,10 @@ Neither side updates automatically — drift is caught by the audit below.
 | CSS `transform: rotate(Ndeg)` on an icon state | Icon node `rotation` = N, **same base glyph as code** |
 | `<symbol id="cargill-logo">` in `index.html` + `.cargill-logo--*` modifiers | **Cargill logo** component set, one variant per modifier |
 | `<symbol id="cargill-leaf-device">` in `index.html` (from `assets/cargill-leaf.svg`) + `--leaf-device-fill` | **Leaf graphic device** component set (Logo page), one variant per colorway |
+| `.brand-canvas` (single color graphic) | **Brand canvas** component set, `Brand expression` page, one variant per colorway |
+| `.rounded-box` / `.rounded-box--deep` + `.stat-*` | **Rounded box** component set, `Brand expression` page |
+| `.leaf-window-canvas` (clip-path: `#cargill-leaf-clip`) | **Leaf as window** component set — Figma has no live clip-path, so the leaf-clipped area is a static boolean-intersection shape (leaf ∩ bounding rect), not a mask relationship |
+| `.leaf-over-image` | **Leaf over image** component set |
 
 The Figma pages panel is grouped to mirror the site's own left-nav structure —
 Cover → Foundations (Color, Typography, Layout & shape, Logo) → System (Elevation) →
@@ -65,6 +69,17 @@ Known intentional divergences:
 - Fonts: BigCaslonForCargill / HelveticaNow are licensed and not installed in the RBA
   Figma org. Stand-ins: **EB Garamond** for the serif, **Inter** for the sans (noted in
   every text style description). Swap when the real fonts are installed org-wide.
+- **Photography is a placeholder set.** The 12 images in `assets/brand-photography/`
+  were extracted from the brand guidelines PDF itself (screen-res only, ~590×440) as
+  an on-brand stand-in until the real licensed library is available — see that folder's
+  README. In Figma, the same components use flat photo-tone rectangles instead of actual
+  images (uploading local files as Figma image fills isn't reachable from this tooling
+  without a hosting step). Swap both sides for the real library together.
+- `node.isMask` did not render as expected when tested for the leaf-window clip (the
+  photo stayed an unclipped rectangle even with the mask correctly set and ordered).
+  Worked around with `figma.intersect()` — a static boolean intersection of the leaf
+  vector and the bounding rect — instead of a live mask relationship. Revisit `isMask`
+  if a future component genuinely needs a *live* mask (e.g. swappable image content).
 
 ## The drift audit (run any time, e.g. before a release)
 
