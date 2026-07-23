@@ -239,6 +239,17 @@
       --font-sans:    'HelveticaNowForCargill', 'Helvetica Neue', Arial, sans-serif;
       --font-micro:   'HelveticaNowMicroForCargill', 'HelveticaNowForCargill', Arial, sans-serif;
 
+      /* Editorial display tracking · the serif (Big Caslon for Cargill) voice, per Brand
+         Guidelines 2026 v2.0. Reserved for top-level DISPLAY headlines only — never body,
+         sub-headings, or UI (those are the sans, Helvetica Now). Brand spec: tracking 0 at
+         30px and above, eased slightly positive below that (the 16/20/30pt rule), and NEVER
+         negative — negative tracking on this face is off-brand. Sizes/line-heights stay as
+         each heading already defined them (fixed for the canonical scale rows, fluid clamps
+         for full-bleed heroes) — only tracking was the actual defect, so only tracking is
+         tokenized here. */
+      --display-tracking:     0;       /* brand: 0 at 30px+ */
+      --display-tracking-sm:  0.01em;  /* below ~30px, per the 16/20/30pt rule */
+
       /* Elevation */
       --shadow-sm: 0 1px 2px rgba(16, 28, 22, 0.06), 0 1px 1px rgba(16, 28, 22, 0.04);
       --shadow-md: 0 6px 16px rgba(16, 28, 22, 0.08), 0 2px 4px rgba(16, 28, 22, 0.05);
@@ -354,7 +365,7 @@
       font-weight: 400;
       font-size: 24px;
       line-height: 28px;
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking-sm);
       color: var(--brand);
     }
     .sidebar-brand-tagline {
@@ -600,7 +611,7 @@
       font-family: var(--font-display);
       font-size: clamp(48px, 6vw, 88px);
       line-height: 0.98;
-      letter-spacing: -0.01em;
+      letter-spacing: var(--display-tracking);
       color: var(--brand);
     }
     .hero-sub {
@@ -659,7 +670,7 @@
       font-size: clamp(40px, 5vw, 64px);
       line-height: 1;
       color: var(--brand);
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking);
     }
     .section-lede {
       font-size: 18px;
@@ -883,7 +894,7 @@
       line-height: 60px;
       font-weight: 400;
       color: var(--brand);
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking);
     }
     .type-h1-italic {
       font-family: var(--font-display);
@@ -892,6 +903,7 @@
       font-style: italic;
       font-weight: 400;
       color: var(--brand);
+      letter-spacing: var(--display-tracking);
     }
     .type-h2 {
       font-family: var(--font-sans);
@@ -963,7 +975,7 @@
       line-height: 80px;
       font-weight: 400;
       color: var(--brand);
-      letter-spacing: -0.01em;
+      letter-spacing: var(--display-tracking);
     }
 
     /* ---------- Corner radius ---------- */
@@ -1203,7 +1215,7 @@
       font-family: var(--font-display);
       font-size: 36px;
       line-height: 40px;
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking);
       color: var(--brand);
     }
     .component-heading-desc {
@@ -1360,6 +1372,41 @@
     .logo-card[data-bg="green"] .logo-card-label,
     .logo-card[data-bg="deep"] .logo-card-label,
     .logo-card[data-bg="dark"] .logo-card-label { color: rgba(255,255,255,0.7); }
+
+    /* Cargill leaf graphic device, referenced via <use href="#cargill-leaf-device">. Base
+       element only — this is the raw asset, not a composited technique (leaf-as-window,
+       leaf-over-image, text-over-wave, etc.), which are separate components. */
+    .leaf-device { display: block; width: 100%; height: auto; }
+    .leaf-device-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-4);
+    }
+    /* Fills its card edge-to-edge — per Brand Guidelines, the device is used "boldly across
+       entire canvases," never as a small inset stamp, so (unlike .logo-card) there is no
+       padding around it. */
+    .leaf-device-card {
+      aspect-ratio: 1000 / 394;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+    }
+    .leaf-device-card .leaf-device { height: 100%; object-fit: cover; }
+    .leaf-device-card[data-bg="paper"] { background: var(--soft-green-50); } /* Brand: White Green #F5F9ED */
+    .leaf-device-card[data-bg="deep"]  { background: var(--surface-deep); }
+    .leaf-device-card[data-bg="green"] { background: var(--green-600); }
+    .leaf-device-card-label {
+      position: absolute;
+      bottom: var(--space-3);
+      left: var(--space-4);
+      font-family: var(--font-micro);
+      font-size: 11px;
+      letter-spacing: normal;
+      text-transform: none;
+      color: rgba(0, 0, 0, 0.55);
+    }
+    .leaf-device-card[data-bg="deep"] .leaf-device-card-label,
+    .leaf-device-card[data-bg="green"] .leaf-device-card-label { color: rgba(255,255,255,0.7); }
 
     /* Official Cargill mark, referenced via <use href="#cargill-logo"> */
     .cargill-logo {
@@ -1943,7 +1990,7 @@
       font-size: 28px;
       line-height: 32px;
       color: var(--brand);
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking-sm);
     }
     /* Expressive · brand-green variant */
     .card-expressive--brand {
@@ -3500,7 +3547,7 @@
       font-size: clamp(32px, 4vw, 56px);
       line-height: 1.02;
       color: #fff;
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking);
       margin-bottom: var(--space-4);
     }
     .hero-component-body {
@@ -3751,7 +3798,7 @@
       font-size: clamp(28px, 3vw, 40px);
       line-height: 1.05;
       color: #fff;
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking);
       max-width: 70%;
     }
     .carousel-actions {

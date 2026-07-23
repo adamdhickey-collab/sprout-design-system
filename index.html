@@ -30,6 +30,12 @@
       </g>
       <path style="fill: var(--leaf-fill, #00843D)" d="M344.125 74.0702C344.125 74.0702 326.725 75.4702 314.625 73.7702C286.825 69.9702 261.025 50.7702 249.625 44.3702C224.825 30.5702 214.725 29.6702 201.925 33.3702C180.825 39.0702 168.525 56.3702 156.625 76.5702C154.325 75.4702 151.925 74.5702 149.425 73.9702C156.225 59.5702 182.125 13.0702 235.425 2.07022C288.925 -9.12978 346.225 26.5702 344.125 74.0702Z"/>
     </symbol>
+    <!-- Cargill leaf graphic device — the wide "front door" crop used as the brand's primary
+         graphic device (distinct from the small leaf glyph inside #cargill-logo above). Saved
+         at assets/cargill-leaf.svg; imported verbatim, never redrawn. -->
+    <symbol id="cargill-leaf-device" viewBox="0 0 1000 394">
+      <path style="fill: var(--leaf-device-fill, #00843D)" d="M999.743 380.577C999.743 380.577 910.436 387.51 848.398 378.934C705.783 359.316 573.079 260.867 514.431 228.102C386.966 157.025 335.353 152.763 269.464 171.405C161.309 200.832 97.7301 289.677 36.7194 393.159C25.0616 387.459 12.6849 383.042 0 379.858C34.9219 305.7 167.677 67.2041 441.763 10.4559C716.208 -46.4976 1010.32 136.586 999.743 380.577Z"/>
+    </symbol>
   </svg>
 
   <div class="app-layout">
@@ -1055,6 +1061,29 @@
 
         <div class="icon-note" style="margin-top: var(--space-6);">
           <p><strong>Official Cargill mark.</strong> Every variant above renders from the official Cargill logo SVG (saved at <code>assets/cargill-logo.svg</code>). The wordmark path uses <code>currentColor</code> and the leaf is driven by <code>--leaf-fill</code>, so any new variant is one CSS class away.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Graphic device · the Cargill leaf</p>
+          <p class="section-lede" style="margin-bottom: var(--space-5);">A wider crop of the same leaf, used as the brand's primary graphic device — its own asset, not a scaled-up logo. Shown here as the raw shape only; the leaf-as-window, leaf-over-image, and stripe techniques it supports are built out separately.</p>
+          <div class="leaf-device-grid">
+            <div class="leaf-device-card" data-bg="paper">
+              <svg class="leaf-device" viewBox="0 0 1000 394" role="img" aria-label="Cargill leaf graphic device"><use href="#cargill-leaf-device"/></svg>
+              <span class="leaf-device-card-label">Leaf Green on White Green</span>
+            </div>
+            <div class="leaf-device-card" data-bg="deep" style="--leaf-device-fill: var(--soft-green-400);">
+              <svg class="leaf-device" viewBox="0 0 1000 394" role="img" aria-label="Cargill leaf graphic device"><use href="#cargill-leaf-device"/></svg>
+              <span class="leaf-device-card-label">Soft Green on Deep Green</span>
+            </div>
+            <div class="leaf-device-card" data-bg="green" style="--leaf-device-fill: var(--green-800);">
+              <svg class="leaf-device" viewBox="0 0 1000 394" role="img" aria-label="Cargill leaf graphic device"><use href="#cargill-leaf-device"/></svg>
+              <span class="leaf-device-card-label">Deep Green on Leaf Green</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="icon-note" style="margin-top: var(--space-6);">
+          <p><strong>Official graphic device.</strong> The wave above renders from the official leaf SVG (saved at <code>assets/cargill-leaf.svg</code>), imported verbatim — per Brand Guidelines, it must never be redrawn or re-traced. Fill is driven by <code>--leaf-device-fill</code>, following the same pattern as the logo's <code>--leaf-fill</code>.</p>
         </div>
       </div>
     </section>

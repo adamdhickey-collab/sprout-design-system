@@ -27,6 +27,7 @@ Neither side updates automatically — drift is caught by the audit below.
 | `.component .material-symbols-rounded { font-size: N }` | That icon node's `fontSize` = N |
 | CSS `transform: rotate(Ndeg)` on an icon state | Icon node `rotation` = N, **same base glyph as code** |
 | `<symbol id="cargill-logo">` in `index.html` + `.cargill-logo--*` modifiers | **Cargill logo** component set, one variant per modifier |
+| `<symbol id="cargill-leaf-device">` in `index.html` (from `assets/cargill-leaf.svg`) + `--leaf-device-fill` | **Leaf graphic device** component set (Logo page), one variant per colorway |
 
 The Figma pages panel is grouped to mirror the site's own left-nav structure —
 Cover → Foundations (Color, Typography, Layout & shape, Logo) → System (Elevation) →
