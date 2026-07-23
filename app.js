@@ -31,9 +31,30 @@
           if (link) {
             document.querySelectorAll('.sidebar-link--active').forEach((l) => l.classList.remove('sidebar-link--active'));
             link.classList.add('sidebar-link--active');
+            if (window.sproutExpandActiveNavGroup) window.sproutExpandActiveNavGroup();
           }
         }, 150);
       });
+    }
+
+    // Scroll the sidebar so the active group (or scroll-spy'd link) sits just below
+    // the top of the nav's own scroll area. The component groups are separate pages
+    // and the sidebar is its own scroll container, so a normal navigation would reset
+    // it to the top and drop the user far from the group they just opened. Returns the
+    // active element (so the drawer can focus it) or null. No-op when the sidebar isn't
+    // its own scroller (stacked no-JS mobile).
+    function sproutRevealActiveNav() {
+      const sidebar = document.querySelector('.sidebar');
+      if (!sidebar) return null;
+      if (window.sproutExpandActiveNavGroup) window.sproutExpandActiveNavGroup();
+      const active = sidebar.querySelector('.sidebar-group--active') ||
+                     sidebar.querySelector('.sidebar-link--active');
+      if (!active) return null;
+      if (sidebar.scrollHeight - sidebar.clientHeight > 4) {
+        const delta = active.getBoundingClientRect().top - sidebar.getBoundingClientRect().top;
+        sidebar.scrollTop = Math.max(0, sidebar.scrollTop + delta - 16);
+      }
+      return active;
     }
 
     // Sidebar scroll-spy · highlight the section closest to (and above) the viewport top
@@ -105,6 +126,56 @@
       });
 
       update();
+    })();
+
+    // Sidebar groups · expand/collapse, one open/closed state per group, remembered
+    // across page loads. A group starts expanded if it contains the current page's
+    // active link/section (so navigating in never lands on a collapsed target) or if
+    // the user previously left it open — collapsed otherwise. Scroll-spy's continuous
+    // updates deliberately do NOT re-trigger this (see setActive above) — only page
+    // load and explicit navigation force a group open, so scrolling never fights a
+    // group the user just closed by hand.
+    (function () {
+      const STORAGE_PREFIX = 'sprout-nav-open:';
+      const groups = document.querySelectorAll('.sidebar-section[data-nav-group]');
+
+      function setCollapsed(section, header, collapsed, persist) {
+        section.setAttribute('data-collapsed', collapsed ? 'true' : 'false');
+        header.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+        if (persist) {
+          try { localStorage.setItem(STORAGE_PREFIX + section.getAttribute('data-nav-group'), collapsed ? '0' : '1'); } catch (e) {}
+        }
+      }
+
+      groups.forEach(section => {
+        const key = section.getAttribute('data-nav-group');
+        const header = section.querySelector('.sidebar-section-header');
+        const body = section.querySelector('.sidebar-section-body');
+        if (!header || !body) return;
+
+        let stored = null;
+        try { stored = localStorage.getItem(STORAGE_PREFIX + key); } catch (e) {}
+        const hasActive = !!section.querySelector('.sidebar-link--active, .sidebar-group--active');
+        const startCollapsed = stored !== null ? stored === '0' : !hasActive;
+        setCollapsed(section, header, startCollapsed, false);
+
+        header.addEventListener('click', () => {
+          setCollapsed(section, header, section.getAttribute('data-collapsed') !== 'true', true);
+        });
+      });
+
+      // Exposed so sproutRevealActiveNav (and the hash-jump above) can force a group
+      // open without touching localStorage — correcting DISPLAY for the page you're
+      // actually on, not overriding what the user chose to leave closed elsewhere.
+      window.sproutExpandActiveNavGroup = function () {
+        const active = document.querySelector('.sidebar-link--active, .sidebar-group--active');
+        if (!active) return;
+        const section = active.closest('.sidebar-section[data-nav-group]');
+        if (!section || section.getAttribute('data-collapsed') !== 'true') return;
+        const header = section.querySelector('.sidebar-section-header');
+        section.setAttribute('data-collapsed', 'false');
+        if (header) header.setAttribute('aria-expanded', 'true');
+      };
     })();
 
     // Theme toggle · light / dark, persisted across pages
@@ -185,8 +256,16 @@
         trigger.setAttribute('aria-label', 'Close navigation');
         icon.textContent = 'close';
         document.body.style.overflow = 'hidden';
-        const f = focusables();
-        if (f.length) f[0].focus();
+        // Land on the current section: reveal the active group and focus it, so the
+        // focus trap has a target without .focus() scrolling the drawer back to the top.
+        const active = sproutRevealActiveNav();
+        if (active && active.focus) {
+          active.focus();
+          sproutRevealActiveNav(); // re-correct: focus() may nudge the scroll position
+        } else {
+          const f = focusables();
+          if (f.length) f[0].focus();
+        }
       }
 
       function close(returnFocus) {
@@ -232,6 +311,12 @@
       document.documentElement.setAttribute('data-nav', 'drawer');
     })();
 
+    // Sidebar continuity across pages · on the desktop column, keep the active group
+    // in view instead of resetting to the top of the nav (the mobile drawer handles
+    // this itself, on open, in the drawer IIFE above).
+    sproutRevealActiveNav();                                 // sync — set before first paint to avoid a jump
+    window.addEventListener('load', sproutRevealActiveNav);  // re-run once web fonts settle row heights
+
     // Search · Cmd/Ctrl+K palette across every Foundations section and component
     (function () {
       const INDEX = [
@@ -241,8 +326,11 @@
         { title: 'Layout & shape', category: 'Foundations', page: 'index.html', anchor: '#space' },
         { title: 'Iconography', category: 'Foundations', page: 'index.html', anchor: '#icons' },
         { title: 'Logo', category: 'Foundations', page: 'index.html', anchor: '#logo' },
-        { title: 'Themes', category: 'System', page: 'index.html', anchor: '#themes' },
-        { title: 'Elevation', category: 'System', page: 'index.html', anchor: '#elevation' },
+        { title: 'Themes', category: 'System', page: 'system.html', anchor: '#themes' },
+        { title: 'Elevation', category: 'System', page: 'system.html', anchor: '#elevation' },
+        { title: 'Brand expression', category: 'System', page: 'system.html', anchor: '#brand-expression' },
+        { title: 'Illustration & diagrams', category: 'System', page: 'system.html', anchor: '#illustration' },
+        { title: 'Data visualization', category: 'System', page: 'system.html', anchor: '#dataviz' },
         { title: 'Authentication', category: 'Forms & inputs', page: 'forms.html', anchor: '#authentication' },
         { title: 'Button', category: 'Forms & inputs', page: 'forms.html', anchor: '#buttons' },
         { title: 'Checkbox', category: 'Forms & inputs', page: 'forms.html', anchor: '#checkbox' },
@@ -543,7 +631,7 @@
     // derived from the page's own last-modified timestamp so it never needs
     // manual editing.
     (function () {
-      const SPROUT_VERSION = '1.5';
+      const SPROUT_VERSION = '2.7';
 
       document.querySelectorAll('.js-version').forEach(el => {
         el.textContent = 'v' + SPROUT_VERSION;

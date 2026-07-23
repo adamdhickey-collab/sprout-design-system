@@ -128,21 +128,23 @@
       --neutral-900:  #1C2722;
       --neutral-1000: #101C16;
 
-      /* Secondary palette, per Cargill Brand Guidelines 2024 v1.0. Small-proportion use
-         only — illustration/diagram, data visualization, brand-identity flex. Mid is each
-         family's core secondary color. */
+      /* Secondary palette, per Cargill Brand Guidelines 2026 v2.0. Small-proportion use
+         ONLY — illustration/diagram, data visualization, brand-identity flex. Never for
+         the leaf, type, or rounded boxes, and never as a substitute for a primary color.
+         v2.0 removed the vibrant-purple family and added Earth (two browns). Mid tones,
+         where present, are interpolations for ramp continuity; the brand specifies the
+         deep/light stops. */
       --rich-red-deep:         #9E2A2F;
       --rich-red-mid:          #EA5062;
       --rich-red-light:        #F7B9C0;
       --bright-yellow-deep:    #FF7F4D;
       --bright-yellow-mid:     #FFBC27;
       --bright-yellow-light:   #FFD77D;
+      --earth-deep:            #4B351D;
+      --earth-light:           #D8C092;
       --sky-blue-deep:         #007681;
       --sky-blue-mid:          #57D1FF;
       --sky-blue-light:        #BCEDFF;
-      --vibrant-purple-deep:   #393380;
-      --vibrant-purple-mid:    #7166FF;
-      --vibrant-purple-light:  #C6C2FF;
       --midnight-blue-deep:    #001A33;
       --midnight-blue-mid:     #003366;
       --midnight-blue-light:   #99ADC2;
@@ -236,6 +238,17 @@
       --font-display: 'BigCaslonForCargill', 'Big Caslon', 'EB Garamond', Georgia, serif;
       --font-sans:    'HelveticaNowForCargill', 'Helvetica Neue', Arial, sans-serif;
       --font-micro:   'HelveticaNowMicroForCargill', 'HelveticaNowForCargill', Arial, sans-serif;
+
+      /* Editorial display tracking · the serif (Big Caslon for Cargill) voice, per Brand
+         Guidelines 2026 v2.0. Reserved for top-level DISPLAY headlines only — never body,
+         sub-headings, or UI (those are the sans, Helvetica Now). Brand spec: tracking 0 at
+         30px and above, eased slightly positive below that (the 16/20/30pt rule), and NEVER
+         negative — negative tracking on this face is off-brand. Sizes/line-heights stay as
+         each heading already defined them (fixed for the canonical scale rows, fluid clamps
+         for full-bleed heroes) — only tracking was the actual defect, so only tracking is
+         tokenized here. */
+      --display-tracking:     0;       /* brand: 0 at 30px+ */
+      --display-tracking-sm:  0.01em;  /* below ~30px, per the 16/20/30pt rule */
 
       /* Elevation */
       --shadow-sm: 0 1px 2px rgba(16, 28, 22, 0.06), 0 1px 1px rgba(16, 28, 22, 0.04);
@@ -352,7 +365,7 @@
       font-weight: 400;
       font-size: 24px;
       line-height: 28px;
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking-sm);
       color: var(--brand);
     }
     .sidebar-brand-tagline {
@@ -431,6 +444,58 @@
     }
     .sidebar-link--active .sidebar-link-num { color: var(--brand); }
 
+    /* Collapsible sidebar groups · Start here / Foundations / System / Components can
+       each be expanded or collapsed independently, so a long nav (10 Foundations+System
+       links plus ~50 component anchors) doesn't have to render fully open all the time.
+       State is per-group and remembered across page loads (localStorage), but the group
+       containing the CURRENT page/section is always force-expanded on load — see
+       sproutExpandActiveNavGroup in app.js — so navigating in never lands on a
+       collapsed target. */
+    .sidebar-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: var(--space-2);
+      background: none;
+      border: none;
+      padding: 0 var(--space-3) 6px;
+      margin: 0;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      text-align: left;
+      border-radius: var(--corner-radius-base);
+    }
+    .sidebar-section-header:hover .sidebar-section-chevron { color: var(--text); }
+    .sidebar-section-header:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--brand);
+    }
+    .sidebar-section-header .sidebar-section-title { padding: 0; }
+    .sidebar-section-chevron {
+      font-size: 18px !important;
+      color: var(--text-muted);
+      transition: transform 0.15s ease, color 120ms ease;
+      flex-shrink: 0;
+    }
+    .sidebar-section[data-collapsed="true"] .sidebar-section-chevron { transform: rotate(-90deg); }
+    .sidebar-section-body {
+      display: grid;
+      grid-template-rows: 1fr;
+      transition: grid-template-rows 0.18s ease;
+    }
+    .sidebar-section-body-inner {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .sidebar-section[data-collapsed="true"] .sidebar-section-body { grid-template-rows: 0fr; }
+    @media (prefers-reduced-motion: reduce) {
+      .sidebar-section-body,
+      .sidebar-section-chevron { transition: none; }
+    }
 
     .sidebar-foot {
       padding: var(--space-5) var(--space-6) 0;
@@ -598,7 +663,7 @@
       font-family: var(--font-display);
       font-size: clamp(48px, 6vw, 88px);
       line-height: 0.98;
-      letter-spacing: -0.01em;
+      letter-spacing: var(--display-tracking);
       color: var(--brand);
     }
     .hero-sub {
@@ -657,7 +722,7 @@
       font-size: clamp(40px, 5vw, 64px);
       line-height: 1;
       color: var(--brand);
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking);
     }
     .section-lede {
       font-size: 18px;
@@ -881,7 +946,7 @@
       line-height: 60px;
       font-weight: 400;
       color: var(--brand);
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking);
     }
     .type-h1-italic {
       font-family: var(--font-display);
@@ -890,6 +955,7 @@
       font-style: italic;
       font-weight: 400;
       color: var(--brand);
+      letter-spacing: var(--display-tracking);
     }
     .type-h2 {
       font-family: var(--font-sans);
@@ -961,7 +1027,7 @@
       line-height: 80px;
       font-weight: 400;
       color: var(--brand);
-      letter-spacing: -0.01em;
+      letter-spacing: var(--display-tracking);
     }
 
     /* ---------- Corner radius ---------- */
@@ -1201,7 +1267,7 @@
       font-family: var(--font-display);
       font-size: 36px;
       line-height: 40px;
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking);
       color: var(--brand);
     }
     .component-heading-desc {
@@ -1358,6 +1424,226 @@
     .logo-card[data-bg="green"] .logo-card-label,
     .logo-card[data-bg="deep"] .logo-card-label,
     .logo-card[data-bg="dark"] .logo-card-label { color: rgba(255,255,255,0.7); }
+
+    /* Cargill leaf graphic device, referenced via <use href="#cargill-leaf-device">. Base
+       element only — this is the raw asset, not a composited technique (leaf-as-window,
+       leaf-over-image, text-over-wave, etc.), which are separate components. */
+    .leaf-device { display: block; width: 100%; height: auto; }
+    .leaf-device-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-4);
+    }
+    /* Fills its card edge-to-edge — per Brand Guidelines, the device is used "boldly across
+       entire canvases," never as a small inset stamp, so (unlike .logo-card) there is no
+       padding around it. */
+    .leaf-device-card {
+      aspect-ratio: 1000 / 394;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+    }
+    .leaf-device-card .leaf-device { height: 100%; object-fit: cover; }
+    .leaf-device-card[data-bg="paper"] { background: var(--soft-green-50); } /* Brand: White Green #F5F9ED */
+    .leaf-device-card[data-bg="deep"]  { background: var(--surface-deep); }
+    .leaf-device-card[data-bg="green"] { background: var(--green-600); }
+    .leaf-device-card-label {
+      position: absolute;
+      bottom: var(--space-3);
+      left: var(--space-4);
+      font-family: var(--font-micro);
+      font-size: 11px;
+      letter-spacing: normal;
+      text-transform: none;
+      color: rgba(0, 0, 0, 0.55);
+    }
+    .leaf-device-card[data-bg="deep"] .leaf-device-card-label,
+    .leaf-device-card[data-bg="green"] .leaf-device-card-label { color: rgba(255,255,255,0.7); }
+
+    /* Brand canvas · the "single color graphic" technique (Brand Guidelines · Graphic
+       language). The leaf is the FRONT DOOR — used at top level, boldly, across the whole
+       canvas — never as a small inset stamp. Reserve this for that top-level moment (a page
+       hero, a section header, a cover); once inside the branded world, drop to .rounded-box
+       instead, per the brand's own primary/secondary device split. */
+    .brand-canvas {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      min-height: 320px;
+      padding: var(--space-7);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: var(--brand-canvas-bg, var(--green-600));
+    }
+    .brand-canvas .leaf-device {
+      position: absolute;
+      top: -10%;
+      left: -8%;
+      width: 130%;
+      height: auto;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .brand-canvas-content { position: relative; z-index: 1; max-width: 60%; }
+    .brand-canvas-eyebrow {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--brand-canvas-fg, #fff);
+      opacity: 0.75;
+      margin-bottom: var(--space-2);
+    }
+    .brand-canvas-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3vw, 40px);
+      line-height: 1.05;
+      letter-spacing: var(--display-tracking);
+      color: var(--brand-canvas-fg, #fff);
+    }
+    .brand-canvas-meta {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--brand-canvas-fg, #fff);
+      opacity: 0.7;
+      margin-top: var(--space-3);
+    }
+
+    /* Rounded box · the secondary graphic device (Brand Guidelines · Graphic language).
+       Once inside the branded world, the leaf steps aside and content lives in this "less
+       branded" container — fact sheets, detailed layouts, repeated content that would turn
+       repetitive under the leaf. Two surfaces, matching the brand's own light/dark examples;
+       never place the leaf device or a secondary palette color inside one (brand rule). */
+    .rounded-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-6); }
+    .rounded-box--deep { background: var(--surface-deep); border-color: var(--surface-deep); color: #fff; }
+
+    /* Expressive stat · the big-serif-number treatment used inside a rounded box
+       ("160,000+ employees"). Big Caslon carries the number as a display moment; the label
+       stays on the sans, matching the brand's headline/body type split. */
+    .stat-block { display: flex; flex-direction: column; gap: var(--space-2); }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1;
+      letter-spacing: var(--display-tracking);
+      color: var(--brand);
+    }
+    .rounded-box--deep .stat-value { color: var(--soft-green-400); }
+    .stat-label {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: var(--text-soft);
+    }
+    .rounded-box--deep .stat-label { color: rgba(255,255,255,0.75); }
+
+    /* Leaf as window · the leaf silhouette clips a photo (Brand Guidelines · Graphic
+       language), sitting on a solid-color canvas with a caption below. Uses
+       #cargill-leaf-clip (same path as the graphic device, converted to objectBoundingBox)
+       — aspect-ratio must stay 1000/394 or the clip stretches out of shape. The stripe
+       variant (a soft edge between photo and canvas) is a separate provided asset not yet
+       in the library; add it here once available, per the brand's "never redraw" rule. */
+    .leaf-window-canvas {
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+    /* position:relative + the img taken out of flow (position:absolute) is required, not
+       decorative: inside a flex column, a percentage-height <img> leaks its OWN natural
+       aspect ratio into this box's flex-basis:auto sizing pass, silently overriding the
+       aspect-ratio below and squashing the leaf clip out of proportion. Pulling the img out
+       of flow removes it from that sizing pass entirely, so aspect-ratio is the only input —
+       confirmed by measuring the rendered box before/after (1.34 vs the correct 2.538). */
+    .leaf-window { aspect-ratio: 1000 / 394; width: 100%; position: relative; }
+    .leaf-window-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      clip-path: url(#cargill-leaf-clip);
+    }
+    .leaf-window-content {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+    .leaf-window-title {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.4vw, 28px);
+      line-height: 1.15;
+      letter-spacing: var(--display-tracking-sm);
+      color: var(--text);
+      max-width: 60%;
+    }
+
+    /* Leaf over image · the leaf sits as a solid shape ON TOP of a full-bleed photo (Brand
+       Guidelines · Graphic language), title text riding on the leaf itself for contrast —
+       distinct from leaf-as-window, which clips the photo INTO the leaf. The brand lists
+       scale/position/crop/reflection/rotation/color/transparency/stripe as the available
+       treatments for fitting a given photo; this is the base, untreated composition. */
+    .leaf-over-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      aspect-ratio: 3 / 2;
+    }
+    .leaf-over-image-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Scrim sits BELOW the leaf, ABOVE the photo — it exists only to darken whatever photo
+       peeks out past the leaf's edge near the text, so the leaf's own fill stays clean and
+       undarkened. A radial wash anchored at the text corner, sized well past the box's own
+       edges so it fades to nothing before it would ever show a boundary — no rectangle, no
+       visible ring, just a seamless gradient from strong (at the text) to gone. */
+    .leaf-over-image-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(140% 120% at 8% 6%,
+        rgba(2, 55, 25, 0.85) 0%,
+        rgba(2, 55, 25, 0.6) 28%,
+        rgba(2, 55, 25, 0.28) 52%,
+        rgba(2, 55, 25, 0.08) 72%,
+        rgba(2, 55, 25, 0) 90%);
+    }
+    .leaf-over-image .leaf-device {
+      position: absolute;
+      top: -18%;
+      left: -12%;
+      width: 125%;
+      height: auto;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .leaf-over-image-content {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 0;
+      max-width: 60%;
+      padding: var(--space-6);
+    }
+    .leaf-over-image-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.6vw, 32px);
+      line-height: 1.1;
+      letter-spacing: var(--display-tracking-sm);
+      color: #fff;
+    }
+    .leaf-over-image-meta {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      margin-top: var(--space-2);
+    }
 
     /* Official Cargill mark, referenced via <use href="#cargill-logo"> */
     .cargill-logo {
@@ -1573,6 +1859,419 @@
       font-size: 12px;
       color: var(--text-muted);
     }
+
+    /* ---------- Illustration & diagrams ---------- */
+    /* Line-weight demo · Brand Guidelines · Illustrations & diagrams · Line weights.
+       Reuses the sprout glyph already registered in Iconography (identical path data)
+       rendered stroke-only at the two specified weights, instead of drawing new artwork.
+       Base ratio is fixed at .75pt/1px (detail) to 1.5pt/2px (primary) on a 1"/72px
+       artboard — scale both together, never restyle one stroke independently. */
+    .line-weight-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+    }
+    .line-weight-sample {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-3);
+      width: 140px;
+      text-align: center;
+    }
+    .line-weight-sample svg {
+      width: 72px;
+      height: 72px;
+      color: var(--brand-deep);
+    }
+    .line-weight-sample-label {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .line-weight-sample-label span {
+      display: block;
+      font-family: var(--font-micro);
+      font-weight: 400;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Fill-treatment legend · the four ways a diagram shape can carry meaning without
+       adding new hues — brand rule is core palette only, never a custom tint. CSS
+       gradients stand in for the guideline's dot/line textures so no new asset is needed. */
+    .texture-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-5);
+    }
+    .texture-swatch-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .texture-swatch {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1.5px solid var(--green-600);
+      box-sizing: border-box;
+    }
+    .texture-swatch--outline { background: var(--surface); }
+    .texture-swatch--dot {
+      background-color: var(--soft-green-50);
+      background-image: radial-gradient(circle, var(--green-600) 1.6px, transparent 1.7px);
+      background-size: 8px 8px;
+    }
+    .texture-swatch--hatch {
+      background-color: var(--soft-green-50);
+      background-image: repeating-linear-gradient(45deg, var(--green-600) 0 2px, transparent 2px 7px);
+    }
+    .texture-swatch--solid { background: var(--green-600); }
+    .texture-swatch-label {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Diagram flow · a generic, worked process-flow example (Illustrations & diagrams ·
+       Diagrams — "much more functional… illustrate a process or system in a clear,
+       concise manner"). Fill treatment carries stage-of-completion (outline → dot →
+       solid) instead of new color, connected by thin/detail-weight arrows — the same
+       structure as the brand's own wheat-to-flour diagram, without redrawing its
+       ship/silo iconography. */
+    .diagram-flow {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+    .diagram-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-3);
+      width: 150px;
+      text-align: center;
+    }
+    .diagram-node {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 1.5px solid var(--green-600);
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+    .diagram-node--outline { background: var(--surface); }
+    .diagram-node--dot {
+      background-color: var(--soft-green-50);
+      background-image: radial-gradient(circle, var(--green-600) 1.6px, transparent 1.7px);
+      background-size: 8px 8px;
+    }
+    .diagram-node--solid { background: var(--green-600); }
+    .diagram-step-title {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .diagram-step-desc {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .diagram-connector {
+      color: var(--text-muted);
+      flex-shrink: 0;
+      margin-top: 30px; /* vertically center against the 72px node above */
+    }
+
+    /* Instructions · Illustrations & diagrams · Diagrams — a numbered action sequence,
+       distinct from a process-flow diagram. Colored with Rich Red Deep rather than green:
+       the brand's own rule for diagrams (unlike illustration) is that either palette is
+       fair game — vetted against the badge component's existing AA contrast note so this
+       reuses a combination already known to hold up, rather than reaching for
+       Bright Yellow Deep, which the badge styles already found fails white-text contrast. */
+    .diagram-instructions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+    .diagram-instruction-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      width: 130px;
+      text-align: center;
+    }
+    .diagram-instruction-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 1.5px solid var(--rich-red-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--rich-red-deep);
+      box-sizing: border-box;
+    }
+    .diagram-instruction-circle .material-symbols-rounded { font-size: 28px; }
+    .diagram-instruction-num {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .diagram-instruction-desc {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Alternate colorways · Illustrations & diagrams · Techniques to consider. The same
+       process-flow diagram, reversed (white line/fill on a solid color) the way the brand's
+       own wheat-mill example ships in both a green and an orange canvas. Kept as small,
+       dedicated white-on-color classes rather than reusing .diagram-node, since those
+       assume a light page surface and would need per-theme overrides to invert safely. */
+    .diagram-colorway-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-4);
+    }
+    .diagram-colorway-canvas {
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      color: #fff;
+    }
+    .diagram-colorway-flow {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .diagram-colorway-node {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid #fff;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+    .diagram-colorway-node--dot {
+      background-image: radial-gradient(circle, #fff 1.5px, transparent 1.6px);
+      background-size: 7px 7px;
+    }
+    .diagram-colorway-node--solid { background: #fff; }
+    .diagram-colorway-arrow { color: rgba(255,255,255,0.75); flex-shrink: 0; }
+    .diagram-colorway-label {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      margin-top: var(--space-4);
+    }
+
+    /* Illustration placeholder · reserves the SPACE an approved illustration will
+       occupy without inventing artwork of our own — illustration is an asset
+       dependency here (see the note below). Swap the aspect ratio to match the
+       layout; never stretch the eventual asset to fit a mismatched slot. */
+    .illustration-slot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      width: 100%;
+      box-sizing: border-box;
+      border: 1.5px dashed var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--soft-green-50);
+      color: var(--text-muted);
+      padding: var(--space-4);
+    }
+    .illustration-slot .material-symbols-rounded { font-size: 28px; }
+    .illustration-slot-label {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-soft);
+      margin: 0;
+    }
+    .illustration-slot-meta {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      text-align: center;
+      max-width: 32ch;
+      margin: 0;
+    }
+    .illustration-slot--square    { aspect-ratio: 1 / 1; }
+    .illustration-slot--landscape { aspect-ratio: 16 / 9; }
+    .illustration-slot--portrait  { aspect-ratio: 3 / 4; }
+
+    /* ---------- Data visualization ---------- */
+    /* Categorical sequence · Brand Guidelines · Data visualization · Process. The brand
+       fixes the series order — Leaf Green 100 → Deep Green 100 → Soft Green 100 → the same
+       three at 70% — rather than letting a chart cycle hues freely. Validated against the
+       CVD/contrast rules a chart palette actually needs (see the caveat note below): the
+       first three pass cleanly, but the two 70% tints sit close enough to fail a strict
+       normal-vision separation check, so they're marked as a last resort, not a default. */
+    .dataviz-sequence {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+    .chart-color-step {
+      flex: 1 1 90px;
+      min-width: 90px;
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      box-sizing: border-box;
+      color: #fff;
+    }
+    .chart-color-step-num {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0.85;
+    }
+    .chart-color-step-name {
+      display: block;
+      font-family: var(--font-micro);
+      font-size: 11px;
+      margin-top: var(--space-5);
+      opacity: 0.85;
+    }
+    .chart-color-step--dark,
+    .chart-color-step--light { color: var(--text); }
+
+    .dataviz-extension-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+      margin-top: var(--space-4);
+    }
+    .dataviz-extension-set {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .dataviz-extension-label {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .dataviz-extension-swatches { display: flex; gap: 4px; }
+    .dataviz-extension-swatches span {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm, 4px);
+      display: block;
+    }
+
+    /* Functional vs Expressive · Data visualization · Examples. Two different jobs, not
+       two skins: functional data is the everyday, template-driven chart (square corners —
+       rounded corners aren't replicable across every platform that renders it) while
+       expressive data is reserved for high-craft moments (reports, brochures) where a
+       bolder, bespoke treatment — rounded corners, display-type callouts — is earned. */
+    .dataviz-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-5);
+    }
+    .dataviz-card {
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .dataviz-card--functional {
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .dataviz-card--expressive {
+      background: var(--surface-deep);
+      color: #fff;
+    }
+    .dataviz-card-eyebrow {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .dataviz-card--functional .dataviz-card-eyebrow { color: var(--text-muted); }
+    .dataviz-card--expressive .dataviz-card-eyebrow { color: var(--soft-green-400); }
+    .dataviz-card-body {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .dataviz-card--functional .dataviz-card-body { color: var(--text-soft); }
+    .dataviz-card--expressive .dataviz-card-body { color: rgba(255,255,255,0.85); }
+    .dataviz-hero-number {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4vw, 56px);
+      line-height: 1;
+      letter-spacing: var(--display-tracking);
+      color: var(--soft-green-400);
+    }
+
+    /* Worked bar-chart example · uses only the three safe, validated steps from the
+       sequence above (never the confusable 70% pair), each bar carrying a direct value
+       label — color differentiates, the label is what actually reads (brand's own
+       accessibility note: "data is a functional element and functionality should always
+       take precedent over color"). */
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-4);
+      height: 180px;
+      padding: 0 var(--space-2);
+    }
+    .bar-chart-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+      gap: var(--space-2);
+    }
+    .bar-chart-value {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .bar-chart-bar {
+      width: 100%;
+      max-width: 48px;
+      border-radius: 2px 2px 0 0; /* functional data: never fully rounded, see Don'ts below */
+    }
+    .bar-chart-label {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Pictogram grid · Data visualization · Infographics ("functional... not illustration").
+       Reuses a single Material Symbols glyph rather than drawing a figure — the technique is
+       proportion-by-repetition (isotype charts), same job as the brand's silhouette grid. */
+    .pictogram-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-2);
+      max-width: 260px;
+    }
+    .pictogram-grid .material-symbols-rounded {
+      font-size: 32px;
+      color: var(--border);
+    }
+    .pictogram-grid .material-symbols-rounded.is-active { color: var(--brand); }
 
     /* ---------- Components ---------- */
     .component-grid {
@@ -1941,7 +2640,7 @@
       font-size: 28px;
       line-height: 32px;
       color: var(--brand);
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking-sm);
     }
     /* Expressive · brand-green variant */
     .card-expressive--brand {
@@ -2454,7 +3153,7 @@
     }
     .badge--orange  { background: var(--bright-yellow-deep); color: var(--neutral-1000); border-color: var(--bright-yellow-deep); } /* dark text: white-on-orange fails AA (2.5:1) */
     .badge--red     { background: var(--rich-red-deep);     color: #fff; border-color: var(--rich-red-deep); }
-    .badge--purple  { background: #5C57A6;                  color: #fff; border-color: #5C57A6; }
+    .badge--earth   { background: var(--earth-deep);        color: #fff; border-color: var(--earth-deep); }
     .badge--navy    { background: var(--midnight-blue-mid); color: #fff; border-color: var(--midnight-blue-mid); }
     .badge--green   { background: var(--green-700);         color: #fff; border-color: var(--green-700); }
     .badge--blue    { background: var(--blue-600);          color: #fff; border-color: var(--blue-600); }
@@ -3498,7 +4197,7 @@
       font-size: clamp(32px, 4vw, 56px);
       line-height: 1.02;
       color: #fff;
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking);
       margin-bottom: var(--space-4);
     }
     .hero-component-body {
@@ -3749,7 +4448,7 @@
       font-size: clamp(28px, 3vw, 40px);
       line-height: 1.05;
       color: #fff;
-      letter-spacing: -0.005em;
+      letter-spacing: var(--display-tracking);
       max-width: 70%;
     }
     .carousel-actions {
@@ -4198,19 +4897,21 @@
 
     /* Toast */
     .toast { display: flex; align-items: flex-start; gap: var(--spacing-md); padding: var(--padding-lg); background: var(--surface); border: 1px solid var(--border); border-radius: var(--corner-radius-base); box-shadow: var(--shadow-md); max-width: 420px; border-left: 4px solid var(--brand); }
+    .toast--default { border-left-color: var(--text-muted); }
     .toast--success { border-left-color: var(--green-600); }
     .toast--error   { border-left-color: var(--red-600); }
     .toast--warning { border-left-color: var(--yellow-500); }
     .toast--info    { border-left-color: var(--blue-600); }
     .toast-icon { flex-shrink: 0; color: var(--brand); display: inline-flex; }
     .toast-icon .material-symbols-rounded { font-size: 22px; color: inherit; }
+    .toast--default .toast-icon { color: var(--text-muted); }
     .toast--success .toast-icon { color: var(--green-600); }
     .toast--error .toast-icon   { color: var(--red-600); }
     .toast--warning .toast-icon { color: var(--yellow-500); }
     .toast--info .toast-icon    { color: var(--blue-600); }
-    .toast-content { flex: 1; min-width: 0; }
+    .toast-content { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
     .toast-title { font-family: var(--font-sans); font-weight: 700; font-size: 14px; line-height: 20px; color: var(--text); }
-    .toast-message { font-family: var(--font-sans); font-size: 13px; line-height: 19px; color: var(--text-soft); margin-top: 2px; }
+    .toast-message { font-family: var(--font-sans); font-size: 13px; line-height: 19px; color: var(--text-soft); }
     .toast-close { width: 24px; height: 24px; border: none; background: transparent; cursor: pointer; color: var(--text-muted); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: var(--corner-radius-base); }
     .toast-close:hover { background: var(--neutral-100); color: var(--text); }
     .toast-close .material-symbols-rounded { font-size: 16px; color: inherit; }
@@ -4231,6 +4932,31 @@
     .tooltip::after { content: ''; position: absolute; top: 100%; left: 16px; border: 5px solid transparent; border-top-color: var(--surface-deep); }
     .tooltip--top::after { top: 100%; }
     .tooltip--bottom::after { top: auto; bottom: 100%; border-top-color: transparent; border-bottom-color: var(--surface-deep); }
+    /* Anchored usage: hidden until the trigger is hovered/focused, positioned off the
+       anchor's own box rather than a magic-number offset so it holds for any trigger size. */
+    .tooltip-anchor .tooltip {
+      position: absolute;
+      left: 0;
+      bottom: calc(100% + 8px);
+      z-index: 20;
+      width: max-content;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(4px);
+      transition: opacity 140ms ease-out, transform 140ms ease-out, visibility 0s linear 140ms;
+      pointer-events: none;
+    }
+    .tooltip-anchor .tooltip--bottom { bottom: auto; top: calc(100% + 8px); transform: translateY(-4px); }
+    .tooltip-anchor:hover .tooltip,
+    .tooltip-anchor:focus-within .tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition: opacity 140ms ease-out, transform 140ms ease-out;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tooltip-anchor .tooltip { transition-duration: 1ms; }
+    }
 
     /* Tree View */
     .tree-view { font-family: var(--font-sans); font-size: 14px; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: var(--corner-radius-md); padding: var(--padding-base); min-width: 240px; }

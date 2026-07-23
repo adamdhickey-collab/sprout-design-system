@@ -27,6 +27,21 @@ Neither side updates automatically — drift is caught by the audit below.
 | `.component .material-symbols-rounded { font-size: N }` | That icon node's `fontSize` = N |
 | CSS `transform: rotate(Ndeg)` on an icon state | Icon node `rotation` = N, **same base glyph as code** |
 | `<symbol id="cargill-logo">` in `index.html` + `.cargill-logo--*` modifiers | **Cargill logo** component set, one variant per modifier |
+| `<symbol id="cargill-leaf-device">` in `index.html` (from `assets/cargill-leaf.svg`) + `--leaf-device-fill` | **Leaf graphic device** component set (Logo page), one variant per colorway |
+| `.brand-canvas` (single color graphic) | **Brand canvas** component set, `Brand expression` page, one variant per colorway |
+| `.rounded-box` / `.rounded-box--deep` + `.stat-*` | **Rounded box** component set, `Brand expression` page |
+| `.leaf-window-canvas` (clip-path: `#cargill-leaf-clip`) | **Leaf as window** component set — Figma has no live clip-path, so the leaf-clipped area is a static boolean-intersection shape (leaf ∩ bounding rect), not a mask relationship |
+| `.leaf-over-image` | **Leaf over image** component set |
+
+The Figma pages panel is grouped to mirror the site's own left-nav structure —
+Cover → Foundations (Color, Typography, Layout & shape, Logo) → System (Elevation) →
+Components → Forms & inputs / Layout & content / Navigation & feedback, each internally
+ordered to match that site page's sidebar. Figma has no plugin-API-exposed nested page
+groups, so section headers are plain pages named `─── Section ───` (0 content nodes) —
+the same convention the file already used for "Foundations"/"Components" before this
+pass. The site's Foundations group also lists "Iconography" and its System group lists
+"Themes" — neither has a dedicated Figma page (icons live inline per-component; themes
+are Color-collection modes), so those two sub-items have no Figma counterpart to slot in.
 
 The logo is not a redrawn or re-traced copy — the Figma vectors were imported from the
 exact same path data the site renders, so the two cannot drift in shape. Only the fills
@@ -45,9 +60,6 @@ Known intentional divergences:
 - Some characters are **literal text in the CSS, not icons**, and must stay as typed
   characters in Figma: the Number input's `−` / `+`, the Breadcrumb separator `/`, and the
   required-field `*` on Label. A future icon sweep must not convert these.
-- Figma's Toast has a **`Default` variant with no code counterpart** — there is no
-  `.toast--default` rule in `styles.css`. It carries `notifications` as a neutral icon.
-  Either add the CSS modifier or drop the variant; until then the audit will see it.
 - Empty state ships `folder` in Figma, but the site shows `folder`, `inbox`, and
   `search_off` across three examples. The icon is meant to be swapped per use.
 - CSS dark mode repoints *primitives* (`--neutral-10` etc.) as a mechanism; Figma keeps
@@ -57,6 +69,26 @@ Known intentional divergences:
 - Fonts: BigCaslonForCargill / HelveticaNow are licensed and not installed in the RBA
   Figma org. Stand-ins: **EB Garamond** for the serif, **Inter** for the sans (noted in
   every text style description). Swap when the real fonts are installed org-wide.
+- **Photography is a placeholder set.** The 12 images in `assets/brand-photography/`
+  were extracted from the brand guidelines PDF itself (screen-res only, ~590×440) as
+  an on-brand stand-in until the real licensed library is available — see that folder's
+  README. In Figma, the same components use flat photo-tone rectangles instead of actual
+  images (uploading local files as Figma image fills isn't reachable from this tooling
+  without a hosting step). Swap both sides for the real library together.
+- `node.isMask` did not render as expected when tested for the leaf-window clip (the
+  photo stayed an unclipped rectangle even with the mask correctly set and ordered).
+  Worked around with `figma.intersect()` — a static boolean intersection of the leaf
+  vector and the bounding rect — instead of a live mask relationship. Revisit `isMask`
+  if a future component genuinely needs a *live* mask (e.g. swappable image content).
+- `GRADIENT_RADIAL` fill `gradientTransform` does not behave like a naive "scale then
+  translate the circle" matrix — calibrated empirically (see the leaf-over-image scrim):
+  identity `[[1,0,0],[0,1,0]]` centers the circle in the shape and fades to fully
+  transparent exactly at the shape's edges. Adding translation shifts the visible center
+  in the **opposite** direction of the sign (e.g. `tx=+0.3` moves the bright spot left,
+  not right) — scale and translation are coupled, not independent axes. The working
+  values for a corner-anchored, seamlessly-fading wash: `[[1,0,0.38],[0,1,0.32]]` with a
+  4-stop ramp (0 / 0.35 / 0.65 / 1). Don't assume a formula — recalibrate with a disposable
+  test rectangle and a screenshot if a future component needs a differently-placed radial.
 
 ## The drift audit (run any time, e.g. before a release)
 

@@ -65,25 +65,54 @@
       </div>
 
       <nav class="sidebar-nav" aria-label="Design system sections">
-        <div class="sidebar-section">
-          <span class="sidebar-section-title">Start here</span>
-          <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num">·</span><span>Getting started</span></a>
+        <div class="sidebar-section" data-nav-group="start">
+          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-start">
+            <span class="sidebar-section-title">Start here</span>
+            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="sidebar-section-body" id="nav-start">
+            <div class="sidebar-section-body-inner">
+              <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num">·</span><span>Getting started</span></a>
+            </div>
+          </div>
         </div>
-        <div class="sidebar-section">
-          <span class="sidebar-section-title">Foundations</span>
-          <a href="index.html#color" class="sidebar-link"><span class="sidebar-link-num">01</span><span>Color</span></a>
-          <a href="index.html#type" class="sidebar-link"><span class="sidebar-link-num">02</span><span>Typography</span></a>
-          <a href="index.html#space" class="sidebar-link"><span class="sidebar-link-num">03</span><span>Layout &amp; shape</span></a>
-          <a href="index.html#icons" class="sidebar-link"><span class="sidebar-link-num">04</span><span>Iconography</span></a>
-          <a href="index.html#logo" class="sidebar-link"><span class="sidebar-link-num">05</span><span>Logo</span></a>
+        <div class="sidebar-section" data-nav-group="foundations">
+          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-foundations">
+            <span class="sidebar-section-title">Foundations</span>
+            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="sidebar-section-body" id="nav-foundations">
+            <div class="sidebar-section-body-inner">
+              <a href="index.html#color" class="sidebar-link"><span class="sidebar-link-num">01</span><span>Color</span></a>
+              <a href="index.html#type" class="sidebar-link"><span class="sidebar-link-num">02</span><span>Typography</span></a>
+              <a href="index.html#space" class="sidebar-link"><span class="sidebar-link-num">03</span><span>Layout &amp; shape</span></a>
+              <a href="index.html#icons" class="sidebar-link"><span class="sidebar-link-num">04</span><span>Iconography</span></a>
+              <a href="index.html#logo" class="sidebar-link"><span class="sidebar-link-num">05</span><span>Logo</span></a>
+            </div>
+          </div>
         </div>
-        <div class="sidebar-section">
-          <span class="sidebar-section-title">System</span>
-          <a href="index.html#themes" class="sidebar-link"><span class="sidebar-link-num">06</span><span>Themes</span></a>
-          <a href="index.html#elevation" class="sidebar-link"><span class="sidebar-link-num">07</span><span>Elevation</span></a>
+        <div class="sidebar-section" data-nav-group="system">
+          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-system">
+            <span class="sidebar-section-title">System</span>
+            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="sidebar-section-body" id="nav-system">
+            <div class="sidebar-section-body-inner">
+              <a href="system.html#themes" class="sidebar-link"><span class="sidebar-link-num">06</span><span>Themes</span></a>
+              <a href="system.html#elevation" class="sidebar-link"><span class="sidebar-link-num">07</span><span>Elevation</span></a>
+              <a href="system.html#brand-expression" class="sidebar-link"><span class="sidebar-link-num">08</span><span>Brand expression</span></a>
+              <a href="system.html#illustration" class="sidebar-link"><span class="sidebar-link-num">09</span><span>Illustration</span></a>
+              <a href="system.html#dataviz" class="sidebar-link"><span class="sidebar-link-num">10</span><span>Data visualization</span></a>
+            </div>
+          </div>
         </div>
-        <div class="sidebar-section">
-          <span class="sidebar-section-title">Components</span>
+        <div class="sidebar-section" data-nav-group="components">
+          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-components">
+            <span class="sidebar-section-title">Components</span>
+            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="sidebar-section-body" id="nav-components">
+            <div class="sidebar-section-body-inner">
           <a href="forms.html" class="sidebar-link sidebar-group"><span class="sidebar-link-num">·</span><span>Forms &amp; inputs</span></a>
           <a href="content.html" class="sidebar-link sidebar-group sidebar-group--active"><span class="sidebar-link-num">·</span><span>Layout &amp; content</span></a>
           <div class="sidebar-group-children">
@@ -107,6 +136,8 @@
             <a href="#tree-view" class="sidebar-link sidebar-link--child"><span class="sidebar-link-num"></span><span>Tree view</span></a>
           </div>
           <a href="navigation.html" class="sidebar-link sidebar-group"><span class="sidebar-link-num">·</span><span>Navigation &amp; feedback</span></a>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -305,7 +336,7 @@
             <div class="badge-row">
               <span class="badge badge--orange">Trial</span>
               <span class="badge badge--red">Rejected</span>
-              <span class="badge badge--purple">Scheduled</span>
+              <span class="badge badge--earth">Scheduled</span>
               <span class="badge badge--navy">Advanced</span>
               <span class="badge badge--green">Approved</span>
               <span class="badge badge--blue">Active</span>
@@ -318,7 +349,7 @@
               <span class="badge">Default</span>
               <span class="badge badge--orange">Orange</span>
               <span class="badge badge--red">Red</span>
-              <span class="badge badge--purple">Purple</span>
+              <span class="badge badge--earth">Earth</span>
               <span class="badge badge--navy">Navy</span>
               <span class="badge badge--green">Green</span>
               <span class="badge badge--blue">Blue</span>
@@ -540,17 +571,17 @@
               <span class="chip-matrix-row-label">Large</span>
               <div class="chip-row"><span class="chip chip--lg" role="button" tabindex="0">Chip</span></div>
               <div class="chip-row"><span class="chip chip--lg" role="button" tabindex="0"><span class="chip-lead"><span class="material-symbols-rounded">person</span></span>Chip</span></div>
-              <div class="chip-row"><span class="chip chip--lg" role="button" tabindex="0"><span class="chip-lead"><span class="material-symbols-rounded">person</span></span>Chip<button class="chip-close" aria-label="Remove"><span class="material-symbols-rounded">close</span></button></span></div>
+              <div class="chip-row"><span class="chip chip--lg"><span class="chip-lead"><span class="material-symbols-rounded" aria-hidden="true">person</span></span>Chip<button class="chip-close" aria-label="Remove Chip"><span class="material-symbols-rounded">close</span></button></span></div>
 
               <span class="chip-matrix-row-label">Medium</span>
               <div class="chip-row"><span class="chip" role="button" tabindex="0">Chip</span></div>
               <div class="chip-row"><span class="chip" role="button" tabindex="0"><span class="chip-lead"><span class="material-symbols-rounded">person</span></span>Chip</span></div>
-              <div class="chip-row"><span class="chip" role="button" tabindex="0"><span class="chip-lead"><span class="material-symbols-rounded">person</span></span>Chip<button class="chip-close" aria-label="Remove"><span class="material-symbols-rounded">close</span></button></span></div>
+              <div class="chip-row"><span class="chip"><span class="chip-lead"><span class="material-symbols-rounded" aria-hidden="true">person</span></span>Chip<button class="chip-close" aria-label="Remove Chip"><span class="material-symbols-rounded">close</span></button></span></div>
 
               <span class="chip-matrix-row-label">Small</span>
               <div class="chip-row"><span class="chip chip--sm" role="button" tabindex="0">Chip</span></div>
               <div class="chip-row"><span class="chip chip--sm" role="button" tabindex="0"><span class="chip-lead"><span class="material-symbols-rounded">person</span></span>Chip</span></div>
-              <div class="chip-row"><span class="chip chip--sm" role="button" tabindex="0"><span class="chip-lead"><span class="material-symbols-rounded">person</span></span>Chip<button class="chip-close" aria-label="Remove"><span class="material-symbols-rounded">close</span></button></span></div>
+              <div class="chip-row"><span class="chip chip--sm"><span class="chip-lead"><span class="material-symbols-rounded" aria-hidden="true">person</span></span>Chip<button class="chip-close" aria-label="Remove Chip"><span class="material-symbols-rounded">close</span></button></span></div>
             </div>
           </div>
 
@@ -568,9 +599,9 @@
               <div class="chip-row"><span class="chip" role="button" tabindex="0" aria-disabled="true">Chip</span></div>
 
               <span class="chip-matrix-row-label">With close</span>
-              <div class="chip-row"><span class="chip" role="button" tabindex="0">Chip<button class="chip-close" aria-label="Remove"><span class="material-symbols-rounded">close</span></button></span></div>
-              <div class="chip-row"><span class="chip chip--selected" role="button" tabindex="0">Chip<button class="chip-close" aria-label="Remove"><span class="material-symbols-rounded">close</span></button></span></div>
-              <div class="chip-row"><span class="chip" role="button" tabindex="0" aria-disabled="true">Chip<button class="chip-close" aria-label="Remove" disabled><span class="material-symbols-rounded">close</span></button></span></div>
+              <div class="chip-row"><span class="chip">Chip<button class="chip-close" aria-label="Remove Chip"><span class="material-symbols-rounded">close</span></button></span></div>
+              <div class="chip-row"><span class="chip chip--selected">Chip<button class="chip-close" aria-label="Remove Chip"><span class="material-symbols-rounded">close</span></button></span></div>
+              <div class="chip-row"><span class="chip chip--disabled" aria-disabled="true">Chip<button class="chip-close" aria-label="Remove Chip" disabled><span class="material-symbols-rounded">close</span></button></span></div>
 
               <span class="chip-matrix-row-label">Skeleton</span>
               <div class="chip-row"><span class="chip chip--skeleton">&nbsp;</span></div>
@@ -583,11 +614,11 @@
             <p class="component-label">Chip · filter usage</p>
             <div class="chip-row" style="margin-bottom: var(--space-4);">
               <span class="chip" role="button" tabindex="0">All</span>
-              <span class="chip chip--selected" role="button" tabindex="0">Meats<button class="chip-close" aria-label="Remove"><span class="material-symbols-rounded">close</span></button></span>
-              <span class="chip chip--selected" role="button" tabindex="0">Seafood<button class="chip-close" aria-label="Remove"><span class="material-symbols-rounded">close</span></button></span>
+              <span class="chip chip--selected">Meats<button class="chip-close" aria-label="Remove Meats"><span class="material-symbols-rounded">close</span></button></span>
+              <span class="chip chip--selected">Seafood<button class="chip-close" aria-label="Remove Seafood"><span class="material-symbols-rounded">close</span></button></span>
               <span class="chip" role="button" tabindex="0">Dairy</span>
               <span class="chip" role="button" tabindex="0">Canned &amp; Dry</span>
-              <span class="chip chip--selected" role="button" tabindex="0">Poultry<button class="chip-close" aria-label="Remove"><span class="material-symbols-rounded">close</span></button></span>
+              <span class="chip chip--selected">Poultry<button class="chip-close" aria-label="Remove Poultry"><span class="material-symbols-rounded">close</span></button></span>
               <span class="chip" role="button" tabindex="0">Healthcare</span>
             </div>
           </div>
@@ -913,10 +944,10 @@
               <table class="table">
                 <thead><tr><th>Project</th><th>Owner</th><th>Status</th><th class="table-cell--num">Members</th><th class="table-cell--num">Updated</th></tr></thead>
                 <tbody>
-                  <tr><td>Sprout design system</td><td>Will Smith</td><td><span class="badge badge--green">Approved</span></td><td class="table-cell--num">9</td><td class="table-cell--num">11 / 02 / 2025</td></tr>
+                  <tr><td>Sprout design system</td><td>A. Novak</td><td><span class="badge badge--green">Approved</span></td><td class="table-cell--num">9</td><td class="table-cell--num">11 / 02 / 2025</td></tr>
                   <tr class="table-row--selected"><td>Carbon dashboard</td><td>Suzanne K.</td><td><span class="badge badge--blue">Active</span></td><td class="table-cell--num">12</td><td class="table-cell--num">10 / 18 / 2025</td></tr>
                   <tr><td>Field reports</td><td>James M.</td><td><span class="badge badge--orange">Trial</span></td><td class="table-cell--num">3</td><td class="table-cell--num">10 / 04 / 2025</td></tr>
-                  <tr><td>Supplier portal</td><td>Lin Chen</td><td><span class="badge badge--purple">Scheduled</span></td><td class="table-cell--num">7</td><td class="table-cell--num">09 / 28 / 2025</td></tr>
+                  <tr><td>Supplier portal</td><td>Lin Chen</td><td><span class="badge badge--earth">Scheduled</span></td><td class="table-cell--num">7</td><td class="table-cell--num">09 / 28 / 2025</td></tr>
                   <tr><td>Logistics map</td><td>R. Patel</td><td><span class="badge badge--red">Rejected</span></td><td class="table-cell--num">4</td><td class="table-cell--num">09 / 11 / 2025</td></tr>
                 </tbody>
               </table>
@@ -930,24 +961,24 @@
           <div class="component" style="grid-column: 1 / -1;">
             <p class="component-label">Tabs · default</p>
             <div>
-              <div class="tabs" role="tablist">
-                <button class="tab tab--active" role="tab">Overview</button>
-                <button class="tab" role="tab">Members <span class="tab-count">12</span></button>
-                <button class="tab" role="tab">Activity</button>
-                <button class="tab" role="tab" disabled>Settings</button>
+              <div class="tabs" role="tablist" aria-label="Project sections">
+                <button class="tab tab--active" role="tab" id="tab-overview" aria-selected="true" aria-controls="tabpanel-overview">Overview</button>
+                <button class="tab" role="tab" aria-selected="false">Members <span class="tab-count">12</span></button>
+                <button class="tab" role="tab" aria-selected="false">Activity</button>
+                <button class="tab" role="tab" aria-selected="false" disabled>Settings</button>
               </div>
-              <div class="tab-panel">Overview content goes here. Switch tabs to see other panels.</div>
+              <div class="tab-panel" role="tabpanel" id="tabpanel-overview" aria-labelledby="tab-overview" tabindex="0">Overview content goes here. Switch tabs to see other panels.</div>
             </div>
           </div>
 
           <div class="component" style="grid-column: 1 / -1;">
             <p class="component-label">Tabs · with icons</p>
             <div>
-              <div class="tabs" role="tablist">
-                <button class="tab tab--active" role="tab"><span class="material-symbols-rounded">dashboard</span>Dashboard</button>
-                <button class="tab" role="tab"><span class="material-symbols-rounded">group</span>Team</button>
-                <button class="tab" role="tab"><span class="material-symbols-rounded">inventory_2</span>Inventory</button>
-                <button class="tab" role="tab"><span class="material-symbols-rounded">settings</span>Settings</button>
+              <div class="tabs" role="tablist" aria-label="Workspace views">
+                <button class="tab tab--active" role="tab" aria-selected="true"><span class="material-symbols-rounded" aria-hidden="true">dashboard</span>Dashboard</button>
+                <button class="tab" role="tab" aria-selected="false"><span class="material-symbols-rounded" aria-hidden="true">group</span>Team</button>
+                <button class="tab" role="tab" aria-selected="false"><span class="material-symbols-rounded" aria-hidden="true">inventory_2</span>Inventory</button>
+                <button class="tab" role="tab" aria-selected="false"><span class="material-symbols-rounded" aria-hidden="true">settings</span>Settings</button>
               </div>
             </div>
           </div>

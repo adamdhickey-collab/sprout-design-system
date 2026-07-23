@@ -30,6 +30,18 @@
       </g>
       <path style="fill: var(--leaf-fill, #00843D)" d="M344.125 74.0702C344.125 74.0702 326.725 75.4702 314.625 73.7702C286.825 69.9702 261.025 50.7702 249.625 44.3702C224.825 30.5702 214.725 29.6702 201.925 33.3702C180.825 39.0702 168.525 56.3702 156.625 76.5702C154.325 75.4702 151.925 74.5702 149.425 73.9702C156.225 59.5702 182.125 13.0702 235.425 2.07022C288.925 -9.12978 346.225 26.5702 344.125 74.0702Z"/>
     </symbol>
+    <!-- Cargill leaf graphic device — the wide "front door" crop used as the brand's primary
+         graphic device (distinct from the small leaf glyph inside #cargill-logo above). Saved
+         at assets/cargill-leaf.svg; imported verbatim, never redrawn. -->
+    <symbol id="cargill-leaf-device" viewBox="0 0 1000 394">
+      <path style="fill: var(--leaf-device-fill, #00843D)" d="M999.743 380.577C999.743 380.577 910.436 387.51 848.398 378.934C705.783 359.316 573.079 260.867 514.431 228.102C386.966 157.025 335.353 152.763 269.464 171.405C161.309 200.832 97.7301 289.677 36.7194 393.159C25.0616 387.459 12.6849 383.042 0 379.858C34.9219 305.7 167.677 67.2041 441.763 10.4559C716.208 -46.4976 1010.32 136.586 999.743 380.577Z"/>
+    </symbol>
+    <!-- Same leaf path as a clipPath, for the "leaf as window" technique — clips a photo to
+         the leaf silhouette (.leaf-window). objectBoundingBox lets it scale to any element's
+         box without a manual viewBox-to-pixel conversion. -->
+    <clipPath id="cargill-leaf-clip" clipPathUnits="objectBoundingBox">
+      <path d="M0.999743 0.966185C0.999743 0.966185 0.910436 0.983274 0.848398 0.961761C0.705783 0.912223 0.573079 0.662099 0.514431 0.578939C0.386966 0.398540 0.335353 0.387721 0.269464 0.435038C0.161309 0.509726 0.097730 0.735221 0.036719 0.997865C0.025062 0.983140 0.012685 0.972188 0 0.964102C0.034922 0.775888 0.167677 0.170569 0.441763 0.026538C0.716208 -0.117963 1.010320 0.346670 0.999743 0.966185Z"/>
+    </clipPath>
   </svg>
 
   <div class="app-layout">
@@ -65,28 +77,59 @@
       </div>
 
       <nav class="sidebar-nav" aria-label="Design system sections">
-        <div class="sidebar-section">
-          <span class="sidebar-section-title">Start here</span>
-          <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num">·</span><span>Getting started</span></a>
+        <div class="sidebar-section" data-nav-group="start">
+          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-start">
+            <span class="sidebar-section-title">Start here</span>
+            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="sidebar-section-body" id="nav-start">
+            <div class="sidebar-section-body-inner">
+              <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num">·</span><span>Getting started</span></a>
+            </div>
+          </div>
         </div>
-        <div class="sidebar-section">
-          <span class="sidebar-section-title">Foundations</span>
-          <a href="#color" class="sidebar-link"><span class="sidebar-link-num">01</span><span>Color</span></a>
-          <a href="#type" class="sidebar-link"><span class="sidebar-link-num">02</span><span>Typography</span></a>
-          <a href="#space" class="sidebar-link"><span class="sidebar-link-num">03</span><span>Layout &amp; shape</span></a>
-          <a href="#icons" class="sidebar-link"><span class="sidebar-link-num">04</span><span>Iconography</span></a>
-          <a href="#logo" class="sidebar-link"><span class="sidebar-link-num">05</span><span>Logo</span></a>
+        <div class="sidebar-section" data-nav-group="foundations">
+          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-foundations">
+            <span class="sidebar-section-title">Foundations</span>
+            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="sidebar-section-body" id="nav-foundations">
+            <div class="sidebar-section-body-inner">
+              <a href="#color" class="sidebar-link"><span class="sidebar-link-num">01</span><span>Color</span></a>
+              <a href="#type" class="sidebar-link"><span class="sidebar-link-num">02</span><span>Typography</span></a>
+              <a href="#space" class="sidebar-link"><span class="sidebar-link-num">03</span><span>Layout &amp; shape</span></a>
+              <a href="#icons" class="sidebar-link"><span class="sidebar-link-num">04</span><span>Iconography</span></a>
+              <a href="#logo" class="sidebar-link"><span class="sidebar-link-num">05</span><span>Logo</span></a>
+            </div>
+          </div>
         </div>
-        <div class="sidebar-section">
-          <span class="sidebar-section-title">System</span>
-          <a href="#themes" class="sidebar-link"><span class="sidebar-link-num">06</span><span>Themes</span></a>
-          <a href="#elevation" class="sidebar-link"><span class="sidebar-link-num">07</span><span>Elevation</span></a>
+        <div class="sidebar-section" data-nav-group="system">
+          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-system">
+            <span class="sidebar-section-title">System</span>
+            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="sidebar-section-body" id="nav-system">
+            <div class="sidebar-section-body-inner">
+              <a href="system.html#themes" class="sidebar-link"><span class="sidebar-link-num">06</span><span>Themes</span></a>
+              <a href="system.html#elevation" class="sidebar-link"><span class="sidebar-link-num">07</span><span>Elevation</span></a>
+              <a href="system.html#brand-expression" class="sidebar-link"><span class="sidebar-link-num">08</span><span>Brand expression</span></a>
+              <a href="system.html#illustration" class="sidebar-link"><span class="sidebar-link-num">09</span><span>Illustration</span></a>
+              <a href="system.html#dataviz" class="sidebar-link"><span class="sidebar-link-num">10</span><span>Data visualization</span></a>
+            </div>
+          </div>
         </div>
-        <div class="sidebar-section">
-          <span class="sidebar-section-title">Components</span>
-          <a href="forms.html" class="sidebar-link sidebar-group"><span class="sidebar-link-num">·</span><span>Forms &amp; inputs</span></a>
-          <a href="content.html" class="sidebar-link sidebar-group"><span class="sidebar-link-num">·</span><span>Layout &amp; content</span></a>
-          <a href="navigation.html" class="sidebar-link sidebar-group"><span class="sidebar-link-num">·</span><span>Navigation &amp; feedback</span></a>
+        <div class="sidebar-section" data-nav-group="components">
+          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-components">
+            <span class="sidebar-section-title">Components</span>
+            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="sidebar-section-body" id="nav-components">
+            <div class="sidebar-section-body-inner">
+              <a href="forms.html" class="sidebar-link sidebar-group"><span class="sidebar-link-num">·</span><span>Forms &amp; inputs</span></a>
+              <a href="content.html" class="sidebar-link sidebar-group"><span class="sidebar-link-num">·</span><span>Layout &amp; content</span></a>
+              <a href="navigation.html" class="sidebar-link sidebar-group"><span class="sidebar-link-num">·</span><span>Navigation &amp; feedback</span></a>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -474,17 +517,13 @@
             </div>
           </div>
           <div class="palette-pair">
-            <div class="palette-swatch palette-swatch--dark" style="background: #393380;">
-              <span class="palette-swatch-name">vibrant-purple-deep</span>
-              <span class="palette-swatch-hex">#393380</span>
+            <div class="palette-swatch palette-swatch--dark" style="background: #4B351D;">
+              <span class="palette-swatch-name">earth-deep</span>
+              <span class="palette-swatch-hex">#4B351D</span>
             </div>
-            <div class="palette-swatch" style="background: #7166FF;">
-              <span class="palette-swatch-name">vibrant-purple-mid*</span>
-              <span class="palette-swatch-hex">#7166FF</span>
-            </div>
-            <div class="palette-swatch" style="background: #C6C2FF;">
-              <span class="palette-swatch-name">vibrant-purple-light</span>
-              <span class="palette-swatch-hex">#C6C2FF</span>
+            <div class="palette-swatch" style="background: #D8C092;">
+              <span class="palette-swatch-name">earth-light</span>
+              <span class="palette-swatch-hex">#D8C092</span>
             </div>
           </div>
           <div class="palette-pair">
@@ -526,7 +565,7 @@
               <dd>Below 3:1. Not usable at any size — pick a different pairing.</dd>
             </div>
           </dl>
-          <p class="palette-note" style="margin-top: var(--space-4); margin-bottom: 0;">Some secondary swatches are narrower than they look: <code>vibrant-purple-mid</code> clears only ~4.2:1 against black or white at small sizes — reach for it behind large text or graphics, not body copy.</p>
+          <p class="palette-note" style="margin-top: var(--space-4); margin-bottom: 0;">Some secondary and soft swatches are narrower than they look: several — like <code>soft-green</code> and the light secondaries — clear only large-text (AA18) contrast against black or white, so reach for them behind large text or graphics, not body copy.</p>
         </div>
 
         <div class="scale-block">
@@ -615,7 +654,7 @@
             </div>
             <div class="term-item">
               <dt>Foreground</dt>
-              <dd>Whatever sits on top of a surface and needs to read clearly against it — text, icons, borders. See <a href="#themes">Themes</a> for why foreground tokens have to re-point whenever the surface behind them does.</dd>
+              <dd>Whatever sits on top of a surface and needs to read clearly against it — text, icons, borders. See <a href="system.html#themes">Themes</a> for why foreground tokens have to re-point whenever the surface behind them does.</dd>
             </div>
             <div class="term-item">
               <dt>Accent / brand color</dt>
@@ -1060,205 +1099,28 @@
         <div class="icon-note" style="margin-top: var(--space-6);">
           <p><strong>Official Cargill mark.</strong> Every variant above renders from the official Cargill logo SVG (saved at <code>assets/cargill-logo.svg</code>). The wordmark path uses <code>currentColor</code> and the leaf is driven by <code>--leaf-fill</code>, so any new variant is one CSS class away.</p>
         </div>
-      </div>
-    </section>
 
-    <section class="block" id="themes">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="section-eyebrow">06 / Themes</p>
-            <h2 class="section-title">Light &amp; dark</h2>
-          </div>
-          <p class="section-lede">Sprout supports two display themes that adapt the same component to its surface. <strong>Light Mode</strong> pairs a bright background with deep text and color for clarity in daylight environments. <strong>Dark Mode</strong> reverses it with a deep background and high‑contrast text for low‑light viewing and conserves screen energy.</p>
-        </div>
-
-        <div class="scale-block">
-          <p class="scale-label">SDS · Token naming hierarchy</p>
-          <div class="token-tree">
-            <p class="token-tree-token">
-              <span class="token-tree-segment">sds</span>
-              <span class="token-tree-sep">·</span>
-              <span class="token-tree-segment token-tree-segment--optional">Component*</span>
-              <span class="token-tree-sep">·</span>
-              <span class="token-tree-segment">Foundation</span>
-              <span class="token-tree-sep">·</span>
-              <span class="token-tree-segment">Property*</span>
-              <span class="token-tree-sep">·</span>
-              <span class="token-tree-segment">Tier</span>
-              <span class="token-tree-sep">·</span>
-              <span class="token-tree-segment token-tree-segment--optional">Modifier*</span>
-            </p>
-            <p class="token-tree-foot">* denotes levels that can be included for a more detailed mapping of the token. Example: <code>sds-color-background-brand-hover</code> resolves at the global level; <code>sds-button-color-background-primary-hover</code> resolves at the component level.</p>
-          </div>
-        </div>
-
-        <div class="scale-block">
-          <p class="scale-label">Global semantic tokens · Light / Dark</p>
-          <table class="token-table">
-            <thead>
-              <tr>
-                <th>Token</th>
-                <th>Light Mode</th>
-                <th>Dark Mode</th>
-                <th>Use</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="token-name">sds-color-background-page</td>
-                <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
-                <td><span class="token-swatch" style="--c:#023719">#023719</span></td>
-                <td>Page-level surface</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-background-component</td>
-                <td><span class="token-swatch" style="--c:#F5F9ED">#F5F9ED</span></td>
-                <td><span class="token-swatch" style="--c:#03441F">#03441F</span></td>
-                <td>Soft card / panel fill</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-background-brand</td>
-                <td><span class="token-swatch" style="--c:#00843D">#00843D</span></td>
-                <td><span class="token-swatch" style="--c:#BDE588">#BDE588</span></td>
-                <td>Primary action surfaces</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-background-disabled</td>
-                <td><span class="token-swatch" style="--c:#F3F4F3">#F3F4F3</span></td>
-                <td><span class="token-swatch" style="--c:#404945">#404945</span></td>
-                <td>Disabled control fills</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-text-primary</td>
-                <td><span class="token-swatch" style="--c:#101C16">#101C16</span></td>
-                <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
-                <td>Default body text</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-text-secondary</td>
-                <td><span class="token-swatch" style="--c:#404945">#404945</span></td>
-                <td><span class="token-swatch" style="--c:rgba(255,255,255,0.85)">85% white</span></td>
-                <td>Supporting copy</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-text-muted</td>
-                <td><span class="token-swatch" style="--c:#707773">#707773</span></td>
-                <td><span class="token-swatch" style="--c:rgba(255,255,255,0.7)">70% white</span></td>
-                <td>Helper / metadata</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-text-on-brand</td>
-                <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
-                <td><span class="token-swatch" style="--c:#101C16">#101C16</span></td>
-                <td>Text on brand surfaces</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-border-primary</td>
-                <td><span class="token-swatch" style="--c:#DBDDDC">#DBDDDC</span></td>
-                <td><span class="token-swatch" style="--c:rgba(255,255,255,0.12)">12% white</span></td>
-                <td>Default borders / dividers</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-text-error</td>
-                <td><span class="token-swatch" style="--c:#C50F1F">#C50F1F</span></td>
-                <td><span class="token-swatch" style="--c:#F87171">#F87171</span></td>
-                <td>Error messages</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="scale-block">
-          <p class="scale-label">Side-by-side · same component, two themes</p>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
-
-            <div class="theme-demo theme-demo--light">
-              <span class="theme-demo-eyebrow">Light Mode</span>
-              <h3 class="theme-demo-title">Sprout Project Team</h3>
-              <p class="theme-demo-body">Sprout helps deliver great user experiences to our employees. The same component renders the brand pill, body, and surface from semantic tokens.</p>
-              <span class="theme-demo-pill">9 Members</span>
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Graphic device · the Cargill leaf</p>
+          <p class="section-lede" style="margin-bottom: var(--space-5);">A wider crop of the same leaf, used as the brand's primary graphic device — its own asset, not a scaled-up logo. Shown here as the raw shape only; the leaf-as-window, leaf-over-image, and stripe techniques it supports are built out separately.</p>
+          <div class="leaf-device-grid">
+            <div class="leaf-device-card" data-bg="paper">
+              <svg class="leaf-device" viewBox="0 0 1000 394" role="img" aria-label="Cargill leaf graphic device"><use href="#cargill-leaf-device"/></svg>
+              <span class="leaf-device-card-label">Leaf Green on White Green</span>
             </div>
-
-            <div class="theme-demo theme-demo--dark">
-              <span class="theme-demo-eyebrow">Dark Mode</span>
-              <h3 class="theme-demo-title">Sprout Project Team</h3>
-              <p class="theme-demo-body">Sprout helps deliver great user experiences to our employees. The same component renders the brand pill, body, and surface from semantic tokens.</p>
-              <span class="theme-demo-pill">9 Members</span>
+            <div class="leaf-device-card" data-bg="deep" style="--leaf-device-fill: var(--soft-green-400);">
+              <svg class="leaf-device" viewBox="0 0 1000 394" role="img" aria-label="Cargill leaf graphic device"><use href="#cargill-leaf-device"/></svg>
+              <span class="leaf-device-card-label">Soft Green on Deep Green</span>
             </div>
-
+            <div class="leaf-device-card" data-bg="green" style="--leaf-device-fill: var(--green-800);">
+              <svg class="leaf-device" viewBox="0 0 1000 394" role="img" aria-label="Cargill leaf graphic device"><use href="#cargill-leaf-device"/></svg>
+              <span class="leaf-device-card-label">Deep Green on Leaf Green</span>
+            </div>
           </div>
         </div>
 
         <div class="icon-note" style="margin-top: var(--space-6);">
-          <p><strong>How this maps to the page.</strong> The styleguide above uses primitive tokens directly (<code>--green-600</code>, <code>--soft-green-50</code>, <code>--neutral-1000</code>). The SDS layer adds a semantic skin (<code>sds-color-background-page</code>, <code>sds-color-text-primary</code>, etc.) that points at the primitives and can swap between Light and Dark in one place. The <em>Side-by-side</em> demo above uses real SDS tokens on the <code>.theme-demo--light</code> and <code>.theme-demo--dark</code> classes; the same markup renders into either theme by swapping a single class.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" id="elevation">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="section-eyebrow">07 / Elevation</p>
-            <h2 class="section-title">Shadows</h2>
-          </div>
-          <p class="section-lede">Elevation creates a sense of hierarchy, depth, and importance. Use it to signal which elements are interactive, which are in the foreground, and which are secondary. Sprout ships three steps that cover most surfaces.</p>
-        </div>
-
-        <div class="elevation-grid">
-
-          <div class="elevation-card">
-            <div class="elevation-box elevation-box--sm"></div>
-            <div class="elevation-meta">
-              <strong>shadow-sm</strong>
-              <span>Hairline. Pressed buttons, subtle borders.</span>
-            </div>
-          </div>
-
-          <div class="elevation-card">
-            <div class="elevation-box elevation-box--md"></div>
-            <div class="elevation-meta">
-              <strong>shadow-md</strong>
-              <span>Cards, popovers, dropdowns, toasts.</span>
-            </div>
-          </div>
-
-          <div class="elevation-card">
-            <div class="elevation-box elevation-box--lg"></div>
-            <div class="elevation-meta">
-              <strong>shadow-lg</strong>
-              <span>Modals, dialogs, full overlays.</span>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="scale-block" style="margin-top: var(--space-7);">
-          <p class="scale-label">Applied · same content, three elevations</p>
-          <div class="elevation-grid">
-            <div class="elevation-card">
-              <div class="elevation-box elevation-box--sm" style="height: auto; padding: var(--padding-lg);">
-                <p class="container-box-title" style="margin-bottom: 4px;">Title</p>
-                <p class="container-box-body">Pressed surface, sits at the page level.</p>
-              </div>
-              <div class="elevation-meta"><strong>shadow-sm</strong></div>
-            </div>
-            <div class="elevation-card">
-              <div class="elevation-box elevation-box--md" style="height: auto; padding: var(--padding-lg);">
-                <p class="container-box-title" style="margin-bottom: 4px;">Title</p>
-                <p class="container-box-body">Lifted card, hovers slightly above the page.</p>
-              </div>
-              <div class="elevation-meta"><strong>shadow-md</strong></div>
-            </div>
-            <div class="elevation-card">
-              <div class="elevation-box elevation-box--lg" style="height: auto; padding: var(--padding-lg);">
-                <p class="container-box-title" style="margin-bottom: 4px;">Title</p>
-                <p class="container-box-body">Modal surface, floats well above the page.</p>
-              </div>
-              <div class="elevation-meta"><strong>shadow-lg</strong></div>
-            </div>
-          </div>
+          <p><strong>Official graphic device.</strong> The wave above renders from the official leaf SVG (saved at <code>assets/cargill-leaf.svg</code>), imported verbatim — per Brand Guidelines, it must never be redrawn or re-traced. Fill is driven by <code>--leaf-device-fill</code>, following the same pattern as the logo's <code>--leaf-fill</code>.</p>
         </div>
       </div>
     </section>

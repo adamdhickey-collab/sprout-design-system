@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>System · Sprout Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="Cargill%20Fonts/HelveticaNowForCargill.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="Cargill%20Fonts/BigCaslonForCargill.otf" as="font" type="font/otf" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..700,0..1,-25..0&display=block" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Cargill logo SVG symbol. Wordmark paths use currentColor, leaf uses --leaf-fill. -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+    <symbol id="cargill-logo" viewBox="0 0 432 202">
+      <g fill="currentColor">
+        <path d="M423.825 174.37C422.325 174.37 420.925 173.97 419.725 173.27C418.425 172.57 417.525 171.57 416.725 170.37C416.025 169.17 415.625 167.87 415.625 166.37C415.625 164.87 416.025 163.57 416.725 162.37C417.425 161.17 418.425 160.17 419.725 159.47C421.025 158.77 422.325 158.37 423.825 158.37C425.325 158.37 426.725 158.77 427.925 159.47C429.125 160.17 430.125 161.17 430.925 162.37C431.625 163.57 432.025 164.87 432.025 166.37C432.025 167.87 431.625 169.17 430.925 170.37C430.225 171.57 429.225 172.57 427.925 173.27C426.625 173.97 425.325 174.37 423.825 174.37ZM423.825 173.07C425.125 173.07 426.225 172.77 427.325 172.17C428.325 171.57 429.225 170.77 429.825 169.77C430.425 168.77 430.725 167.57 430.725 166.37C430.725 165.17 430.425 163.97 429.825 162.97C429.225 161.97 428.425 161.17 427.325 160.57C426.225 159.97 425.125 159.67 423.825 159.67C422.525 159.67 421.425 159.97 420.325 160.57C419.225 161.17 418.425 161.97 417.825 162.97C417.225 163.97 416.925 165.17 416.925 166.37C416.925 167.57 417.225 168.77 417.825 169.77C418.425 170.77 419.225 171.57 420.325 172.17C421.425 172.77 422.625 173.07 423.825 173.07ZM420.725 170.67V161.97H424.325C424.925 161.97 425.425 162.07 425.925 162.27C426.325 162.47 426.725 162.77 426.925 163.07C427.125 163.47 427.325 163.87 427.325 164.37C427.325 164.77 427.225 165.17 427.125 165.47C426.925 165.77 426.725 166.07 426.425 166.27C426.125 166.47 425.625 166.57 425.125 166.67V166.27C425.625 166.27 425.925 166.37 426.225 166.57C426.525 166.67 426.725 166.87 426.925 167.17C427.025 167.47 427.125 167.77 427.225 168.17L427.325 169.57C427.325 169.87 427.425 170.07 427.425 170.27C427.525 170.47 427.625 170.67 427.725 170.77H426.525C426.425 170.67 426.325 170.47 426.325 170.27C426.225 170.07 426.225 169.87 426.225 169.57L426.125 168.47C426.125 168.07 426.025 167.87 425.925 167.67C425.825 167.47 425.725 167.37 425.425 167.27C425.225 167.17 424.925 167.17 424.625 167.17H421.225V165.97H424.525C424.925 165.97 425.225 165.87 425.425 165.77C425.725 165.67 425.825 165.47 426.025 165.27C426.225 165.07 426.225 164.77 426.225 164.47C426.225 164.17 426.125 163.87 426.025 163.67C425.925 163.47 425.725 163.27 425.425 163.17C425.125 163.07 424.825 162.97 424.425 162.97H421.425L421.925 162.47V170.67H420.725Z"/>
+        <path d="M432.025 55.4702C431.125 59.6702 408.725 167.97 408.125 170.77C405.625 170.77 385.625 170.77 381.925 170.77C382.725 166.57 405.225 58.2702 405.725 55.4702C408.325 55.4702 428.325 55.4702 432.025 55.4702Z"/>
+        <path d="M390.025 55.4702C389.125 59.6702 366.725 167.97 366.125 170.77C363.625 170.77 343.625 170.77 339.925 170.77C340.725 166.57 363.225 58.2702 363.725 55.4702C366.325 55.4702 386.325 55.4702 390.025 55.4702Z"/>
+        <path d="M341.925 84.2702C341.025 88.4702 324.625 167.97 324.025 170.67C321.525 170.67 301.525 170.67 297.825 170.67C298.725 166.47 315.125 86.9702 315.725 84.2702C318.225 84.2702 338.225 84.2702 341.925 84.2702Z"/>
+        <path d="M248.525 126.37C245.925 139.17 246.025 144.07 248.525 147.27C249.825 148.87 251.725 149.67 254.425 149.67C261.825 149.67 265.425 145.17 269.125 127.17C271.825 114.27 272.125 106.07 269.525 102.87C268.325 101.37 266.425 100.57 263.925 100.57C256.325 100.57 252.225 108.27 248.525 126.37ZM224.525 162.97C219.225 156.47 218.225 146.37 221.825 128.27C229.725 88.8702 244.725 81.9702 257.725 81.9702C263.925 81.9702 273.225 84.2702 274.325 95.1702L274.425 96.8702H276.225C276.225 96.8702 278.325 86.6702 278.825 84.3702C281.225 84.3702 299.425 84.3702 303.025 84.3702C302.125 88.5702 285.025 170.77 285.025 170.77C280.725 191.47 267.525 201.67 243.225 201.67C220.625 201.67 217.325 188.37 216.825 184.27C216.625 182.67 217.125 178.07 217.125 178.07C219.725 178.07 237.425 178.07 240.725 178.07C240.725 180.17 240.825 183.27 241.525 184.17C242.525 185.37 243.325 186.77 247.025 186.77C251.925 186.77 256.725 185.37 259.025 174.07L263.025 154.67H261.125L260.525 155.57C255.725 163.97 246.725 168.17 237.225 168.17C231.625 168.27 227.325 166.47 224.525 162.97Z"/>
+        <path d="M224.725 81.8702C216.125 81.8702 205.925 87.8702 200.925 97.5702L200.425 98.5702H198.525C198.525 98.5702 200.825 87.4702 201.525 84.2702C201.025 84.2702 200.225 84.2702 199.225 84.2702C196.325 84.2702 177.925 84.2702 174.325 84.2702C174.425 85.3702 174.625 86.4702 174.625 87.7702C174.625 90.5702 174.225 93.7702 173.525 97.5702C168.725 121.07 159.025 167.57 158.425 170.77C162.125 170.77 182.125 170.77 184.625 170.77C186.225 162.67 194.425 123.07 194.425 123.07C196.925 111.17 203.825 105.67 216.325 105.67C218.525 105.67 220.425 105.77 222.225 106.07C222.825 103.27 226.525 85.5702 227.225 82.0702C226.025 81.8702 224.725 81.8702 224.725 81.8702Z"/>
+        <path d="M131.725 127.17C131.725 127.17 131.225 127.57 130.325 127.97C128.725 128.57 125.225 129.17 123.125 129.67C121.425 130.07 119.525 130.57 117.525 131.47C112.025 133.77 109.325 137.57 107.825 144.47C107.025 148.47 107.525 151.87 109.325 154.07C110.625 155.67 112.625 156.57 115.025 156.57C124.725 156.57 127.725 147.27 129.225 140.27L131.725 127.17ZM132.025 81.8702C145.325 81.8702 153.425 84.1702 157.425 89.1702C159.625 91.8702 160.725 95.4702 160.825 100.07C160.825 102.67 160.525 105.47 159.825 108.57L150.725 152.57C149.525 158.67 148.725 163.27 148.725 167.17C148.725 168.37 148.825 169.57 149.025 170.57C145.325 170.57 126.925 170.57 124.125 170.57C124.125 170.27 124.125 170.07 124.125 169.77C124.125 167.97 124.225 165.97 124.425 163.97L124.725 160.37H123.325L122.825 161.17C118.325 168.37 108.125 172.87 99.4255 172.87C92.2255 172.87 87.0255 171.07 84.0255 167.37C80.8255 163.37 80.0255 157.07 81.7255 148.67C85.1255 132.27 92.6255 125.27 111.325 121.07L123.725 118.27C131.125 116.67 134.625 113.37 136.025 107.07C136.725 103.57 136.325 100.87 134.825 99.0702C133.425 97.3702 131.225 96.5702 128.225 96.5702C121.525 96.5702 118.025 99.9702 115.825 108.57C113.525 108.57 97.2255 108.57 93.6255 108.57C99.5255 85.4702 120.125 81.8702 132.025 81.8702Z"/>
+        <path d="M5.12538 166.17C-1.37462 158.17 -1.67462 143.37 4.12538 115.17C13.5254 70.0702 26.9254 54.8702 57.5254 54.8702C69.7254 54.8702 78.3254 57.7702 83.0254 63.5702C86.0254 67.2702 87.6254 72.3702 87.6254 78.7702C87.6254 82.2702 87.2254 86.0702 86.3254 90.2702C86.3254 90.2702 85.5254 94.0702 85.0254 96.2702C82.5254 96.2702 59.2254 96.2702 59.2254 96.2702C59.2254 96.2702 61.1254 83.9702 61.1254 81.2702C61.1254 78.1702 61.0254 76.5702 59.8254 75.0702C58.6254 73.4702 56.8254 72.1702 54.0254 72.1702C42.6254 72.1702 38.8254 83.0702 32.3254 114.47C27.3254 138.87 25.4254 149.97 29.3254 154.77C30.8254 156.57 33.0254 157.47 36.1254 157.47C45.1254 157.47 48.6254 149.77 53.2254 128.37C55.6254 128.37 75.5254 128.37 79.2254 128.37C78.7254 130.87 77.8254 134.97 77.8254 134.97C72.4254 161.37 56.8254 174.77 31.8254 174.77C18.4254 174.67 9.92538 171.97 5.12538 166.17Z"/>
+      </g>
+      <path style="fill: var(--leaf-fill, #00843D)" d="M344.125 74.0702C344.125 74.0702 326.725 75.4702 314.625 73.7702C286.825 69.9702 261.025 50.7702 249.625 44.3702C224.825 30.5702 214.725 29.6702 201.925 33.3702C180.825 39.0702 168.525 56.3702 156.625 76.5702C154.325 75.4702 151.925 74.5702 149.425 73.9702C156.225 59.5702 182.125 13.0702 235.425 2.07022C288.925 -9.12978 346.225 26.5702 344.125 74.0702Z"/>
+    </symbol>
+  </svg>
+
+  <div class="app-layout">
+
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <a href="index.html" style="text-decoration:none; display:block;"><svg class="cargill-logo cargill-logo--black" viewBox="0 0 432 202" role="img" aria-label="Cargill"><use href="#cargill-logo"/></svg></a>
+        <span class="sidebar-brand-title">Sprout</span>
+        <span class="sidebar-brand-tagline">Design System · <span class="js-version">v1.0</span></span>
+        <div class="theme-toggle-row">
+          <button type="button" id="theme-toggle" class="theme-toggle" role="switch" aria-checked="false" aria-label="Light mode">
+            <span class="theme-toggle-track" aria-hidden="true">
+              <span class="theme-toggle-thumb"></span>
+              <span class="theme-toggle-opt theme-toggle-opt--light">
+                <span class="material-symbols-rounded theme-toggle-glyph">light_mode</span>
+                <span class="theme-toggle-opt-label">Light</span>
+              </span>
+              <span class="theme-toggle-opt theme-toggle-opt--dark">
+                <span class="material-symbols-rounded theme-toggle-glyph">dark_mode</span>
+                <span class="theme-toggle-opt-label">Dark</span>
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-search">
+        <button type="button" class="sidebar-search-trigger" id="search-trigger" aria-haspopup="dialog">
+          <span class="material-symbols-rounded" aria-hidden="true">search</span>
+          <span class="sidebar-search-trigger-label">Search</span>
+          <span class="sidebar-search-kbd">⌘K</span>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Design system sections">
+        <div class="sidebar-section" data-nav-group="start">
+          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-start">
+            <span class="sidebar-section-title">Start here</span>
+            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="sidebar-section-body" id="nav-start">
+            <div class="sidebar-section-body-inner">
+              <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num">·</span><span>Getting started</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-section" data-nav-group="foundations">
+          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-foundations">
+            <span class="sidebar-section-title">Foundations</span>
+            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="sidebar-section-body" id="nav-foundations">
+            <div class="sidebar-section-body-inner">
+              <a href="index.html#color" class="sidebar-link"><span class="sidebar-link-num">01</span><span>Color</span></a>
+              <a href="index.html#type" class="sidebar-link"><span class="sidebar-link-num">02</span><span>Typography</span></a>
+              <a href="index.html#space" class="sidebar-link"><span class="sidebar-link-num">03</span><span>Layout &amp; shape</span></a>
+              <a href="index.html#icons" class="sidebar-link"><span class="sidebar-link-num">04</span><span>Iconography</span></a>
+              <a href="index.html#logo" class="sidebar-link"><span class="sidebar-link-num">05</span><span>Logo</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-section" data-nav-group="system">
+          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-system">
+            <span class="sidebar-section-title">System</span>
+            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="sidebar-section-body" id="nav-system">
+            <div class="sidebar-section-body-inner">
+              <a href="#themes" class="sidebar-link"><span class="sidebar-link-num">06</span><span>Themes</span></a>
+              <a href="#elevation" class="sidebar-link"><span class="sidebar-link-num">07</span><span>Elevation</span></a>
+              <a href="#brand-expression" class="sidebar-link"><span class="sidebar-link-num">08</span><span>Brand expression</span></a>
+              <a href="#illustration" class="sidebar-link"><span class="sidebar-link-num">09</span><span>Illustration</span></a>
+              <a href="#dataviz" class="sidebar-link"><span class="sidebar-link-num">10</span><span>Data visualization</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-section" data-nav-group="components">
+          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-components">
+            <span class="sidebar-section-title">Components</span>
+            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="sidebar-section-body" id="nav-components">
+            <div class="sidebar-section-body-inner">
+              <a href="forms.html" class="sidebar-link sidebar-group"><span class="sidebar-link-num">·</span><span>Forms &amp; inputs</span></a>
+              <a href="content.html" class="sidebar-link sidebar-group"><span class="sidebar-link-num">·</span><span>Layout &amp; content</span></a>
+              <a href="navigation.html" class="sidebar-link sidebar-group"><span class="sidebar-link-num">·</span><span>Navigation &amp; feedback</span></a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="sidebar-foot">
+        Updated <span class="js-updated">2026.06.06</span><br>Tokens mirrored in Figma · audited 07.22.2026
+      </div>
+    </aside>
+
+    <div class="app-main" id="main-content" tabindex="-1">
+
+  <main>
+    <section class="block" id="system-top">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow">06–10 / System</p>
+            <h1 class="section-title">System</h1>
+          </div>
+          <p class="section-lede">Themes, elevation, the brand's own graphic language, illustration, and data visualization — the layer that sits on top of the Foundations tokens and gives the system its Cargill identity.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="themes">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow">06 / Themes</p>
+            <h2 class="section-title">Light &amp; dark</h2>
+          </div>
+          <p class="section-lede">Sprout supports two display themes that adapt the same component to its surface. <strong>Light Mode</strong> pairs a bright background with deep text and color for clarity in daylight environments. <strong>Dark Mode</strong> reverses it with a deep background and high‑contrast text for low‑light viewing and conserves screen energy.</p>
+        </div>
+
+        <div class="scale-block">
+          <p class="scale-label">SDS · Token naming hierarchy</p>
+          <div class="token-tree">
+            <p class="token-tree-token">
+              <span class="token-tree-segment">sds</span>
+              <span class="token-tree-sep">·</span>
+              <span class="token-tree-segment token-tree-segment--optional">Component*</span>
+              <span class="token-tree-sep">·</span>
+              <span class="token-tree-segment">Foundation</span>
+              <span class="token-tree-sep">·</span>
+              <span class="token-tree-segment">Property*</span>
+              <span class="token-tree-sep">·</span>
+              <span class="token-tree-segment">Tier</span>
+              <span class="token-tree-sep">·</span>
+              <span class="token-tree-segment token-tree-segment--optional">Modifier*</span>
+            </p>
+            <p class="token-tree-foot">* denotes levels that can be included for a more detailed mapping of the token. Example: <code>sds-color-background-brand-hover</code> resolves at the global level; <code>sds-button-color-background-primary-hover</code> resolves at the component level.</p>
+          </div>
+        </div>
+
+        <div class="scale-block">
+          <p class="scale-label">Global semantic tokens · Light / Dark</p>
+          <table class="token-table">
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Light Mode</th>
+                <th>Dark Mode</th>
+                <th>Use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="token-name">sds-color-background-page</td>
+                <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
+                <td><span class="token-swatch" style="--c:#023719">#023719</span></td>
+                <td>Page-level surface</td>
+              </tr>
+              <tr>
+                <td class="token-name">sds-color-background-component</td>
+                <td><span class="token-swatch" style="--c:#F5F9ED">#F5F9ED</span></td>
+                <td><span class="token-swatch" style="--c:#03441F">#03441F</span></td>
+                <td>Soft card / panel fill</td>
+              </tr>
+              <tr>
+                <td class="token-name">sds-color-background-brand</td>
+                <td><span class="token-swatch" style="--c:#00843D">#00843D</span></td>
+                <td><span class="token-swatch" style="--c:#BDE588">#BDE588</span></td>
+                <td>Primary action surfaces</td>
+              </tr>
+              <tr>
+                <td class="token-name">sds-color-background-disabled</td>
+                <td><span class="token-swatch" style="--c:#F3F4F3">#F3F4F3</span></td>
+                <td><span class="token-swatch" style="--c:#404945">#404945</span></td>
+                <td>Disabled control fills</td>
+              </tr>
+              <tr>
+                <td class="token-name">sds-color-text-primary</td>
+                <td><span class="token-swatch" style="--c:#101C16">#101C16</span></td>
+                <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
+                <td>Default body text</td>
+              </tr>
+              <tr>
+                <td class="token-name">sds-color-text-secondary</td>
+                <td><span class="token-swatch" style="--c:#404945">#404945</span></td>
+                <td><span class="token-swatch" style="--c:rgba(255,255,255,0.85)">85% white</span></td>
+                <td>Supporting copy</td>
+              </tr>
+              <tr>
+                <td class="token-name">sds-color-text-muted</td>
+                <td><span class="token-swatch" style="--c:#707773">#707773</span></td>
+                <td><span class="token-swatch" style="--c:rgba(255,255,255,0.7)">70% white</span></td>
+                <td>Helper / metadata</td>
+              </tr>
+              <tr>
+                <td class="token-name">sds-color-text-on-brand</td>
+                <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
+                <td><span class="token-swatch" style="--c:#101C16">#101C16</span></td>
+                <td>Text on brand surfaces</td>
+              </tr>
+              <tr>
+                <td class="token-name">sds-color-border-primary</td>
+                <td><span class="token-swatch" style="--c:#DBDDDC">#DBDDDC</span></td>
+                <td><span class="token-swatch" style="--c:rgba(255,255,255,0.12)">12% white</span></td>
+                <td>Default borders / dividers</td>
+              </tr>
+              <tr>
+                <td class="token-name">sds-color-text-error</td>
+                <td><span class="token-swatch" style="--c:#C50F1F">#C50F1F</span></td>
+                <td><span class="token-swatch" style="--c:#F87171">#F87171</span></td>
+                <td>Error messages</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="scale-block">
+          <p class="scale-label">Side-by-side · same component, two themes</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+
+            <div class="theme-demo theme-demo--light">
+              <span class="theme-demo-eyebrow">Light Mode</span>
+              <h3 class="theme-demo-title">Sprout Project Team</h3>
+              <p class="theme-demo-body">Sprout helps deliver great user experiences to our employees. The same component renders the brand pill, body, and surface from semantic tokens.</p>
+              <span class="theme-demo-pill">9 Members</span>
+            </div>
+
+            <div class="theme-demo theme-demo--dark">
+              <span class="theme-demo-eyebrow">Dark Mode</span>
+              <h3 class="theme-demo-title">Sprout Project Team</h3>
+              <p class="theme-demo-body">Sprout helps deliver great user experiences to our employees. The same component renders the brand pill, body, and surface from semantic tokens.</p>
+              <span class="theme-demo-pill">9 Members</span>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="icon-note" style="margin-top: var(--space-6);">
+          <p><strong>How this maps to the page.</strong> The styleguide above uses primitive tokens directly (<code>--green-600</code>, <code>--soft-green-50</code>, <code>--neutral-1000</code>). The SDS layer adds a semantic skin (<code>sds-color-background-page</code>, <code>sds-color-text-primary</code>, etc.) that points at the primitives and can swap between Light and Dark in one place. The <em>Side-by-side</em> demo above uses real SDS tokens on the <code>.theme-demo--light</code> and <code>.theme-demo--dark</code> classes; the same markup renders into either theme by swapping a single class.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="elevation">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow">07 / Elevation</p>
+            <h2 class="section-title">Shadows</h2>
+          </div>
+          <p class="section-lede">Elevation creates a sense of hierarchy, depth, and importance. Use it to signal which elements are interactive, which are in the foreground, and which are secondary. Sprout ships three steps that cover most surfaces.</p>
+        </div>
+
+        <div class="elevation-grid">
+
+          <div class="elevation-card">
+            <div class="elevation-box elevation-box--sm"></div>
+            <div class="elevation-meta">
+              <strong>shadow-sm</strong>
+              <span>Hairline. Pressed buttons, subtle borders.</span>
+            </div>
+          </div>
+
+          <div class="elevation-card">
+            <div class="elevation-box elevation-box--md"></div>
+            <div class="elevation-meta">
+              <strong>shadow-md</strong>
+              <span>Cards, popovers, dropdowns, toasts.</span>
+            </div>
+          </div>
+
+          <div class="elevation-card">
+            <div class="elevation-box elevation-box--lg"></div>
+            <div class="elevation-meta">
+              <strong>shadow-lg</strong>
+              <span>Modals, dialogs, full overlays.</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Applied · same content, three elevations</p>
+          <div class="elevation-grid">
+            <div class="elevation-card">
+              <div class="elevation-box elevation-box--sm" style="height: auto; padding: var(--padding-lg);">
+                <p class="container-box-title" style="margin-bottom: 4px;">Title</p>
+                <p class="container-box-body">Pressed surface, sits at the page level.</p>
+              </div>
+              <div class="elevation-meta"><strong>shadow-sm</strong></div>
+            </div>
+            <div class="elevation-card">
+              <div class="elevation-box elevation-box--md" style="height: auto; padding: var(--padding-lg);">
+                <p class="container-box-title" style="margin-bottom: 4px;">Title</p>
+                <p class="container-box-body">Lifted card, hovers slightly above the page.</p>
+              </div>
+              <div class="elevation-meta"><strong>shadow-md</strong></div>
+            </div>
+            <div class="elevation-card">
+              <div class="elevation-box elevation-box--lg" style="height: auto; padding: var(--padding-lg);">
+                <p class="container-box-title" style="margin-bottom: 4px;">Title</p>
+                <p class="container-box-body">Modal surface, floats well above the page.</p>
+              </div>
+              <div class="elevation-meta"><strong>shadow-lg</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="brand-expression">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow">08 / Brand expression</p>
+            <h2 class="section-title">Graphic language</h2>
+          </div>
+          <p class="section-lede">The leaf is the brand's <strong>primary device</strong> — the "front door," used boldly at top level (a hero, a section header, a cover). The <strong>rounded box</strong> is the secondary device: once inside the branded world, the leaf steps aside for a calmer, less-branded container fit for detailed, repeated content. Built from the graphic-device asset registered in <a href="index.html#logo">Logo</a>.</p>
+        </div>
+
+        <div class="scale-block">
+          <p class="scale-label">Brand canvas · single color graphic</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-4);">
+            <div class="brand-canvas" style="--brand-canvas-bg: var(--green-600); --leaf-device-fill: var(--green-800);">
+              <svg class="leaf-device" viewBox="0 0 1000 394" aria-hidden="true"><use href="#cargill-leaf-device"/></svg>
+              <div class="brand-canvas-content">
+                <p class="brand-canvas-eyebrow">Sprout Design System</p>
+                <p class="brand-canvas-title">Nourishing the world, one interface at a time.</p>
+              </div>
+            </div>
+            <div class="brand-canvas" style="--brand-canvas-bg: var(--surface-deep); --leaf-device-fill: var(--soft-green-400); --brand-canvas-fg: var(--soft-green-400);">
+              <svg class="leaf-device" viewBox="0 0 1000 394" aria-hidden="true"><use href="#cargill-leaf-device"/></svg>
+              <div class="brand-canvas-content">
+                <p class="brand-canvas-eyebrow" style="color: #fff;">Cargill Brand Development</p>
+                <p class="brand-canvas-title" style="color: #fff;">Building a stronger Cargill brand.</p>
+                <p class="brand-canvas-meta" style="color: #fff;">February 2026 · Version 2.0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Rounded box · the secondary device</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4);">
+            <div class="rounded-box">
+              <div class="stat-block">
+                <span class="stat-value">160,000+</span>
+                <span class="stat-label">Employees worldwide</span>
+              </div>
+            </div>
+            <div class="rounded-box rounded-box--deep">
+              <div class="stat-block">
+                <span class="stat-value">70+</span>
+                <span class="stat-label">Countries with a Cargill presence</span>
+              </div>
+            </div>
+            <div class="rounded-box">
+              <p class="container-box-title" style="margin-bottom: 4px;">Fact sheet</p>
+              <p class="container-box-body">Detailed, repeated content — the kind that would turn monotonous under the leaf — lives here instead. No leaf, no secondary color; just the calm surface.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Leaf as window · a photo inside the leaf silhouette</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: var(--space-4);">
+            <div class="leaf-window-canvas" style="background: var(--soft-green-50);">
+              <div class="leaf-window">
+                <img class="leaf-window-img" src="assets/brand-photography/systems-cornfield-wide.png" alt="Cornfield under a wide sky" />
+              </div>
+              <div class="leaf-window-content">
+                <p class="leaf-window-title">A wide-spanning view of the systems we work in.</p>
+                <svg class="cargill-logo cargill-logo--leaf-mono" viewBox="0 0 432 202" role="img" aria-label="Cargill" style="width: 96px;"><use href="#cargill-logo"/></svg>
+              </div>
+            </div>
+            <div class="leaf-window-canvas" style="background: var(--surface-deep);">
+              <div class="leaf-window">
+                <img class="leaf-window-img" src="assets/brand-photography/world-farmer-tablet-field.png" alt="A farmer examining a crop with a tablet in a green field" />
+              </div>
+              <div class="leaf-window-content">
+                <p class="leaf-window-title" style="color: #fff;">Technology meets the field, everywhere we grow.</p>
+                <svg class="cargill-logo cargill-logo--white-mono" viewBox="0 0 432 202" role="img" aria-label="Cargill" style="width: 96px;"><use href="#cargill-logo"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Leaf over image · the leaf rides on top of a full-bleed photo</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: var(--space-4);">
+            <div class="leaf-over-image" style="--leaf-device-fill: var(--green-600);">
+              <img class="leaf-over-image-img" src="assets/brand-photography/systems-wind-turbine-detail.png" alt="Detail of a wind turbine against a blue sky" />
+              <div class="leaf-over-image-scrim" aria-hidden="true"></div>
+              <svg class="leaf-device" viewBox="0 0 1000 394" aria-hidden="true"><use href="#cargill-leaf-device"/></svg>
+              <div class="leaf-over-image-content">
+                <p class="leaf-over-image-title">Powering our systems, responsibly.</p>
+                <p class="leaf-over-image-meta">Our systems · Detailed view</p>
+              </div>
+            </div>
+            <div class="leaf-over-image" style="--leaf-device-fill: var(--surface-deep);">
+              <img class="leaf-over-image-img" src="assets/brand-photography/systems-combine-harvester-sunset.png" alt="A combine harvester working a field at sunset" />
+              <div class="leaf-over-image-scrim" aria-hidden="true"></div>
+              <svg class="leaf-device" viewBox="0 0 1000 394" aria-hidden="true"><use href="#cargill-leaf-device"/></svg>
+              <div class="leaf-over-image-content">
+                <p class="leaf-over-image-title">Strong roots, sustainable growth.</p>
+                <p class="leaf-over-image-meta">Our systems · Focused view</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="illustration">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow">09 / Illustration</p>
+            <h2 class="section-title">Illustration &amp; diagrams</h2>
+          </div>
+          <p class="section-lede">Illustration is a functional brand asset, used only when photography won't suffice — abstract concepts, infographics, process diagrams. There is <strong>one illustration style</strong> across the brand, built from the same primary + secondary palette as everything else in this system; the guidelines are explicit that we never invent our own tints. <strong>Diagrams</strong> are the functional half of the chapter, fully specified below: line weights, fill treatments, and a worked process-flow example.</p>
+        </div>
+
+        <div class="scale-block">
+          <p class="scale-label">Line weights · fixed 1:2 ratio, scale uniformly</p>
+          <div class="line-weight-demo">
+            <div class="line-weight-sample">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 56 V32 C24 32 16 24 16 14 C26 14 32 22 32 32 C32 22 38 14 48 14 C48 24 40 32 32 32"/></svg>
+              <p class="line-weight-sample-label">.75pt / 1px<span>Detail line</span></p>
+            </div>
+            <div class="line-weight-sample">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 56 V32 C24 32 16 24 16 14 C26 14 32 22 32 32 C32 22 38 14 48 14 C48 24 40 32 32 32"/></svg>
+              <p class="line-weight-sample-label">1.5pt / 2px<span>Primary line</span></p>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-4);">Measured on a 1&Prime; / 72px-tall artboard (the same sprout glyph from <a href="index.html#icons">Iconography</a>, shown here in outline to isolate the stroke). Scaling to 400% scales both weights together — .75pt→3pt, 1.5pt→6pt — never restyle one stroke independently of the rest of the artwork.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Fill treatments · core palette only, no custom tints</p>
+          <div class="texture-legend">
+            <div class="texture-swatch-cell"><div class="texture-swatch texture-swatch--outline"></div><p class="texture-swatch-label">Outline only</p></div>
+            <div class="texture-swatch-cell"><div class="texture-swatch texture-swatch--dot"></div><p class="texture-swatch-label">Dot texture</p></div>
+            <div class="texture-swatch-cell"><div class="texture-swatch texture-swatch--hatch"></div><p class="texture-swatch-label">Diagonal hatch</p></div>
+            <div class="texture-swatch-cell"><div class="texture-swatch texture-swatch--solid"></div><p class="texture-swatch-label">Solid fill</p></div>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Process flow · a worked diagram example</p>
+          <div class="diagram-flow">
+            <div class="diagram-step">
+              <div class="diagram-node diagram-node--outline"></div>
+              <p class="diagram-step-title">01 Intake</p>
+              <p class="diagram-step-desc">Raw material enters the system, unprocessed.</p>
+            </div>
+            <svg class="diagram-connector" viewBox="0 0 40 12" width="40" height="12" aria-hidden="true"><line x1="0" y1="6" x2="30" y2="6" stroke="currentColor" stroke-width="1.5"/><path d="M28 1 L37 6 L28 11 Z" fill="currentColor"/></svg>
+            <div class="diagram-step">
+              <div class="diagram-node diagram-node--dot"></div>
+              <p class="diagram-step-title">02 Process</p>
+              <p class="diagram-step-desc">Material is refined and combined, mid-system.</p>
+            </div>
+            <svg class="diagram-connector" viewBox="0 0 40 12" width="40" height="12" aria-hidden="true"><line x1="0" y1="6" x2="30" y2="6" stroke="currentColor" stroke-width="1.5"/><path d="M28 1 L37 6 L28 11 Z" fill="currentColor"/></svg>
+            <div class="diagram-step">
+              <div class="diagram-node diagram-node--solid"></div>
+              <p class="diagram-step-title">03 Output</p>
+              <p class="diagram-step-desc">Finished product moves downstream, complete.</p>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">Diagrams do a different job than illustration — clear and concise, not expressive. Fill treatment carries meaning on its own (here, stage of completion) so connectors can stay at the thin, detail line weight and read as structure rather than artwork.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Instructions · diagrams may pull from either palette</p>
+          <div class="diagram-instructions">
+            <div class="diagram-instruction-step">
+              <div class="diagram-instruction-circle"><span class="material-symbols-rounded" aria-hidden="true">search</span></div>
+              <p class="diagram-instruction-num">01 Locate</p>
+              <p class="diagram-instruction-desc">Find the component before starting.</p>
+            </div>
+            <div class="diagram-instruction-step">
+              <div class="diagram-instruction-circle"><span class="material-symbols-rounded" aria-hidden="true">swap_horiz</span></div>
+              <p class="diagram-instruction-num">02 Align</p>
+              <p class="diagram-instruction-desc">Line it up with the marked edge.</p>
+            </div>
+            <div class="diagram-instruction-step">
+              <div class="diagram-instruction-circle"><span class="material-symbols-rounded" aria-hidden="true">lock</span></div>
+              <p class="diagram-instruction-num">03 Secure</p>
+              <p class="diagram-instruction-desc">Fasten until it clicks into place.</p>
+            </div>
+            <div class="diagram-instruction-step">
+              <div class="diagram-instruction-circle"><span class="material-symbols-rounded" aria-hidden="true">check</span></div>
+              <p class="diagram-instruction-num">04 Confirm</p>
+              <p class="diagram-instruction-desc">Check for the confirmation indicator.</p>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">Diagrams can convey action and instruction more clearly than photography, and — unlike illustration — are free to pull color from either the primary or secondary palette. This sequence uses Rich Red Deep to keep it visually distinct from the process-flow example above.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Alternate colorways · the same diagram, reversed on a brand canvas</p>
+          <div class="diagram-colorway-row">
+            <div class="diagram-colorway-canvas" style="background: var(--green-600);">
+              <div class="diagram-colorway-flow">
+                <div class="diagram-colorway-node"></div>
+                <span class="material-symbols-rounded diagram-colorway-arrow" aria-hidden="true">arrow_forward</span>
+                <div class="diagram-colorway-node diagram-colorway-node--dot"></div>
+                <span class="material-symbols-rounded diagram-colorway-arrow" aria-hidden="true">arrow_forward</span>
+                <div class="diagram-colorway-node diagram-colorway-node--solid"></div>
+              </div>
+              <p class="diagram-colorway-label">Process flow · reversed</p>
+            </div>
+            <div class="diagram-colorway-canvas" style="background: var(--rich-red-deep);">
+              <div class="diagram-colorway-flow">
+                <div class="diagram-colorway-node"></div>
+                <span class="material-symbols-rounded diagram-colorway-arrow" aria-hidden="true">arrow_forward</span>
+                <div class="diagram-colorway-node diagram-colorway-node--dot"></div>
+                <span class="material-symbols-rounded diagram-colorway-arrow" aria-hidden="true">arrow_forward</span>
+                <div class="diagram-colorway-node diagram-colorway-node--solid"></div>
+              </div>
+              <p class="diagram-colorway-label">Process flow · secondary colorway</p>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">The same line-weight and fill-treatment system, rendered in reverse on a solid brand-color canvas — a diagram can sit on a colored background the same way <a href="#brand-expression">the leaf</a> does, as long as the line weight and fill logic stay identical to the on-white version.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Illustration placeholder · reserve the space, not the artwork</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-4);">
+            <div class="illustration-slot illustration-slot--landscape">
+              <span class="material-symbols-rounded" aria-hidden="true">image</span>
+              <p class="illustration-slot-label">16:9 landscape</p>
+              <p class="illustration-slot-meta">Hero &amp; section-header illustration slots</p>
+            </div>
+            <div class="illustration-slot illustration-slot--square">
+              <span class="material-symbols-rounded" aria-hidden="true">image</span>
+              <p class="illustration-slot-label">1:1 square</p>
+              <p class="illustration-slot-meta">Card &amp; grid illustration slots</p>
+            </div>
+            <div class="illustration-slot illustration-slot--portrait">
+              <span class="material-symbols-rounded" aria-hidden="true">image</span>
+              <p class="illustration-slot-label">3:4 portrait</p>
+              <p class="illustration-slot-meta">Sidebar &amp; inset illustration slots</p>
+            </div>
+          </div>
+          <div class="icon-note" style="margin-top: var(--space-5);">
+            <p><strong>Alt text, once the real asset lands.</strong> Describe the scene's subject and action — what it shows and why — never "illustration of…" or the filename. If the illustration sits next to text that already says the same thing, mark it decorative with <code>alt=""</code> instead of describing it twice.</p>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Character illustration · asset dependency</p>
+          <div class="icon-note">
+            <p><strong>Not built here.</strong> The brand's people and object illustrations (the padlock, the corn, the test tube, every human figure) are hand-drawn in one approved style, with a dedicated skin-tone and hair-color palette (guidelines p.104) reserved for that use only — not brand colors, and not usable anywhere else. No source files for that style exist in this repo, and the guidelines explicitly warn against off-style substitutes, so this system does not attempt hand-coded stand-ins. Use the illustration placeholder above to hold the layout until the approved asset library lands, the same way <a href="assets/brand-photography/README.md">brand photography</a> is standing in for a licensed library today.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="block" id="dataviz">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow">10 / Data visualization</p>
+            <h2 class="section-title">Data visualization</h2>
+          </div>
+          <p class="section-lede">Data is a <strong>functional element first</strong> — the brand's own rule is that color differentiates data points, but functionality always takes precedent over color, and a chart should never lean on color alone. Series colors follow a <strong>fixed order</strong>, never a cycled or arbitrary hue rotation, and every chart is either <strong>functional</strong> (the everyday, template-driven default) or <strong>expressive</strong> (a bolder treatment earned only in high-craft moments) — never a blend of both.</p>
+        </div>
+
+        <div class="scale-block">
+          <p class="scale-label">Categorical sequence · fixed order, lead with green</p>
+          <div class="dataviz-sequence">
+            <div class="chart-color-step" style="background:#00843D;"><span class="chart-color-step-num">1</span><span class="chart-color-step-name">Leaf Green<br>100%</span></div>
+            <div class="chart-color-step" style="background:#03441F;"><span class="chart-color-step-num">2</span><span class="chart-color-step-name">Deep Green<br>100%</span></div>
+            <div class="chart-color-step chart-color-step--light" style="background:#BDE588;"><span class="chart-color-step-num">3</span><span class="chart-color-step-name">Soft Green<br>100%</span></div>
+            <div class="chart-color-step" style="background:#4DA977;"><span class="chart-color-step-num">4</span><span class="chart-color-step-name">Leaf Green<br>70%</span></div>
+            <div class="chart-color-step" style="background:#4F7C62;"><span class="chart-color-step-num">5</span><span class="chart-color-step-name">Deep Green<br>70%</span></div>
+            <div class="chart-color-step chart-color-step--light" style="background:#D1EDAC;"><span class="chart-color-step-num">6</span><span class="chart-color-step-name">Soft Green<br>70%</span></div>
+          </div>
+
+          <div class="dataviz-extension-row">
+            <div class="dataviz-extension-set">
+              <span class="dataviz-extension-label">Beyond 6 series · add one set</span>
+              <div class="dataviz-extension-swatches">
+                <span style="background:#003366;"></span><span style="background:#007681;"></span><span style="background:#BCEDFF;"></span>
+              </div>
+            </div>
+            <div class="dataviz-extension-set">
+              <span class="dataviz-extension-label">&nbsp;</span>
+              <div class="dataviz-extension-swatches">
+                <span style="background:#9E2A2F;"></span><span style="background:#FF7F4D;"></span><span style="background:#FFD77D;"></span>
+              </div>
+            </div>
+            <div class="dataviz-extension-set">
+              <span class="dataviz-extension-label">&nbsp;</span>
+              <div class="dataviz-extension-swatches">
+                <span style="background:#4B351D;"></span><span style="background:#D8C092;"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="icon-note" style="margin-top: var(--space-5);">
+            <p><strong>Validated, not just documented.</strong> Checked against the accepted color-vision-deficiency and contrast rules a chart palette needs: steps 1–3 separate cleanly, but the 4–6 tint pair (Leaf 70% vs. Deep 70%) sits close enough that even full-color vision struggles to tell them apart at a glance. Treat 4–6 as a last resort, not a default — reach for one of the secondary sets above before doubling into tints, and always pair every series with a direct value label so color is never the only thing carrying the data, per the brand's own accessibility note.</p>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Functional vs. expressive · two different jobs, never mixed</p>
+          <div class="dataviz-cards">
+            <div class="dataviz-card dataviz-card--functional">
+              <p class="dataviz-card-eyebrow">Functional data</p>
+              <p class="dataviz-card-body">The everyday default — presentations, dashboards, functional documents. Built from a template and used as it comes: square corners (rounded corners aren't replicable across every platform that renders this data), clear labels, no unnecessary styling. This is what almost every chart in this system should be.</p>
+            </div>
+            <div class="dataviz-card dataviz-card--expressive">
+              <p class="dataviz-card-eyebrow">Expressive data</p>
+              <p class="dataviz-hero-number">880,000</p>
+              <p class="dataviz-card-body">Reserved for high-craft moments — an annual report, a brochure — where design craft is earned. Rounded corners and a bolder, more bespoke label treatment are permitted here only; a dark canvas with the primary palette (black, white, Leaf Green, Soft Green) carries a single bold statistic further than a template chart could.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Worked example · functional bar chart</p>
+          <div class="bar-chart">
+            <div class="bar-chart-col">
+              <span class="bar-chart-value">4.2</span>
+              <div class="bar-chart-bar" style="height: 32%; background:#00843D;"></div>
+              <span class="bar-chart-label">Q1</span>
+            </div>
+            <div class="bar-chart-col">
+              <span class="bar-chart-value">7.8</span>
+              <div class="bar-chart-bar" style="height: 60%; background:#03441F;"></div>
+              <span class="bar-chart-label">Q2</span>
+            </div>
+            <div class="bar-chart-col">
+              <span class="bar-chart-value">13.0</span>
+              <div class="bar-chart-bar" style="height: 100%; background:#BDE588; border: 1px solid var(--border);"></div>
+              <span class="bar-chart-label">Q3</span>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">Built from steps 1–3 only — the part of the sequence that's actually safe to ship — with a direct value label above every bar. Square corners throughout: this is functional data, not an expressive moment.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Infographics · proportion by repetition</p>
+          <div class="pictogram-grid">
+            <span class="material-symbols-rounded is-active" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded is-active" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded is-active" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+            <span class="material-symbols-rounded" aria-hidden="true">person</span>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-4);">3 in 10 — a single repeated glyph, colored by proportion. The brand treats infographics as <strong>functional, not illustration</strong>: they may borrow the graphic language (the leaf, a single icon), but the job is still to communicate a number clearly, not to decorate.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <div class="icon-note">
+            <p><strong>Don'ts.</strong> Never round the corners on functional/template data — it isn't replicable everywhere this data renders. Never let color alone carry the difference between series; a legend or a direct label always accompanies it. Never reach for a secondary colorway "sporadically" — it's an intentional accessibility or brand-architecture choice, not decoration. And never build a chart that looks like data but communicates nothing of importance — if the content next to it is really a bullet list, use a bullet list.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-mark">Sprout<span class="sub"> Design System</span></p>
+        <p class="footer-meta" style="margin-top: 6px;">A Cargill product · <span class="js-version">v1.0</span></p>
+      </div>
+      <p class="footer-meta">A working styleguide. Refine as tokens land.</p>
+    </div>
+  </footer>
+
+    </div><!-- /.app-main -->
+  </div><!-- /.app-layout -->
+
+  <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search Sprout" hidden>
+    <div class="search-panel">
+      <div class="search-input-row">
+        <span class="material-symbols-rounded" aria-hidden="true">search</span>
+        <input type="text" class="search-input" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search Sprout" />
+        <kbd class="search-esc">Esc</kbd>
+      </div>
+      <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
