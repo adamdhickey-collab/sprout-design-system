@@ -2195,6 +2195,71 @@
       margin: 0;
     }
 
+    /* ---------- Asset download (JS-injected hover button on any asset tile) ---------- */
+    .logo-card, .leaf-device-card, .glyph-cell,
+    .illus-card-stage, .photo-card-img { position: relative; }
+    .asset-dl {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text-soft);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      opacity: 0;
+      transform: translateY(-2px);
+      transition: opacity 120ms ease, transform 120ms ease, background 120ms ease, color 120ms ease, border-color 120ms ease;
+      z-index: 4;
+    }
+    .asset-dl .material-symbols-rounded { font-size: 18px; }
+    .asset-dl:hover, .asset-dl:focus-visible {
+      background: var(--brand);
+      color: var(--on-accent);
+      border-color: var(--brand);
+    }
+    .logo-card:hover .asset-dl, .logo-card:focus-within .asset-dl,
+    .leaf-device-card:hover .asset-dl, .leaf-device-card:focus-within .asset-dl,
+    .glyph-cell:hover .asset-dl, .glyph-cell:focus-within .asset-dl,
+    .illus-card:hover .asset-dl, .illus-card:focus-within .asset-dl,
+    .photo-card:hover .asset-dl, .photo-card:focus-within .asset-dl {
+      opacity: 1;
+      transform: none;
+    }
+    /* Touch / no-hover devices: keep the affordance visible */
+    @media (hover: none) {
+      .asset-dl { opacity: 1; transform: none; }
+    }
+
+    /* ---------- Brand photography gallery ---------- */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: var(--space-4);
+    }
+    .photo-card { display: flex; flex-direction: column; gap: var(--space-2); }
+    .photo-card-img {
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--neutral-100);
+    }
+    .photo-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-card-label {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
     /* ---------- Data visualization ---------- */
     /* Categorical sequence · Brand Guidelines · Data visualization · Process. The brand
        fixes the series order — Leaf Green 100 → Deep Green 100 → Soft Green 100 → the same
