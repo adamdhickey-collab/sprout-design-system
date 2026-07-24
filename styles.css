@@ -2273,6 +2273,97 @@
     }
     .pictogram-grid .material-symbols-rounded.is-active { color: var(--brand); }
 
+    /* KPI tile row · Data visualization · a small-multiples functional stat, distinct from
+       the single expressive hero number above. Square corners (2px, matching .bar-chart-bar's
+       own "never fully rounded" threshold) since this is everyday functional data, not a
+       high-craft moment. */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--space-4);
+    }
+    .kpi-tile {
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: var(--space-4);
+      background: var(--surface);
+    }
+    .kpi-tile-label {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .kpi-tile-value {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--text);
+      margin-top: var(--space-2);
+      font-variant-numeric: tabular-nums;
+    }
+    .kpi-tile-delta {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .kpi-tile-delta--positive { color: var(--green-600); } /* "positive news," not "arrow points up" — a falling response time still earns this class */
+
+    /* Donut chart · Data visualization · a categorical (identity) job, same three validated
+       steps 1–3 as the bar chart above — never the confusable 70% tints. Direct-labeled in
+       the legend rather than relying on the ring's color alone, per the brand's own
+       accessibility note. */
+    .dataviz-donut-wrap {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+    .dataviz-donut { flex-shrink: 0; }
+    .dataviz-donut-center {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      fill: var(--text);
+      text-anchor: middle;
+    }
+    .dataviz-donut-legend {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .dataviz-donut-legend-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--text);
+    }
+    .dataviz-donut-swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dataviz-donut-legend-value {
+      font-weight: 700;
+      margin-left: var(--space-2);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Line / trend chart · Data visualization · the "change over time" job, a single
+       sequential series rather than categorical — one hue, per the color-formula rule, with
+       selective direct labels (first + last point only, never a number on every point). */
+    .dataviz-line-chart { width: 100%; max-width: 420px; height: auto; }
+    .dataviz-line-path { fill: none; stroke: var(--green-600); stroke-width: 2; }
+    .dataviz-line-dot { fill: var(--green-600); }
+    .dataviz-line-label {
+      font-family: var(--font-micro);
+      font-size: 11px;
+      fill: var(--text);
+    }
+    .dataviz-line-grid { stroke: var(--border); stroke-width: 1; }
+
     /* ---------- Components ---------- */
     .component-grid {
       display: grid;
