@@ -77,17 +77,7 @@
       </div>
 
       <nav class="sidebar-nav" aria-label="Design system sections">
-        <div class="sidebar-section" data-nav-group="start">
-          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-start">
-            <span class="sidebar-section-title">Start here</span>
-            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
-          </button>
-          <div class="sidebar-section-body" id="nav-start">
-            <div class="sidebar-section-body-inner">
-              <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num">·</span><span>Getting started</span></a>
-            </div>
-          </div>
-        </div>
+        <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num material-symbols-rounded" aria-hidden="true">rocket_launch</span><span>Getting started</span></a>
         <div class="sidebar-section" data-nav-group="foundations">
           <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-foundations">
             <span class="sidebar-section-title">Foundations</span>
@@ -366,19 +356,23 @@
         <div class="scale-block">
           <p class="scale-label">Brand canvas · single color graphic</p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-4);">
-            <div class="brand-canvas" style="--brand-canvas-bg: var(--green-600); --leaf-device-fill: var(--green-800);">
+            <!-- Dark composition: Deep leaf on a deeper-green ground — low leaf/bg contrast,
+                 so white text clears AA (7:1+) over both the leaf and the background. -->
+            <div class="brand-canvas" style="--brand-canvas-bg: var(--green-900); --leaf-device-fill: var(--green-700);">
               <svg class="leaf-device" viewBox="0 0 1000 394" aria-hidden="true"><use href="#cargill-leaf-device"/></svg>
               <div class="brand-canvas-content">
                 <p class="brand-canvas-eyebrow">Sprout Design System</p>
                 <p class="brand-canvas-title">Nourishing the world, one interface at a time.</p>
               </div>
             </div>
-            <div class="brand-canvas" style="--brand-canvas-bg: var(--surface-deep); --leaf-device-fill: var(--soft-green-400); --brand-canvas-fg: var(--soft-green-400);">
+            <!-- Light composition: Soft Green leaf on a White Green ground — low leaf/bg
+                 contrast, so Deep Green text clears AA (8:1+) over both. -->
+            <div class="brand-canvas" style="--brand-canvas-bg: var(--soft-green-50); --leaf-device-fill: var(--soft-green-400); --brand-canvas-fg: var(--green-900);">
               <svg class="leaf-device" viewBox="0 0 1000 394" aria-hidden="true"><use href="#cargill-leaf-device"/></svg>
               <div class="brand-canvas-content">
-                <p class="brand-canvas-eyebrow" style="color: #fff;">Cargill Brand Development</p>
-                <p class="brand-canvas-title" style="color: #fff;">Building a stronger Cargill brand.</p>
-                <p class="brand-canvas-meta" style="color: #fff;">February 2026 · Version 2.0</p>
+                <p class="brand-canvas-eyebrow">Cargill Brand Development</p>
+                <p class="brand-canvas-title">Building a stronger Cargill brand.</p>
+                <p class="brand-canvas-meta">February 2026 · Version 2.0</p>
               </div>
             </div>
           </div>
@@ -411,16 +405,16 @@
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: var(--space-4);">
             <div class="leaf-window-canvas" style="background: var(--soft-green-50);">
               <div class="leaf-window">
-                <img class="leaf-window-img" src="assets/brand-photography/systems-cornfield-wide.png" alt="Cornfield under a wide sky" />
+                <img class="leaf-window-img" src="assets/brand-photography/world-farmer-portrait.png" alt="A smiling farmer, portrait, with grazing cattle in the background" style="object-position: 50% 44%;" />
               </div>
               <div class="leaf-window-content">
-                <p class="leaf-window-title">A wide-spanning view of the systems we work in.</p>
+                <p class="leaf-window-title">A face behind every field we work in.</p>
                 <svg class="cargill-logo cargill-logo--leaf-mono" viewBox="0 0 432 202" role="img" aria-label="Cargill" style="width: 96px;"><use href="#cargill-logo"/></svg>
               </div>
             </div>
             <div class="leaf-window-canvas" style="background: var(--surface-deep);">
               <div class="leaf-window">
-                <img class="leaf-window-img" src="assets/brand-photography/world-farmer-tablet-field.png" alt="A farmer examining a crop with a tablet in a green field" />
+                <img class="leaf-window-img" src="assets/brand-photography/world-farmer-tablet-field.png" alt="A farmer examining a crop with a tablet in a green field" style="object-position: 44% 54%;" />
               </div>
               <div class="leaf-window-content">
                 <p class="leaf-window-title" style="color: #fff;">Technology meets the field, everywhere we grow.</p>
@@ -434,7 +428,7 @@
           <p class="scale-label">Leaf over image · the leaf rides on top of a full-bleed photo</p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: var(--space-4);">
             <div class="leaf-over-image" style="--leaf-device-fill: var(--green-600);">
-              <img class="leaf-over-image-img" src="assets/brand-photography/systems-wind-turbine-detail.png" alt="Detail of a wind turbine against a blue sky" />
+              <img class="leaf-over-image-img" src="assets/brand-photography/systems-wind-turbine-detail.png" alt="Detail of a wind turbine against a blue sky" style="object-position: 55% 50%;" />
               <div class="leaf-over-image-scrim" aria-hidden="true"></div>
               <svg class="leaf-device" viewBox="0 0 1000 394" aria-hidden="true"><use href="#cargill-leaf-device"/></svg>
               <div class="leaf-over-image-content">
@@ -443,7 +437,7 @@
               </div>
             </div>
             <div class="leaf-over-image" style="--leaf-device-fill: var(--surface-deep);">
-              <img class="leaf-over-image-img" src="assets/brand-photography/systems-combine-harvester-sunset.png" alt="A combine harvester working a field at sunset" />
+              <img class="leaf-over-image-img" src="assets/brand-photography/systems-combine-harvester-sunset.png" alt="A combine harvester working a field at sunset" style="object-position: 40% 55%;" />
               <div class="leaf-over-image-scrim" aria-hidden="true"></div>
               <svg class="leaf-device" viewBox="0 0 1000 394" aria-hidden="true"><use href="#cargill-leaf-device"/></svg>
               <div class="leaf-over-image-content">
@@ -626,33 +620,31 @@
         </div>
 
         <div class="scale-block" style="margin-top: var(--space-7);">
-          <p class="scale-label">Illustration placeholder · reserve the space, not the artwork</p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-4);">
-            <div class="illustration-slot illustration-slot--landscape">
-              <span class="material-symbols-rounded" aria-hidden="true">image</span>
-              <p class="illustration-slot-label">16:9 landscape</p>
-              <p class="illustration-slot-meta">Hero &amp; section-header illustration slots</p>
-            </div>
-            <div class="illustration-slot illustration-slot--square">
-              <span class="material-symbols-rounded" aria-hidden="true">image</span>
-              <p class="illustration-slot-label">1:1 square</p>
-              <p class="illustration-slot-meta">Card &amp; grid illustration slots</p>
-            </div>
-            <div class="illustration-slot illustration-slot--portrait">
-              <span class="material-symbols-rounded" aria-hidden="true">image</span>
-              <p class="illustration-slot-label">3:4 portrait</p>
-              <p class="illustration-slot-meta">Sidebar &amp; inset illustration slots</p>
-            </div>
+          <p class="scale-label">Object illustrations · imported vector, never redrawn</p>
+          <p class="section-lede" style="max-width: 64ch;">The brand's illustration style is simple and graphic — realistic in scale, never cartoonish. These three are the exact object examples from the guidelines (Illustrations &amp; diagrams, p.100), imported as vector SVG straight from the source file — the same "never redraw" rule the <a href="#brand-expression">leaf</a> and logo follow.</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); margin-top: var(--space-5);">
+            <figure class="illus-card">
+              <div class="illus-card-stage"><img src="assets/brand-illustrations/illus-padlock-tablet.svg" alt="A padlock on a tablet screen with a cable plugged in — data security and connectivity" /></div>
+              <figcaption class="illus-card-label">Data &amp; security<span class="illus-card-meta" style="display:block; font-weight:400;">Digital, privacy, connectivity themes</span></figcaption>
+            </figure>
+            <figure class="illus-card">
+              <div class="illus-card-stage"><img src="assets/brand-illustrations/illus-corn.svg" alt="An ear of corn in its husk — agriculture and crops" /></div>
+              <figcaption class="illus-card-label">Agriculture<span class="illus-card-meta" style="display:block; font-weight:400;">Crops, harvest, the food we grow</span></figcaption>
+            </figure>
+            <figure class="illus-card">
+              <div class="illus-card-stage"><img src="assets/brand-illustrations/illus-testtube.svg" alt="A test tube holding liquid with suspended bubbles — science and R&D" /></div>
+              <figcaption class="illus-card-label">Science &amp; R&amp;D<span class="illus-card-meta" style="display:block; font-weight:400;">Nutrition, testing, innovation</span></figcaption>
+            </figure>
           </div>
           <div class="icon-note" style="margin-top: var(--space-5);">
-            <p><strong>Alt text, once the real asset lands.</strong> Describe the scene's subject and action — what it shows and why — never "illustration of…" or the filename. If the illustration sits next to text that already says the same thing, mark it decorative with <code>alt=""</code> instead of describing it twice.</p>
+            <p><strong>Alt text.</strong> Describe the subject and what it stands for — what it shows and why — never "illustration of…" or the filename. If an illustration sits beside text that already says the same thing, mark it decorative with <code>alt=""</code> instead of describing it twice.</p>
           </div>
         </div>
 
         <div class="scale-block" style="margin-top: var(--space-7);">
           <p class="scale-label">Character illustration · asset dependency</p>
           <div class="icon-note">
-            <p><strong>Not built here.</strong> The brand's people and object illustrations (the padlock, the corn, the test tube, every human figure) are hand-drawn in one approved style, with a dedicated skin-tone and hair-color palette (guidelines p.104) reserved for that use only — not brand colors, and not usable anywhere else. No source files for that style exist in this repo, and the guidelines explicitly warn against off-style substitutes, so this system does not attempt hand-coded stand-ins. Use the illustration placeholder above to hold the layout until the approved asset library lands, the same way <a href="assets/brand-photography/README.md">brand photography</a> is standing in for a licensed library today.</p>
+            <p><strong>People are the one gap.</strong> The object illustrations above are imported straight from the guidelines. The brand's <em>human</em> figures, though, are hand-drawn in one approved style with a dedicated skin-tone and hair-colour palette (guidelines p.104) reserved for that use only — not brand colours, and not usable anywhere else. That licensed character library isn't in this repo yet, and the guidelines warn against off-style substitutes, so this system doesn't hand-code stand-in people — the same way <a href="assets/brand-photography/README.md">brand photography</a> is standing in for a licensed library today. Drop the approved figures in as vector SVG (matching the object illustrations above) once available.</p>
           </div>
         </div>
 

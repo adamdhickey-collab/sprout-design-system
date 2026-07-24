@@ -443,12 +443,22 @@
       font-variant-numeric: tabular-nums;
     }
     .sidebar-link--active .sidebar-link-num { color: var(--brand); }
+    /* Icon variant — used where a sidebar link carries a real glyph (Getting started's
+       rocket_launch) instead of a numeral or the plain "·" placeholder dot. Overrides the
+       numeral's micro-text sizing; centers the glyph in the same 20px rail the numerals use. */
+    .sidebar-link-num.material-symbols-rounded {
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-    /* Collapsible sidebar groups · Start here / Foundations / System / Components can
-       each be expanded or collapsed independently, so a long nav (10 Foundations+System
-       links plus ~50 component anchors) doesn't have to render fully open all the time.
-       State is per-group and remembered across page loads (localStorage), but the group
-       containing the CURRENT page/section is always force-expanded on load — see
+    /* Collapsible sidebar groups · Foundations / System / Components can each be expanded
+       or collapsed independently, so a long nav (10 Foundations+System links plus ~50
+       component anchors) doesn't have to render fully open all the time. Getting started
+       is a single always-visible link, not a group — nothing to collapse. State is
+       per-group and remembered across page loads (localStorage), but the group containing
+       the CURRENT page/section is always force-expanded on load — see
        sproutExpandActiveNavGroup in app.js — so navigating in never lands on a
        collapsed target. */
     .sidebar-section-header {
@@ -1469,29 +1479,37 @@
       position: relative;
       overflow: hidden;
       border-radius: var(--radius-lg);
-      min-height: 320px;
+      min-height: 300px;
       padding: var(--space-7);
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
       justify-content: flex-end;
       background: var(--brand-canvas-bg, var(--green-600));
     }
+    /* The real fix (was: scrims + shoving text into a corner). Per the guideline's single-
+       color-graphic technique, the leaf and background are kept CLOSE in value — a dark leaf
+       on a darker bg, or a light leaf on a lighter bg — "a softer contrast that we can place
+       type on top of." With low leaf/bg contrast, one text color (white on the dark card,
+       Deep Green on the light card) clears AA over the WHOLE canvas, so text is free to sit
+       boldly over the leaf sweep exactly as the brand's own covers do — no scrim, no dodging.
+       Leaf sized so BOTH tips bleed off the left and right edges (the brand's scale rule),
+       sweeping the upper two-thirds so its full S-curve reads as the leaf, not a plain dome. */
     .brand-canvas .leaf-device {
       position: absolute;
-      top: -10%;
-      left: -8%;
-      width: 130%;
+      top: -14%;
+      left: -34%;
+      width: 172%;
       height: auto;
       z-index: 0;
       pointer-events: none;
     }
-    .brand-canvas-content { position: relative; z-index: 1; max-width: 60%; }
+    .brand-canvas-content { position: relative; z-index: 1; max-width: 62%; text-align: left; }
     .brand-canvas-eyebrow {
       font-family: var(--font-micro);
       font-size: 12px;
       font-weight: 700;
       color: var(--brand-canvas-fg, #fff);
-      opacity: 0.75;
       margin-bottom: var(--space-2);
     }
     .brand-canvas-title {
@@ -1505,7 +1523,6 @@
       font-family: var(--font-sans);
       font-size: 13px;
       color: var(--brand-canvas-fg, #fff);
-      opacity: 0.7;
       margin-top: var(--space-3);
     }
 
@@ -1542,9 +1559,13 @@
        — aspect-ratio must stay 1000/394 or the clip stretches out of shape. The stripe
        variant (a soft edge between photo and canvas) is a separate provided asset not yet
        in the library; add it here once available, per the brand's "never redraw" rule. */
+    /* No padding here anymore — the photo bleeds all the way to this card's own rounded
+       corners (overflow: hidden clips it to match), per the brand's own scale rule for the
+       primary device. Only .leaf-window-content (the text row below) keeps padding, so the
+       caption still sits clear of the card's edges. */
     .leaf-window-canvas {
       border-radius: var(--radius-lg);
-      padding: var(--space-6);
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       gap: var(--space-5);
@@ -1555,7 +1576,17 @@
        aspect-ratio below and squashing the leaf clip out of proportion. Pulling the img out
        of flow removes it from that sizing pass entirely, so aspect-ratio is the only input —
        confirmed by measuring the rendered box before/after (1.34 vs the correct 2.538). */
-    .leaf-window { aspect-ratio: 1000 / 394; width: 100%; position: relative; }
+    /* overflow: hidden turns the box into a viewport onto a BIGGER leaf, rather than a frame
+       sized to fit the whole shape tip-to-tip — the brand's own scale rule is "both edges
+       must extend beyond the canvas," and a mask inscribed exactly inside its box (the
+       previous behavior here) never satisfies that; it just reads as a lens, not a bleeding
+       leaf. */
+    /* aspect-ratio 1000/580 (taller than the leaf device's own 1000/394) deliberately gives
+       the window vertical room. The clip is objectBoundingBox, so a taller box rounds the leaf
+       out a little — worth it: the extra height lets the enlarged, bottom-anchored leaf show
+       its full natural bottom CURVE inside the box instead of being sliced flat by the bottom
+       edge, and exposes more of the photo (a face fits eyes-to-smile without a hard crop). */
+    .leaf-window { aspect-ratio: 1000 / 580; width: 100%; position: relative; overflow: hidden; }
     .leaf-window-img {
       position: absolute;
       inset: 0;
@@ -1564,11 +1595,28 @@
       object-fit: cover;
       display: block;
       clip-path: url(#cargill-leaf-clip);
+      /* Grow the clipped leaf and let the rectangle crop it — the brand's own direction for
+         this device ("both edges must extend beyond the canvas"). Anchor the scale at the
+         BOTTOM (50% 100%): scaling from the bottom edge only ever moves the leaf's lower
+         boundary UP and inward, so its natural bottom CURVE is always shown in full and can
+         never be sliced into the hard horizontal line a top- or center-anchored scale
+         produces. The leaf instead bleeds off the top and both sides — the dynamic crop —
+         while the taller window (see .leaf-window) keeps the photo's focal points in view.
+         Pair with each image's object-position (set inline per photo) to seat its subject. */
+      transform: scale(1.4);
+      transform-origin: 50% 100%;
     }
+    /* margin-top:auto pins this row to the bottom of the canvas. The grid stretches both
+       cards to equal height, but the two titles wrap to different line counts, so without
+       this the shorter card's content floats up and its logo lands higher than the taller
+       card's — the logos drift out of alignment between cards. Pinning to the bottom puts
+       both logos the same distance above the card's bottom edge regardless of title length. */
     .leaf-window-content {
+      margin-top: auto;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
+      padding: 0 var(--space-6) var(--space-6);
       gap: var(--space-4);
     }
     .leaf-window-title {
@@ -1585,11 +1633,15 @@
        distinct from leaf-as-window, which clips the photo INTO the leaf. The brand lists
        scale/position/crop/reflection/rotation/color/transparency/stripe as the available
        treatments for fitting a given photo; this is the base, untreated composition. */
+    /* 4/3 matches the native aspect of the brand photography (~590×443), so object-fit:cover
+       shows the whole frame with almost no crop — the wind turbine reads as a complete
+       machine (hub, all three blades, sky) rather than a tight detail zoomed in past its
+       edges. A wider 3/2 box here re-cropped every photo tighter than its own framing. */
     .leaf-over-image {
       position: relative;
       overflow: hidden;
       border-radius: var(--radius-lg);
-      aspect-ratio: 3 / 2;
+      aspect-ratio: 4 / 3;
     }
     .leaf-over-image-img {
       width: 100%;
@@ -1599,26 +1651,24 @@
     }
     /* Scrim sits BELOW the leaf, ABOVE the photo — it exists only to darken whatever photo
        peeks out past the leaf's edge near the text, so the leaf's own fill stays clean and
-       undarkened. A radial wash anchored at the text corner, sized well past the box's own
-       edges so it fades to nothing before it would ever show a boundary — no rectangle, no
-       visible ring, just a seamless gradient from strong (at the text) to gone. */
+       undarkened. Left-to-right linear: solid behind the text column, fading to fully clear
+       by mid-frame so the photo on the right reads with no visible seam. */
     .leaf-over-image-scrim {
       position: absolute;
       inset: 0;
       z-index: 1;
       pointer-events: none;
-      background: radial-gradient(140% 120% at 8% 6%,
-        rgba(2, 55, 25, 0.85) 0%,
-        rgba(2, 55, 25, 0.6) 28%,
-        rgba(2, 55, 25, 0.28) 52%,
-        rgba(2, 55, 25, 0.08) 72%,
-        rgba(2, 55, 25, 0) 90%);
+      background: linear-gradient(to right,
+        rgba(2, 55, 25, 0.82) 0%,
+        rgba(2, 55, 25, 0.55) 25%,
+        rgba(2, 55, 25, 0.2) 45%,
+        rgba(2, 55, 25, 0) 62%);
     }
     .leaf-over-image .leaf-device {
       position: absolute;
-      top: -18%;
-      left: -12%;
-      width: 125%;
+      top: -24%;
+      left: -14%;
+      width: 148%;
       height: auto;
       z-index: 2;
       pointer-events: none;
@@ -1626,8 +1676,9 @@
     .leaf-over-image-content {
       position: absolute;
       z-index: 3;
-      top: 0;
+      top: 50%;
       left: 0;
+      transform: translateY(-50%);
       max-width: 60%;
       padding: var(--space-6);
     }
@@ -2111,6 +2162,39 @@
     .illustration-slot--landscape { aspect-ratio: 16 / 9; }
     .illustration-slot--portrait  { aspect-ratio: 3 / 4; }
 
+    /* Real brand object illustrations (vector SVG imported from the guidelines PDF) */
+    .illus-card {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .illus-card-stage {
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--soft-green-50);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      box-sizing: border-box;
+    }
+    .illus-card-stage img { max-width: 70%; max-height: 100%; width: auto; height: auto; display: block; }
+    .illus-card-label {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+    .illus-card-meta {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
     /* ---------- Data visualization ---------- */
     /* Categorical sequence · Brand Guidelines · Data visualization · Process. The brand
        fixes the series order — Leaf Green 100 → Deep Green 100 → Soft Green 100 → the same
@@ -2585,6 +2669,13 @@
       aspect-ratio: 16 / 9;
       background: var(--neutral-200);
       position: relative;
+      overflow: hidden;
+    }
+    .card-rich .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .card-rich .card-content {
       padding: var(--padding-xl);
@@ -3289,8 +3380,18 @@
     .avatar--sm  .material-symbols-rounded { font-size: 14px; }
 
     .avatar--image {
-      background: var(--neutral-200);
+      background: var(--neutral-200); /* fallback tone shown behind the photo while it loads */
     }
+    /* Photo avatars hold a real <img>; the avatar's own overflow:hidden + border-radius:50%
+       clip it to the circle, and object-fit:cover keeps the face centered at every size. */
+    .avatar > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 55% 30%;
+      display: block;
+    }
+    .avatar--disabled > img { filter: grayscale(1); opacity: 0.55; }
 
     .avatar:hover {
       box-shadow: 0 0 0 3px var(--soft-green-200);

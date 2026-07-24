@@ -77,17 +77,7 @@
       </div>
 
       <nav class="sidebar-nav" aria-label="Design system sections">
-        <div class="sidebar-section" data-nav-group="start">
-          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-start">
-            <span class="sidebar-section-title">Start here</span>
-            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
-          </button>
-          <div class="sidebar-section-body" id="nav-start">
-            <div class="sidebar-section-body-inner">
-              <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num">·</span><span>Getting started</span></a>
-            </div>
-          </div>
-        </div>
+        <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num material-symbols-rounded" aria-hidden="true">rocket_launch</span><span>Getting started</span></a>
         <div class="sidebar-section" data-nav-group="foundations">
           <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-foundations">
             <span class="sidebar-section-title">Foundations</span>
@@ -1022,15 +1012,21 @@
           <p class="scale-label">Glyph Icons · Custom Cargill Sprout</p>
           <p class="section-lede" style="max-width: 56ch; margin-bottom: var(--space-5);">Glyph icons are custom Cargill assets used for supporting content, not core UI. Recommended minimum: 40 px on desktop, otherwise detail is lost.</p>
           <div class="glyph-grid">
-            <div class="glyph-cell"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 56 V32"/><path d="M32 32 C24 32 16 24 16 14 C26 14 32 22 32 32"/><path d="M32 32 C40 32 48 24 48 14 C38 14 32 22 32 32"/></svg></div>
-            <div class="glyph-cell"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="18"/><path d="M32 14 V50 M14 32 H50 M19 19 L45 45 M19 45 L45 19"/></svg></div>
-            <div class="glyph-cell"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 48 H48 V20 H16 Z"/><path d="M22 28 L42 28 M22 36 L42 36"/><path d="M28 20 V14 H36 V20"/></svg></div>
-            <div class="glyph-cell"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 50 H50"/><path d="M32 50 V32"/><path d="M22 32 C22 24 26 18 32 18 C38 18 42 24 42 32 Z"/><path d="M26 32 L38 32"/></svg></div>
-            <div class="glyph-cell"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="20"/><path d="M22 32 C22 24 26 18 32 18 C38 18 42 24 42 32 C42 40 38 46 32 46 C26 46 22 40 22 32 Z"/><path d="M12 32 H52 M32 12 V52"/></svg></div>
-            <div class="glyph-cell"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 24 L32 16 L48 24 V44 L32 52 L16 44 Z"/><path d="M16 24 L32 32 L48 24 M32 32 V52"/></svg></div>
+            <!-- Sprout · growth -->
+            <div class="glyph-cell"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 54 V28"/><path d="M32 36 C22 36 15 29 15 19 C26 19 32 26 32 36 Z"/><path d="M32 30 C41 30 48 24 48 15 C39 15 32 21 32 30 Z"/></svg></div>
+            <!-- Grain · crops -->
+            <div class="glyph-cell"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 54 V20"/><path d="M32 18 C29 14 29 10 32 8 C35 10 35 14 32 18 Z"/><path d="M32 26 L24 22 M32 26 L40 22 M32 35 L24 31 M32 35 L40 31 M32 44 L24 40 M32 44 L40 40"/></svg></div>
+            <!-- Water · sustainability -->
+            <div class="glyph-cell"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 10 C40 24 46 32 46 40 A14 14 0 1 1 18 40 C18 32 24 24 32 10 Z"/><path d="M26 40 A6 6 0 0 0 32 46"/></svg></div>
+            <!-- Sun · climate & energy -->
+            <div class="glyph-cell"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="11"/><path d="M32 8 V15 M32 49 V56 M8 32 H15 M49 32 H56 M15.5 15.5 L20.5 20.5 M43.5 43.5 L48.5 48.5 M48.5 15.5 L43.5 20.5 M15.5 48.5 L20.5 43.5"/></svg></div>
+            <!-- Leaf · nature -->
+            <div class="glyph-cell"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 48 C16 29 30 15 48 15 C48 34 34 48 16 48 Z"/><path d="M20 44 L44 20 M28 34 L34 34 M30 28 L38 28"/></svg></div>
+            <!-- Traceable crate · supply -->
+            <div class="glyph-cell"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 18 H46 V46 H18 Z"/><path d="M18 26 H46"/><path d="M24 34 L29 39 L40 28"/></svg></div>
           </div>
           <div class="icon-note" style="margin-top: var(--space-5);">
-            <p><strong>Placeholder marks.</strong> The glyphs above are abstract stand‑ins to hold the visual treatment. Replace with exported SVGs from the Foundations · Iconography page when the asset pipeline is set up. Suggested export: 64 px artboard, single‑color stroke at 2 px, expand to outlines.</p>
+            <p><strong>Glyph set.</strong> A cohesive, purpose-built agricultural line set — sprout, grain, water, sun, leaf, and a traceable crate — drawn to the house spec (64 px artboard, single-colour 2 px stroke, round caps/joins) so supporting content reads as one family. Swap for the official exported library from the Foundations · Iconography page if a brand-owned glyph set is published; keep the same 64 px / 2 px spec so nothing shifts.</p>
           </div>
         </div>
       </div>
