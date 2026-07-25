@@ -4074,14 +4074,6 @@
       from { transform: translate3d(0, 0, 0); }
       to   { transform: translate3d(-50%, 0, 0); }
     }
-    @media (prefers-reduced-motion: reduce) {
-      .marquee-track { animation: none; }
-      .status-indicator--pulse .status-indicator-dot { animation: none; }
-      .progress-bar--indeterminate .progress-bar-fill { animation: none; width: 100%; }
-      /* Spinner kept (conveys loading status), but slowed to reduce vestibular strain */
-      .spinner { animation-duration: 1.6s; }
-    }
-
     /* Marquee item — small card with image + label */
     .marquee-item {
       flex-shrink: 0;
@@ -5939,4 +5931,25 @@
     .chip-close:focus-visible,
     .carousel-dot:focus-visible,
     .rating-star:focus-visible { border-radius: var(--radius-pill); }
+
+    /* ==========================================================================
+       prefers-reduced-motion — kept last on purpose. Every target selector here
+       (.spinner, .status-indicator--pulse .status-indicator-dot,
+       .progress-bar--indeterminate .progress-bar-fill) has an unconditional base
+       rule elsewhere in this file that also sets `animation`. Same selector, same
+       specificity: whichever one is LATER in source order wins, media query or
+       not. This block used to sit mid-file and three of its four rules were
+       silently defeated by base rules that happened to be declared afterward —
+       reduced-motion users got full animation speed with no visible sign the
+       override had failed. Add new reduced-motion overrides here, at the true
+       end of the file, never earlier — that's the only way this class of bug
+       stays fixed as components get added.
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+      .status-indicator--pulse .status-indicator-dot { animation: none; }
+      .progress-bar--indeterminate .progress-bar-fill { animation: none; width: 100%; }
+      /* Spinner kept (conveys loading status), but slowed to reduce vestibular strain */
+      .spinner { animation-duration: 1.6s; }
+    }
 
