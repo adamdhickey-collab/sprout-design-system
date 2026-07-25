@@ -4052,6 +4052,12 @@
       grid-template-columns: 1fr 1fr;
       gap: var(--spacing-md);
     }
+    /* Grid items default to min-width:auto — a content-based floor. An <input>'s
+       intrinsic width (~178px) plus the wrap's padding and border floors each
+       column at 204px, so two 1fr columns refuse to shrink below 420px and
+       overflow any narrower modal. min-width:0 lets 1fr actually divide the
+       space; .input-el's own min-width:0 only frees it inside the flex wrap. */
+    .modal-form-row > * { min-width: 0; }
     .modal-textarea {
       width: 100%;
       min-height: 80px;
