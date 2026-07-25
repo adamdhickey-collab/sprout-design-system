@@ -490,7 +490,7 @@
                 <span class="date-input-field-label">Focused</span>
                 <span class="date-input date-input--focused">
                   <input class="date-input-input" value="MM / DD / YY" />
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -498,7 +498,7 @@
                 <span class="date-input-field-label">Filled · long format</span>
                 <span class="date-input">
                   <input class="date-input-input" value="July - 05 - 2024" />
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -506,7 +506,7 @@
                 <span class="date-input-field-label">Filled · short format</span>
                 <span class="date-input">
                   <input class="date-input-input" value="07 / 05 / 24" />
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -514,7 +514,7 @@
                 <span class="date-input-field-label">Error</span>
                 <span class="date-input date-input--error">
                   <input class="date-input-input" value="07 / 05 / 2025" />
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
                 <span class="date-input-field-error">Please enter a valid birth date.</span>
               </label>
@@ -523,7 +523,7 @@
                 <span class="date-input-field-label">Disabled</span>
                 <span class="date-input date-input--disabled">
                   <input class="date-input-input" placeholder="MM / DD / YY" disabled />
-                  <button class="date-input-trigger" disabled><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker" disabled><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -544,7 +544,7 @@
                 <span class="date-input-field-label">MM segment focused</span>
                 <span class="date-input date-input--focused">
                   <span class="date-input-input" aria-hidden="true" style="flex: 1; padding: 4px 0;"><span class="date-segment-highlight">MM</span> / DD / YY</span>
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -552,7 +552,7 @@
                 <span class="date-input-field-label">DD segment focused</span>
                 <span class="date-input date-input--focused">
                   <span class="date-input-input" aria-hidden="true" style="flex: 1; padding: 4px 0;">MM / <span class="date-segment-highlight">DD</span> / YY</span>
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -560,7 +560,7 @@
                 <span class="date-input-field-label">YY segment focused</span>
                 <span class="date-input date-input--focused">
                   <span class="date-input-input" aria-hidden="true" style="flex: 1; padding: 4px 0;">MM / DD / <span class="date-segment-highlight">YY</span></span>
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -891,8 +891,8 @@
             <p class="component-label">Time input · variants</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4);">
               <label class="date-input-field"><span class="date-input-field-label">Start time</span><span class="date-input"><input class="date-input-input" placeholder="HH : MM AM" /><button class="date-input-trigger" aria-label="Open time picker"><span class="material-symbols-rounded">schedule</span></button></span></label>
-              <label class="date-input-field"><span class="date-input-field-label">Focused</span><span class="date-input date-input--focused"><input class="date-input-input" value="09 : 30 AM" /><button class="date-input-trigger"><span class="material-symbols-rounded">schedule</span></button></span></label>
-              <label class="date-input-field"><span class="date-input-field-label">24‑hour</span><span class="date-input"><input class="date-input-input" value="14 : 45" /><button class="date-input-trigger"><span class="material-symbols-rounded">schedule</span></button></span></label>
+              <label class="date-input-field"><span class="date-input-field-label">Focused</span><span class="date-input date-input--focused"><input class="date-input-input" value="09 : 30 AM" /><button class="date-input-trigger" aria-label="Open time picker"><span class="material-symbols-rounded">schedule</span></button></span></label>
+              <label class="date-input-field"><span class="date-input-field-label">24‑hour</span><span class="date-input"><input class="date-input-input" value="14 : 45" /><button class="date-input-trigger" aria-label="Open time picker"><span class="material-symbols-rounded">schedule</span></button></span></label>
             </div>
           </div>
 <div class="component-heading" id="toggle">
@@ -931,7 +931,7 @@
     <div class="search-panel">
       <div class="search-input-row">
         <span class="material-symbols-rounded" aria-hidden="true">search</span>
-        <input type="text" class="search-input" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search Sprout" />
+        <input type="text" class="search-field" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search Sprout" />
         <kbd class="search-esc">Esc</kbd>
       </div>
       <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>

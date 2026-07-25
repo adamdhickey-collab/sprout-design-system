@@ -1059,7 +1059,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
+      /* --on-accent, not #fff: --brand repoints to lime (#BDE588) in dark, where
+         white text measured 1.43:1 — well under WCAG AA. --on-accent flips to
+         near-black in dark, keeping the label legible on both themes. */
+      color: var(--on-accent);
       font-family: var(--font-sans);
       font-weight: 700;
       font-size: 14px;
@@ -5593,7 +5596,13 @@
       flex-shrink: 0;
     }
     .search-input-row .material-symbols-rounded { font-size: 20px; }
-    .search-input {
+    /* The Cmd+K palette's bare text input. Named .search-field, NOT .search-input:
+       .search-input is the Search Input *component* (a bordered, filled <label>
+       wrapper) defined above. Both were once called .search-input at equal
+       specificity, so this rule — being later — stripped the component's border
+       and background everywhere, while the component's flex/padding/min-height
+       leaked onto this input. Keep the two names distinct. */
+    .search-field {
       flex: 1;
       min-width: 0;
       border: none;
@@ -5603,7 +5612,7 @@
       font-size: 16px;
       color: var(--text);
     }
-    .search-input::placeholder { color: var(--text-muted); }
+    .search-field::placeholder { color: var(--text-muted); }
     .search-esc {
       font-family: var(--font-micro);
       font-size: 10px;
