@@ -2537,6 +2537,7 @@
       gap: var(--space-5);
     }
     .component {
+      grid-column: 1 / -1;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--corner-radius-base);
