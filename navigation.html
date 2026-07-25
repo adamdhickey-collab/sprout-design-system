@@ -65,17 +65,7 @@
       </div>
 
       <nav class="sidebar-nav" aria-label="Design system sections">
-        <div class="sidebar-section" data-nav-group="start">
-          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-start">
-            <span class="sidebar-section-title">Start here</span>
-            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
-          </button>
-          <div class="sidebar-section-body" id="nav-start">
-            <div class="sidebar-section-body-inner">
-              <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num">·</span><span>Getting started</span></a>
-            </div>
-          </div>
-        </div>
+        <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num material-symbols-rounded" aria-hidden="true">rocket_launch</span><span>Getting started</span></a>
         <div class="sidebar-section" data-nav-group="foundations">
           <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-foundations">
             <span class="sidebar-section-title">Foundations</span>
@@ -166,7 +156,7 @@
             <p class="component-heading-desc">Displays important, time-sensitive information to the user.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Alert · variants</p>
             <div class="alert-stack">
               <div class="alert alert--success">
@@ -216,7 +206,7 @@
             <p class="component-heading-desc">A full-width system message that sits at the top of a page or surface. Use sparingly for time‑sensitive, account‑wide events. Five semantic variants.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Banner · semantic variants</p>
             <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
               <div class="banner banner--critical">
@@ -242,7 +232,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Banner · non‑dismissible</p>
             <p class="card-body" style="margin-bottom: var(--space-4); max-width: 56ch;">Drop the close button when the message must be acknowledged via the call to action instead of dismissed.</p>
             <div class="banner banner--critical">
@@ -254,7 +244,7 @@
             <p class="component-heading-desc">A navigational aid that gives users context to where they are within an app or site. Previous levels link back; the current page sits muted at the end.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Breadcrumb · depths</p>
             <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
               <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -284,7 +274,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Breadcrumb · themes</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4);">
               <div class="breadcrumb-row">
@@ -320,7 +310,7 @@
             <p class="component-heading-desc">The section at the bottom of a page or application. Carries the Cargill mark, secondary navigation, and utility links like privacy and cookie preferences.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Footer · default</p>
             <div class="site-footer-demo">
               <div class="site-footer-demo-main">
@@ -364,7 +354,7 @@
             <p class="component-heading-desc">Inline text links that redirect users to another location. Underlined brand‑green by default, with focus, small, and external variants.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Link · in body copy</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4);">
 
@@ -391,7 +381,7 @@
             <p class="component-heading-desc">A larger, more prominent overlay that takes over the screen, blocking interaction with the rest of the page until it's dismissed.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Modal · simple</p>
             <div class="modal-frame">
               <div class="modal">
@@ -405,7 +395,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Modal · confirmation</p>
             <div class="modal-frame">
               <div class="modal">
@@ -420,7 +410,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Modal · form</p>
             <div class="modal-frame">
               <div class="modal">
@@ -459,7 +449,7 @@
             <p class="component-heading-desc">A row of dots representing a sequence of pages or steps, with the current position highlighted.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Page indicator · default</p>
             <div style="display: flex; flex-direction: column; gap: var(--space-4);">
               <span class="page-indicator"><span class="page-indicator-dot page-indicator-dot--active"></span><span class="page-indicator-dot"></span><span class="page-indicator-dot"></span><span class="page-indicator-dot"></span></span>
@@ -473,7 +463,7 @@
             <p class="component-heading-desc">Numbered navigation through paged content. Includes prev/next, ellipsis for skipped ranges, and an active page indicator.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Pagination · default</p>
             <nav class="pagination" aria-label="Pagination">
               <button class="pagination-btn pagination-btn--icon" aria-label="Previous" disabled><span class="material-symbols-rounded">chevron_left</span></button>
@@ -486,7 +476,7 @@
             </nav>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Pagination · middle</p>
             <nav class="pagination" aria-label="Pagination">
               <button class="pagination-btn pagination-btn--icon" aria-label="Previous"><span class="material-symbols-rounded">chevron_left</span></button>
@@ -505,7 +495,7 @@
             <p class="component-heading-desc">A small floating panel anchored to a trigger, used for contextual content like quick actions or extra info.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Popover · variants</p>
             <div style="display: flex; gap: var(--space-5); flex-wrap: wrap;">
               <div class="popover">
@@ -527,7 +517,7 @@
             <p class="component-heading-desc">A side panel that slides in from the edge of the screen for secondary content like settings, details, or filters.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Sheet · right</p>
             <div class="sheet-frame">
               <div class="sheet">
@@ -553,7 +543,7 @@
             <p class="component-heading-desc">A small message bar at the bottom of the screen for brief notifications, with an optional inline action.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Snackbar · variants</p>
             <div style="display: flex; flex-direction: column; gap: var(--space-4);">
               <div class="snackbar"><span class="snackbar-message">Project saved.</span><button class="snackbar-action">Undo</button></div>
@@ -566,7 +556,7 @@
             <p class="component-heading-desc">A circular loading indicator used while an asynchronous action is in progress.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Spinner · sizes</p>
             <div style="display: flex; align-items: center; gap: var(--space-6);">
               <span class="spinner spinner--sm"></span>
@@ -580,7 +570,7 @@
             <p class="component-heading-desc">A numbered progress indicator used for multi‑step flows like checkout or onboarding.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Stepper · default</p>
             <div style="display: flex; flex-direction: column; gap: var(--space-5);">
               <div class="stepper">
@@ -599,7 +589,7 @@
             <p class="component-heading-desc">A transient notification that appears in a corner of the screen. Use for non‑blocking feedback from a recent action.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Toast · semantic variants</p>
             <div style="display: flex; flex-direction: column; gap: var(--space-3); align-items: flex-start;">
               <div class="toast toast--default"><span class="toast-icon"><span class="material-symbols-rounded">notifications</span></span><div class="toast-content"><span class="toast-title">New comment</span><span class="toast-message">Someone replied to your thread.</span></div><button class="toast-close" aria-label="Dismiss"><span class="material-symbols-rounded">close</span></button></div>
@@ -614,7 +604,7 @@
             <p class="component-heading-desc">A small label that appears on hover or focus to clarify the function of an element.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Tooltip · hover or tab to a trigger to reveal it</p>
             <div style="display: flex; gap: var(--space-6); flex-wrap: wrap; align-items: flex-start; padding-top: var(--space-6);">
               <span class="tooltip-anchor"><button class="btn btn-secondary btn--icon" aria-label="More"><span class="material-symbols-rounded">more_vert</span></button><span class="tooltip tooltip--top">More actions</span></span>
@@ -644,7 +634,7 @@
     <div class="search-panel">
       <div class="search-input-row">
         <span class="material-symbols-rounded" aria-hidden="true">search</span>
-        <input type="text" class="search-input" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search Sprout" />
+        <input type="text" class="search-field" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search Sprout" />
         <kbd class="search-esc">Esc</kbd>
       </div>
       <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>

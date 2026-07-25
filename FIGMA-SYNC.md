@@ -19,7 +19,7 @@ Neither side updates automatically — drift is caught by the audit below.
 | Semantic colors (`--bg`, `--surface*`, `--text*`, `--border*`, `--brand*`, accents) | **Color** collection, Light mode |
 | `[data-theme="dark"]` repoints | **Color** collection, Dark mode |
 | `--padding-*`, `--spacing-*`, `--layout-*`, `--space-1…10` | **Spacing** collection (aliases preserved) |
-| `--corner-radius-*`, `--radius-*` | **Radius** collection (aliases preserved) |
+| `--corner-radius-*`, `--radius-sm`, `--radius-pill` | **Radius** collection |
 | `--font-display/sans/micro` | **Typography** collection (STRING) |
 | `.type-*` classes | Text styles (Display/Serif 8xl … Caption Bold) |
 | `--shadow-sm/md/lg` | Effect styles Shadow/sm/md/lg |
@@ -55,6 +55,12 @@ can be read straight off the Figma layer and typed into the markup. Where the co
 one glyph and rotates it by state (accordion + combobox `expand_more` at 180°, tree toggle
 `chevron_right` at 90°), Figma stores the **unrotated glyph name** and applies rotation, so
 the layer name still tells you what to type.
+
+The Radius collection deliberately holds no alias-of-an-alias tokens. The old
+`radius/md` → `corner-radius/base` and `radius/lg` → `corner-radius/md` indirections
+collided by name with the canonical scale and were deleted on both sides (v3.0); every
+Figma consumer was rebound to the canonical variable first. `radius/sm` and `radius/pill`
+stay because they have no `corner-radius/*` counterpart and so cannot be ambiguous.
 
 Known intentional divergences:
 - Some characters are **literal text in the CSS, not icons**, and must stay as typed

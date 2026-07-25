@@ -65,17 +65,7 @@
       </div>
 
       <nav class="sidebar-nav" aria-label="Design system sections">
-        <div class="sidebar-section" data-nav-group="start">
-          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-start">
-            <span class="sidebar-section-title">Start here</span>
-            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
-          </button>
-          <div class="sidebar-section-body" id="nav-start">
-            <div class="sidebar-section-body-inner">
-              <a href="getting-started.html" class="sidebar-link sidebar-link--active"><span class="sidebar-link-num">·</span><span>Getting started</span></a>
-            </div>
-          </div>
-        </div>
+        <a href="getting-started.html" class="sidebar-link sidebar-link--active"><span class="sidebar-link-num material-symbols-rounded" aria-hidden="true">rocket_launch</span><span>Getting started</span></a>
         <div class="sidebar-section" data-nav-group="foundations">
           <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-foundations">
             <span class="sidebar-section-title">Foundations</span>
@@ -148,7 +138,7 @@
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text);
-  border-radius: var(--radius-md);
+  border-radius: var(--corner-radius-base);
   padding: var(--padding-xl);
 }</code></pre>
         </div>
@@ -158,7 +148,7 @@
           <div class="checklist">
             <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">looks_one</span><span><strong>Copy the source.</strong> <code>styles.css</code>, the <code>Cargill Fonts/</code> folder, and <code>assets/</code> are the entire dependency — no build step, no package manager. Copy all three into your project.</span></div>
             <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">looks_two</span><span><strong>Link the stylesheet</strong> and keep the font <code>&lt;link&gt;</code>/<code>&lt;preload&gt;</code> tags from any page's <code>&lt;head&gt;</code> here as a reference — Big Caslon and Helvetica Now won't load without them.</span></div>
-            <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">looks_3</span><span><strong>Copy markup from the source, not the screenshot.</strong> Every example throughout this site has a <strong>Code</strong> toggle in its top-right corner that reveals the exact HTML behind it — copy that instead of rebuilding it from what you see.</span></div>
+            <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">looks_3</span><span><strong>Copy markup from the source, not the screenshot.</strong> Every example under <strong>Components</strong> has a <strong>Code</strong> toggle in its top-right corner that reveals the exact HTML behind it — copy that instead of rebuilding it from what you see. Foundations and System pages are reference, not live markup, so they don't carry the toggle.</span></div>
             <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">looks_4</span><span><strong>Toggle dark mode before you trust anything.</strong> A component that looks right in Light hasn't been verified until you've flipped the switch in the sidebar and looked again.</span></div>
           </div>
         </div>
@@ -198,7 +188,7 @@
     <div class="search-panel">
       <div class="search-input-row">
         <span class="material-symbols-rounded" aria-hidden="true">search</span>
-        <input type="text" class="search-input" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search Sprout" />
+        <input type="text" class="search-field" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search Sprout" />
         <kbd class="search-esc">Esc</kbd>
       </div>
       <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>

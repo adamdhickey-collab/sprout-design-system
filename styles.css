@@ -223,15 +223,20 @@
       --space-9:  var(--layout-md);
       --space-10: var(--layout-lg);
 
-      /* Corner radius, from Cargill Sprout · Foundations · Corner Radius */
+      /* Corner radius, from Cargill Sprout · Foundations · Corner Radius.
+         This is the canonical scale — always reach for these three first. */
       --corner-radius-base: 8px;
       --corner-radius-md:   16px;
       --corner-radius-lg:   24px;
 
-      /* Legacy aliases used on this page */
+      /* Two rungs the Foundations scale doesn't cover. Deliberately NOT named
+         --corner-radius-*: there was once a parallel --radius-sm/md/lg/pill
+         alias set where "md" meant 8px and "lg" meant 16px — one rung below
+         their --corner-radius- namesakes — so `var(--radius-lg)` silently gave
+         you 16px when you asked for the 24px "lg". Those two colliding aliases
+         are gone; these two survive precisely because no --corner-radius-sm or
+         --corner-radius-pill exists to be confused with. */
       --radius-sm: 4px;
-      --radius-md: var(--corner-radius-base);
-      --radius-lg: var(--corner-radius-md);
       --radius-pill: 999px;
 
       /* Type */
@@ -443,12 +448,22 @@
       font-variant-numeric: tabular-nums;
     }
     .sidebar-link--active .sidebar-link-num { color: var(--brand); }
+    /* Icon variant — used where a sidebar link carries a real glyph (Getting started's
+       rocket_launch) instead of a numeral or the plain "·" placeholder dot. Overrides the
+       numeral's micro-text sizing; centers the glyph in the same 20px rail the numerals use. */
+    .sidebar-link-num.material-symbols-rounded {
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-    /* Collapsible sidebar groups · Start here / Foundations / System / Components can
-       each be expanded or collapsed independently, so a long nav (10 Foundations+System
-       links plus ~50 component anchors) doesn't have to render fully open all the time.
-       State is per-group and remembered across page loads (localStorage), but the group
-       containing the CURRENT page/section is always force-expanded on load — see
+    /* Collapsible sidebar groups · Foundations / System / Components can each be expanded
+       or collapsed independently, so a long nav (10 Foundations+System links plus ~50
+       component anchors) doesn't have to render fully open all the time. Getting started
+       is a single always-visible link, not a group — nothing to collapse. State is
+       per-group and remembered across page loads (localStorage), but the group containing
+       the CURRENT page/section is always force-expanded on load — see
        sproutExpandActiveNavGroup in app.js — so navigating in never lands on a
        collapsed target. */
     .sidebar-section-header {
@@ -753,7 +768,7 @@
     .swatch {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -1049,7 +1064,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
+      /* --on-accent, not #fff: --brand repoints to lime (#BDE588) in dark, where
+         white text measured 1.43:1 — well under WCAG AA. --on-accent flips to
+         near-black in dark, keeping the label legible on both themes. */
+      color: var(--on-accent);
       font-family: var(--font-sans);
       font-weight: 700;
       font-size: 14px;
@@ -1315,7 +1333,7 @@
       gap: 0;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       overflow: hidden;
     }
     .icon-cell {
@@ -1353,7 +1371,7 @@
     .icon-note {
       background: var(--soft-green-50);
       border: 1px solid var(--soft-green-100);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       padding: var(--space-5);
       display: flex;
       flex-direction: column;
@@ -1375,12 +1393,21 @@
       justify-content: center;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
     }
     .glyph-cell svg {
       width: 64px;
       height: 64px;
       color: var(--brand-deep);
+    }
+    .glyph-weight {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin: 0 0 var(--space-3);
     }
 
     /* ---------- Logo ---------- */
@@ -1391,7 +1418,7 @@
     }
     .logo-card {
       aspect-ratio: 2 / 1;
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1439,7 +1466,7 @@
        padding around it. */
     .leaf-device-card {
       aspect-ratio: 1000 / 394;
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       overflow: hidden;
       position: relative;
     }
@@ -1468,30 +1495,38 @@
     .brand-canvas {
       position: relative;
       overflow: hidden;
-      border-radius: var(--radius-lg);
-      min-height: 320px;
+      border-radius: var(--corner-radius-md);
+      min-height: 300px;
       padding: var(--space-7);
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
       justify-content: flex-end;
       background: var(--brand-canvas-bg, var(--green-600));
     }
+    /* The real fix (was: scrims + shoving text into a corner). Per the guideline's single-
+       color-graphic technique, the leaf and background are kept CLOSE in value — a dark leaf
+       on a darker bg, or a light leaf on a lighter bg — "a softer contrast that we can place
+       type on top of." With low leaf/bg contrast, one text color (white on the dark card,
+       Deep Green on the light card) clears AA over the WHOLE canvas, so text is free to sit
+       boldly over the leaf sweep exactly as the brand's own covers do — no scrim, no dodging.
+       Leaf sized so BOTH tips bleed off the left and right edges (the brand's scale rule),
+       sweeping the upper two-thirds so its full S-curve reads as the leaf, not a plain dome. */
     .brand-canvas .leaf-device {
       position: absolute;
-      top: -10%;
-      left: -8%;
-      width: 130%;
+      top: -14%;
+      left: -34%;
+      width: 172%;
       height: auto;
       z-index: 0;
       pointer-events: none;
     }
-    .brand-canvas-content { position: relative; z-index: 1; max-width: 60%; }
+    .brand-canvas-content { position: relative; z-index: 1; max-width: 62%; text-align: left; }
     .brand-canvas-eyebrow {
       font-family: var(--font-micro);
       font-size: 12px;
       font-weight: 700;
       color: var(--brand-canvas-fg, #fff);
-      opacity: 0.75;
       margin-bottom: var(--space-2);
     }
     .brand-canvas-title {
@@ -1505,7 +1540,6 @@
       font-family: var(--font-sans);
       font-size: 13px;
       color: var(--brand-canvas-fg, #fff);
-      opacity: 0.7;
       margin-top: var(--space-3);
     }
 
@@ -1514,7 +1548,7 @@
        branded" container — fact sheets, detailed layouts, repeated content that would turn
        repetitive under the leaf. Two surfaces, matching the brand's own light/dark examples;
        never place the leaf device or a secondary palette color inside one (brand rule). */
-    .rounded-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-6); }
+    .rounded-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--corner-radius-md); padding: var(--space-6); }
     .rounded-box--deep { background: var(--surface-deep); border-color: var(--surface-deep); color: #fff; }
 
     /* Expressive stat · the big-serif-number treatment used inside a rounded box
@@ -1542,9 +1576,13 @@
        — aspect-ratio must stay 1000/394 or the clip stretches out of shape. The stripe
        variant (a soft edge between photo and canvas) is a separate provided asset not yet
        in the library; add it here once available, per the brand's "never redraw" rule. */
+    /* No padding here anymore — the photo bleeds all the way to this card's own rounded
+       corners (overflow: hidden clips it to match), per the brand's own scale rule for the
+       primary device. Only .leaf-window-content (the text row below) keeps padding, so the
+       caption still sits clear of the card's edges. */
     .leaf-window-canvas {
-      border-radius: var(--radius-lg);
-      padding: var(--space-6);
+      border-radius: var(--corner-radius-md);
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       gap: var(--space-5);
@@ -1555,7 +1593,17 @@
        aspect-ratio below and squashing the leaf clip out of proportion. Pulling the img out
        of flow removes it from that sizing pass entirely, so aspect-ratio is the only input —
        confirmed by measuring the rendered box before/after (1.34 vs the correct 2.538). */
-    .leaf-window { aspect-ratio: 1000 / 394; width: 100%; position: relative; }
+    /* overflow: hidden turns the box into a viewport onto a BIGGER leaf, rather than a frame
+       sized to fit the whole shape tip-to-tip — the brand's own scale rule is "both edges
+       must extend beyond the canvas," and a mask inscribed exactly inside its box (the
+       previous behavior here) never satisfies that; it just reads as a lens, not a bleeding
+       leaf. */
+    /* aspect-ratio 1000/580 (taller than the leaf device's own 1000/394) deliberately gives
+       the window vertical room. The clip is objectBoundingBox, so a taller box rounds the leaf
+       out a little — worth it: the extra height lets the enlarged, bottom-anchored leaf show
+       its full natural bottom CURVE inside the box instead of being sliced flat by the bottom
+       edge, and exposes more of the photo (a face fits eyes-to-smile without a hard crop). */
+    .leaf-window { aspect-ratio: 1000 / 580; width: 100%; position: relative; overflow: hidden; }
     .leaf-window-img {
       position: absolute;
       inset: 0;
@@ -1564,11 +1612,28 @@
       object-fit: cover;
       display: block;
       clip-path: url(#cargill-leaf-clip);
+      /* Grow the clipped leaf and let the rectangle crop it — the brand's own direction for
+         this device ("both edges must extend beyond the canvas"). Anchor the scale at the
+         BOTTOM (50% 100%): scaling from the bottom edge only ever moves the leaf's lower
+         boundary UP and inward, so its natural bottom CURVE is always shown in full and can
+         never be sliced into the hard horizontal line a top- or center-anchored scale
+         produces. The leaf instead bleeds off the top and both sides — the dynamic crop —
+         while the taller window (see .leaf-window) keeps the photo's focal points in view.
+         Pair with each image's object-position (set inline per photo) to seat its subject. */
+      transform: scale(1.4);
+      transform-origin: 50% 100%;
     }
+    /* margin-top:auto pins this row to the bottom of the canvas. The grid stretches both
+       cards to equal height, but the two titles wrap to different line counts, so without
+       this the shorter card's content floats up and its logo lands higher than the taller
+       card's — the logos drift out of alignment between cards. Pinning to the bottom puts
+       both logos the same distance above the card's bottom edge regardless of title length. */
     .leaf-window-content {
+      margin-top: auto;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
+      padding: 0 var(--space-6) var(--space-6);
       gap: var(--space-4);
     }
     .leaf-window-title {
@@ -1585,11 +1650,15 @@
        distinct from leaf-as-window, which clips the photo INTO the leaf. The brand lists
        scale/position/crop/reflection/rotation/color/transparency/stripe as the available
        treatments for fitting a given photo; this is the base, untreated composition. */
+    /* 4/3 matches the native aspect of the brand photography (~590×443), so object-fit:cover
+       shows the whole frame with almost no crop — the wind turbine reads as a complete
+       machine (hub, all three blades, sky) rather than a tight detail zoomed in past its
+       edges. A wider 3/2 box here re-cropped every photo tighter than its own framing. */
     .leaf-over-image {
       position: relative;
       overflow: hidden;
-      border-radius: var(--radius-lg);
-      aspect-ratio: 3 / 2;
+      border-radius: var(--corner-radius-md);
+      aspect-ratio: 4 / 3;
     }
     .leaf-over-image-img {
       width: 100%;
@@ -1599,26 +1668,24 @@
     }
     /* Scrim sits BELOW the leaf, ABOVE the photo — it exists only to darken whatever photo
        peeks out past the leaf's edge near the text, so the leaf's own fill stays clean and
-       undarkened. A radial wash anchored at the text corner, sized well past the box's own
-       edges so it fades to nothing before it would ever show a boundary — no rectangle, no
-       visible ring, just a seamless gradient from strong (at the text) to gone. */
+       undarkened. Left-to-right linear: solid behind the text column, fading to fully clear
+       by mid-frame so the photo on the right reads with no visible seam. */
     .leaf-over-image-scrim {
       position: absolute;
       inset: 0;
       z-index: 1;
       pointer-events: none;
-      background: radial-gradient(140% 120% at 8% 6%,
-        rgba(2, 55, 25, 0.85) 0%,
-        rgba(2, 55, 25, 0.6) 28%,
-        rgba(2, 55, 25, 0.28) 52%,
-        rgba(2, 55, 25, 0.08) 72%,
-        rgba(2, 55, 25, 0) 90%);
+      background: linear-gradient(to right,
+        rgba(2, 55, 25, 0.82) 0%,
+        rgba(2, 55, 25, 0.55) 25%,
+        rgba(2, 55, 25, 0.2) 45%,
+        rgba(2, 55, 25, 0) 62%);
     }
     .leaf-over-image .leaf-device {
       position: absolute;
-      top: -18%;
-      left: -12%;
-      width: 125%;
+      top: -24%;
+      left: -14%;
+      width: 148%;
       height: auto;
       z-index: 2;
       pointer-events: none;
@@ -1626,8 +1693,9 @@
     .leaf-over-image-content {
       position: absolute;
       z-index: 3;
-      top: 0;
+      top: 50%;
       left: 0;
+      transform: translateY(-50%);
       max-width: 60%;
       padding: var(--space-6);
     }
@@ -1666,7 +1734,7 @@
     .token-tree {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       padding: var(--padding-xl);
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 14px;
@@ -1703,7 +1771,7 @@
     .token-table {
       width: 100%;
       border-collapse: collapse;
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       overflow: hidden;
       background: var(--surface);
       border: 1px solid var(--border);
@@ -1753,7 +1821,7 @@
 
     /* Live theme demo: a small "sample component" rendered with semantic tokens */
     .theme-demo {
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       padding: var(--padding-xl);
       display: flex;
       flex-direction: column;
@@ -1826,7 +1894,7 @@
       gap: var(--space-7);
       padding: var(--space-6);
       background: var(--neutral-50);
-      border-radius: var(--radius-lg);
+      border-radius: var(--corner-radius-md);
     }
     .elevation-card {
       display: flex;
@@ -1836,7 +1904,7 @@
     }
     .elevation-box {
       background: var(--surface);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       height: 80px;
     }
     .elevation-box--sm { box-shadow: var(--shadow-sm); }
@@ -2044,7 +2112,7 @@
       gap: var(--space-4);
     }
     .diagram-colorway-canvas {
-      border-radius: var(--radius-lg);
+      border-radius: var(--corner-radius-md);
       padding: var(--space-6);
       color: #fff;
     }
@@ -2087,7 +2155,7 @@
       width: 100%;
       box-sizing: border-box;
       border: 1.5px dashed var(--border);
-      border-radius: var(--radius-lg);
+      border-radius: var(--corner-radius-md);
       background: var(--soft-green-50);
       color: var(--text-muted);
       padding: var(--space-4);
@@ -2111,6 +2179,104 @@
     .illustration-slot--landscape { aspect-ratio: 16 / 9; }
     .illustration-slot--portrait  { aspect-ratio: 3 / 4; }
 
+    /* Real brand object illustrations (vector SVG imported from the guidelines PDF) */
+    .illus-card {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .illus-card-stage {
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--soft-green-50);
+      border: 1px solid var(--border);
+      border-radius: var(--corner-radius-md);
+      padding: var(--space-5);
+      box-sizing: border-box;
+    }
+    .illus-card-stage img { max-width: 70%; max-height: 100%; width: auto; height: auto; display: block; }
+    .illus-card-label {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+    .illus-card-meta {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* ---------- Asset download (JS-injected hover button on any asset tile) ---------- */
+    .logo-card, .leaf-device-card, .glyph-cell,
+    .illus-card-stage, .photo-card-img { position: relative; }
+    .asset-dl {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text-soft);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      opacity: 0;
+      transform: translateY(-2px);
+      transition: opacity 120ms ease, transform 120ms ease, background 120ms ease, color 120ms ease, border-color 120ms ease;
+      z-index: 4;
+    }
+    .asset-dl .material-symbols-rounded { font-size: 18px; }
+    .asset-dl:hover, .asset-dl:focus-visible {
+      background: var(--brand);
+      color: var(--on-accent);
+      border-color: var(--brand);
+    }
+    .logo-card:hover .asset-dl, .logo-card:focus-within .asset-dl,
+    .leaf-device-card:hover .asset-dl, .leaf-device-card:focus-within .asset-dl,
+    .glyph-cell:hover .asset-dl, .glyph-cell:focus-within .asset-dl,
+    .illus-card:hover .asset-dl, .illus-card:focus-within .asset-dl,
+    .photo-card:hover .asset-dl, .photo-card:focus-within .asset-dl {
+      opacity: 1;
+      transform: none;
+    }
+    /* Touch / no-hover devices: keep the affordance visible */
+    @media (hover: none) {
+      .asset-dl { opacity: 1; transform: none; }
+    }
+
+    /* ---------- Brand photography gallery ---------- */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: var(--space-4);
+    }
+    .photo-card { display: flex; flex-direction: column; gap: var(--space-2); }
+    .photo-card-img {
+      aspect-ratio: 4 / 3;
+      border-radius: var(--corner-radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--neutral-100);
+    }
+    .photo-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-card-label {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
     /* ---------- Data visualization ---------- */
     /* Categorical sequence · Brand Guidelines · Data visualization · Process. The brand
        fixes the series order — Leaf Green 100 → Deep Green 100 → Soft Green 100 → the same
@@ -2126,7 +2292,7 @@
     .chart-color-step {
       flex: 1 1 90px;
       min-width: 90px;
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       padding: var(--space-3);
       box-sizing: border-box;
       color: #fff;
@@ -2182,7 +2348,7 @@
       gap: var(--space-5);
     }
     .dataviz-card {
-      border-radius: var(--radius-lg);
+      border-radius: var(--corner-radius-md);
       padding: var(--space-6);
       display: flex;
       flex-direction: column;
@@ -2371,9 +2537,10 @@
       gap: var(--space-5);
     }
     .component {
+      grid-column: 1 / -1;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       padding: var(--space-6);
       display: flex;
       flex-direction: column;
@@ -2549,7 +2716,7 @@
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -2585,6 +2752,13 @@
       aspect-ratio: 16 / 9;
       background: var(--neutral-200);
       position: relative;
+      overflow: hidden;
+    }
+    .card-rich .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .card-rich .card-content {
       padding: var(--padding-xl);
@@ -2721,7 +2895,7 @@
     .card-expressive {
       background: var(--soft-green-50);
       border: 1px solid var(--soft-green-100);
-      border-radius: var(--radius-lg);
+      border-radius: var(--corner-radius-md);
       padding: var(--space-6);
       gap: var(--spacing-md);
     }
@@ -2758,41 +2932,6 @@
       grid-column: 1;
     }
 
-    /* Input */
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .field label {
-      font-family: var(--font-micro);
-      font-size: 12px;
-      letter-spacing: normal;
-      text-transform: none;
-      color: var(--text-soft);
-      font-weight: 700;
-    }
-    .field input {
-      font-family: var(--font-sans);
-      font-size: 15px;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      background: #fff;
-      color: var(--text);
-      transition: border-color 120ms ease, box-shadow 120ms ease;
-    }
-    .field input:focus {
-      outline: none;
-      border-color: var(--brand);
-      box-shadow: 0 0 0 3px var(--soft-green-100);
-    }
-    .field-hint {
-      font-family: var(--font-micro);
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
     /* Stat / KPI */
     .kpi {
       display: flex;
@@ -2824,7 +2963,7 @@
 
     .accordion-item {
       background: var(--surface);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       overflow: hidden;
     }
     .accordion--borderless .accordion-item + .accordion-item {
@@ -2856,7 +2995,7 @@
     .accordion-item > summary:focus-visible {
       outline: none;
       box-shadow: inset 0 0 0 2px var(--brand);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
     }
     .accordion-item > summary .material-symbols-rounded {
       font-size: 20px;
@@ -2881,7 +3020,7 @@
     .alert-stack {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -2957,7 +3096,7 @@
 
     /* Container · structural panel that groups other components */
     .container-box {
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       padding: var(--padding-xl);
       display: flex;
       flex-direction: column;
@@ -3066,8 +3205,8 @@
       min-height: 40px;
       padding: 6px 8px 6px 12px;
       background: var(--surface);
-      border: 1px solid var(--neutral-300);
-      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-input);
+      border-radius: var(--corner-radius-base);
       transition: border-color 120ms ease, box-shadow 120ms ease;
     }
     .date-input:hover { border-color: var(--brand); }
@@ -3177,7 +3316,7 @@
     /* Themed wrappers */
     .breadcrumb-row {
       padding: var(--padding-lg) var(--padding-xl);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       background: var(--surface);
       border: 1px solid var(--border);
     }
@@ -3289,8 +3428,18 @@
     .avatar--sm  .material-symbols-rounded { font-size: 14px; }
 
     .avatar--image {
-      background: var(--neutral-200);
+      background: var(--neutral-200); /* fallback tone shown behind the photo while it loads */
     }
+    /* Photo avatars hold a real <img>; the avatar's own overflow:hidden + border-radius:50%
+       clip it to the circle, and object-fit:cover keeps the face centered at every size. */
+    .avatar > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 55% 30%;
+      display: block;
+    }
+    .avatar--disabled > img { filter: grayscale(1); opacity: 0.55; }
 
     .avatar:hover {
       box-shadow: 0 0 0 3px var(--soft-green-200);
@@ -3379,7 +3528,7 @@
     .auth-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
       padding: var(--padding-xl);
       display: flex;
       flex-direction: column;
@@ -3426,8 +3575,8 @@
       flex: 1;
       width: 100%;
       padding: 9px 12px;
-      border: 1px solid var(--neutral-300);
-      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-input);
+      border-radius: var(--corner-radius-base);
       background: var(--surface);
       font-family: var(--font-sans);
       font-size: 15px;
@@ -3437,7 +3586,7 @@
     .auth-card-input:focus {
       outline: none;
       border-color: var(--brand);
-      box-shadow: 0 0 0 3px var(--soft-green-100);
+      box-shadow: 0 0 0 3px var(--soft-green-200);
     }
     .auth-card-field--error .auth-card-input { border-color: var(--red-600); }
 
@@ -3545,8 +3694,8 @@
       min-height: 40px;
       padding: 6px 8px 6px 12px;
       background: var(--surface);
-      border: 1px solid var(--neutral-300);
-      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-input);
+      border-radius: var(--corner-radius-base);
       cursor: text;
       transition: border-color 120ms ease, box-shadow 120ms ease;
       position: relative;
@@ -3877,11 +4026,17 @@
       grid-template-columns: 1fr 1fr;
       gap: var(--spacing-md);
     }
+    /* Grid items default to min-width:auto — a content-based floor. An <input>'s
+       intrinsic width (~178px) plus the wrap's padding and border floors each
+       column at 204px, so two 1fr columns refuse to shrink below 420px and
+       overflow any narrower modal. min-width:0 lets 1fr actually divide the
+       space; .input-el's own min-width:0 only frees it inside the flex wrap. */
+    .modal-form-row > * { min-width: 0; }
     .modal-textarea {
       width: 100%;
       min-height: 80px;
       padding: 8px 12px;
-      border: 1px solid var(--neutral-300);
+      border: 1px solid var(--border-input);
       border-radius: var(--corner-radius-base);
       font-family: var(--font-sans);
       font-size: 15px;
@@ -4144,7 +4299,7 @@
       min-height: 40px;
       padding: 6px 12px;
       background: var(--surface);
-      border: 1px solid var(--neutral-300);
+      border: 1px solid var(--border-input);
       border-radius: var(--corner-radius-base);
       transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
     }
@@ -4259,15 +4414,21 @@
       max-width: 640px;
       text-align: center;
     }
+    /* The real #cargill-leaf-device symbol, not a traced approximation. Sized past
+       the canvas (140%, offset -20%) so both tips extend beyond the frame per the
+       brand's scale rule — .hero-component's overflow:hidden does the cropping.
+       Fill comes through --leaf-device-fill, the same hook the device uses
+       everywhere else. Never set preserveAspectRatio="none" here: stretching the
+       leaf out of proportion is explicitly disallowed. */
     .hero-component--brand-leaf {
       position: absolute;
       bottom: -1px;
-      left: 0;
-      right: 0;
-      width: 100%;
+      left: -20%;
+      width: 140%;
       height: auto;
       z-index: 0;
       opacity: 0.55;
+      --leaf-device-fill: var(--brand);
     }
     .hero-component-content {
       position: relative;
@@ -4374,7 +4535,7 @@
 
     /* File Upload */
     .file-upload {
-      border: 1.5px dashed var(--neutral-300);
+      border: 1.5px dashed var(--border-input);
       border-radius: var(--corner-radius-base);
       padding: var(--padding-xl);
       background: var(--surface);
@@ -4480,7 +4641,7 @@
     .divider {
       border: none;
       height: 1px;
-      background: var(--border);
+      background: var(--border-subtle);
       margin: 0;
       width: 100%;
     }
@@ -4792,7 +4953,7 @@
     /* ===== Batch components: Number Input through Tree View ===== */
 
     /* Number Input */
-    .number-input { display: inline-flex; align-items: stretch; border: 1px solid var(--neutral-300); border-radius: var(--corner-radius-base); overflow: hidden; background: var(--surface); }
+    .number-input { display: inline-flex; align-items: stretch; border: 1px solid var(--border-input); border-radius: var(--corner-radius-base); overflow: hidden; background: var(--surface); }
     .number-input:focus-within { border-color: var(--brand); box-shadow: 0 0 0 3px var(--soft-green-200); }
     .number-input-btn { width: 36px; border: none; background: var(--neutral-50); color: var(--text); cursor: pointer; font-size: 18px; font-weight: 400; font-family: var(--font-sans); display: inline-flex; align-items: center; justify-content: center; }
     .number-input-btn:hover { background: var(--soft-green-50); color: var(--brand); }
@@ -4868,7 +5029,7 @@
     .rating-value { font-family: var(--font-sans); font-size: 13px; color: var(--text-muted); margin-left: 6px; }
 
     /* Search */
-    .search-input { display: flex; align-items: center; gap: var(--spacing-sm); padding: 6px 12px; background: var(--surface); border: 1px solid var(--neutral-300); border-radius: var(--corner-radius-base); min-height: 40px; transition: border-color 120ms ease, box-shadow 120ms ease; }
+    .search-input { display: flex; align-items: center; gap: var(--spacing-sm); padding: 6px 12px; background: var(--surface); border: 1px solid var(--border-input); border-radius: var(--corner-radius-base); min-height: 40px; transition: border-color 120ms ease, box-shadow 120ms ease; }
     .search-input:focus-within { border-color: var(--brand); box-shadow: 0 0 0 3px var(--soft-green-200); }
     .search-input-icon { color: var(--text-soft); display: inline-flex; align-items: center; flex-shrink: 0; }
     .search-input-icon .material-symbols-rounded { font-size: 18px; color: inherit; }
@@ -4887,7 +5048,7 @@
     .segmented-btn--active { background: var(--surface); color: var(--brand-deep); box-shadow: var(--shadow-sm); }
 
     /* Select */
-    .select { display: inline-flex; align-items: center; gap: var(--spacing-sm); min-height: 40px; padding: 6px 12px; background: var(--surface); border: 1px solid var(--neutral-300); border-radius: var(--corner-radius-base); font-family: var(--font-sans); font-size: 15px; color: var(--text); cursor: pointer; transition: border-color 120ms ease, box-shadow 120ms ease; width: 100%; }
+    .select { display: inline-flex; align-items: center; gap: var(--spacing-sm); min-height: 40px; padding: 6px 12px; background: var(--surface); border: 1px solid var(--border-input); border-radius: var(--corner-radius-base); font-family: var(--font-sans); font-size: 15px; color: var(--text); cursor: pointer; transition: border-color 120ms ease, box-shadow 120ms ease; width: 100%; }
     .select:hover { border-color: var(--brand); }
     .select:focus { border-color: var(--brand); box-shadow: 0 0 0 3px var(--soft-green-200); outline: none; }
     .select-value { flex: 1; }
@@ -4978,7 +5139,7 @@
     .tab-panel { font-family: var(--font-sans); font-size: 15px; color: var(--text-soft); padding: var(--space-3) 0; }
 
     /* Textarea */
-    .textarea { width: 100%; min-height: 100px; padding: 8px 12px; border: 1px solid var(--neutral-300); border-radius: var(--corner-radius-base); background: var(--surface); font-family: var(--font-sans); font-size: 15px; line-height: 22px; color: var(--text); resize: vertical; transition: border-color 120ms ease, box-shadow 120ms ease; }
+    .textarea { width: 100%; min-height: 100px; padding: 8px 12px; border: 1px solid var(--border-input); border-radius: var(--corner-radius-base); background: var(--surface); font-family: var(--font-sans); font-size: 15px; line-height: 22px; color: var(--text); resize: vertical; transition: border-color 120ms ease, box-shadow 120ms ease; }
     .textarea::placeholder { color: var(--text-muted); }
     .textarea:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--soft-green-200); }
     .textarea[disabled] { background: var(--neutral-100); color: var(--neutral-400); cursor: not-allowed; }
@@ -5412,7 +5573,13 @@
       flex-shrink: 0;
     }
     .search-input-row .material-symbols-rounded { font-size: 20px; }
-    .search-input {
+    /* The Cmd+K palette's bare text input. Named .search-field, NOT .search-input:
+       .search-input is the Search Input *component* (a bordered, filled <label>
+       wrapper) defined above. Both were once called .search-input at equal
+       specificity, so this rule — being later — stripped the component's border
+       and background everywhere, while the component's flex/padding/min-height
+       leaked onto this input. Keep the two names distinct. */
+    .search-field {
       flex: 1;
       min-width: 0;
       border: none;
@@ -5422,7 +5589,7 @@
       font-size: 16px;
       color: var(--text);
     }
-    .search-input::placeholder { color: var(--text-muted); }
+    .search-field::placeholder { color: var(--text-muted); }
     .search-esc {
       font-family: var(--font-micro);
       font-size: 10px;
@@ -5677,7 +5844,7 @@
       gap: var(--spacing-md);
       padding: var(--space-7) var(--space-6);
       border: 1px dashed var(--border);
-      border-radius: var(--radius-md);
+      border-radius: var(--corner-radius-base);
     }
     .empty-state-icon {
       width: 56px;
@@ -5728,4 +5895,48 @@
       margin-top: 1px;
     }
     .checklist-item strong { color: var(--text); }
+
+    /* ---------- Keyboard focus · completing the set ----------
+       These 26 controls all shipped with :hover styling but no focus style at
+       all, so a keyboard user could reach them with no visible indication —
+       .tab and .pagination-btn being the highest-traffic. They now use the same
+       ring the other 16 interactive components already use
+       (0 0 0 3px var(--soft-green-200)), which --soft-green-200 is repointed for
+       in dark so the ring stays visible on dark surfaces.
+       :focus-visible, not :focus — the ring should appear for keyboard
+       navigation without firing on mouse-down. */
+    .tab:focus-visible,
+    .pagination-btn:focus-visible,
+    .segmented-btn:focus-visible,
+    .tree-item:focus-visible,
+    .search-result-item:focus-visible,
+    .combobox-option:focus-visible,
+    .rating-star:focus-visible,
+    .carousel-nav:focus-visible,
+    .carousel-mini-nav:focus-visible,
+    .carousel-thumb:focus-visible,
+    .carousel-dot:focus-visible,
+    .marquee-controlled-nav:focus-visible,
+    .number-input-btn:focus-visible,
+    .input-suffix-btn:focus-visible,
+    .file-upload:focus-visible,
+    .date-input-trigger:focus-visible,
+    .auth-card-eye:focus-visible,
+    .container-box-action:focus-visible,
+    .icon-cell:focus-visible,
+    .alert-close:focus-visible,
+    .banner-close:focus-visible,
+    .modal-close:focus-visible,
+    .toast-close:focus-visible,
+    .snackbar-close:focus-visible,
+    .chip-close:focus-visible,
+    .search-clear:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--soft-green-200);
+      border-radius: var(--radius-sm);
+    }
+    /* Round controls keep their own silhouette rather than the shared 4px */
+    .chip-close:focus-visible,
+    .carousel-dot:focus-visible,
+    .rating-star:focus-visible { border-radius: var(--radius-pill); }
 

@@ -631,7 +631,7 @@
     // derived from the page's own last-modified timestamp so it never needs
     // manual editing.
     (function () {
-      const SPROUT_VERSION = '2.8';
+      const SPROUT_VERSION = '3.2';
 
       document.querySelectorAll('.js-version').forEach(el => {
         el.textContent = 'v' + SPROUT_VERSION;
@@ -646,4 +646,102 @@
           updatedEls.forEach(el => { el.textContent = stamp; });
         }
       }
+    })();
+
+    // Asset downloads · injects a hover "download" button onto every brand-asset
+    // tile so any logo variant, the leaf device, a brand icon, an illustration,
+    // or a photograph can be pulled straight from the page.
+    //   - Inline SVG assets (logo / leaf / icons) are serialized to a standalone
+    //     file: <use> refs are inlined from their <symbol>, and the tile's
+    //     computed color / --leaf-fill / --leaf-device-fill are baked onto the
+    //     root as inline style so currentColor + var() resolve when opened alone.
+    //   - File-backed assets (illustrations, photography) download their source.
+    (function () {
+      const SVGNS = 'http://www.w3.org/2000/svg';
+      const XLINK = 'http://www.w3.org/1999/xlink';
+      const slug = s => (s || '').toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+      function trigger(href, name, revoke) {
+        const a = document.createElement('a');
+        a.href = href; a.download = name;
+        document.body.appendChild(a); a.click(); a.remove();
+        if (revoke) setTimeout(() => URL.revokeObjectURL(href), 1500);
+      }
+
+      function serialize(svg) {
+        const clone = svg.cloneNode(true);
+        clone.querySelectorAll('use').forEach(u => {
+          const href = (u.getAttribute('href') || u.getAttributeNS(XLINK, 'href') || '').trim();
+          const ref = href && document.querySelector(href);
+          if (!ref) return;
+          const g = document.createElementNS(SVGNS, 'g');
+          Array.from(ref.childNodes).forEach(n => g.appendChild(n.cloneNode(true)));
+          u.replaceWith(g);
+        });
+        const cs = getComputedStyle(svg);
+        let style = 'color:' + cs.color + ';';
+        const lf = cs.getPropertyValue('--leaf-fill').trim();
+        if (lf) style += '--leaf-fill:' + lf + ';';
+        const ld = cs.getPropertyValue('--leaf-device-fill').trim();
+        if (ld) style += '--leaf-device-fill:' + ld + ';';
+        clone.setAttribute('xmlns', SVGNS);
+        clone.removeAttribute('class');
+        clone.setAttribute('style', style);
+        const out = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone);
+        return URL.createObjectURL(new Blob([out], { type: 'image/svg+xml' }));
+      }
+
+      function attach(host, name, srcFn) {
+        if (!host || host.querySelector(':scope > .asset-dl')) return;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'asset-dl';
+        btn.innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">download</span>';
+        btn.setAttribute('aria-label', 'Download ' + name);
+        btn.title = 'Download ' + name;
+        btn.addEventListener('click', ev => {
+          ev.preventDefault(); ev.stopPropagation();
+          const src = srcFn();
+          if (src.file) trigger(src.file, name);
+          else if (src.svg) trigger(serialize(src.svg), name, true);
+        });
+        host.appendChild(btn);
+      }
+
+      // Logo variants → serialized colored SVG (variant read off the modifier class)
+      document.querySelectorAll('.logo-card').forEach(card => {
+        const svg = card.querySelector('svg.cargill-logo');
+        if (!svg) return;
+        const cls = Array.from(svg.classList).find(c => c.indexOf('cargill-logo--') === 0);
+        const v = cls ? cls.slice('cargill-logo--'.length) : 'mark';
+        attach(card, 'cargill-logo-' + v + '.svg', () => ({ svg }));
+      });
+      // Leaf graphic device → serialized colored SVG
+      document.querySelectorAll('.leaf-device-card').forEach((card, i) => {
+        const svg = card.querySelector('svg.leaf-device');
+        if (!svg) return;
+        const lab = card.querySelector('.leaf-device-card-label');
+        attach(card, 'cargill-leaf-' + (lab ? slug(lab.textContent) : (i + 1)) + '.svg', () => ({ svg }));
+      });
+      // Brand icons → serialized SVG (currentColor baked to the theme color)
+      document.querySelectorAll('.glyph-cell').forEach((cell, i) => {
+        const svg = cell.querySelector('svg');
+        if (!svg) return;
+        const lab = svg.getAttribute('aria-label');
+        attach(cell, 'cargill-icon-' + (lab ? slug(lab) : (i + 1)) + '.svg', () => ({ svg }));
+      });
+      // Illustrations → the source SVG file
+      document.querySelectorAll('.illus-card').forEach(card => {
+        const img = card.querySelector('img');
+        if (!img) return;
+        const file = img.getAttribute('src');
+        attach(card.querySelector('.illus-card-stage') || card, file.split('/').pop(), () => ({ file }));
+      });
+      // Photography → the source image file
+      document.querySelectorAll('.photo-card').forEach(card => {
+        const img = card.querySelector('img');
+        if (!img) return;
+        const file = img.getAttribute('src');
+        attach(card.querySelector('.photo-card-img') || card, file.split('/').pop(), () => ({ file }));
+      });
     })();

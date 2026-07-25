@@ -65,17 +65,7 @@
       </div>
 
       <nav class="sidebar-nav" aria-label="Design system sections">
-        <div class="sidebar-section" data-nav-group="start">
-          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-start">
-            <span class="sidebar-section-title">Start here</span>
-            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
-          </button>
-          <div class="sidebar-section-body" id="nav-start">
-            <div class="sidebar-section-body-inner">
-              <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num">·</span><span>Getting started</span></a>
-            </div>
-          </div>
-        </div>
+        <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num material-symbols-rounded" aria-hidden="true">rocket_launch</span><span>Getting started</span></a>
         <div class="sidebar-section" data-nav-group="foundations">
           <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-foundations">
             <span class="sidebar-section-title">Foundations</span>
@@ -168,7 +158,7 @@
             <p class="component-heading-desc">A sign-in card for authenticated experiences like myCargill. Includes the wordmark, email and password fields, remember-me, primary log-in, secondary sign-in-as-employee, and a registration link.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Authentication · states</p>
             <div class="auth-grid">
 
@@ -228,7 +218,7 @@
             <p class="component-heading-desc">Triggers an action or navigates to another view. Three styles, three sizes, plus a destructive variant.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Button · styles</p>
             <div class="btn-matrix">
               <span></span>
@@ -287,7 +277,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Button · destructive</p>
             <div class="btn-matrix">
               <span></span>
@@ -351,7 +341,7 @@
             <p class="component-heading-desc">Lets users select one or multiple options from a list.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Checkbox · states</p>
             <div class="checkbox-matrix">
               <span></span>
@@ -371,7 +361,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Checkbox · usage</p>
             <div style="max-width: 420px;">
               <div class="checkbox-group">
@@ -388,7 +378,7 @@
             <p class="component-heading-desc">An input paired with a select. Users can choose from a list or type to filter options.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Combobox · states</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-5);">
 
@@ -442,7 +432,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Combobox · open with menu</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6); align-items: start;">
 
@@ -484,7 +474,7 @@
             <p class="component-heading-desc">Lets users enter a date through the numerical keyboard or a picker.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Date input · states</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-5);">
 
@@ -500,7 +490,7 @@
                 <span class="date-input-field-label">Focused</span>
                 <span class="date-input date-input--focused">
                   <input class="date-input-input" value="MM / DD / YY" />
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -508,7 +498,7 @@
                 <span class="date-input-field-label">Filled · long format</span>
                 <span class="date-input">
                   <input class="date-input-input" value="July - 05 - 2024" />
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -516,7 +506,7 @@
                 <span class="date-input-field-label">Filled · short format</span>
                 <span class="date-input">
                   <input class="date-input-input" value="07 / 05 / 24" />
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -524,7 +514,7 @@
                 <span class="date-input-field-label">Error</span>
                 <span class="date-input date-input--error">
                   <input class="date-input-input" value="07 / 05 / 2025" />
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
                 <span class="date-input-field-error">Please enter a valid birth date.</span>
               </label>
@@ -533,7 +523,7 @@
                 <span class="date-input-field-label">Disabled</span>
                 <span class="date-input date-input--disabled">
                   <input class="date-input-input" placeholder="MM / DD / YY" disabled />
-                  <button class="date-input-trigger" disabled><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker" disabled><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -545,7 +535,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Date input · segment focus</p>
             <p class="card-body" style="margin-bottom: var(--space-4); max-width: 56ch;">When the date input is focused, users can tab through individual <span class="date-segment-highlight">MM</span> / <span class="date-segment-highlight">DD</span> / <span class="date-segment-highlight">YY</span> segments or use the arrow keys to step between them.</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-5);">
@@ -554,7 +544,7 @@
                 <span class="date-input-field-label">MM segment focused</span>
                 <span class="date-input date-input--focused">
                   <span class="date-input-input" aria-hidden="true" style="flex: 1; padding: 4px 0;"><span class="date-segment-highlight">MM</span> / DD / YY</span>
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -562,7 +552,7 @@
                 <span class="date-input-field-label">DD segment focused</span>
                 <span class="date-input date-input--focused">
                   <span class="date-input-input" aria-hidden="true" style="flex: 1; padding: 4px 0;">MM / <span class="date-segment-highlight">DD</span> / YY</span>
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -570,7 +560,7 @@
                 <span class="date-input-field-label">YY segment focused</span>
                 <span class="date-input date-input--focused">
                   <span class="date-input-input" aria-hidden="true" style="flex: 1; padding: 4px 0;">MM / DD / <span class="date-segment-highlight">YY</span></span>
-                  <button class="date-input-trigger"><span class="material-symbols-rounded">calendar_today</span></button>
+                  <button class="date-input-trigger" aria-label="Open date picker"><span class="material-symbols-rounded">calendar_today</span></button>
                 </span>
               </label>
 
@@ -582,7 +572,7 @@
             <p class="component-heading-desc">Lets users add a file to a flow either by dragging it onto a drop zone or by clicking <em>Browse</em>. Includes a compact horizontal variant for tight layouts.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">File upload · drop zone</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4);">
 
@@ -613,7 +603,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">File upload · compact</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4);">
 
@@ -644,7 +634,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">File upload · skeleton</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4);">
 
@@ -668,7 +658,7 @@
             <p class="component-heading-desc">A single-line text field that lets users enter or edit text data. Supports icon and text adornments, prefix/suffix actions, and inline validation states.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Input · states</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4);">
 
@@ -707,7 +697,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Input · adornments</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4);">
 
@@ -766,7 +756,7 @@
             <p class="component-heading-desc">A text label for describing form inputs. Supports a required asterisk, a tooltip helper, and a disabled state.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Label · variants</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4);">
 
@@ -793,7 +783,7 @@
             <p class="component-heading-desc">Lets users enter or adjust a numeric value with +/− stepper buttons. Supports min, max, and step constraints.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Number input · variants</p>
             <div style="display: flex; flex-wrap: wrap; gap: var(--space-5); align-items: center;">
               <span class="number-input"><button class="number-input-btn" aria-label="Decrement">−</button><input type="number" value="1" /><button class="number-input-btn" aria-label="Increment">+</button></span>
@@ -806,7 +796,7 @@
             <p class="component-heading-desc">A single-select form control for choosing one option from a group.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Radio · group</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4);">
               <div>
@@ -833,7 +823,7 @@
             <p class="component-heading-desc">A text input optimised for search queries. Includes a magnifying glass affordance and an optional clear button.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Search · sizes</p>
             <div style="display: flex; flex-direction: column; gap: var(--space-4); max-width: 480px;">
               <label class="search-input search-input--lg"><span class="search-input-icon"><span class="material-symbols-rounded">search</span></span><input type="search" placeholder="Search across the system" /></label>
@@ -846,7 +836,7 @@
             <p class="component-heading-desc">A group of connected buttons that toggle between mutually‑exclusive views.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Segmented · variants</p>
             <div style="display: flex; gap: var(--space-5); flex-wrap: wrap; align-items: center;">
               <div class="segmented"><button class="segmented-btn segmented-btn--active">Day</button><button class="segmented-btn">Week</button><button class="segmented-btn">Month</button><button class="segmented-btn">Year</button></div>
@@ -858,7 +848,7 @@
             <p class="component-heading-desc">A dropdown menu for choosing one option from a predetermined list. Use when there is no need for filtering.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Select · states</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4);">
               <label class="input-field"><span class="input-field-label">Country</span><span class="select select--placeholder"><span class="select-value">Select…</span><span class="select-chevron"><span class="material-symbols-rounded">expand_more</span></span></span></label>
@@ -871,7 +861,7 @@
             <p class="component-heading-desc">A draggable handle on a track for selecting a value within a range.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Slider · variants</p>
             <div style="display: flex; flex-direction: column; gap: var(--space-5); max-width: 480px;">
               <div class="slider-row"><label class="input-field-label">Volume</label><input class="slider-input" type="range" min="0" max="100" value="40" /><div class="slider-meta"><span>0</span><span>40</span><span>100</span></div></div>
@@ -884,7 +874,7 @@
             <p class="component-heading-desc">A multi‑line text input for longer entries like comments or descriptions.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Textarea · variants</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4);">
               <label class="input-field"><span class="input-field-label">Description</span><textarea class="textarea" placeholder="Tell us about your project…"></textarea></label>
@@ -897,12 +887,12 @@
             <p class="component-heading-desc">Lets users enter a time. Mirrors the date input pattern with a clock affordance.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Time input · variants</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4);">
               <label class="date-input-field"><span class="date-input-field-label">Start time</span><span class="date-input"><input class="date-input-input" placeholder="HH : MM AM" /><button class="date-input-trigger" aria-label="Open time picker"><span class="material-symbols-rounded">schedule</span></button></span></label>
-              <label class="date-input-field"><span class="date-input-field-label">Focused</span><span class="date-input date-input--focused"><input class="date-input-input" value="09 : 30 AM" /><button class="date-input-trigger"><span class="material-symbols-rounded">schedule</span></button></span></label>
-              <label class="date-input-field"><span class="date-input-field-label">24‑hour</span><span class="date-input"><input class="date-input-input" value="14 : 45" /><button class="date-input-trigger"><span class="material-symbols-rounded">schedule</span></button></span></label>
+              <label class="date-input-field"><span class="date-input-field-label">Focused</span><span class="date-input date-input--focused"><input class="date-input-input" value="09 : 30 AM" /><button class="date-input-trigger" aria-label="Open time picker"><span class="material-symbols-rounded">schedule</span></button></span></label>
+              <label class="date-input-field"><span class="date-input-field-label">24‑hour</span><span class="date-input"><input class="date-input-input" value="14 : 45" /><button class="date-input-trigger" aria-label="Open time picker"><span class="material-symbols-rounded">schedule</span></button></span></label>
             </div>
           </div>
 <div class="component-heading" id="toggle">
@@ -910,7 +900,7 @@
             <p class="component-heading-desc">An on/off switch for a single setting. Use when a change applies immediately, not when the user is filling out a form.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Toggle · variants</p>
             <div style="display: flex; flex-direction: column; gap: var(--space-4);">
               <label class="toggle"><input type="checkbox" class="toggle-input" checked /> Dark mode</label>
@@ -941,7 +931,7 @@
     <div class="search-panel">
       <div class="search-input-row">
         <span class="material-symbols-rounded" aria-hidden="true">search</span>
-        <input type="text" class="search-input" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search Sprout" />
+        <input type="text" class="search-field" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search Sprout" />
         <kbd class="search-esc">Esc</kbd>
       </div>
       <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>

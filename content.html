@@ -30,6 +30,12 @@
       </g>
       <path style="fill: var(--leaf-fill, #00843D)" d="M344.125 74.0702C344.125 74.0702 326.725 75.4702 314.625 73.7702C286.825 69.9702 261.025 50.7702 249.625 44.3702C224.825 30.5702 214.725 29.6702 201.925 33.3702C180.825 39.0702 168.525 56.3702 156.625 76.5702C154.325 75.4702 151.925 74.5702 149.425 73.9702C156.225 59.5702 182.125 13.0702 235.425 2.07022C288.925 -9.12978 346.225 26.5702 344.125 74.0702Z"/>
     </symbol>
+    <!-- Cargill leaf graphic device — the wide "front door" crop used as the brand's primary
+         graphic device (distinct from the small leaf glyph inside #cargill-logo above). Saved
+         at assets/cargill-leaf.svg; imported verbatim, never redrawn. -->
+    <symbol id="cargill-leaf-device" viewBox="0 0 1000 394">
+      <path style="fill: var(--leaf-device-fill, #00843D)" d="M999.743 380.577C999.743 380.577 910.436 387.51 848.398 378.934C705.783 359.316 573.079 260.867 514.431 228.102C386.966 157.025 335.353 152.763 269.464 171.405C161.309 200.832 97.7301 289.677 36.7194 393.159C25.0616 387.459 12.6849 383.042 0 379.858C34.9219 305.7 167.677 67.2041 441.763 10.4559C716.208 -46.4976 1010.32 136.586 999.743 380.577Z"/>
+    </symbol>
   </svg>
 
   <div class="app-layout">
@@ -65,17 +71,7 @@
       </div>
 
       <nav class="sidebar-nav" aria-label="Design system sections">
-        <div class="sidebar-section" data-nav-group="start">
-          <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-start">
-            <span class="sidebar-section-title">Start here</span>
-            <span class="material-symbols-rounded sidebar-section-chevron" aria-hidden="true">expand_more</span>
-          </button>
-          <div class="sidebar-section-body" id="nav-start">
-            <div class="sidebar-section-body-inner">
-              <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num">·</span><span>Getting started</span></a>
-            </div>
-          </div>
-        </div>
+        <a href="getting-started.html" class="sidebar-link"><span class="sidebar-link-num material-symbols-rounded" aria-hidden="true">rocket_launch</span><span>Getting started</span></a>
         <div class="sidebar-section" data-nav-group="foundations">
           <button type="button" class="sidebar-section-header" aria-expanded="true" aria-controls="nav-foundations">
             <span class="sidebar-section-title">Foundations</span>
@@ -169,7 +165,7 @@
             <p class="component-heading-desc">A container of interactive headings that expand to reveal additional content.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Accordion · borderless</p>
             <p class="type-h5" style="font-size: 18px; margin-bottom: var(--space-3);">Frequently Asked Questions</p>
             <div class="accordion accordion--borderless">
@@ -194,7 +190,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Accordion · bordered</p>
             <p class="type-h5" style="font-size: 18px; margin-bottom: var(--space-3);">Book Summary</p>
             <div class="accordion accordion--bordered">
@@ -226,7 +222,7 @@
             <p class="component-heading-desc">A graphical representation of a user or entity. Comes in five sizes, three content variants (image, text, icon), and supports an optional status indicator.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Avatar · sizes &amp; variants</p>
             <div class="avatar-matrix">
               <span></span>
@@ -240,9 +236,9 @@
               <span class="avatar-matrix-th">Default</span><span class="avatar-matrix-th">Hover</span><span class="avatar-matrix-th">Disable</span>
 
               <span class="avatar-matrix-row-label">Small</span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--sm avatar--image"></span></span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--sm avatar--image" style="box-shadow: 0 0 0 3px var(--soft-green-200);"></span></span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--sm avatar--image avatar--disabled"></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--sm avatar--image"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--sm avatar--image" style="box-shadow: 0 0 0 3px var(--soft-green-200);"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--sm avatar--image avatar--disabled"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--sm">AB</span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--sm" style="box-shadow: 0 0 0 3px var(--soft-green-200);">AB</span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--sm avatar--disabled">AB</span></span>
@@ -251,9 +247,9 @@
               <span class="avatar-matrix-cell"><span class="avatar avatar--sm avatar--disabled"><span class="material-symbols-rounded">person</span></span></span>
 
               <span class="avatar-matrix-row-label">Medium</span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--md avatar--image"></span></span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--md avatar--image" style="box-shadow: 0 0 0 3px var(--soft-green-200);"></span></span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--md avatar--image avatar--disabled"></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--md avatar--image"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--md avatar--image" style="box-shadow: 0 0 0 3px var(--soft-green-200);"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--md avatar--image avatar--disabled"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--md">AB</span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--md" style="box-shadow: 0 0 0 3px var(--soft-green-200);">AB</span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--md avatar--disabled">AB</span></span>
@@ -262,9 +258,9 @@
               <span class="avatar-matrix-cell"><span class="avatar avatar--md avatar--disabled"><span class="material-symbols-rounded">person</span></span></span>
 
               <span class="avatar-matrix-row-label">Large</span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--lg avatar--image"></span></span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--lg avatar--image" style="box-shadow: 0 0 0 3px var(--soft-green-200);"></span></span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--lg avatar--image avatar--disabled"></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--lg avatar--image"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--lg avatar--image" style="box-shadow: 0 0 0 3px var(--soft-green-200);"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--lg avatar--image avatar--disabled"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--lg">AB</span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--lg" style="box-shadow: 0 0 0 3px var(--soft-green-200);">AB</span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--lg avatar--disabled">AB</span></span>
@@ -273,9 +269,9 @@
               <span class="avatar-matrix-cell"><span class="avatar avatar--lg avatar--disabled"><span class="material-symbols-rounded">person</span></span></span>
 
               <span class="avatar-matrix-row-label">Xlarge</span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--xl avatar--image"></span></span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--xl avatar--image" style="box-shadow: 0 0 0 3px var(--soft-green-200);"></span></span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--xl avatar--image avatar--disabled"></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--xl avatar--image"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--xl avatar--image" style="box-shadow: 0 0 0 3px var(--soft-green-200);"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--xl avatar--image avatar--disabled"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--xl">AB</span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--xl" style="box-shadow: 0 0 0 3px var(--soft-green-200);">AB</span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--xl avatar--disabled">AB</span></span>
@@ -284,9 +280,9 @@
               <span class="avatar-matrix-cell"><span class="avatar avatar--xl avatar--disabled"><span class="material-symbols-rounded">person</span></span></span>
 
               <span class="avatar-matrix-row-label">Xxlarge</span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--xxl avatar--image"></span></span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--xxl avatar--image" style="box-shadow: 0 0 0 3px var(--soft-green-200);"></span></span>
-              <span class="avatar-matrix-cell"><span class="avatar avatar--xxl avatar--image avatar--disabled"></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--xxl avatar--image"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--xxl avatar--image" style="box-shadow: 0 0 0 3px var(--soft-green-200);"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
+              <span class="avatar-matrix-cell"><span class="avatar avatar--xxl avatar--image avatar--disabled"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--xxl">AB</span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--xxl" style="box-shadow: 0 0 0 3px var(--soft-green-200);">AB</span></span>
               <span class="avatar-matrix-cell"><span class="avatar avatar--xxl avatar--disabled">AB</span></span>
@@ -296,30 +292,30 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Avatar · status indicator</p>
             <p class="card-body" style="margin-bottom: var(--space-4); max-width: 56ch;">A small dot overlay communicates presence or unread state. Available in <strong>online</strong>, <strong>away</strong>, <strong>busy</strong>, and <strong>offline</strong>.</p>
             <div class="btn-row" style="gap: var(--space-5); align-items: flex-end;">
-              <span class="avatar-wrap"><span class="avatar avatar--lg avatar--image"></span><span class="avatar-status"></span></span>
+              <span class="avatar-wrap"><span class="avatar avatar--lg avatar--image"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span><span class="avatar-status"></span></span>
               <span class="avatar-wrap"><span class="avatar avatar--lg">AB</span><span class="avatar-status avatar-status--away"></span></span>
               <span class="avatar-wrap"><span class="avatar avatar--lg"><span class="material-symbols-rounded">person</span></span><span class="avatar-status avatar-status--busy"></span></span>
-              <span class="avatar-wrap"><span class="avatar avatar--xl avatar--image"></span><span class="avatar-status avatar-status--offline"></span></span>
+              <span class="avatar-wrap"><span class="avatar avatar--xl avatar--image"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span><span class="avatar-status avatar-status--offline"></span></span>
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Avatar · group</p>
             <p class="card-body" style="margin-bottom: var(--space-4); max-width: 56ch;">Stack avatars to show participation in shared work. Use the smaller sizes when stacking more than four.</p>
             <div class="btn-row" style="gap: var(--space-5); align-items: center;">
               <span class="avatar-group avatar-group--md">
-                <span class="avatar avatar--md avatar--image"></span>
+                <span class="avatar avatar--md avatar--image"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span>
                 <span class="avatar avatar--md">JK</span>
                 <span class="avatar avatar--md"><span class="material-symbols-rounded">person</span></span>
                 <span class="avatar avatar--md">+3</span>
               </span>
               <span class="avatar-group">
                 <span class="avatar avatar--sm">AB</span>
-                <span class="avatar avatar--sm avatar--image"></span>
+                <span class="avatar avatar--sm avatar--image"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span>
                 <span class="avatar avatar--sm">CD</span>
                 <span class="avatar avatar--sm">EF</span>
                 <span class="avatar avatar--sm">+9</span>
@@ -331,7 +327,7 @@
             <p class="component-heading-desc">A badge (also known as a tag) is a non‑interactive label used for data visualization in grids, tables, and cards. Eight color variants map to common semantic states.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Badge · status</p>
             <div class="badge-row">
               <span class="badge badge--orange">Trial</span>
@@ -343,7 +339,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Badge · color variants</p>
             <div class="badge-row">
               <span class="badge">Default</span>
@@ -363,12 +359,12 @@
             <p class="component-heading-desc">A styled container for related content and actions. Comes in rich media, metric, and expressive variants.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Card · rich media (variants)</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4);">
 
               <article class="card card-rich">
-                <div class="card-media" role="presentation"></div>
+                <div class="card-media"><img src="assets/brand-photography/world-farmer-tablet-field.png" alt="A farmer checking a crop on a tablet in a green field" /></div>
                 <div class="card-content">
                   <p class="card-eyebrow">Field report · 2026</p>
                   <h3 class="card-title">Card Title</h3>
@@ -380,7 +376,7 @@
               </article>
 
               <article class="card card-rich card-rich--side">
-                <div class="card-media" role="presentation"></div>
+                <div class="card-media"><img src="assets/brand-photography/people-collaboration-whiteboard.png" alt="Colleagues collaborating around a whiteboard" /></div>
                 <div class="card-content">
                   <h3 class="card-title">Side layout</h3>
                   <p class="card-body">Image on the left, content on the right. Good for list views.</p>
@@ -391,7 +387,7 @@
               </article>
 
               <article class="card card-rich card-rich--overlay">
-                <div class="card-media" role="presentation"></div>
+                <div class="card-media"><img src="assets/brand-photography/systems-combine-harvester-sunset.png" alt="A combine harvester working a field at sunset" /></div>
                 <div class="card-content">
                   <p class="card-eyebrow">Featured story</p>
                   <h3 class="card-title">Image background with overlay</h3>
@@ -400,7 +396,7 @@
               </article>
 
               <article class="card card-rich card-rich--compact">
-                <div class="card-media" role="presentation"></div>
+                <div class="card-media"><img src="assets/brand-photography/world-wheat-detail.png" alt="Close-up of ripe wheat heads" /></div>
                 <div class="card-content">
                   <h3 class="card-title">Compact card</h3>
                   <div class="btn-row" style="margin-top: 4px;">
@@ -412,7 +408,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Card · metric</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4);">
 
@@ -457,7 +453,7 @@
 
               <article class="card card-metric">
                 <div class="card-metric-identity">
-                  <span class="avatar avatar--md avatar--image"></span>
+                  <span class="avatar avatar--md avatar--image"><img src="assets/brand-photography/portrait-operator-cab.png" alt="" /></span>
                   <div style="display: flex; flex-direction: column;">
                     <span class="card-metric-identity-name">Suzanne K.</span>
                     <span class="card-metric-identity-role">Sourcing lead · IA</span>
@@ -471,7 +467,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Card · expressive</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-4);">
 
@@ -516,7 +512,7 @@
             <p class="component-heading-desc">A rotating set of slides used to showcase featured content — full‑width hero with overlay text, prev/next controls, and pagination dots.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Carousel · full width</p>
             <div class="carousel">
               <div class="carousel-frame">
@@ -540,7 +536,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Carousel · thumbnail strip</p>
             <div class="carousel-mini">
               <button class="carousel-mini-nav" aria-label="Previous"><span class="material-symbols-rounded">chevron_left</span></button>
@@ -560,7 +556,7 @@
             <p class="component-heading-desc">Compact, interactive labels for selections, filters, and dismissible tags.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Chip · sizes &amp; variants</p>
             <div class="chip-matrix">
               <span></span>
@@ -585,7 +581,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Chip · states</p>
             <div class="chip-matrix">
               <span></span>
@@ -610,7 +606,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Chip · filter usage</p>
             <div class="chip-row" style="margin-bottom: var(--space-4);">
               <span class="chip" role="button" tabindex="0">All</span>
@@ -627,7 +623,7 @@
             <p class="component-heading-desc">A structural element that groups other components together with shared surface, padding, and radius.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Container · structural panel</p>
             <p class="card-body" style="margin-bottom: var(--space-4); max-width: 56ch;">A Container groups related components together with a single surface, padding, and corner radius. Use the theme variants to fit the surrounding context.</p>
 
@@ -643,7 +639,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Container · theme variants</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4);">
 
@@ -678,7 +674,7 @@
             <p class="component-heading-desc">A horizontal rule used to group related items inside a surface. Use it to organize, not to separate individual items.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Divider · themes</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4);">
 
@@ -707,7 +703,7 @@
             <p class="component-heading-desc">Communicates that a list, table, or search has nothing to show yet, and points the user toward what to do about it. Use instead of leaving a container blank.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Empty state · default</p>
             <div class="empty-state">
               <span class="empty-state-icon" aria-hidden="true"><span class="material-symbols-rounded">folder</span></span>
@@ -717,7 +713,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Empty state · no search results</p>
             <div class="empty-state">
               <span class="empty-state-icon" aria-hidden="true"><span class="material-symbols-rounded">search_off</span></span>
@@ -727,7 +723,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Empty state · compact (inline, e.g. inside a table)</p>
             <div class="empty-state empty-state--compact">
               <span class="empty-state-icon" aria-hidden="true"><span class="material-symbols-rounded">inbox</span></span>
@@ -742,7 +738,7 @@
             <p class="component-heading-desc">Quickly communicate the page's main message, draw users in, and guide them toward a desired action. Two layouts: image‑led and brand‑led.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Hero · image</p>
             <div class="hero-component hero-component--image">
               <div class="hero-component-content">
@@ -754,7 +750,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Hero · brand</p>
             <div class="hero-component hero-component--brand">
               <div class="hero-component-content">
@@ -763,13 +759,11 @@
                 <p class="hero-component-body" style="margin-left: auto; margin-right: auto;">We are an unprecedented force across agriculture, financial, and industrial industries. Together we work to ensure the world's products and services that really matter.</p>
                 <button class="btn btn-primary">Learn more</button>
               </div>
-              <svg class="hero-component--brand-leaf" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">
-                <path fill="var(--brand)" d="M0,200 L0,140 C200,40 500,80 800,30 C900,15 1000,30 1000,30 L1000,200 Z"/>
-              </svg>
+              <svg class="hero-component--brand-leaf" viewBox="0 0 1000 394" aria-hidden="true"><use href="#cargill-leaf-device"/></svg>
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Hero · compact</p>
             <div class="hero-component hero-component--image hero-component--compact">
               <div class="hero-component-content">
@@ -784,7 +778,7 @@
             <p class="component-heading-desc">A horizontal strip of content that scrolls continuously across the surface. Use for branded showcases and content reels. Includes an automatic and a user-controlled variant.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Marquee · auto-scrolling left</p>
             <div class="marquee">
               <div class="marquee-track">
@@ -816,7 +810,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Marquee · auto-scrolling right</p>
             <div class="marquee">
               <div class="marquee-track marquee-track--right">
@@ -848,7 +842,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Marquee · user controlled</p>
             <div class="marquee-controlled">
               <button class="marquee-controlled-nav marquee-controlled-nav--prev" aria-label="Previous"><span class="material-symbols-rounded">chevron_left</span></button>
@@ -878,7 +872,7 @@
             <p class="component-heading-desc">A horizontal bar that shows the completion of an ongoing task.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Progress bar · determinate</p>
             <div style="display: flex; flex-direction: column; gap: var(--space-4); max-width: 480px;">
               <div class="progress-bar-row"><div class="progress-bar"><div class="progress-bar-fill" style="width: 25%"></div></div><span>25%</span></div>
@@ -889,7 +883,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Progress bar · indeterminate</p>
             <div style="max-width: 480px;"><div class="progress-bar progress-bar--indeterminate"><div class="progress-bar-fill"></div></div></div>
           </div>
@@ -898,7 +892,7 @@
             <p class="component-heading-desc">A circular progress indicator that shows completion as a percentage, useful for KPIs and metrics.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Progress gauge · sizes</p>
             <div style="display: flex; gap: var(--space-6); align-items: center; flex-wrap: wrap;">
               <span class="progress-gauge"><svg width="120" height="120"><circle cx="60" cy="60" r="52" stroke="var(--neutral-100)" stroke-width="10" fill="none"/><circle cx="60" cy="60" r="52" stroke="var(--brand)" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="98"/></svg><span class="progress-gauge-value">70%<span>Goal</span></span></span>
@@ -911,7 +905,7 @@
             <p class="component-heading-desc">A 5‑star rating control. Use for input (selectable) or display (read‑only).</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Ratings · variants</p>
             <div style="display: flex; flex-direction: column; gap: var(--space-4);">
               <span class="rating rating--lg"><span class="rating-star rating-star--filled"><span class="material-symbols-rounded">star</span></span><span class="rating-star rating-star--filled"><span class="material-symbols-rounded">star</span></span><span class="rating-star rating-star--filled"><span class="material-symbols-rounded">star</span></span><span class="rating-star rating-star--filled"><span class="material-symbols-rounded">star</span></span><span class="rating-star"><span class="material-symbols-rounded">star</span></span><span class="rating-value">4.0</span></span>
@@ -924,7 +918,7 @@
             <p class="component-heading-desc">A small colored dot paired with a label that communicates presence or system state.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Status · variants</p>
             <div style="display: flex; flex-direction: column; gap: var(--space-3);">
               <span class="status-indicator status-indicator--online status-indicator--pulse"><span class="status-indicator-dot"></span>Online</span>
@@ -938,7 +932,7 @@
             <p class="component-heading-desc">A structured data grid with headers, rows, and cells. Supports sorting, selection, and inline status.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Table · basic</p>
             <div class="table-wrap">
               <table class="table">
@@ -958,7 +952,7 @@
             <p class="component-heading-desc">Horizontal navigation between related views within a single page or panel.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Tabs · default</p>
             <div>
               <div class="tabs" role="tablist" aria-label="Project sections">
@@ -971,7 +965,7 @@
             </div>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Tabs · with icons</p>
             <div>
               <div class="tabs" role="tablist" aria-label="Workspace views">
@@ -987,7 +981,7 @@
             <p class="component-heading-desc">A hierarchical list with expand/collapse controls, used to navigate nested content like file systems or org structures.</p>
           </div>
 
-          <div class="component" style="grid-column: 1 / -1;">
+          <div class="component">
             <p class="component-label">Tree view · default</p>
             <div style="max-width: 320px;"><nav class="tree-view" aria-label="Project tree">
               <div class="tree-item tree-item--open"><span class="tree-toggle"><span class="material-symbols-rounded">chevron_right</span></span><span class="tree-icon"><span class="material-symbols-rounded">folder</span></span>Foundations</div>
@@ -1027,7 +1021,7 @@
     <div class="search-panel">
       <div class="search-input-row">
         <span class="material-symbols-rounded" aria-hidden="true">search</span>
-        <input type="text" class="search-input" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search Sprout" />
+        <input type="text" class="search-field" id="search-input" placeholder="Search components, tokens, foundations…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="search-results" aria-label="Search Sprout" />
         <kbd class="search-esc">Esc</kbd>
       </div>
       <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>
