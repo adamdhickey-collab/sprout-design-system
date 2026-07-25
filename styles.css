@@ -3240,7 +3240,7 @@
       padding: 6px 8px 6px 12px;
       background: var(--surface);
       border: 1px solid var(--neutral-300);
-      border-radius: var(--radius-sm);
+      border-radius: var(--corner-radius-base);
       transition: border-color 120ms ease, box-shadow 120ms ease;
     }
     .date-input:hover { border-color: var(--brand); }
@@ -3610,7 +3610,7 @@
       width: 100%;
       padding: 9px 12px;
       border: 1px solid var(--neutral-300);
-      border-radius: var(--radius-sm);
+      border-radius: var(--corner-radius-base);
       background: var(--surface);
       font-family: var(--font-sans);
       font-size: 15px;
@@ -3729,7 +3729,7 @@
       padding: 6px 8px 6px 12px;
       background: var(--surface);
       border: 1px solid var(--neutral-300);
-      border-radius: var(--radius-sm);
+      border-radius: var(--corner-radius-base);
       cursor: text;
       transition: border-color 120ms ease, box-shadow 120ms ease;
       position: relative;
