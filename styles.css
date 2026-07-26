@@ -311,6 +311,22 @@
       padding: 0 var(--space-7);
     }
 
+    /* Visually hidden but still announced/focusable — for headings and labels
+       that a screen reader needs for landmark/heading navigation but the
+       visual design has no room (or need) for. Never use display:none or
+       visibility:hidden here; both remove the element from the a11y tree too. */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     /* ---------- App layout · left rail + main ---------- */
     /* Skip link — first focusable element; visible only on keyboard focus */
     .skip-link {
