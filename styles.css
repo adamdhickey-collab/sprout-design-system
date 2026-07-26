@@ -2198,6 +2198,11 @@
       box-sizing: border-box;
     }
     .illus-card-stage img { max-width: 70%; max-height: 100%; width: auto; height: auto; display: block; }
+    /* Diagrams are landscape (process flows, instruction sequences) — the square,
+       70%-capped object-illustration stage would shrink them to a sliver. Let the
+       stage hug the artwork's own aspect ratio and fill the available width instead. */
+    .illus-card-stage--diagram { height: auto; width: 100%; }
+    .illus-card-stage--diagram img { max-width: 100%; width: 100%; height: auto; }
     .illus-card-label {
       font-family: var(--font-sans);
       font-size: 14px;
