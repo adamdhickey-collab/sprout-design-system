@@ -5959,6 +5959,241 @@
     .rating-star:focus-visible { border-radius: var(--radius-pill); }
 
     /* ==========================================================================
+       Approved assets register (assets.html)
+       Cards are rendered by app.js from the #asset-registry JSON block, so every
+       selector here is applied in JS — grep app.js before renaming any of them.
+       ========================================================================== */
+    .registry-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      margin-bottom: var(--space-3);
+    }
+    .registry-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .registry-filter-btn {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 18px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-soft);
+      cursor: pointer;
+      transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+    }
+    .registry-filter-btn:hover { border-color: var(--brand); color: var(--text); }
+    .registry-filter-btn[aria-pressed="true"] {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: var(--on-accent);
+    }
+    .registry-toolbar-note {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 19px;
+      color: var(--text-muted);
+      max-width: 68ch;
+      margin: 0 0 var(--space-6);
+    }
+
+    .registry-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+    .registry-card {
+      border: 1px solid var(--border);
+      border-radius: var(--corner-radius-md);
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .registry-card[hidden] { display: none; }
+    /* The status stripe is a redundant cue, never the only one — the badge next
+       to the title carries the same value as text. */
+    .registry-card { border-left: 3px solid var(--border); }
+    .registry-card[data-status="canonical"]   { border-left-color: var(--green-700); }
+    .registry-card[data-status="approved"]    { border-left-color: var(--blue-600); }
+    .registry-card[data-status="placeholder"] { border-left-color: var(--bright-yellow-deep); }
+    .registry-card[data-status="not-stocked"] { border-left-color: var(--rich-red-deep); }
+
+    .registry-card-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: var(--space-3);
+      padding: var(--space-5) var(--space-5) 0;
+    }
+    .registry-card-title {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 19px;
+      line-height: 25px;
+      color: var(--text);
+      margin: 0;
+    }
+    .registry-card-layer {
+      font-family: var(--font-micro);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-left: auto;
+      white-space: nowrap;
+    }
+    .registry-card-summary {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 23px;
+      color: var(--text-soft);
+      max-width: 72ch;
+      margin: var(--space-3) 0 0;
+      padding: 0 var(--space-5);
+    }
+
+    .registry-card-body {
+      display: grid;
+      grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+      gap: var(--space-5) var(--space-6);
+      padding: var(--space-5);
+      align-items: start;
+    }
+    @media (max-width: 899.98px) {
+      .registry-card-body { grid-template-columns: 1fr; }
+    }
+
+    .registry-thumbs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+      gap: var(--space-3);
+    }
+    .registry-thumb {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1 / 1;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--corner-radius-base);
+      background: var(--surface-deep, var(--neutral-50));
+      overflow: hidden;
+    }
+    .registry-thumb img { max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; }
+    .registry-thumb svg { width: 100%; height: auto; max-height: 100%; }
+    .registry-thumb .material-symbols-rounded { font-size: 28px; color: var(--text-soft); }
+    .registry-thumb--type {
+      font-family: var(--font-display);
+      font-size: 30px;
+      line-height: 1;
+      color: var(--text);
+    }
+    /* Not-stocked: a dashed empty slot, so the absence reads as deliberate */
+    .registry-thumb--empty {
+      border-style: dashed;
+      border-color: var(--rich-red-deep);
+      background: transparent;
+      aspect-ratio: auto;
+      grid-column: 1 / -1;
+      padding: var(--space-4);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 19px;
+      color: var(--text-soft);
+      text-align: center;
+    }
+    .registry-thumb-caption {
+      font-family: var(--font-micro);
+      font-size: 10px;
+      color: var(--text-muted);
+      text-align: center;
+      margin: 4px 0 0;
+      overflow-wrap: anywhere;
+    }
+
+    .registry-fields { margin: 0; }
+    .registry-field + .registry-field { margin-top: var(--space-4); }
+    .registry-field dt {
+      font-family: var(--font-micro);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+    .registry-field dd {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 21px;
+      color: var(--text-soft);
+    }
+    .registry-field dd code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+    .registry-field--unset dd { color: var(--text-muted); font-style: italic; }
+    .registry-field--prohibited dt { color: var(--rich-red-deep); }
+
+    /* The instruction block is the payload of the whole page: the one field a
+       generative tool reads verbatim. Kept visually separate from the prose. */
+    .registry-instruction {
+      margin: var(--space-5) var(--space-5) var(--space-5);
+      padding: var(--space-4) var(--space-5);
+      border-radius: var(--corner-radius-base);
+      background: var(--soft-green-50);
+      border: 1px solid var(--soft-green-200);
+    }
+    .registry-instruction-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-micro);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green-900);
+      margin: 0 0 4px;
+    }
+    .registry-instruction-label .material-symbols-rounded { font-size: 15px; }
+    .registry-instruction p {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 22px;
+      color: var(--green-900);
+      max-width: 78ch;
+    }
+    /* --soft-green-50/-200 already flip to dark surfaces under [data-theme="dark"],
+       so the block's ground needs no override. The text does: --green-900 is a
+       near-black in both themes, which lands at 1.9:1 on the flipped ground.
+       --green-200 stays light in dark theme and clears AA comfortably. */
+    [data-theme="dark"] .registry-instruction-label,
+    [data-theme="dark"] .registry-instruction p { color: var(--green-200); }
+
+    .registry-seealso {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      padding: 0 var(--space-5) var(--space-5);
+      font-family: var(--font-sans);
+      font-size: 13px;
+    }
+    .registry-empty {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: var(--text-soft);
+      padding: var(--space-6);
+      text-align: center;
+      border: 1px dashed var(--border);
+      border-radius: var(--corner-radius-md);
+    }
+
+    /* ==========================================================================
        prefers-reduced-motion — kept last on purpose. Every target selector here
        (.spinner, .status-indicator--pulse .status-indicator-dot,
        .progress-bar--indeterminate .progress-bar-fill) has an unconditional base

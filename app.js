@@ -326,16 +326,21 @@
     (function () {
       const INDEX = [
         { title: 'Getting started', category: 'Start here', page: 'getting-started.html', anchor: '' },
-        { title: 'Color', category: 'Foundations', page: 'index.html', anchor: '#color' },
-        { title: 'Typography', category: 'Foundations', page: 'index.html', anchor: '#type' },
-        { title: 'Layout & shape', category: 'Foundations', page: 'index.html', anchor: '#space' },
-        { title: 'Iconography', category: 'Foundations', page: 'index.html', anchor: '#icons' },
-        { title: 'Logo', category: 'Foundations', page: 'index.html', anchor: '#logo' },
-        { title: 'Themes', category: 'System', page: 'system.html', anchor: '#themes' },
-        { title: 'Elevation', category: 'System', page: 'system.html', anchor: '#elevation' },
-        { title: 'Brand expression', category: 'System', page: 'system.html', anchor: '#brand-expression' },
-        { title: 'Illustration & diagrams', category: 'System', page: 'system.html', anchor: '#illustration' },
-        { title: 'Data visualization', category: 'System', page: 'system.html', anchor: '#dataviz' },
+        { title: 'Color', category: 'System foundations', page: 'index.html', anchor: '#color' },
+        { title: 'Typography', category: 'System foundations', page: 'index.html', anchor: '#type' },
+        { title: 'Layout & shape', category: 'System foundations', page: 'index.html', anchor: '#space' },
+        { title: 'Themes', category: 'System foundations', page: 'system.html', anchor: '#themes' },
+        { title: 'Elevation', category: 'System foundations', page: 'system.html', anchor: '#elevation' },
+        { title: 'Iconography', category: 'Product system', page: 'index.html', anchor: '#icons' },
+        { title: 'Data visualization', category: 'Product system', page: 'system.html', anchor: '#dataviz' },
+        { title: 'Logo', category: 'Brand expression', page: 'index.html', anchor: '#logo' },
+        { title: 'Graphic language', category: 'Brand expression', page: 'system.html', anchor: '#brand-expression' },
+        { title: 'Illustration & diagrams', category: 'Brand expression', page: 'system.html', anchor: '#illustration' },
+        { title: 'Approved assets', category: 'Brand expression', page: 'assets.html', anchor: '#registry' },
+        { title: 'Photography', category: 'Approved assets', page: 'assets.html', anchor: '#asset-photography' },
+        { title: 'Character illustration', category: 'Approved assets', page: 'assets.html', anchor: '#asset-character-illustration' },
+        { title: 'Brand glyphs', category: 'Approved assets', page: 'assets.html', anchor: '#asset-brand-glyphs' },
+        { title: 'Brand typefaces', category: 'Approved assets', page: 'assets.html', anchor: '#asset-typefaces' },
         { title: 'Authentication', category: 'Forms & inputs', page: 'forms.html', anchor: '#authentication' },
         { title: 'Button', category: 'Forms & inputs', page: 'forms.html', anchor: '#buttons' },
         { title: 'Checkbox', category: 'Forms & inputs', page: 'forms.html', anchor: '#checkbox' },
@@ -870,4 +875,202 @@
         const file = img.getAttribute('src');
         attach(card.querySelector('.photo-card-img') || card, file.split('/').pop(), () => ({ file }));
       });
+    })();
+
+    // Approved assets register (assets.html) · renders the record cards from the
+    // #asset-registry JSON block on that page. The JSON is the single source of
+    // truth for every fact shown here — the DOM is a projection of it, so a new
+    // record or a corrected field is a JSON edit and nothing else. No-ops on
+    // every other page. Selectors used below are defined in styles.css under
+    // "Approved assets register".
+    (function () {
+      const host = document.getElementById('registry-list');
+      const dataEl = document.getElementById('asset-registry');
+      if (!host || !dataEl) return;
+
+      let data;
+      try {
+        data = JSON.parse(dataEl.textContent);
+      } catch (err) {
+        host.innerHTML = '<p class="registry-empty">The registry JSON could not be parsed — fix the <code>#asset-registry</code> block.</p>';
+        return;
+      }
+      const records = (data && data.records) || [];
+
+      const STATUS = {
+        'canonical':   { label: 'Canonical',   badge: 'badge--green' },
+        'approved':    { label: 'Approved',    badge: 'badge--blue' },
+        'placeholder': { label: 'Placeholder', badge: 'badge--orange' },
+        'not-stocked': { label: 'Not stocked', badge: 'badge--red' }
+      };
+      const LAYER = { 'sprout': 'In Sprout', 'asset-library': 'Asset library' };
+
+      const el = (tag, cls, text) => {
+        const n = document.createElement(tag);
+        if (cls) n.className = cls;
+        if (text != null) n.textContent = text;
+        return n;
+      };
+
+      // A thumbnail per example. Types mirror the "type" key in the JSON;
+      // anything unrecognised is skipped rather than rendered as a broken tile.
+      function thumb(ex) {
+        const wrap = document.createElement('div');
+        const tile = el('div', 'registry-thumb');
+        if (ex.type === 'img' || ex.type === 'photo') {
+          const img = document.createElement('img');
+          img.src = ex.src;
+          img.alt = ex.alt || '';
+          img.loading = 'lazy';
+          tile.appendChild(img);
+        } else if (ex.type === 'symbol') {
+          const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          svg.setAttribute('viewBox', ex.viewBox);
+          svg.setAttribute('role', 'img');
+          svg.setAttribute('aria-label', ex.label || '');
+          if (ex.cls) svg.setAttribute('class', ex.cls);
+          const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+          use.setAttribute('href', ex.href);
+          svg.appendChild(use);
+          tile.appendChild(svg);
+        } else if (ex.type === 'glyph') {
+          const g = el('span', 'material-symbols-rounded', ex.text);
+          g.setAttribute('aria-hidden', 'true');
+          tile.appendChild(g);
+        } else if (ex.type === 'type') {
+          tile.classList.add('registry-thumb--type');
+          tile.style.fontFamily = ex.font;
+          tile.textContent = ex.text;
+        } else if (ex.type === 'none') {
+          tile.classList.add('registry-thumb--empty');
+          tile.textContent = ex.label || 'No approved artwork stocked';
+          wrap.appendChild(tile);
+          return wrap;
+        } else {
+          return null;
+        }
+        wrap.appendChild(tile);
+        if (ex.label) wrap.appendChild(el('p', 'registry-thumb-caption', ex.label));
+        return wrap;
+      }
+
+      // A field row. A null value is rendered as an explicit "unset" rather than
+      // hidden — the whole point of the register is that a missing answer is
+      // visible as a missing answer.
+      function field(dl, label, value, mods) {
+        const row = el('div', 'registry-field' + (mods ? ' ' + mods : ''));
+        row.appendChild(el('dt', null, label));
+        const dd = el('dd');
+        if (value == null || value === '') {
+          dd.textContent = 'Unset — see “What this register doesn’t know yet”';
+          row.classList.add('registry-field--unset');
+        } else {
+          dd.textContent = value;
+        }
+        row.appendChild(dd);
+        dl.appendChild(row);
+      }
+
+      records.forEach(rec => {
+        const st = STATUS[rec.status] || { label: rec.status, badge: 'badge--neutral' };
+        const card = el('article', 'registry-card');
+        card.dataset.status = rec.status;
+        card.id = 'asset-' + rec.id;
+
+        const head = el('div', 'registry-card-head');
+        head.appendChild(el('h3', 'registry-card-title', rec.category));
+        head.appendChild(el('span', 'badge ' + st.badge, st.label));
+        head.appendChild(el('span', 'registry-card-layer', LAYER[rec.layer] || rec.layer));
+        card.appendChild(head);
+        card.appendChild(el('p', 'registry-card-summary', rec.summary));
+
+        const body = el('div', 'registry-card-body');
+        const thumbs = el('div', 'registry-thumbs');
+        (rec.examples || []).forEach(ex => {
+          const t = thumb(ex);
+          if (t) thumbs.appendChild(t);
+        });
+        body.appendChild(thumbs);
+
+        const dl = el('dl', 'registry-fields');
+        field(dl, 'Approved use', rec.approvedUse);
+        field(dl, 'Prohibited use', rec.prohibitedUse, 'registry-field--prohibited');
+        // Source is the one field that can be a link into the system itself.
+        const srcRow = el('div', 'registry-field');
+        srcRow.appendChild(el('dt', null, 'Source of truth'));
+        const srcDd = el('dd');
+        if (rec.sourceHref) {
+          const a = document.createElement('a');
+          a.href = rec.sourceHref;
+          a.textContent = rec.source;
+          srcDd.appendChild(a);
+        } else {
+          srcDd.textContent = rec.source;
+        }
+        srcRow.appendChild(srcDd);
+        dl.appendChild(srcRow);
+        field(dl, 'Owner', rec.owner);
+        field(dl, 'Licensing & restriction', rec.license);
+        field(dl, 'File formats', rec.formats);
+        body.appendChild(dl);
+        card.appendChild(body);
+
+        const instr = el('div', 'registry-instruction');
+        const lab = el('p', 'registry-instruction-label');
+        const labIcon = el('span', 'material-symbols-rounded', 'smart_toy');
+        labIcon.setAttribute('aria-hidden', 'true');
+        lab.appendChild(labIcon);
+        lab.appendChild(document.createTextNode('Instruction to a generative tool'));
+        instr.appendChild(lab);
+        instr.appendChild(el('p', null, rec.claudeInstruction));
+        card.appendChild(instr);
+
+        if (rec.seeAlso && rec.seeAlso.length) {
+          const see = el('div', 'registry-seealso');
+          see.appendChild(el('span', null, 'See also:'));
+          rec.seeAlso.forEach(s => {
+            const a = document.createElement('a');
+            a.href = s.href;
+            a.textContent = s.label;
+            see.appendChild(a);
+          });
+          card.appendChild(see);
+        }
+
+        host.appendChild(card);
+      });
+
+      // Status filter. Single-select; "all" clears it.
+      const btns = Array.from(document.querySelectorAll('.registry-filter-btn'));
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const want = btn.dataset.filter;
+          btns.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+          let shown = 0;
+          host.querySelectorAll('.registry-card').forEach(c => {
+            const match = want === 'all' || c.dataset.status === want;
+            c.hidden = !match;
+            if (match) shown++;
+          });
+          const empty = host.querySelector('.registry-empty');
+          if (empty) empty.remove();
+          if (!shown) host.appendChild(el('p', 'registry-empty', 'No records with that status.'));
+        });
+      });
+
+      // Hand the whole governance record over in one paste.
+      const copyBtn = document.getElementById('registry-copy');
+      if (copyBtn && navigator.clipboard) {
+        const label = copyBtn.querySelector('span:last-child');
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(JSON.stringify(data, null, 2)).then(() => {
+            if (!label) return;
+            const was = label.textContent;
+            label.textContent = 'Copied';
+            setTimeout(() => { label.textContent = was; }, 1600);
+          });
+        });
+      } else if (copyBtn) {
+        copyBtn.hidden = true;
+      }
     })();
