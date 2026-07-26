@@ -679,14 +679,32 @@
           u.replaceWith(g);
         });
         const cs = getComputedStyle(svg);
-        let style = 'color:' + cs.color + ';';
         const lf = cs.getPropertyValue('--leaf-fill').trim();
-        if (lf) style += '--leaf-fill:' + lf + ';';
         const ld = cs.getPropertyValue('--leaf-device-fill').trim();
+        let style = 'color:' + cs.color + ';';
+        if (lf) style += '--leaf-fill:' + lf + ';';
         if (ld) style += '--leaf-device-fill:' + ld + ';';
         clone.setAttribute('xmlns', SVGNS);
         clone.removeAttribute('class');
         clone.setAttribute('style', style);
+        // The leaf/leaf-device path carries its own inline `fill: var(--leaf-fill, #00843D)`
+        // (or --leaf-device-fill) straight from the source symbol. Setting the custom
+        // property on the root above is enough for browsers, but many standalone SVG
+        // viewers (Preview, older design tools, thumbnailers) don't resolve CSS custom
+        // properties at all — they fall through to the static "#00843D" fallback,
+        // so every non-leaf-green variant (white, black, deep, mono) downloads with a
+        // green leaf instead of its real color. Bake the resolved literal in place of
+        // the var() reference so the file is correct with zero CSS-variable support.
+        clone.querySelectorAll('[style*="--leaf-fill"], [style*="--leaf-device-fill"]').forEach(el => {
+          let s = el.getAttribute('style');
+          // Always resolve to a literal — even when lf/ld is empty (no override set,
+          // e.g. the plain default leaf-device card), fall back to var()'s own fallback
+          // text rather than leaving var() in place. A renderer with zero var() support
+          // doesn't know to apply that fallback itself; it just drops the declaration.
+          s = s.replace(/var\(--leaf-fill\s*(?:,\s*([^)]+))?\)/g, (_, fallback) => lf || fallback || '#00843D');
+          s = s.replace(/var\(--leaf-device-fill\s*(?:,\s*([^)]+))?\)/g, (_, fallback) => ld || fallback || '#00843D');
+          el.setAttribute('style', s);
+        });
         const out = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone);
         return URL.createObjectURL(new Blob([out], { type: 'image/svg+xml' }));
       }
