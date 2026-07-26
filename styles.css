@@ -1051,16 +1051,6 @@
       font-weight: 700;
       color: var(--text);
     }
-    /* Display sizes from the Utility scale (8xl serif used for the hero) */
-    .type-display-serif {
-      font-family: var(--font-display);
-      font-size: 72px;
-      line-height: 80px;
-      font-weight: 400;
-      color: var(--brand);
-      letter-spacing: var(--display-tracking);
-    }
-
     /* ---------- Corner radius ---------- */
     .radius-grid {
       display: grid;
@@ -2158,43 +2148,6 @@
       margin-top: var(--space-4);
     }
 
-    /* Illustration placeholder · reserves the SPACE an approved illustration will
-       occupy without inventing artwork of our own — illustration is an asset
-       dependency here (see the note below). Swap the aspect ratio to match the
-       layout; never stretch the eventual asset to fit a mismatched slot. */
-    .illustration-slot {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-2);
-      width: 100%;
-      box-sizing: border-box;
-      border: 1.5px dashed var(--border);
-      border-radius: var(--corner-radius-md);
-      background: var(--soft-green-50);
-      color: var(--text-muted);
-      padding: var(--space-4);
-    }
-    .illustration-slot .material-symbols-rounded { font-size: 28px; }
-    .illustration-slot-label {
-      font-family: var(--font-sans);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-soft);
-      margin: 0;
-    }
-    .illustration-slot-meta {
-      font-family: var(--font-micro);
-      font-size: 12px;
-      text-align: center;
-      max-width: 32ch;
-      margin: 0;
-    }
-    .illustration-slot--square    { aspect-ratio: 1 / 1; }
-    .illustration-slot--landscape { aspect-ratio: 16 / 9; }
-    .illustration-slot--portrait  { aspect-ratio: 3 / 4; }
-
     /* Real brand object illustrations (vector SVG imported from the guidelines PDF) */
     .illus-card {
       margin: 0;
@@ -2247,7 +2200,7 @@
       justify-content: center;
       padding: 0;
       border: 1px solid var(--border);
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: var(--surface);
       color: var(--text-soft);
       cursor: pointer;
@@ -2331,7 +2284,6 @@
       margin-top: var(--space-5);
       opacity: 0.85;
     }
-    .chart-color-step--dark,
     .chart-color-step--light { color: var(--text); }
 
     .dataviz-extension-row {
@@ -2668,19 +2620,6 @@
     .btn-ghost.btn--danger:hover { background: var(--red-50); color: var(--red-700); }
 
     .btn-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
-    .btn-grid {
-      display: grid;
-      grid-template-columns: max-content 1fr;
-      gap: var(--space-3) var(--space-5);
-      align-items: center;
-    }
-    .btn-grid-label {
-      font-family: var(--font-micro);
-      font-size: 11px;
-      letter-spacing: normal;
-      text-transform: none;
-      color: var(--text-muted);
-    }
 
     /* Dense button library matrix, mirrors Figma's button page */
     .btn-matrix {
@@ -2735,8 +2674,6 @@
       text-transform: none;
       font-weight: 700;
     }
-    .tag-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-
     /* Cards · shared base */
     .card {
       background: var(--surface);
@@ -2955,26 +2892,6 @@
     .card-expressive-chart svg { width: 100%; height: 120px; display: block; }
     .card-expressive--chart > :not(.card-expressive-chart) {
       grid-column: 1;
-    }
-
-    /* Stat / KPI */
-    .kpi {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-2);
-    }
-    .kpi-value {
-      font-family: var(--font-display);
-      font-size: 56px;
-      line-height: 1;
-      color: var(--brand);
-    }
-    .kpi-label {
-      font-family: var(--font-micro);
-      font-size: 12px;
-      letter-spacing: normal;
-      text-transform: none;
-      color: var(--text-muted);
     }
 
     /* Accordion */
@@ -4530,15 +4447,6 @@
       font-size: 12px;
       color: var(--text-muted);
     }
-    .site-footer-demo-sub--inner {
-      padding: var(--padding-base) var(--padding-xl);
-    }
-    .site-footer-demo-sub--inner .site-footer-sub-mark {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-    }
-    .site-footer-demo-sub--inner .cargill-logo { width: 64px; }
     .site-footer-sub-links {
       display: flex;
       gap: var(--space-5);
@@ -4756,7 +4664,7 @@
     .carousel-dot {
       width: 8px;
       height: 8px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: rgba(255, 255, 255, 0.5);
       transition: background-color 120ms ease, width 120ms ease;
     }
@@ -4964,7 +4872,6 @@
     /* md (768) · type specimen rows stack */
     @media (max-width: 767.98px) {
       .type-row { grid-template-columns: 1fr; gap: var(--space-2); }
-      .nav-links { display: none; }
     }
 
     /* ===== Batch components: Number Input through Tree View ===== */
@@ -4979,7 +4886,7 @@
 
     /* Page Indicator */
     .page-indicator { display: inline-flex; gap: 8px; align-items: center; }
-    .page-indicator-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--neutral-300); transition: background-color 120ms ease, width 120ms ease; }
+    .page-indicator-dot { width: 8px; height: 8px; border-radius: var(--radius-pill); background: var(--neutral-300); transition: background-color 120ms ease, width 120ms ease; }
     .page-indicator-dot--active { width: 20px; background: var(--brand); }
 
     /* Pagination */
@@ -5003,7 +4910,7 @@
     .popover-actions { display: flex; gap: var(--spacing-sm); margin-top: var(--space-3); justify-content: flex-end; }
 
     /* Progress Bar */
-    .progress-bar { width: 100%; height: 8px; background: var(--neutral-100); border-radius: 999px; overflow: hidden; }
+    .progress-bar { width: 100%; height: 8px; background: var(--neutral-100); border-radius: var(--radius-pill); overflow: hidden; }
     .progress-bar-fill { height: 100%; background: var(--brand); border-radius: inherit; transition: width 300ms ease; }
     .progress-bar--success .progress-bar-fill { background: var(--green-600); }
     .progress-bar--warning .progress-bar-fill { background: var(--yellow-500); }
@@ -5086,7 +4993,7 @@
 
     /* Slider */
     .slider-row { display: flex; flex-direction: column; gap: var(--spacing-md); }
-    .slider-input { appearance: none; -webkit-appearance: none; width: 100%; height: 4px; background: var(--neutral-300); border-radius: 999px; outline: none; cursor: pointer; }
+    .slider-input { appearance: none; -webkit-appearance: none; width: 100%; height: 4px; background: var(--neutral-300); border-radius: var(--radius-pill); outline: none; cursor: pointer; }
     .slider-input::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--brand); cursor: pointer; border: 3px solid var(--surface); box-shadow: var(--shadow-sm); }
     .slider-input::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--brand); cursor: pointer; border: 3px solid var(--surface); box-shadow: var(--shadow-sm); }
     .slider-input:focus-visible { box-shadow: 0 0 0 3px var(--soft-green-200); }
@@ -5187,7 +5094,7 @@
 
     /* Toggle */
     .toggle { display: inline-flex; align-items: center; gap: var(--spacing-md); cursor: pointer; font-family: var(--font-sans); font-size: 14px; color: var(--text); }
-    .toggle-input { appearance: none; -webkit-appearance: none; width: 36px; height: 20px; border-radius: 999px; background: var(--neutral-300); position: relative; cursor: pointer; transition: background-color 200ms ease; flex-shrink: 0; }
+    .toggle-input { appearance: none; -webkit-appearance: none; width: 36px; height: 20px; border-radius: var(--radius-pill); background: var(--neutral-300); position: relative; cursor: pointer; transition: background-color 200ms ease; flex-shrink: 0; }
     .toggle-input::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform 200ms ease; box-shadow: var(--shadow-sm); }
     .toggle-input:checked { background: var(--brand); }
     .toggle-input:checked::after { transform: translateX(16px); }
@@ -5238,7 +5145,6 @@
     .tree-icon { width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; color: var(--text-soft); flex-shrink: 0; }
     .tree-icon .material-symbols-rounded { font-size: 16px; color: inherit; }
     .tree-children { padding-left: 20px; display: flex; flex-direction: column; gap: 1px; }
-    .tree-section { display: flex; flex-direction: column; gap: 1px; }
 
 
     /* ===== Multi-page sidebar groups ===== */
@@ -5772,7 +5678,7 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       padding: 2px 6px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: rgba(0, 0, 0, 0.16);
       color: inherit;
       opacity: 0;
