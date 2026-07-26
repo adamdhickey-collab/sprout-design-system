@@ -2532,6 +2532,158 @@
     }
     .dataviz-line-grid { stroke: var(--border); stroke-width: 1; }
 
+    /* ---------- Data visualization · colour scales by job ----------
+       Three scales doing three different jobs. Categorical answers "which series",
+       sequential answers "how much", diverging answers "which side of zero". They
+       are not interchangeable and a chart never mixes two of them. Every hex below
+       is a step off an existing Sprout ramp, chosen by measurement rather than by
+       eye — see the notes in the Data visualization section for what was measured. */
+    .dv-ramp {
+      display: flex;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .dv-ramp-step {
+      flex: 1;
+      min-height: 56px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: var(--space-2) 4px;
+      font-family: var(--font-micro);
+      font-size: 10px;
+      color: #fff;
+      text-align: center;
+    }
+    .dv-ramp-step--ink { color: var(--text); }   /* light steps need dark ink on them */
+    .dv-ramp-caption {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: var(--space-2);
+    }
+
+    /* Heatmap · the sequential ramp's natural home. A 2px surface-coloured gap
+       between cells keeps the lightest classes legible against each other without
+       drawing a border on every cell. */
+    .dv-heatmap {
+      display: grid;
+      grid-template-columns: auto repeat(6, 1fr);
+      gap: 2px;
+      max-width: 520px;
+    }
+    .dv-heatmap-cell {
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-micro);
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      border-radius: 2px;
+    }
+    .dv-heatmap-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-micro);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .dv-heatmap-row-head {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: var(--space-2);
+      font-family: var(--font-micro);
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Diverging bar · bars grow left or right of a shared zero rule. The zero line
+       is the only gridline that earns full weight here — it is the thing every bar
+       is being read against. */
+    .dv-diverging { max-width: 560px; }
+    .dv-diverging-row {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: 6px;
+    }
+    .dv-diverging-label {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-soft);
+      text-align: right;
+    }
+    .dv-diverging-track {
+      position: relative;
+      height: 26px;
+      display: flex;
+      align-items: center;
+    }
+    .dv-diverging-track::before {          /* the zero rule */
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -3px;
+      bottom: -3px;
+      width: 1px;
+      background: var(--text-muted);
+    }
+    .dv-diverging-bar {
+      position: absolute;
+      height: 18px;
+      border-radius: 2px;
+    }
+    .dv-diverging-value {
+      position: absolute;
+      font-family: var(--font-micro);
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      color: var(--text);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Status · a reserved scale. These never stand in for "series 4", and they never
+       travel without an icon and a word — colour alone cannot say "critical". */
+    .dv-status-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+    .dv-status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px 6px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text);
+    }
+    .dv-status-chip .material-symbols-rounded { font-size: 16px; }
+
+    /* Emphasis · one series in the accent hue, every other series in the
+       de-emphasis grey. The most underused form in the set. */
+    .dv-emphasis-chart { width: 100%; max-width: 460px; height: auto; }
+    .dv-emphasis-path { fill: none; stroke-width: 2; }
+    .dv-emphasis-path--muted { stroke: var(--neutral-350); }
+    .dv-emphasis-path--lead  { stroke: var(--green-600); }
+    [data-theme="dark"] .dv-emphasis-path--lead { stroke: var(--accent-lime); }
+    .dv-emphasis-label {
+      font-family: var(--font-micro);
+      font-size: 11px;
+      fill: var(--text);
+    }
+    .dv-emphasis-label--muted { fill: var(--text-muted); }
+
     /* ---------- Components ---------- */
     .component-grid {
       display: grid;
