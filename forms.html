@@ -151,7 +151,7 @@
         <div class="component-grid">
 <div class="component-legend">
             <span class="material-symbols-rounded" aria-hidden="true">info</span>
-            <span><strong>A note on these demos:</strong> controls are live where it matters — checkboxes, accordions, toggles, and combobox menus genuinely respond — but actions like Log In, Save, or Delete are illustrative only and won’t submit or persist anything.</span>
+            <span><strong>A note on these demos:</strong> controls are live where it matters — checkboxes, accordions, and toggles genuinely respond — but actions like Log In, Save, or Delete are illustrative only and won’t submit or persist anything, and the combobox's open-menu states are static illustrations of each variant, not an interactive dropdown.</span>
           </div>
 <div class="component-heading" id="authentication">
             <h2 class="component-heading-title">Authentication</h2>
@@ -193,13 +193,13 @@
                   Incorrect Email Address or Password
                 </div>
                 <div class="auth-card-field auth-card-field--error">
-                  <label class="auth-card-label">Username</label>
-                  <input class="auth-card-input" type="email" value="user@example.com" />
+                  <label class="auth-card-label" for="auth-error-email">Username</label>
+                  <input class="auth-card-input" id="auth-error-email" type="email" value="user@example.com" />
                 </div>
                 <div class="auth-card-field auth-card-field--error">
-                  <label class="auth-card-label">Password</label>
+                  <label class="auth-card-label" for="auth-error-pw">Password</label>
                   <div class="auth-card-input-wrap">
-                    <input class="auth-card-input" type="password" value="••••••••" />
+                    <input class="auth-card-input" id="auth-error-pw" type="password" value="••••••••" />
                     <button class="auth-card-eye" aria-label="Show password"><span class="material-symbols-rounded">visibility</span></button>
                   </div>
                 </div>
@@ -386,7 +386,7 @@
                 <span class="combobox-field-label">Country</span>
                 <span class="combobox">
                   <input class="combobox-input" placeholder="Select" />
-                  <span class="combobox-chevron" role="button" aria-label="Open"><span class="material-symbols-rounded">expand_more</span></span>
+                  <span class="combobox-chevron"><span class="material-symbols-rounded">expand_more</span></span>
                 </span>
               </label>
 
@@ -786,9 +786,9 @@
           <div class="component">
             <p class="component-label">Number input · variants</p>
             <div style="display: flex; flex-wrap: wrap; gap: var(--space-5); align-items: center;">
-              <span class="number-input"><button class="number-input-btn" aria-label="Decrement">−</button><input type="number" value="1" /><button class="number-input-btn" aria-label="Increment">+</button></span>
-              <span class="number-input"><button class="number-input-btn" aria-label="Decrement">−</button><input type="number" value="12" /><button class="number-input-btn" aria-label="Increment">+</button></span>
-              <span class="number-input"><button class="number-input-btn" aria-label="Decrement" disabled>−</button><input type="number" value="0" /><button class="number-input-btn" aria-label="Increment">+</button></span>
+              <div class="input-field"><label class="input-field-label" for="number-input-1">Quantity</label><span class="number-input"><button class="number-input-btn" aria-label="Decrement">−</button><input id="number-input-1" type="number" value="1" /><button class="number-input-btn" aria-label="Increment">+</button></span></div>
+              <div class="input-field"><label class="input-field-label" for="number-input-2">Quantity</label><span class="number-input"><button class="number-input-btn" aria-label="Decrement">−</button><input id="number-input-2" type="number" value="12" /><button class="number-input-btn" aria-label="Increment">+</button></span></div>
+              <div class="input-field"><label class="input-field-label" for="number-input-3">Quantity (disabled)</label><span class="number-input"><button class="number-input-btn" aria-label="Decrement" disabled>−</button><input id="number-input-3" type="number" value="0" /><button class="number-input-btn" aria-label="Increment">+</button></span></div>
             </div>
           </div>
 <div class="component-heading" id="radio">

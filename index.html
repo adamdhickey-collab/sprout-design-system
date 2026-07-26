@@ -572,7 +572,7 @@
             <tbody>
               <tr>
                 <td class="token-name">--bg</td>
-                <td><span class="token-swatch" style="--c:#F8F8F8">#F8F8F8</span></td>
+                <td><span class="token-swatch" style="--c:#F3F4F3">#F3F4F3</span></td>
                 <td>Page canvas — the back-most layer everything else sits on.</td>
               </tr>
               <tr>
@@ -746,7 +746,7 @@
             <p class="section-eyebrow">03 / Layout</p>
             <h2 class="section-title">Layout &amp; shape</h2>
           </div>
-          <p class="section-lede"><strong>Padding</strong> is the breathing room inside an element. <strong>Spacing</strong> is the distance between elements. <strong>Grids</strong> define the canvas widths where layouts adapt. <strong>Corner radius</strong> sets the roundedness of UI surfaces. All four scales are token‑driven.</p>
+          <p class="section-lede"><strong>Padding</strong> is the breathing room inside an element. <strong>Spacing</strong> is the distance between elements. <strong>Grids</strong> define the canvas widths where layouts adapt. <strong>Corner radius</strong> sets the roundedness of UI surfaces. Padding, spacing, and corner radius are token‑driven; grids are documented breakpoints, not yet backed by a custom property.</p>
         </div>
 
         <div class="scale-block">
@@ -1114,7 +1114,7 @@
 
         <div class="scale-block" style="margin-top: var(--space-7);">
           <p class="scale-label">Graphic device · the Cargill leaf</p>
-          <p class="section-lede" style="margin-bottom: var(--space-5);">A wider crop of the same leaf, used as the brand's primary graphic device — its own asset, not a scaled-up logo. Shown here as the raw shape only; the leaf-as-window, leaf-over-image, and stripe techniques it supports are built out separately.</p>
+          <p class="section-lede" style="margin-bottom: var(--space-5);">A wider crop of the same leaf, used as the brand's primary graphic device — its own asset, not a scaled-up logo. Shown here as the raw shape only; the leaf-as-window and leaf-over-image techniques it supports are built out separately. A third technique, the stripe (a soft edge between photo and canvas), is a provided brand asset not yet in this library.</p>
           <div class="leaf-device-grid">
             <div class="leaf-device-card" data-bg="paper">
               <svg class="leaf-device" viewBox="0 0 1000 394" role="img" aria-label="Cargill leaf graphic device"><use href="#cargill-leaf-device"/></svg>
