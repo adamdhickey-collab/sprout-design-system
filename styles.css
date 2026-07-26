@@ -2185,6 +2185,29 @@
       color: var(--text-muted);
       margin: 0;
     }
+    /* Near-square diagram cards sit three across on desktop, dropping to two once
+       the sidebar collapses and one on phones — landscape diagrams stay full-width. */
+    .illus-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+    }
+    /* The three artworks have different aspect ratios, so let each stage grow to the
+       row height and centre the art inside it — otherwise the captions sit at three
+       different baselines across the row. */
+    .illus-grid-3 .illus-card-stage--diagram { flex: 1; }
+    .illus-grid-3 .illus-card-stage--diagram img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%;
+    }
+    @media (max-width: 1023.98px) {
+      .illus-grid-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 767.98px) {
+      .illus-grid-3 { grid-template-columns: 1fr; }
+    }
 
     /* ---------- Asset download (JS-injected hover button on any asset tile) ---------- */
     .logo-card, .leaf-device-card, .glyph-cell,
