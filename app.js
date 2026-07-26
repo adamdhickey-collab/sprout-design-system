@@ -244,8 +244,13 @@
       const isOpen = () => sidebar.classList.contains('sidebar--open');
 
       function focusables() {
+        // offsetParent!==null alone isn't enough: a collapsed sidebar section
+        // uses grid-template-rows:0fr + overflow:hidden (see styles.css), which
+        // clips content to zero height without display:none — its links keep a
+        // non-null offsetParent and stay natively tabbable even though nothing
+        // is visible. Exclude anything inside a section collapsed this way.
         return Array.from(sidebar.querySelectorAll('a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'))
-          .filter(el => el.offsetParent !== null);
+          .filter(el => el.offsetParent !== null && !el.closest('.sidebar-section[data-collapsed="true"]'));
       }
 
       function open() {
