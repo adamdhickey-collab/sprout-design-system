@@ -624,6 +624,56 @@
       });
     })();
 
+    // Chip · filter usage demo — click (or Enter/Space) an unselected chip to
+    // select it (adds a close button); click the close button to deselect it
+    // back to a plain, clickable chip. The label is cached in data-label at
+    // init so toggling never has to parse it back out of text mixed with the
+    // close button's own icon-font ligature text.
+    (function () {
+      const demo = document.getElementById('chip-filter-demo');
+      if (!demo) return;
+
+      function label(chip) {
+        if (chip.dataset.label) return chip.dataset.label;
+        const node = Array.from(chip.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+        return (node ? node.textContent : chip.textContent).trim();
+      }
+
+      function select(chip) {
+        const text = label(chip);
+        chip.dataset.label = text;
+        chip.textContent = text;
+        chip.classList.add('chip--selected');
+        chip.removeAttribute('role');
+        chip.removeAttribute('tabindex');
+        chip.insertAdjacentHTML('beforeend',
+          '<button class="chip-close" aria-label="Remove ' + text + '"><span class="material-symbols-rounded">close</span></button>');
+      }
+
+      function deselect(chip) {
+        chip.textContent = label(chip);
+        chip.classList.remove('chip--selected');
+        chip.setAttribute('role', 'button');
+        chip.setAttribute('tabindex', '0');
+      }
+
+      demo.querySelectorAll('.chip').forEach(chip => { chip.dataset.label = label(chip); });
+
+      demo.addEventListener('click', (e) => {
+        const closeBtn = e.target.closest('.chip-close');
+        if (closeBtn) { deselect(closeBtn.closest('.chip')); return; }
+        const chip = e.target.closest('.chip[role="button"]');
+        if (chip) select(chip);
+      });
+      demo.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const chip = e.target.closest('.chip[role="button"]');
+        if (!chip) return;
+        e.preventDefault();
+        select(chip);
+      });
+    })();
+
     // Version + last-updated · single source of truth.
     // Bump SPROUT_VERSION on each release and mirror the same string onto the
     // Figma Cover page (node 3:14) in the same change — see the "Versioning"
