@@ -225,9 +225,10 @@
 
       /* The paper the guidelines print these on. Chart demos keep it in both themes
          so a 100% Deep Green bar stays visible instead of vanishing into a dark card. */
-      --dv-canvas:     #FFFFFF;
-      --dv-canvas-ink: #14140F;
-      --dv-canvas-rule:#D8DAD5;
+      --dv-canvas:       #FFFFFF;
+      --dv-canvas-ink:   #14140F;
+      --dv-canvas-muted: #5A6560;   /* 5.6:1 on the canvas — axis and caption ink */
+      --dv-canvas-rule:  #D8DAD5;
 
       /* Padding scale, from Cargill Sprout · Foundations · Padding & Spacing */
       --padding-xs:   2px;
@@ -2377,7 +2378,15 @@
       display: flex;
       flex-direction: column;
     }
-    .dv-seq-step--ink { color: var(--dv-canvas-ink); }   /* the two pale greens */
+    /* --ink flips a tile's label to dark. Which tiles get it is MEASURED, not judged by
+       eye: for each swatch, compute WCAG contrast of white vs --dv-canvas-ink against the
+       tile fill and take the winner. 15 of the 24 published values need dark ink. The
+       four that are easy to get wrong, because they read as "dark enough" but aren't:
+       --dv-4 #4DA977 (white 2.89 / ink 6.38), --dv-blue-5 #3E9BAB (2.92 / 5.70),
+       --dv-warm-4 #E46E67 (2.81 / 5.92), --dv-earth-3 #92856A (3.63 / 5.09).
+       Every one of the 24 has a legal option, so a failing tile is always an assignment
+       bug, never a palette limit. Re-measure if the palette ever changes. */
+    .dv-seq-step--ink { color: var(--dv-canvas-ink); }
     .dv-seq-num {
       font-family: var(--font-sans);
       font-size: 30px;
@@ -2434,7 +2443,6 @@
       font-size: 10px;
       line-height: 1.5;
       margin-top: auto;
-      opacity: 0.9;
     }
     .dv-caption {
       font-family: var(--font-micro);
@@ -2465,7 +2473,7 @@
     .dv-chart figcaption {
       font-family: var(--font-micro);
       font-size: 12px;
-      color: #5A6560;
+      color: var(--dv-canvas-muted);
       margin-top: auto;
       padding-top: var(--space-3);
       border-top: 1px solid var(--dv-canvas-rule);
@@ -2490,9 +2498,15 @@
       align-items: center;
       gap: 3px;
     }
+    /* Chart furniture sits below the 11px floor the rest of this system uses for UI
+       text. That is deliberate — these are axis and value labels at print-specimen
+       density, matching the scale the guidelines themselves set them at — but 9px is
+       the hard floor, not 8px. Value labels get 10px because they are four characters
+       and have the room; category labels stay at 9px because raising them makes the
+       longest name ellipse sooner, which costs more legibility than it buys. */
     .dv-col b {
       font-family: var(--font-micro);
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 700;
       color: var(--dv-canvas-ink);
       font-variant-numeric: tabular-nums;
@@ -2503,7 +2517,7 @@
        guidelines call for. */
     .dv-plot--dense { gap: 2px; }
     .dv-plot--dense .dv-col { gap: 2px; }
-    .dv-plot--dense .dv-col b { font-size: 8px; }
+    .dv-plot--dense .dv-col b { font-size: 9px; }
     /* Half as many labels as bars, each spanning its pair, so the axis stays readable
        instead of ellipsing every entry down to one letter. */
     .dv-cats--dense { gap: 2px; }
@@ -2524,7 +2538,7 @@
          ellipse rather than rotated or abbreviated: every bar carries its value
          directly above it, so the axis label is the second reading, not the only one. */
       font-size: 9px;
-      color: #5A6560;
+      color: var(--dv-canvas-muted);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -2579,7 +2593,6 @@
     }
     @media (max-width: 560px) {
       .dv-seq, .dv-set-row { grid-template-columns: repeat(2, 1fr); }
-      .dv-cats span { font-size: 8px; }
     }
 
 
