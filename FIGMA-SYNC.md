@@ -18,7 +18,7 @@ Neither side updates automatically — drift is caught by the audit below.
 | `:root` color ramps (`--green-*`, `--neutral-*`, secondary palette) | **Primitives** collection (1 mode, hidden from pickers) |
 | Semantic colors (`--bg`, `--surface*`, `--text*`, `--border*`, `--brand*`, accents) | **Color** collection, Light mode |
 | `[data-theme="dark"]` repoints | **Color** collection, Dark mode |
-| `--dv-cat-*`, `--dv-seq-*`, `--dv-div-*`, `--dv-status-*` (data-visualization scales) | **Color** collection, `dv/` group — 19 variables, both modes, each an alias to a Primitive rather than a literal |
+| `--dv-1…6`, `--dv-blue-*`, `--dv-warm-*`, `--dv-earth-*`, `--dv-canvas` (data-visualization palette) | **Color** collection, `dv/` group — 25 variables, **literal values, identical in both modes** (see below) |
 | `--padding-*`, `--spacing-*`, `--layout-*`, `--space-1…10` | **Spacing** collection (aliases preserved) |
 | `--corner-radius-*`, `--radius-sm`, `--radius-pill` | **Radius** collection |
 | `--font-display/sans/micro` | **Typography** collection (STRING) |
@@ -63,21 +63,28 @@ collided by name with the canonical scale and were deleted on both sides (v3.0);
 Figma consumer was rebound to the canonical variable first. `radius/sm` and `radius/pill`
 stay because they have no `corner-radius/*` counterpart and so cannot be ambiguous.
 
-The **Data visualization** page (added v3.4, sits after Brand expression to match the
-site's left nav) holds two boards — `Data visualization · Light` and `· Dark` — showing
-the categorical, sequential, diverging and status scales. Every swatch is *bound* to its
-`dv/*` variable rather than filled with a hex, and each board pins the Color collection
-to its own mode via `setExplicitVariableModeForCollection`, so the pair is a live
-side-by-side of the two modes rather than two hand-coloured mockups. Change a `dv/*`
-value and both boards move. Note `figma.createAutoLayout()` ships an opaque white fill by
+The **Data visualization** page (rebuilt v3.5, sits after Brand expression to match the
+site's left nav) holds two boards — `Process · Brand Guidelines p.118` and `Application to
+data sets · Brand Guidelines p.119` — which together reproduce those two guideline pages:
+the fixed six-step green sequence, the three extension colour sets with their printed
+hex/RGB/CMYK specs, and six worked charts showing the primary palette extending into each
+secondary set. Every swatch and every bar/segment is *bound* to its `dv/*` variable rather
+than filled with a hex, so changing a `dv/*` value moves both boards.
+
+**This group breaks the alias-to-a-Primitive rule on purpose.** The guidelines publish
+this palette as its own set of values — several of them (`#476590`, `#3E9BAB`, `#D2ECFC`,
+the whole earth set) have no counterpart on any Sprout ramp — so each `dv/*` variable
+holds a literal transcribed from p.118 rather than pointing at a Primitive. For the same
+reason there is **no Light/Dark split**: the values are specified against the printed
+page, so every `dv/*` carries the identical value in both modes and `styles.css` has no
+`[data-theme="dark"]` entries for them. The site's chart demos instead keep a fixed light
+canvas (`--dv-canvas`), because a 100% Deep Green bar disappears on a dark card. If you
+are tempted to add dark variants, that is the site speaking over the guidelines — take it
+up with the brand team first.
+
+Note `figma.createAutoLayout()` ships an opaque white fill by
 default — every inner container on these boards has `fills = []` so the board's own
 surface shows through; a new section that skips this reads as a white slab in dark mode.
-
-`dv/div-mid` is the one scale value whose dark alias is not the obvious one: CSS resolves
-`--dv-div-mid` → `--neutral-300`, which the dark block repoints to `#3A4A41`. Figma keeps
-primitives single-mode, so the dark side aliases the `dark/border-input` primitive, which
-carries that exact hex. Same rendered value, different mechanism — this is the general
-pattern for any `--dv-*` token that aliases a dark-repointed primitive.
 
 Known intentional divergences:
 - Some characters are **literal text in the CSS, not icons**, and must stay as typed
