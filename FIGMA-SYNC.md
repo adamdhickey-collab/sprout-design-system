@@ -19,6 +19,7 @@ Neither side updates automatically — drift is caught by the audit below.
 | Semantic colors (`--bg`, `--surface*`, `--text*`, `--border*`, `--brand*`, accents) | **Color** collection, Light mode |
 | `[data-theme="dark"]` repoints | **Color** collection, Dark mode |
 | `--dv-cat-*`, `--dv-seq-*`, `--dv-div-*`, `--dv-status-*` (data-visualization scales) | **Color** collection, `dv/` group — 19 variables, both modes, each an alias to a Primitive rather than a literal |
+| `.chart-template`, `.dataviz-donut-legend--two-col`, `.chart-stack`, `.chart-expressive` (worked charts from the guidelines) | **Data visualization** page, `Worked charts · guidelines pp. 119–123 (print specimens)` board — literal fills, no mode pinned, deliberately *not* bound to `dv/*` |
 | `--padding-*`, `--spacing-*`, `--layout-*`, `--space-1…10` | **Spacing** collection (aliases preserved) |
 | `--corner-radius-*`, `--radius-sm`, `--radius-pill` | **Radius** collection |
 | `--font-display/sans/micro` | **Typography** collection (STRING) |
@@ -72,6 +73,22 @@ side-by-side of the two modes rather than two hand-coloured mockups. Change a `d
 value and both boards move. Note `figma.createAutoLayout()` ships an opaque white fill by
 default — every inner container on these boards has `fills = []` so the board's own
 surface shows through; a new section that skips this reads as a white slab in dark mode.
+
+That page gained a third board in v3.5: `Worked charts · guidelines pp. 119–123 (print
+specimens)`, holding the template bar chart, the extended donut, the stacked bar with its
+dashed forecast segment, and the expressive data panel. Unlike the two boards beside it,
+this one **pins no mode and binds nothing** — every fill is a literal hex. That is
+deliberate and must stay that way: these are reproductions of what the printed guidelines
+show, so a theme switch repainting them would make the specimen lie about its source. It
+is the same call the Light/Dark boards already make for their ramp specimen strips. The
+nine bar fills are a three-hue × three-tint ladder (Deep/Soft/Leaf at 60%, 80%, 100%,
+each the base green composited over white) sampled out of the PDF at 0/255 error — if a
+future pass "tidies" them into `dv/*` variables, the ladder is gone and so is the point.
+
+The bar chart's Y-axis ticks are positioned against the *rendered* geometry of the tallest
+bar rather than a computed fraction of the frame height, because each bar column reserves
+room above its bar for the value label — a naive `frac × plotHeight` puts the whole axis
+~18px out and clips the top tick. Re-run that alignment step if the label size changes.
 
 `dv/div-mid` is the one scale value whose dark alias is not the obvious one: CSS resolves
 `--dv-div-mid` → `--neutral-300`, which the dark block repoints to `#3A4A41`. Figma keeps
