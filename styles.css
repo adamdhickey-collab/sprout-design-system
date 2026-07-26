@@ -1604,30 +1604,35 @@
        must extend beyond the canvas," and a mask inscribed exactly inside its box (the
        previous behavior here) never satisfies that; it just reads as a lens, not a bleeding
        leaf. */
-    /* aspect-ratio 1000/580 (taller than the leaf device's own 1000/394) deliberately gives
-       the window vertical room. The clip is objectBoundingBox, so a taller box rounds the leaf
-       out a little — worth it: the extra height lets the enlarged, bottom-anchored leaf show
-       its full natural bottom CURVE inside the box instead of being sliced flat by the bottom
-       edge, and exposes more of the photo (a face fits eyes-to-smile without a hard crop). */
-    .leaf-window { aspect-ratio: 1000 / 580; width: 100%; position: relative; overflow: hidden; }
+    /* The window box and the LEAF's box are deliberately two different shapes.
+       #cargill-leaf-clip is clipPathUnits="objectBoundingBox", so the silhouette is
+       stretched to whatever box it is applied to — apply it to a box that is not
+       1000:394 and the leaf is no longer the leaf. The window itself wants to be
+       taller than that (vertical room for a face), so the aspect ratio lives on the
+       IMAGE box, not on the window: the window crops, the image carries the leaf's
+       own proportion, and the silhouette stays undistorted at any card width. */
+    .leaf-window { aspect-ratio: 1000 / 545; width: 100%; position: relative; overflow: hidden; }
     .leaf-window-img {
+      /* Bottom-anchored and wider than the window, so the leaf bleeds off both sides
+         and the top — the brand's own scale rule, "both edges must extend beyond the
+         canvas."
+         At 200% wide the leaf is twice the card's width, so the window sits on the
+         broad middle of the sweep rather than near its narrow tip — that is what
+         opens the photo aperture up enough to hold a whole face (forehead to chin)
+         instead of a band across the eyes. The -22% bottom drops the shape's own
+         lower edge below the card, where the canvas colour takes over, so the curve
+         the reader sees is the leaf's upper sweep, uninterrupted corner to corner.
+         Pair with each photo's object-position (set inline) to seat its subject. */
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
+      left: 50%;
+      bottom: -22%;
+      transform: translateX(-50%);
+      width: 200%;
+      aspect-ratio: 1000 / 394;
+      height: auto;
       object-fit: cover;
       display: block;
       clip-path: url(#cargill-leaf-clip);
-      /* Grow the clipped leaf and let the rectangle crop it — the brand's own direction for
-         this device ("both edges must extend beyond the canvas"). Anchor the scale at the
-         BOTTOM (50% 100%): scaling from the bottom edge only ever moves the leaf's lower
-         boundary UP and inward, so its natural bottom CURVE is always shown in full and can
-         never be sliced into the hard horizontal line a top- or center-anchored scale
-         produces. The leaf instead bleeds off the top and both sides — the dynamic crop —
-         while the taller window (see .leaf-window) keeps the photo's focal points in view.
-         Pair with each image's object-position (set inline per photo) to seat its subject. */
-      transform: scale(1.4);
-      transform-origin: 50% 100%;
     }
     /* margin-top:auto pins this row to the bottom of the canvas. The grid stretches both
        cards to equal height, but the two titles wrap to different line counts, so without
@@ -1656,15 +1661,16 @@
        distinct from leaf-as-window, which clips the photo INTO the leaf. The brand lists
        scale/position/crop/reflection/rotation/color/transparency/stripe as the available
        treatments for fitting a given photo; this is the base, untreated composition. */
-    /* 4/3 matches the native aspect of the brand photography (~590×443), so object-fit:cover
-       shows the whole frame with almost no crop — the wind turbine reads as a complete
-       machine (hub, all three blades, sky) rather than a tight detail zoomed in past its
-       edges. A wider 3/2 box here re-cropped every photo tighter than its own framing. */
+    /* 3/2 rather than the photos' native ~4/3: at 4/3 these cards stood taller than
+       anything else on the page and the leaf had to sit high in the frame to leave the
+       title room. The shallower box trims sky and foreground — the parts of these
+       frames carrying the least information — and keeps the subject, while bringing the
+       pair back in line with the rest of the section. */
     .leaf-over-image {
       position: relative;
       overflow: hidden;
       border-radius: var(--corner-radius-md);
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 3 / 2;
     }
     .leaf-over-image-img {
       width: 100%;
