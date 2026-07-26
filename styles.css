@@ -2549,6 +2549,245 @@
     }
     .dataviz-line-grid { stroke: var(--border); stroke-width: 1; }
 
+    /* ---------- Worked charts imported from the guidelines (pp. 119–123) ----------
+       Rebuilt, not redrawn: every value, series color and label convention below was
+       measured off the source artwork (pdftoppm render, pixel-sampled) so the site and
+       the PDF can't quietly drift apart. */
+
+    /* Template bar chart · the guidelines' own functional chart (p119 top-left, and the
+       chart inside every functional presentation slide on p122). Nine ordered categories.
+
+       The series colors are NOT the six swatches from the sequence above. Sampled from
+       the artwork, this chart runs a three-hue x three-tint ladder: the hue cycles
+       Deep -> Soft -> Leaf, and each pass through those three steps up a tint tier —
+       60%, then 80%, then 100%. So the *tier* climbs with the value while the hue keeps
+       cycling for identity, which is how the chart carries nine categories without ever
+       touching the confusable 70% pair the swatch page documents. Each tint is that base
+       green composited over white: Deep 60% = 0.6 x #03441F + 0.4 x #fff = #688F79.
+
+       Note what this does and does not buy. Because the hue cycles, neighbouring bars can
+       jump from very light to very dark (FY19's Soft 60% is lighter than FY18's Deep 60%),
+       so the tier is a coarse signal across the whole chart, not a per-bar ranking — the
+       direct value label is still what carries the actual reading.
+
+       Two deliberate departures from print, both because the web box is smaller:
+       the axis shows every fourth tick rather than all seventeen (seventeen 11px labels
+       inside a 200px plot collide), keeping the brand's zero-padded two-digit form; and
+       the value label sits above its bar rather than inside it, because the shortest bar
+       (1.1 of 16 = 14px) cannot hold an 11px label. In-bar labels do work at print size,
+       but they need a per-step text color, measured: white clears 4.5:1 on only Deep 80%,
+       Deep 100% and Leaf 100%. Deep 80% flips to white while Leaf 80% stays dark, so it
+       is not reducible to a rule about tint percentage. */
+    .chart-template {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-rows: 200px auto;
+      column-gap: var(--space-3);
+      /* the tallest bar fills the whole 200px axis span, so its label sits above the
+         plot — this reserves the room rather than letting it collide with the heading */
+      padding-top: var(--space-4);
+    }
+    .chart-template-axis {
+      /* ticks are absolutely placed so each number centers on its own value —
+         justify-content: space-between aligns the label *boxes*, not the values */
+      position: relative;
+      grid-column: 1;
+      grid-row: 1;
+      width: 2ch;
+    }
+    .chart-template-tick {
+      position: absolute;
+      right: 0;
+      transform: translateY(50%);
+      font-family: var(--font-micro);
+      font-size: 11px;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .chart-template-cols,
+    .chart-template-labels {
+      display: flex;
+      gap: var(--space-2);
+    }
+    .chart-template-cols {
+      grid-column: 2;
+      grid-row: 1;
+      align-items: flex-end;
+    }
+    .chart-template-labels {
+      grid-column: 2;
+      grid-row: 2;
+      padding-top: var(--space-2);
+    }
+    /* identical flex basis in both rows is what keeps a label under its own bar */
+    .chart-template-col,
+    .chart-template-labels > span { flex: 1; min-width: 0; }
+    /* Each column carries its value once, as --v (the bar's share of the axis). The bar
+       is that tall and the label sits exactly on top of it, so the bar spans the real
+       axis range — no headroom stolen for the label, which would misalign every tick. */
+    .chart-template-col {
+      position: relative;
+      height: 100%;
+    }
+    .chart-template-bar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: var(--v);
+      border-radius: 2px 2px 0 0; /* functional data: never fully rounded, see Don'ts */
+    }
+    .chart-template-value {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: var(--v);
+      margin-bottom: 3px;
+      text-align: center;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    .chart-template-labels > span {
+      font-family: var(--font-micro);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Eight-segment donut legend · lays out in as many columns as fit, because eight
+       stacked rows run to roughly three times the ring's own height and leave it
+       stranded beside a column of white space.
+
+       The flex shorthand is load-bearing in both directions. Without a grow factor the
+       legend is sized to its content, and auto-fit resolves against that shrink-to-fit
+       width and always returns one column. But the basis has to be a real length, not 0:
+       on a 320px screen the space left beside the ring is ~84px, and a 0-basis item
+       shrinks into it and spills its labels past the viewport. A 260px basis is wider
+       than that gap, so the legend wraps onto its own full-width line instead — and
+       min-width stays at its auto default, which is what stops it shrinking below the
+       widest label in the first place. */
+    .dataviz-donut-legend--two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+      column-gap: var(--space-6);
+      row-gap: var(--space-3);
+      flex: 1 1 260px;
+    }
+
+    /* Horizontal stacked bar · p122/p123's dark presentation slide. Two rows: a booked
+       actual, and the same year split into booked-so-far plus forecast.
+
+       The forecast segment is an outline on the panel color, not a second fill. That is
+       the accessible choice and not only a stylistic one: "not filled in yet" survives
+       greyscale printing and every color-vision deficiency, where a second green fill
+       beside the first would not — the brand's own rule that functionality takes
+       precedence over color, applied to the encoding rather than just the labeling. */
+    .chart-stack {
+      background: var(--green-800);
+      border-radius: var(--corner-radius-base);
+      padding: var(--padding-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .chart-stack-row { display: flex; }
+    .chart-stack-seg {
+      display: flex;
+      align-items: center;
+      min-height: var(--touch-target-min);
+      min-width: 0; /* labels wrap instead of pushing the row past 100% */
+      padding: var(--space-2) var(--space-3);
+      font-family: var(--font-micro);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 16px;
+    }
+    /* measured on the panel: dark text on Soft Green 12.3:1, white on Leaf Green 4.8:1,
+       Soft Green outline + text on Deep Green 8.0:1 */
+    .chart-stack-seg--actual {
+      background: var(--soft-green-400);
+      color: #101C16;
+      border-radius: 2px;
+    }
+    .chart-stack-seg--booked {
+      background: var(--green-600);
+      color: #fff;
+      border-radius: 2px 0 0 2px;
+    }
+    .chart-stack-seg--forecast {
+      border: 1px dashed var(--soft-green-400);
+      color: var(--soft-green-400);
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* Expressive data panel · p120, the chart the 880,000 card above quotes. This is the
+       one place in the section where rounded corners and a Deep Green canvas are allowed:
+       expressive is earned in an annual report, never in a dashboard. Primary palette
+       only — Black, White, Leaf Green, Soft Green on Deep Green — per that page's note.
+
+       Faithful to the source including its one real weakness: the 2020 bar is pure black
+       on Deep Green, which measures 1.4:1. Nothing about the fill distinguishes it; the
+       direct value label above it is doing the entire job. That is the brand's own
+       accessibility rule ("color... should not be used on its own to differentiate data
+       points") holding the example up, so the label here is structural, not decoration —
+       drop it and the bar disappears. */
+    .chart-expressive {
+      background: var(--green-800);
+      border-radius: var(--corner-radius-md);
+      padding: var(--padding-xl);
+    }
+    .chart-expressive-plot {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-3);
+      height: 220px;
+      padding-top: var(--space-5); /* room for the tallest bar's label, as .chart-template */
+    }
+    /* same --v-per-column mechanism as .chart-template above */
+    .chart-expressive-col {
+      position: relative;
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+    }
+    .chart-expressive-bar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: var(--v);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0; /* earned here, nowhere else */
+    }
+    .chart-expressive-value {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: var(--v);
+      margin-bottom: 4px;
+      text-align: center;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+    }
+    .chart-expressive-labels {
+      display: flex;
+      gap: var(--space-3);
+      padding-top: var(--space-2);
+    }
+    .chart-expressive-labels > span {
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+      font-family: var(--font-micro);
+      font-size: 11px;
+      color: var(--soft-green-400);
+    }
+
     /* ---------- Components ---------- */
     .component-grid {
       display: grid;

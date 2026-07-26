@@ -757,6 +757,38 @@
         </div>
 
         <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Worked example · the full template chart</p>
+          <div class="chart-template" role="img" aria-label="Bar chart, revenue in billions by fiscal year: FY18 1.1, FY19 2.1, FY20 2.9, FY21 4.2, FY22 5.9, FY23 7.8, FY24 10.2, FY25 13.0, FY26 16.0">
+            <div class="chart-template-axis">
+              <span class="chart-template-tick" style="bottom: 100%;">16</span>
+              <span class="chart-template-tick" style="bottom: 75%;">12</span>
+              <span class="chart-template-tick" style="bottom: 50%;">08</span>
+              <span class="chart-template-tick" style="bottom: 25%;">04</span>
+              <span class="chart-template-tick" style="bottom: 0;">00</span>
+            </div>
+            <div class="chart-template-cols">
+              <div class="chart-template-col" style="--v: 6.9%;"><span class="chart-template-value">1.1</span><div class="chart-template-bar" style="background:#688F79;"></div></div>
+              <div class="chart-template-col" style="--v: 13.1%;"><span class="chart-template-value">2.1</span><div class="chart-template-bar" style="background:#D7EFB8;"></div></div>
+              <div class="chart-template-col" style="--v: 18.1%;"><span class="chart-template-value">2.9</span><div class="chart-template-bar" style="background:#66B58B;"></div></div>
+              <div class="chart-template-col" style="--v: 26.3%;"><span class="chart-template-value">4.2</span><div class="chart-template-bar" style="background:#35694C;"></div></div>
+              <div class="chart-template-col" style="--v: 36.9%;"><span class="chart-template-value">5.9</span><div class="chart-template-bar" style="background:#CAEAA0;"></div></div>
+              <div class="chart-template-col" style="--v: 48.8%;"><span class="chart-template-value">7.8</span><div class="chart-template-bar" style="background:#339D64;"></div></div>
+              <div class="chart-template-col" style="--v: 63.8%;"><span class="chart-template-value">10.2</span><div class="chart-template-bar" style="background:#03441F;"></div></div>
+              <div class="chart-template-col" style="--v: 81.3%;"><span class="chart-template-value">13.0</span><div class="chart-template-bar" style="background:#BDE588;"></div></div>
+              <div class="chart-template-col" style="--v: 100%;"><span class="chart-template-value">16.0</span><div class="chart-template-bar" style="background:#00843D;"></div></div>
+            </div>
+            <div class="chart-template-labels">
+              <span>FY18</span><span>FY19</span><span>FY20</span><span>FY21</span><span>FY22</span><span>FY23</span><span>FY24</span><span>FY25</span><span>FY26</span>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">The guidelines' own functional chart, at full width. Its nine bars are <em>not</em> the six swatches above: sampled off the source artwork, they run a three-hue × three-tint ladder. The hue cycles Deep → Soft → Leaf, and each pass through those three steps up a tint tier — 60%, then 80%, then 100% — so the tier climbs with the value while the hue keeps cycling for identity. That's how nine categories fit without ever reaching the confusable 70% pair. Each tint is its base green over white: Deep 60% is 0.6 × <code>#03441F</code> + 0.4 × white = <code>#688F79</code>.</p>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-4);">Worth being precise about what that buys: because the hue cycles, neighbouring bars can jump from very light to very dark — FY19's Soft 60% is lighter than FY18's Deep 60% — so the tier reads as a coarse trend across the whole chart, not as a per-bar ranking. The direct value label is still doing the actual work.</p>
+          <div class="icon-note" style="margin-top: var(--space-4);">
+            <p><strong>Two departures from print, both because the box is smaller.</strong> The axis shows every fourth tick rather than all seventeen — seventeen 11px labels inside a 200px plot collide — keeping the brand's zero-padded two-digit form. And the value label sits above its bar rather than inside it, because the shortest bar (1.1 of 16, so 14px) can't hold an 11px label. In-bar labels do work at print size, but they need a per-step text color: white clears 4.5:1 on only Deep 80%, Deep 100% and Leaf 100%. Deep 80% flips to white while Leaf 80% stays dark, so it isn't reducible to a rule about tint percentage.</p>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
           <p class="scale-label">Worked example · donut chart</p>
           <div class="dataviz-donut-wrap">
             <svg class="dataviz-donut" viewBox="0 0 100 100" width="160" height="160" role="img" aria-label="Share by region: North 45%, South 35%, East 20%">
@@ -772,6 +804,48 @@
             </div>
           </div>
           <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">Same three validated steps as the bar chart above, never the confusable 70%-tint pair. The legend carries a direct value next to every label — the ring's color differentiates, but the number is what actually reads.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Worked example · past six categories, into the secondary sets</p>
+          <div class="dataviz-donut-wrap">
+            <svg class="dataviz-donut" viewBox="0 0 100 100" width="180" height="180" role="img" aria-label="Share of revenue by region: Europe 23%, North America 17%, Asia Pacific 17%, South Asia 15%, Latin America 10%, Greater China 8%, other 6%, Middle East 4%">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#00843D" stroke-width="14" stroke-dasharray="42.73 251.33" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#BDE588" stroke-width="14" stroke-dasharray="57.81 251.33" stroke-dashoffset="-42.73" transform="rotate(-90 50 50)"/>
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#03441F" stroke-width="14" stroke-dasharray="25.13 251.33" stroke-dashoffset="-100.53" transform="rotate(-90 50 50)"/>
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#339D64" stroke-width="14" stroke-dasharray="42.73 251.33" stroke-dashoffset="-125.66" transform="rotate(-90 50 50)"/>
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#688F79" stroke-width="14" stroke-dasharray="20.11 251.33" stroke-dashoffset="-168.39" transform="rotate(-90 50 50)"/>
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#D7EFB8" stroke-width="14" stroke-dasharray="37.70 251.33" stroke-dashoffset="-188.50" transform="rotate(-90 50 50)"/>
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#003366" stroke-width="14" stroke-dasharray="10.05 251.33" stroke-dashoffset="-226.20" transform="rotate(-90 50 50)"/>
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#007681" stroke-width="14" stroke-dasharray="15.08 251.33" stroke-dashoffset="-236.25" transform="rotate(-90 50 50)"/>
+              <text x="50" y="54" class="dataviz-donut-center">8 regions</text>
+            </svg>
+            <div class="dataviz-donut-legend dataviz-donut-legend--two-col">
+              <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#00843D;"></span>North America<span class="dataviz-donut-legend-value">17%</span></div>
+              <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#BDE588;"></span>Europe<span class="dataviz-donut-legend-value">23%</span></div>
+              <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#03441F;"></span>Latin America<span class="dataviz-donut-legend-value">10%</span></div>
+              <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#339D64;"></span>Asia Pacific<span class="dataviz-donut-legend-value">17%</span></div>
+              <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#688F79;"></span>Greater China<span class="dataviz-donut-legend-value">8%</span></div>
+              <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#D7EFB8;"></span>South Asia<span class="dataviz-donut-legend-value">15%</span></div>
+              <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#003366;"></span>Middle East<span class="dataviz-donut-legend-value">4%</span></div>
+              <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#007681;"></span>Other<span class="dataviz-donut-legend-value">6%</span></div>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">The rule from the swatch page, actually exercised: <em>“if more than six colors are needed, add one of these three color sets.”</em> Six greens from the tint ladder carry regions one through six, then the seventh and eighth reach into Midnight Blue Mid (<code>#003366</code>) and Sky Blue Deep (<code>#007681</code>) — one set, added whole, not two colors borrowed from two different sets. Series order stays fixed, so the same region keeps the same color from chart to chart.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Worked example · stacked bar, and how to draw a forecast</p>
+          <div class="chart-stack" role="img" aria-label="Annual income 2026, 12.0 billion total, split into 8.6 billion booked in Q1 to Q3 and 3.4 billion estimated for Q4">
+            <div class="chart-stack-row">
+              <div class="chart-stack-seg chart-stack-seg--actual" style="flex: 0 0 100%;">Annual income 2026 · 12.0bn</div>
+            </div>
+            <div class="chart-stack-row">
+              <div class="chart-stack-seg chart-stack-seg--booked" style="flex: 0 0 71.7%;">Booked Q1–Q3 · 8.6bn</div>
+              <div class="chart-stack-seg chart-stack-seg--forecast" style="flex: 0 0 28.3%;">Estimated Q4 · 3.4bn</div>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">A total on top, the same total split below — the one chart form in the guidelines that compares a whole against its own parts rather than categories against each other. The forecast segment is drawn as a <strong>dashed outline on the canvas, not a second fill</strong>, and that's an encoding decision rather than a stylistic one: “not filled in yet” survives greyscale printing and every color-vision deficiency, where a second green beside the first would not. Same principle as the accessibility note — functionality takes precedence over color — applied to the mark instead of the label.</p>
         </div>
 
         <div class="scale-block" style="margin-top: var(--space-7);">
@@ -816,6 +890,25 @@
             </div>
           </div>
           <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">Small multiples — several single numbers side by side rather than one chart, per the "or is it even a chart?" question every data job starts with. The delta line is always plain text; a falling number can still be good news, so color never substitutes for saying so.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Expressive data · the chart behind the 880,000</p>
+          <div class="chart-expressive">
+            <div class="chart-expressive-plot" role="img" aria-label="Acres under advanced regenerative agriculture practices: 58,608 in 2020, 107,591 in 2021, 224,431 in 2022, 489,368 in 2023">
+              <div class="chart-expressive-col" style="--v: 12.0%;"><span class="chart-expressive-value">58,608</span><div class="chart-expressive-bar" style="background:#000000;"></div></div>
+              <div class="chart-expressive-col" style="--v: 22.0%;"><span class="chart-expressive-value">107,591</span><div class="chart-expressive-bar" style="background:#F5F9ED;"></div></div>
+              <div class="chart-expressive-col" style="--v: 45.9%;"><span class="chart-expressive-value">224,431</span><div class="chart-expressive-bar" style="background:#BDE588;"></div></div>
+              <div class="chart-expressive-col" style="--v: 100%;"><span class="chart-expressive-value">489,368</span><div class="chart-expressive-bar" style="background:#00843D;"></div></div>
+            </div>
+            <div class="chart-expressive-labels" aria-hidden="true">
+              <span>2020</span><span>2021</span><span>2022</span><span>2023</span>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">The card near the top of this section quotes <strong>880,000</strong> as the expressive hero number; this is the chart the guidelines pair it with. Everything the functional examples above forbid is permitted here and only here — rounded corners, a Deep Green canvas, the primary palette used as a palette (Black, White, Leaf Green, Soft Green). Expressive is earned in an annual report or a brochure, never in a dashboard.</p>
+          <div class="icon-note" style="margin-top: var(--space-4);">
+            <p><strong>Reproduced including its one real weakness.</strong> The 2020 bar is pure black on Deep Green, which measures <strong>1.4:1</strong> — nothing about the fill distinguishes it from the canvas, and the direct value label above it is doing the entire job of making it readable. That is the brand's own accessibility rule (<em>“color… should not be used on its own to differentiate data points”</em>) holding the example upright, which makes the label structural rather than decoration: remove it and the bar genuinely disappears. Worth knowing before this treatment gets reused with the labels turned off.</p>
+          </div>
         </div>
 
         <div class="scale-block" style="margin-top: var(--space-7);">
