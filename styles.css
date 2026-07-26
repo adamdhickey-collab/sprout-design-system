@@ -181,6 +181,44 @@
       --accent-gold:    #C7A86A;                 /* secondary accent */
       --on-accent:      #FFFFFF;                 /* text/icon color on top of --brand */
 
+      /* ---- Data visualization scales ----
+         Four scales, four jobs: categorical says WHICH series, sequential says HOW
+         MUCH, diverging says WHICH SIDE of a baseline, status says WHAT STATE. They
+         are not interchangeable, and a chart never mixes two of them.
+         Every value is an existing step off a ramp above, chosen by measurement: each
+         sits inside the mode's OKLCH lightness band and above the chroma floor, and
+         the separations were checked in OKLab under simulated protanopia and
+         deuteranopia. Dark steps are re-selected against the dark surface in the
+         [data-theme="dark"] block — they are NOT the light steps inverted.
+         Don't hand-pick a replacement and don't add a slot 6; the Data visualization
+         section of system.html records what each number is and why. */
+      --dv-cat-1: var(--green-600);        /* Leaf Green    — always leads */
+      --dv-cat-2: var(--blue-700);         /* Midnight Blue */
+      --dv-cat-3: var(--soft-green-600);   /* Soft Green    */
+      --dv-cat-4: var(--red-700);          /* Rich Red      */
+      --dv-cat-5: var(--yellow-600);       /* Bright Yellow */
+
+      --dv-seq-1: var(--green-400);        /* low  */
+      --dv-seq-2: var(--green-500);
+      --dv-seq-3: var(--green-600);
+      --dv-seq-4: var(--green-700);
+      --dv-seq-5: var(--green-900);        /* high */
+
+      /* Blue↔yellow, never red↔green: red against green collapses to a separation of
+         6.5 under deuteranopia, which erases the two ends of the scale. */
+      --dv-div-neg-2: var(--blue-700);     /* furthest below the baseline */
+      --dv-div-neg-1: var(--blue-400);
+      --dv-div-mid:   var(--neutral-300);  /* neutral middle — grey, never a hue */
+      --dv-div-pos-1: var(--yellow-600);
+      --dv-div-pos-2: var(--yellow-700);   /* furthest above the baseline */
+
+      /* Reserved. Never reused as a categorical slot, never shipped without an icon
+         and a word beside them. */
+      --dv-status-good:     var(--green-700);
+      --dv-status-warning:  var(--yellow-700);
+      --dv-status-critical: var(--red-600);
+      --dv-status-none:     var(--text-muted);
+
       /* Padding scale, from Cargill Sprout · Foundations · Padding & Spacing */
       --padding-xs:   2px;
       --padding-sm:   4px;
@@ -309,6 +347,22 @@
       max-width: 1080px;
       margin: 0;
       padding: 0 var(--space-7);
+    }
+
+    /* Visually hidden but still announced/focusable — for headings and labels
+       that a screen reader needs for landmark/heading navigation but the
+       visual design has no room (or need) for. Never use display:none or
+       visibility:hidden here; both remove the element from the a11y tree too. */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* ---------- App layout · left rail + main ---------- */
@@ -1035,16 +1089,6 @@
       font-weight: 700;
       color: var(--text);
     }
-    /* Display sizes from the Utility scale (8xl serif used for the hero) */
-    .type-display-serif {
-      font-family: var(--font-display);
-      font-size: 72px;
-      line-height: 80px;
-      font-weight: 400;
-      color: var(--brand);
-      letter-spacing: var(--display-tracking);
-    }
-
     /* ---------- Corner radius ---------- */
     .radius-grid {
       display: grid;
@@ -1598,30 +1642,35 @@
        must extend beyond the canvas," and a mask inscribed exactly inside its box (the
        previous behavior here) never satisfies that; it just reads as a lens, not a bleeding
        leaf. */
-    /* aspect-ratio 1000/580 (taller than the leaf device's own 1000/394) deliberately gives
-       the window vertical room. The clip is objectBoundingBox, so a taller box rounds the leaf
-       out a little — worth it: the extra height lets the enlarged, bottom-anchored leaf show
-       its full natural bottom CURVE inside the box instead of being sliced flat by the bottom
-       edge, and exposes more of the photo (a face fits eyes-to-smile without a hard crop). */
-    .leaf-window { aspect-ratio: 1000 / 580; width: 100%; position: relative; overflow: hidden; }
+    /* The window box and the LEAF's box are deliberately two different shapes.
+       #cargill-leaf-clip is clipPathUnits="objectBoundingBox", so the silhouette is
+       stretched to whatever box it is applied to — apply it to a box that is not
+       1000:394 and the leaf is no longer the leaf. The window itself wants to be
+       taller than that (vertical room for a face), so the aspect ratio lives on the
+       IMAGE box, not on the window: the window crops, the image carries the leaf's
+       own proportion, and the silhouette stays undistorted at any card width. */
+    .leaf-window { aspect-ratio: 1000 / 545; width: 100%; position: relative; overflow: hidden; }
     .leaf-window-img {
+      /* Bottom-anchored and wider than the window, so the leaf bleeds off both sides
+         and the top — the brand's own scale rule, "both edges must extend beyond the
+         canvas."
+         At 200% wide the leaf is twice the card's width, so the window sits on the
+         broad middle of the sweep rather than near its narrow tip — that is what
+         opens the photo aperture up enough to hold a whole face (forehead to chin)
+         instead of a band across the eyes. The -22% bottom drops the shape's own
+         lower edge below the card, where the canvas colour takes over, so the curve
+         the reader sees is the leaf's upper sweep, uninterrupted corner to corner.
+         Pair with each photo's object-position (set inline) to seat its subject. */
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
+      left: 50%;
+      bottom: -22%;
+      transform: translateX(-50%);
+      width: 200%;
+      aspect-ratio: 1000 / 394;
+      height: auto;
       object-fit: cover;
       display: block;
       clip-path: url(#cargill-leaf-clip);
-      /* Grow the clipped leaf and let the rectangle crop it — the brand's own direction for
-         this device ("both edges must extend beyond the canvas"). Anchor the scale at the
-         BOTTOM (50% 100%): scaling from the bottom edge only ever moves the leaf's lower
-         boundary UP and inward, so its natural bottom CURVE is always shown in full and can
-         never be sliced into the hard horizontal line a top- or center-anchored scale
-         produces. The leaf instead bleeds off the top and both sides — the dynamic crop —
-         while the taller window (see .leaf-window) keeps the photo's focal points in view.
-         Pair with each image's object-position (set inline per photo) to seat its subject. */
-      transform: scale(1.4);
-      transform-origin: 50% 100%;
     }
     /* margin-top:auto pins this row to the bottom of the canvas. The grid stretches both
        cards to equal height, but the two titles wrap to different line counts, so without
@@ -1650,15 +1699,16 @@
        distinct from leaf-as-window, which clips the photo INTO the leaf. The brand lists
        scale/position/crop/reflection/rotation/color/transparency/stripe as the available
        treatments for fitting a given photo; this is the base, untreated composition. */
-    /* 4/3 matches the native aspect of the brand photography (~590×443), so object-fit:cover
-       shows the whole frame with almost no crop — the wind turbine reads as a complete
-       machine (hub, all three blades, sky) rather than a tight detail zoomed in past its
-       edges. A wider 3/2 box here re-cropped every photo tighter than its own framing. */
+    /* 3/2 rather than the photos' native ~4/3: at 4/3 these cards stood taller than
+       anything else on the page and the leaf had to sit high in the frame to leave the
+       title room. The shallower box trims sky and foreground — the parts of these
+       frames carrying the least information — and keeps the subject, while bringing the
+       pair back in line with the rest of the section. */
     .leaf-over-image {
       position: relative;
       overflow: hidden;
       border-radius: var(--corner-radius-md);
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 3 / 2;
     }
     .leaf-over-image-img {
       width: 100%;
@@ -2161,43 +2211,6 @@
       margin-top: var(--space-4);
     }
 
-    /* Illustration placeholder · reserves the SPACE an approved illustration will
-       occupy without inventing artwork of our own — illustration is an asset
-       dependency here (see the note below). Swap the aspect ratio to match the
-       layout; never stretch the eventual asset to fit a mismatched slot. */
-    .illustration-slot {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-2);
-      width: 100%;
-      box-sizing: border-box;
-      border: 1.5px dashed var(--border);
-      border-radius: var(--corner-radius-md);
-      background: var(--soft-green-50);
-      color: var(--text-muted);
-      padding: var(--space-4);
-    }
-    .illustration-slot .material-symbols-rounded { font-size: 28px; }
-    .illustration-slot-label {
-      font-family: var(--font-sans);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-soft);
-      margin: 0;
-    }
-    .illustration-slot-meta {
-      font-family: var(--font-micro);
-      font-size: 12px;
-      text-align: center;
-      max-width: 32ch;
-      margin: 0;
-    }
-    .illustration-slot--square    { aspect-ratio: 1 / 1; }
-    .illustration-slot--landscape { aspect-ratio: 16 / 9; }
-    .illustration-slot--portrait  { aspect-ratio: 3 / 4; }
-
     /* Real brand object illustrations (vector SVG imported from the guidelines PDF) */
     .illus-card {
       margin: 0;
@@ -2217,6 +2230,11 @@
       box-sizing: border-box;
     }
     .illus-card-stage img { max-width: 70%; max-height: 100%; width: auto; height: auto; display: block; }
+    /* Diagrams are landscape (process flows, instruction sequences) — the square,
+       70%-capped object-illustration stage would shrink them to a sliver. Let the
+       stage hug the artwork's own aspect ratio and fill the available width instead. */
+    .illus-card-stage--diagram { height: auto; width: 100%; }
+    .illus-card-stage--diagram img { max-width: 100%; width: 100%; height: auto; }
     .illus-card-label {
       font-family: var(--font-sans);
       font-size: 14px;
@@ -2229,6 +2247,29 @@
       font-size: 12px;
       color: var(--text-muted);
       margin: 0;
+    }
+    /* Near-square diagram cards sit three across on desktop, dropping to two once
+       the sidebar collapses and one on phones — landscape diagrams stay full-width. */
+    .illus-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+    }
+    /* The three artworks have different aspect ratios, so let each stage grow to the
+       row height and centre the art inside it — otherwise the captions sit at three
+       different baselines across the row. */
+    .illus-grid-3 .illus-card-stage--diagram { flex: 1; }
+    .illus-grid-3 .illus-card-stage--diagram img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%;
+    }
+    @media (max-width: 1023.98px) {
+      .illus-grid-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 767.98px) {
+      .illus-grid-3 { grid-template-columns: 1fr; }
     }
 
     /* ---------- Asset download (JS-injected hover button on any asset tile) ---------- */
@@ -2245,7 +2286,7 @@
       justify-content: center;
       padding: 0;
       border: 1px solid var(--border);
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: var(--surface);
       color: var(--text-soft);
       cursor: pointer;
@@ -2329,7 +2370,6 @@
       margin-top: var(--space-5);
       opacity: 0.85;
     }
-    .chart-color-step--dark,
     .chart-color-step--light { color: var(--text); }
 
     .dataviz-extension-row {
@@ -2548,6 +2588,159 @@
       fill: var(--text);
     }
     .dataviz-line-grid { stroke: var(--border); stroke-width: 1; }
+
+    /* ---------- Data visualization · colour scales by job ----------
+       Three scales doing three different jobs. Categorical answers "which series",
+       sequential answers "how much", diverging answers "which side of zero". They
+       are not interchangeable and a chart never mixes two of them. Every hex below
+       is a step off an existing Sprout ramp, chosen by measurement rather than by
+       eye — see the notes in the Data visualization section for what was measured. */
+    .dv-ramp {
+      display: flex;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .dv-ramp-step {
+      flex: 1;
+      min-height: 56px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: var(--space-2) 4px;
+      font-family: var(--font-micro);
+      font-size: 10px;
+      color: #fff;
+      text-align: center;
+    }
+    .dv-ramp-step--ink { color: var(--text); }   /* light steps need dark ink on them */
+    .dv-ramp-caption {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: var(--space-2);
+    }
+
+    /* Heatmap · the sequential ramp's natural home. A 2px surface-coloured gap
+       between cells keeps the lightest classes legible against each other without
+       drawing a border on every cell. */
+    .dv-heatmap {
+      display: grid;
+      grid-template-columns: auto repeat(6, 1fr);
+      gap: 2px;
+      max-width: 520px;
+    }
+    .dv-heatmap-cell {
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-micro);
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      border-radius: 2px;
+    }
+    .dv-heatmap-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-micro);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .dv-heatmap-row-head {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: var(--space-2);
+      font-family: var(--font-micro);
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Diverging bar · bars grow left or right of a shared zero rule. The zero line
+       is the only gridline that earns full weight here — it is the thing every bar
+       is being read against. */
+    .dv-diverging { max-width: 560px; }
+    .dv-diverging-row {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: 6px;
+    }
+    .dv-diverging-label {
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text-soft);
+      text-align: right;
+    }
+    .dv-diverging-track {
+      position: relative;
+      height: 26px;
+      display: flex;
+      align-items: center;
+    }
+    .dv-diverging-track::before {          /* the zero rule */
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -3px;
+      bottom: -3px;
+      width: 1px;
+      background: var(--text-muted);
+    }
+    .dv-diverging-bar {
+      position: absolute;
+      height: 18px;
+      border-radius: 2px;
+    }
+    .dv-diverging-value {
+      position: absolute;
+      font-family: var(--font-micro);
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      color: var(--text);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Status · a reserved scale. These never stand in for "series 4", and they never
+       travel without an icon and a word — colour alone cannot say "critical". */
+    .dv-status-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+    .dv-status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px 6px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-family: var(--font-micro);
+      font-size: 12px;
+      color: var(--text);
+    }
+    .dv-status-chip .material-symbols-rounded { font-size: 16px; }
+
+    /* Emphasis · one series in the accent hue, every other series in the
+       de-emphasis grey. The most underused form in the set. */
+    .dv-emphasis-chart { width: 100%; max-width: 460px; height: auto; }
+    .dv-emphasis-path { fill: none; stroke-width: 2; }
+    .dv-emphasis-path--muted { stroke: var(--neutral-350); }
+    .dv-emphasis-path--lead  { stroke: var(--green-600); }
+    [data-theme="dark"] .dv-emphasis-path--lead { stroke: var(--accent-lime); }
+    .dv-emphasis-label {
+      font-family: var(--font-micro);
+      font-size: 11px;
+      fill: var(--text);
+    }
+    .dv-emphasis-label--muted { fill: var(--text-muted); }
+
 
     /* ---------- Worked charts imported from the guidelines (pp. 119–123) ----------
        Rebuilt, not redrawn: every value, series color and label convention below was
@@ -2864,7 +3057,7 @@
     /* Styles · light theme */
     .btn-primary {
       background: var(--brand);
-      color: #fff;
+      color: var(--on-accent);
     }
     .btn-primary:hover    { background: var(--green-700); }
     .btn-primary:active   { background: var(--green-800); }
@@ -2893,7 +3086,11 @@
     .btn-ghost.btn--disabled { background: transparent !important; color: var(--neutral-400) !important; }
 
     /* Destructive · pairs with primary/secondary/ghost */
-    .btn-primary.btn--danger    { background: var(--red-600); }
+    /* Always white, not var(--on-accent) — the danger fill is red in both
+       themes (never repoints to the dark-mode lime brand color), so it never
+       needs the accent-aware swap; higher specificity than .btn-primary alone
+       keeps this correct regardless of theme with no parallel override needed. */
+    .btn-primary.btn--danger    { background: var(--red-600); color: #fff; }
     .btn-primary.btn--danger:hover  { background: var(--red-700); }
     .btn-secondary.btn--danger  { color: var(--red-600); border-color: var(--red-600); }
     .btn-secondary.btn--danger:hover { background: var(--red-50); color: var(--red-700); border-color: var(--red-700); }
@@ -2901,19 +3098,6 @@
     .btn-ghost.btn--danger:hover { background: var(--red-50); color: var(--red-700); }
 
     .btn-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
-    .btn-grid {
-      display: grid;
-      grid-template-columns: max-content 1fr;
-      gap: var(--space-3) var(--space-5);
-      align-items: center;
-    }
-    .btn-grid-label {
-      font-family: var(--font-micro);
-      font-size: 11px;
-      letter-spacing: normal;
-      text-transform: none;
-      color: var(--text-muted);
-    }
 
     /* Dense button library matrix, mirrors Figma's button page */
     .btn-matrix {
@@ -2968,8 +3152,6 @@
       text-transform: none;
       font-weight: 700;
     }
-    .tag-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-
     /* Cards · shared base */
     .card {
       background: var(--surface);
@@ -3171,9 +3353,9 @@
       border-color: transparent;
     }
     .card-expressive--brand .card-eyebrow { color: var(--soft-green-200); }
-    .card-expressive--brand .card-headline { color: #fff; }
+    .card-expressive--brand .card-headline { color: var(--on-accent); }
     .card-expressive--brand .card-body { color: rgba(255, 255, 255, 0.9); }
-    .card-expressive--brand-btn { color: #fff; border-color: #fff; }
+    .card-expressive--brand-btn { color: var(--on-accent); border-color: var(--on-accent); }
 
     /* Expressive layout with side chart graphic */
     .card-expressive--chart {
@@ -3188,26 +3370,6 @@
     .card-expressive-chart svg { width: 100%; height: 120px; display: block; }
     .card-expressive--chart > :not(.card-expressive-chart) {
       grid-column: 1;
-    }
-
-    /* Stat / KPI */
-    .kpi {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-2);
-    }
-    .kpi-value {
-      font-family: var(--font-display);
-      font-size: 56px;
-      line-height: 1;
-      color: var(--brand);
-    }
-    .kpi-label {
-      font-family: var(--font-micro);
-      font-size: 12px;
-      letter-spacing: normal;
-      text-transform: none;
-      color: var(--text-muted);
     }
 
     /* Accordion */
@@ -3951,7 +4113,7 @@
       gap: var(--spacing-sm);
       min-height: 40px;
       padding: 6px 8px 6px 12px;
-      background: var(--surface);
+      background: var(--surface-input);
       border: 1px solid var(--border-input);
       border-radius: var(--corner-radius-base);
       cursor: text;
@@ -4299,7 +4461,7 @@
       font-family: var(--font-sans);
       font-size: 15px;
       color: var(--text);
-      background: var(--surface);
+      background: var(--surface-input);
       resize: vertical;
       transition: border-color 120ms ease, box-shadow 120ms ease;
     }
@@ -4332,14 +4494,6 @@
       from { transform: translate3d(0, 0, 0); }
       to   { transform: translate3d(-50%, 0, 0); }
     }
-    @media (prefers-reduced-motion: reduce) {
-      .marquee-track { animation: none; }
-      .status-indicator--pulse .status-indicator-dot { animation: none; }
-      .progress-bar--indeterminate .progress-bar-fill { animation: none; width: 100%; }
-      /* Spinner kept (conveys loading status), but slowed to reduce vestibular strain */
-      .spinner { animation-duration: 1.6s; }
-    }
-
     /* Marquee item — small card with image + label */
     .marquee-item {
       flex-shrink: 0;
@@ -4556,7 +4710,7 @@
       gap: var(--spacing-sm);
       min-height: 40px;
       padding: 6px 12px;
-      background: var(--surface);
+      background: var(--surface-input);
       border: 1px solid var(--border-input);
       border-radius: var(--corner-radius-base);
       transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
@@ -4771,15 +4925,6 @@
       font-size: 12px;
       color: var(--text-muted);
     }
-    .site-footer-demo-sub--inner {
-      padding: var(--padding-base) var(--padding-xl);
-    }
-    .site-footer-demo-sub--inner .site-footer-sub-mark {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-    }
-    .site-footer-demo-sub--inner .cargill-logo { width: 64px; }
     .site-footer-sub-links {
       display: flex;
       gap: var(--space-5);
@@ -4997,7 +5142,7 @@
     .carousel-dot {
       width: 8px;
       height: 8px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: rgba(255, 255, 255, 0.5);
       transition: background-color 120ms ease, width 120ms ease;
     }
@@ -5205,7 +5350,6 @@
     /* md (768) · type specimen rows stack */
     @media (max-width: 767.98px) {
       .type-row { grid-template-columns: 1fr; gap: var(--space-2); }
-      .nav-links { display: none; }
     }
 
     /* ===== Batch components: Number Input through Tree View ===== */
@@ -5220,7 +5364,7 @@
 
     /* Page Indicator */
     .page-indicator { display: inline-flex; gap: 8px; align-items: center; }
-    .page-indicator-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--neutral-300); transition: background-color 120ms ease, width 120ms ease; }
+    .page-indicator-dot { width: 8px; height: 8px; border-radius: var(--radius-pill); background: var(--neutral-300); transition: background-color 120ms ease, width 120ms ease; }
     .page-indicator-dot--active { width: 20px; background: var(--brand); }
 
     /* Pagination */
@@ -5244,7 +5388,7 @@
     .popover-actions { display: flex; gap: var(--spacing-sm); margin-top: var(--space-3); justify-content: flex-end; }
 
     /* Progress Bar */
-    .progress-bar { width: 100%; height: 8px; background: var(--neutral-100); border-radius: 999px; overflow: hidden; }
+    .progress-bar { width: 100%; height: 8px; background: var(--neutral-100); border-radius: var(--radius-pill); overflow: hidden; }
     .progress-bar-fill { height: 100%; background: var(--brand); border-radius: inherit; transition: width 300ms ease; }
     .progress-bar--success .progress-bar-fill { background: var(--green-600); }
     .progress-bar--warning .progress-bar-fill { background: var(--yellow-500); }
@@ -5287,7 +5431,7 @@
     .rating-value { font-family: var(--font-sans); font-size: 13px; color: var(--text-muted); margin-left: 6px; }
 
     /* Search */
-    .search-input { display: flex; align-items: center; gap: var(--spacing-sm); padding: 6px 12px; background: var(--surface); border: 1px solid var(--border-input); border-radius: var(--corner-radius-base); min-height: 40px; transition: border-color 120ms ease, box-shadow 120ms ease; }
+    .search-input { display: flex; align-items: center; gap: var(--spacing-sm); padding: 6px 12px; background: var(--surface-input); border: 1px solid var(--border-input); border-radius: var(--corner-radius-base); min-height: 40px; transition: border-color 120ms ease, box-shadow 120ms ease; }
     .search-input:focus-within { border-color: var(--brand); box-shadow: 0 0 0 3px var(--soft-green-200); }
     .search-input-icon { color: var(--text-soft); display: inline-flex; align-items: center; flex-shrink: 0; }
     .search-input-icon .material-symbols-rounded { font-size: 18px; color: inherit; }
@@ -5306,7 +5450,7 @@
     .segmented-btn--active { background: var(--surface); color: var(--brand-deep); box-shadow: var(--shadow-sm); }
 
     /* Select */
-    .select { display: inline-flex; align-items: center; gap: var(--spacing-sm); min-height: 40px; padding: 6px 12px; background: var(--surface); border: 1px solid var(--border-input); border-radius: var(--corner-radius-base); font-family: var(--font-sans); font-size: 15px; color: var(--text); cursor: pointer; transition: border-color 120ms ease, box-shadow 120ms ease; width: 100%; }
+    .select { display: inline-flex; align-items: center; gap: var(--spacing-sm); min-height: 40px; padding: 6px 12px; background: var(--surface-input); border: 1px solid var(--border-input); border-radius: var(--corner-radius-base); font-family: var(--font-sans); font-size: 15px; color: var(--text); cursor: pointer; transition: border-color 120ms ease, box-shadow 120ms ease; width: 100%; }
     .select:hover { border-color: var(--brand); }
     .select:focus { border-color: var(--brand); box-shadow: 0 0 0 3px var(--soft-green-200); outline: none; }
     .select-value { flex: 1; }
@@ -5327,7 +5471,7 @@
 
     /* Slider */
     .slider-row { display: flex; flex-direction: column; gap: var(--spacing-md); }
-    .slider-input { appearance: none; -webkit-appearance: none; width: 100%; height: 4px; background: var(--neutral-300); border-radius: 999px; outline: none; cursor: pointer; }
+    .slider-input { appearance: none; -webkit-appearance: none; width: 100%; height: 4px; background: var(--neutral-300); border-radius: var(--radius-pill); outline: none; cursor: pointer; }
     .slider-input::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--brand); cursor: pointer; border: 3px solid var(--surface); box-shadow: var(--shadow-sm); }
     .slider-input::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--brand); cursor: pointer; border: 3px solid var(--surface); box-shadow: var(--shadow-sm); }
     .slider-input:focus-visible { box-shadow: 0 0 0 3px var(--soft-green-200); }
@@ -5374,7 +5518,7 @@
     .stepper-item--complete + .stepper-divider { background: var(--brand); }
 
     /* Tables */
-    .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--corner-radius-md); overflow: hidden; }
+    .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--corner-radius-md); overflow-x: auto; }
     .table { width: 100%; border-collapse: collapse; }
     .table th, .table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); font-family: var(--font-sans); font-size: 14px; color: var(--text); }
     .table tr:last-child td { border-bottom: none; }
@@ -5397,7 +5541,7 @@
     .tab-panel { font-family: var(--font-sans); font-size: 15px; color: var(--text-soft); padding: var(--space-3) 0; }
 
     /* Textarea */
-    .textarea { width: 100%; min-height: 100px; padding: 8px 12px; border: 1px solid var(--border-input); border-radius: var(--corner-radius-base); background: var(--surface); font-family: var(--font-sans); font-size: 15px; line-height: 22px; color: var(--text); resize: vertical; transition: border-color 120ms ease, box-shadow 120ms ease; }
+    .textarea { width: 100%; min-height: 100px; padding: 8px 12px; border: 1px solid var(--border-input); border-radius: var(--corner-radius-base); background: var(--surface-input); font-family: var(--font-sans); font-size: 15px; line-height: 22px; color: var(--text); resize: vertical; transition: border-color 120ms ease, box-shadow 120ms ease; }
     .textarea::placeholder { color: var(--text-muted); }
     .textarea:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--soft-green-200); }
     .textarea[disabled] { background: var(--neutral-100); color: var(--neutral-400); cursor: not-allowed; }
@@ -5428,7 +5572,7 @@
 
     /* Toggle */
     .toggle { display: inline-flex; align-items: center; gap: var(--spacing-md); cursor: pointer; font-family: var(--font-sans); font-size: 14px; color: var(--text); }
-    .toggle-input { appearance: none; -webkit-appearance: none; width: 36px; height: 20px; border-radius: 999px; background: var(--neutral-300); position: relative; cursor: pointer; transition: background-color 200ms ease; flex-shrink: 0; }
+    .toggle-input { appearance: none; -webkit-appearance: none; width: 36px; height: 20px; border-radius: var(--radius-pill); background: var(--neutral-300); position: relative; cursor: pointer; transition: background-color 200ms ease; flex-shrink: 0; }
     .toggle-input::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform 200ms ease; box-shadow: var(--shadow-sm); }
     .toggle-input:checked { background: var(--brand); }
     .toggle-input:checked::after { transform: translateX(16px); }
@@ -5479,7 +5623,6 @@
     .tree-icon { width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; color: var(--text-soft); flex-shrink: 0; }
     .tree-icon .material-symbols-rounded { font-size: 16px; color: inherit; }
     .tree-children { padding-left: 20px; display: flex; flex-direction: column; gap: 1px; }
-    .tree-section { display: flex; flex-direction: column; gap: 1px; }
 
 
     /* ===== Multi-page sidebar groups ===== */
@@ -5584,28 +5727,59 @@
       --soft-green-50:  #18241C;  /* light-green hover/selected → subtle dark */
       --soft-green-100: #1F2D23;
       --soft-green-200: #2F5A3C;  /* focus ring stays visible on dark        */
+
+      /* ---- Data visualization scales · dark ----
+         Re-selected against the dark card surface (#101D16), not inverted: flipping
+         the light steps puts the palest class of a ramp on a near-black card, which
+         is the opposite of recessive, and drops several hues out of the dark
+         lightness band. Slot 1 is the one step that holds in both modes.
+         Worst adjacent categorical pair here measures 7.7 simulated / 16.4 normal —
+         the simulated figure sits in the 6–8 band, which is legal only because every
+         series in this system also carries a direct label. */
+      --dv-cat-2: var(--blue-600);
+      --dv-cat-3: var(--soft-green-700);
+      --dv-cat-4: var(--rich-red-mid);
+      --dv-cat-5: var(--yellow-800);
+
+      --dv-seq-1: var(--green-700);        /* low — the ramp's anchor flips */
+      --dv-seq-2: var(--green-600);
+      --dv-seq-3: var(--green-500);
+      --dv-seq-4: var(--green-400);
+      --dv-seq-5: var(--green-300);        /* high */
+
+      /* --dv-div-mid needs no entry: it points at --neutral-300, which this block
+         already repoints to #3A4A41. Poles measure 27.8 simulated / 32.6 normal. */
+      --dv-div-neg-2: var(--blue-600);
+      --dv-div-neg-1: var(--blue-500);
+      --dv-div-pos-1: var(--yellow-600);
+      --dv-div-pos-2: var(--yellow-700);
+
+      --dv-status-good:     var(--green-400);
+      --dv-status-warning:  var(--yellow-600);
+      --dv-status-critical: var(--rich-red-mid);
     }
 
     /* ---- Dark theme · fixes for rules that hard-code a light value ---- */
     [data-theme="dark"] body { background: var(--bg); color: var(--text); }
     [data-theme="dark"] a:hover { color: #CFEF9D; }
 
-    /* Primary buttons: the lime fill needs dark text */
-    [data-theme="dark"] .btn-primary { color: var(--on-accent); }
+    /* Primary buttons: the lime fill needs dark text — handled by the base
+       .btn-primary rule referencing var(--on-accent) directly, no override needed. */
     [data-theme="dark"] .btn-primary:hover  { background: #CFEF9D; }
     [data-theme="dark"] .btn-primary:active { background: var(--accent-lime); }
     /* Outline / ghost hovers read in lime, not deep green */
     [data-theme="dark"] .btn-secondary:hover,
     [data-theme="dark"] .btn-ghost:hover { color: #CFEF9D; border-color: #CFEF9D; }
 
-    /* Recessed input surfaces (darker than cards, per REAP) */
-    [data-theme="dark"] .input-wrap,
-    [data-theme="dark"] .combobox,
+    /* Recessed input surfaces (darker than cards, per REAP). .input-wrap,
+       .combobox, .select, .search-input, .textarea, and .modal-textarea now
+       reference var(--surface-input) directly in their base rule, so they
+       resolve correctly per theme without needing to appear here — same
+       pattern as the --border-input / --on-accent fixes above. .combobox-input
+       and .date-input-trigger stay transparent in light mode (showing their
+       parent's background through), so they still need this explicit
+       dark-mode opacity. */
     [data-theme="dark"] .combobox-input,
-    [data-theme="dark"] .select,
-    [data-theme="dark"] .search-input,
-    [data-theme="dark"] .textarea,
-    [data-theme="dark"] .modal-textarea,
     [data-theme="dark"] .date-input-trigger { background: var(--surface-input); }
 
     /* Tag: its baked text color is a deep green — switch to lime on dark */
@@ -5723,10 +5897,6 @@
       color: var(--red-300);
       border-color: var(--red-300);
     }
-    /* The global on-accent rule below is for lime primary buttons; the danger primary
-       button keeps its red-600 fill, so its text stays white, not near-black. */
-    [data-theme="dark"] .btn-primary.btn--danger { color: #fff; }
-
     /* The dark-mode override that used to live here (combobox-option--active, chip
        selected/pressed + chip-lead, label-tooltip, avatar + its icon, stepper-circle
        complete + its icon, pagination-btn--active, checkbox checked/indeterminate
@@ -5740,13 +5910,13 @@
     [data-theme="dark"] .card-metric-delta--up,
     [data-theme="dark"] .card-expressive .card-eyebrow { color: var(--soft-green-300); }
 
-    /* Expressive · brand-green variant: its background tracks --brand too, so it needs the
-       same on-accent treatment as the other --brand-filled components above. */
+    /* Expressive · brand-green variant: the eyebrow and body don't reference
+       var(--on-accent) in their light-mode rule (soft-green-200 / a soft white
+       rgba respectively), so — unlike the headline and -btn, which now resolve
+       correctly per theme straight from their base rule — they still need an
+       explicit dark-mode correction here. */
     [data-theme="dark"] .card-expressive--brand .card-eyebrow,
-    [data-theme="dark"] .card-expressive--brand .card-headline,
-    [data-theme="dark"] .card-expressive--brand .card-body,
-    [data-theme="dark"] .card-expressive--brand-btn { color: var(--on-accent); }
-    [data-theme="dark"] .card-expressive--brand-btn { border-color: var(--on-accent); }
+    [data-theme="dark"] .card-expressive--brand .card-body { color: var(--on-accent); }
 
     /* Carousel prev/next controls float on the image in a fixed near-white pill regardless
        of page theme; their icon color must stay a fixed dark green, not follow --brand-deep
@@ -6016,7 +6186,7 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       padding: 2px 6px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: rgba(0, 0, 0, 0.16);
       color: inherit;
       opacity: 0;
@@ -6197,4 +6367,25 @@
     .chip-close:focus-visible,
     .carousel-dot:focus-visible,
     .rating-star:focus-visible { border-radius: var(--radius-pill); }
+
+    /* ==========================================================================
+       prefers-reduced-motion — kept last on purpose. Every target selector here
+       (.spinner, .status-indicator--pulse .status-indicator-dot,
+       .progress-bar--indeterminate .progress-bar-fill) has an unconditional base
+       rule elsewhere in this file that also sets `animation`. Same selector, same
+       specificity: whichever one is LATER in source order wins, media query or
+       not. This block used to sit mid-file and three of its four rules were
+       silently defeated by base rules that happened to be declared afterward —
+       reduced-motion users got full animation speed with no visible sign the
+       override had failed. Add new reduced-motion overrides here, at the true
+       end of the file, never earlier — that's the only way this class of bug
+       stays fixed as components get added.
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+      .status-indicator--pulse .status-indicator-dot { animation: none; }
+      .progress-bar--indeterminate .progress-bar-fill { animation: none; width: 100%; }
+      /* Spinner kept (conveys loading status), but slowed to reduce vestibular strain */
+      .spinner { animation-duration: 1.6s; }
+    }
 

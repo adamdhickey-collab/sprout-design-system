@@ -244,8 +244,13 @@
       const isOpen = () => sidebar.classList.contains('sidebar--open');
 
       function focusables() {
+        // offsetParent!==null alone isn't enough: a collapsed sidebar section
+        // uses grid-template-rows:0fr + overflow:hidden (see styles.css), which
+        // clips content to zero height without display:none — its links keep a
+        // non-null offsetParent and stay natively tabbable even though nothing
+        // is visible. Exclude anything inside a section collapsed this way.
         return Array.from(sidebar.querySelectorAll('a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'))
-          .filter(el => el.offsetParent !== null);
+          .filter(el => el.offsetParent !== null && !el.closest('.sidebar-section[data-collapsed="true"]'));
       }
 
       function open() {
@@ -416,9 +421,14 @@
 
       function go(item) {
         close();
-        if (item.page === currentPage() && item.anchor) {
-          sproutJumpToHash(item.anchor);
-          history.pushState(null, '', item.anchor);
+        if (item.page === currentPage()) {
+          // Already here — an empty anchor (e.g. the page's own index entry)
+          // means there's nothing left to do but close, not reload the page
+          // we're already on.
+          if (item.anchor) {
+            sproutJumpToHash(item.anchor);
+            history.pushState(null, '', item.anchor);
+          }
         } else {
           location.href = item.page + item.anchor;
         }
@@ -601,12 +611,6 @@
       document.body.removeChild(ta);
       done();
     }
-    function sproutEscape(str) {
-      return String(str).replace(/[&<>"]/g, function (c) {
-        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
-      });
-    }
-
     // Click-to-copy on tonal-ramp token swatches · copies the displayed hex.
     (function () {
       document.querySelectorAll('.palette-swatch').forEach((swatch) => {
@@ -624,6 +628,110 @@
       });
     })();
 
+    // Bare href="#" placeholder links (breadcrumbs, footer, "Forgot password?",
+    // file-upload "Browse", etc. — 60+ across the site) jump the page to the top
+    // with no other feedback, since they're real anchor navigation to nothing.
+    // One delegated guard covers all of them, present and future; a real anchor
+    // link always names a fragment (href="#section"), so the exact-match
+    // selector can't accidentally catch real in-page navigation.
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href="#"]');
+      if (a) e.preventDefault();
+    });
+
+    // Tabs · WAI-ARIA tabs pattern. Previously had zero interactivity — clicking
+    // a tab did nothing at all (aria-selected/tab--active never changed after
+    // the initial static markup), and there was no arrow-key navigation between
+    // tabs. Applies to every [role="tablist"] on the page uniformly. Only one
+    // tab group (Project sections) has a real tabpanel to show/hide; the rest
+    // just toggle their own selected/active state, matching how far the other
+    // "live where it matters" demos on this site go (visual state, not full
+    // app behavior) — see the page's own "note on these demos" banner.
+    (function () {
+      document.querySelectorAll('[role="tablist"]').forEach(tablist => {
+        const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+        if (!tabs.length) return;
+
+        function select(tab) {
+          tabs.forEach(t => {
+            const isSelected = t === tab;
+            t.setAttribute('aria-selected', String(isSelected));
+            t.classList.toggle('tab--active', isSelected);
+            t.tabIndex = isSelected ? 0 : -1;
+            const panelId = t.getAttribute('aria-controls');
+            const panel = panelId && document.getElementById(panelId);
+            if (panel) panel.hidden = !isSelected;
+          });
+        }
+
+        tabs.forEach(tab => {
+          tab.tabIndex = tab.classList.contains('tab--active') ? 0 : -1;
+          tab.addEventListener('click', () => { if (!tab.disabled) select(tab); });
+          tab.addEventListener('keydown', (e) => {
+            const enabled = tabs.filter(t => !t.disabled);
+            const idx = enabled.indexOf(tab);
+            if (idx === -1) return;
+            let next = null;
+            if (e.key === 'ArrowRight') next = enabled[(idx + 1) % enabled.length];
+            else if (e.key === 'ArrowLeft') next = enabled[(idx - 1 + enabled.length) % enabled.length];
+            else if (e.key === 'Home') next = enabled[0];
+            else if (e.key === 'End') next = enabled[enabled.length - 1];
+            if (next) { e.preventDefault(); select(next); next.focus(); }
+          });
+        });
+      });
+    })();
+
+    // Chip · filter usage demo — click (or Enter/Space) an unselected chip to
+    // select it (adds a close button); click the close button to deselect it
+    // back to a plain, clickable chip. The label is cached in data-label at
+    // init so toggling never has to parse it back out of text mixed with the
+    // close button's own icon-font ligature text.
+    (function () {
+      const demo = document.getElementById('chip-filter-demo');
+      if (!demo) return;
+
+      function label(chip) {
+        if (chip.dataset.label) return chip.dataset.label;
+        const node = Array.from(chip.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+        return (node ? node.textContent : chip.textContent).trim();
+      }
+
+      function select(chip) {
+        const text = label(chip);
+        chip.dataset.label = text;
+        chip.textContent = text;
+        chip.classList.add('chip--selected');
+        chip.removeAttribute('role');
+        chip.removeAttribute('tabindex');
+        chip.insertAdjacentHTML('beforeend',
+          '<button class="chip-close" aria-label="Remove ' + text + '"><span class="material-symbols-rounded">close</span></button>');
+      }
+
+      function deselect(chip) {
+        chip.textContent = label(chip);
+        chip.classList.remove('chip--selected');
+        chip.setAttribute('role', 'button');
+        chip.setAttribute('tabindex', '0');
+      }
+
+      demo.querySelectorAll('.chip').forEach(chip => { chip.dataset.label = label(chip); });
+
+      demo.addEventListener('click', (e) => {
+        const closeBtn = e.target.closest('.chip-close');
+        if (closeBtn) { deselect(closeBtn.closest('.chip')); return; }
+        const chip = e.target.closest('.chip[role="button"]');
+        if (chip) select(chip);
+      });
+      demo.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const chip = e.target.closest('.chip[role="button"]');
+        if (!chip) return;
+        e.preventDefault();
+        select(chip);
+      });
+    })();
+
     // Version + last-updated · single source of truth.
     // Bump SPROUT_VERSION on each release and mirror the same string onto the
     // Figma Cover page (node 3:14) in the same change — see the "Versioning"
@@ -631,7 +739,7 @@
     // derived from the page's own last-modified timestamp so it never needs
     // manual editing.
     (function () {
-      const SPROUT_VERSION = '3.3';
+      const SPROUT_VERSION = '3.5';
 
       document.querySelectorAll('.js-version').forEach(el => {
         el.textContent = 'v' + SPROUT_VERSION;
@@ -679,14 +787,32 @@
           u.replaceWith(g);
         });
         const cs = getComputedStyle(svg);
-        let style = 'color:' + cs.color + ';';
         const lf = cs.getPropertyValue('--leaf-fill').trim();
-        if (lf) style += '--leaf-fill:' + lf + ';';
         const ld = cs.getPropertyValue('--leaf-device-fill').trim();
+        let style = 'color:' + cs.color + ';';
+        if (lf) style += '--leaf-fill:' + lf + ';';
         if (ld) style += '--leaf-device-fill:' + ld + ';';
         clone.setAttribute('xmlns', SVGNS);
         clone.removeAttribute('class');
         clone.setAttribute('style', style);
+        // The leaf/leaf-device path carries its own inline `fill: var(--leaf-fill, #00843D)`
+        // (or --leaf-device-fill) straight from the source symbol. Setting the custom
+        // property on the root above is enough for browsers, but many standalone SVG
+        // viewers (Preview, older design tools, thumbnailers) don't resolve CSS custom
+        // properties at all — they fall through to the static "#00843D" fallback,
+        // so every non-leaf-green variant (white, black, deep, mono) downloads with a
+        // green leaf instead of its real color. Bake the resolved literal in place of
+        // the var() reference so the file is correct with zero CSS-variable support.
+        clone.querySelectorAll('[style*="--leaf-fill"], [style*="--leaf-device-fill"]').forEach(el => {
+          let s = el.getAttribute('style');
+          // Always resolve to a literal — even when lf/ld is empty (no override set,
+          // e.g. the plain default leaf-device card), fall back to var()'s own fallback
+          // text rather than leaving var() in place. A renderer with zero var() support
+          // doesn't know to apply that fallback itself; it just drops the declaration.
+          s = s.replace(/var\(--leaf-fill\s*(?:,\s*([^)]+))?\)/g, (_, fallback) => lf || fallback || '#00843D');
+          s = s.replace(/var\(--leaf-device-fill\s*(?:,\s*([^)]+))?\)/g, (_, fallback) => ld || fallback || '#00843D');
+          el.setAttribute('style', s);
+        });
         const out = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone);
         return URL.createObjectURL(new Blob([out], { type: 'image/svg+xml' }));
       }

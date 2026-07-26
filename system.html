@@ -416,7 +416,7 @@
             </div>
             <div class="leaf-window-canvas" style="background: var(--surface-deep);">
               <div class="leaf-window">
-                <img class="leaf-window-img" src="assets/brand-photography/world-farmer-tablet-field.png" alt="A farmer examining a crop with a tablet in a green field" style="object-position: 44% 54%;" />
+                <img class="leaf-window-img" src="assets/brand-photography/world-farmer-tablet-field.png" alt="A farmer examining a crop with a tablet in a green field" style="object-position: 70% 58%;" />
               </div>
               <div class="leaf-window-content">
                 <p class="leaf-window-title" style="color: #fff;">Technology meets the field, everywhere we grow.</p>
@@ -641,6 +641,35 @@
         </div>
 
         <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Real diagram examples · imported vector, never redrawn</p>
+          <p class="section-lede" style="max-width: 64ch;">The process-flow and instruction examples above are the abstract system; these two are the exact worked examples from the guidelines (Illustrations &amp; diagrams, p.107), imported as vector SVG straight from the source file — same "never redraw" rule as everything else pulled from the PDF.</p>
+          <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-5); margin-top: var(--space-5);">
+            <figure class="illus-card">
+              <div class="illus-card-stage illus-card-stage--diagram"><img src="assets/brand-diagrams/diagram-wheat-process.svg" alt="Wheat load-out and flour mill process diagram: a ship arrives, wheat is cleaned, stored, and ground, then splits into bran for feed and flour for storage" /></div>
+              <figcaption class="illus-card-label">Wheat load-out and flour mill<span class="illus-card-meta" style="display:block; font-weight:400;">Process flow — arrival through to bran and flour output</span></figcaption>
+            </figure>
+            <figure class="illus-card">
+              <div class="illus-card-stage illus-card-stage--diagram"><img src="assets/brand-diagrams/diagram-fire-instructions.svg" alt="Four-step fire extinguisher instructions: pull the safety ring, aim at the base of the fire, squeeze the handles, sweep side to side" /></div>
+              <figcaption class="illus-card-label">Fire extinguisher use<span class="illus-card-meta" style="display:block; font-weight:400;">Instructions — a numbered, illustrated sequence</span></figcaption>
+            </figure>
+          </div>
+          <div class="illus-grid-3" style="margin-top: var(--space-5);">
+            <figure class="illus-card">
+              <div class="illus-card-stage illus-card-stage--diagram"><img src="assets/brand-diagrams/diagram-hard-to-see-elements.svg" alt="A cutaway diagram of a processing facility showing an underground brine well and salt deposits beneath the surface" /></div>
+              <figcaption class="illus-card-label">Hard-to-see elements<span class="illus-card-meta" style="display:block; font-weight:400;">Illustrating what's invisible to the naked eye</span></figcaption>
+            </figure>
+            <figure class="illus-card">
+              <div class="illus-card-stage illus-card-stage--diagram"><img src="assets/brand-diagrams/diagram-cargo-ship-perspective.svg" alt="A perspective illustration of a cargo ship with one cargo hold highlighted" /></div>
+              <figcaption class="illus-card-label">Cargo ship, perspective<span class="illus-card-meta" style="display:block; font-weight:400;">Fill color and line weight, not photography, create depth</span></figcaption>
+            </figure>
+            <figure class="illus-card">
+              <div class="illus-card-stage illus-card-stage--diagram"><img src="assets/brand-diagrams/diagram-grain-texture-swatches.svg" alt="Four textured pattern swatches labeled gluten feed, fiber, starch, and germ and oil" /></div>
+              <figcaption class="illus-card-label">Grain texture swatches<span class="illus-card-meta" style="display:block; font-weight:400;">Pattern as a stand-in for magnified detail</span></figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
           <p class="scale-label">Object illustrations · imported vector, never redrawn</p>
           <p class="section-lede" style="max-width: 64ch;">The brand's illustration style is simple and graphic — realistic in scale, never cartoonish. These three are the exact object examples from the guidelines (Illustrations &amp; diagrams, p.100), imported as vector SVG straight from the source file — the same "never redraw" rule the <a href="#brand-expression">leaf</a> and logo follow.</p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); margin-top: var(--space-5);">
@@ -683,9 +712,48 @@
         </div>
 
         <div class="scale-block">
+          <p class="scale-label">Pick the form first · colour is the last decision, not the first</p>
+          <p class="section-lede" style="max-width: 64ch;">Most bad charts are bad before a single colour is chosen. The data's <em>job</em> — what the reader has to do with it — picks the form, and often the honest answer is that it isn't a chart at all.</p>
+          <div class="token-table-scroll" tabindex="0" role="region" aria-label="When a chart is the wrong answer" style="margin-top: var(--space-4);">
+            <table class="token-table">
+              <thead>
+                <tr><th>If the data is…</th><th>Use</th><th>Not</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>A single current value, maybe with a trend</td><td>A stat tile — value, delta, sparkline</td><td>A one-bar bar chart</td></tr>
+                <tr><td>A handful of headline numbers</td><td>A KPI row of stat tiles</td><td>A grouped bar chart</td></tr>
+                <tr><td>The one number a page leads with</td><td>An expressive hero figure</td><td>—</td></tr>
+                <tr><td>A single ratio against a limit</td><td>A meter on the sequential ramp</td><td>A pie with two slices</td></tr>
+                <tr><td>More than about seven classes that all carry meaning</td><td>A table, or a table beside the chart</td><td>More colours</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="section-lede" style="max-width: 64ch; margin-top: var(--space-5);">If a chart <em>is</em> right, the job picks the type — and the job also picks which of the three colour scales below applies.</p>
+          <div class="token-table-scroll" tabindex="0" role="region" aria-label="Choosing a chart form and colour scale by reader task" style="margin-top: var(--space-4);">
+            <table class="token-table">
+              <thead>
+                <tr><th>The reader has to…</th><th>Form</th><th>Colour scale</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Compare magnitude, low to high</td><td>Bar or column; heatmap for a grid</td><td>Sequential</td></tr>
+                <tr><td>Follow a trend over time</td><td>Line; area for a single series</td><td>Sequential, or one categorical slot</td></tr>
+                <tr><td>Tell distinct series apart</td><td>Grouped or stacked bar, multi-line</td><td>Categorical</td></tr>
+                <tr><td>See that <em>one</em> series is the point</td><td>Emphasis — highlight one, grey the rest</td><td>One hue plus grey</td></tr>
+                <tr><td>Read above/below a baseline or target</td><td>Diverging bar, or line against a baseline</td><td>Diverging</td></tr>
+                <tr><td>Read part-to-whole</td><td>Stacked bar; horizontal for long category names</td><td>Categorical</td></tr>
+                <tr><td>Read an ordered scale (agree ↔ disagree)</td><td>Diverging stacked bar, centred on neutral</td><td>Diverging</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="icon-note" style="margin-top: var(--space-5);">
+            <p><strong>Sequential is the safe default.</strong> One hue, more-is-darker. It is hard to misread and it never runs out of steps. Reach for categorical only when the series themselves are the subject — it is the scale with a real cost, because giving eight things eight colours is a reliable way to bury the one that mattered. When the story is "this one moved," that's <strong>emphasis</strong>, not categorical.</p>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
           <p class="scale-label">Categorical sequence · fixed order, lead with green</p>
           <div class="dataviz-sequence">
-            <div class="chart-color-step" style="background:#00843D;"><span class="chart-color-step-num">1</span><span class="chart-color-step-name">Leaf Green<br>100%</span></div>
+            <div class="chart-color-step" style="background:var(--dv-seq-3);"><span class="chart-color-step-num">1</span><span class="chart-color-step-name">Leaf Green<br>100%</span></div>
             <div class="chart-color-step" style="background:#03441F;"><span class="chart-color-step-num">2</span><span class="chart-color-step-name">Deep Green<br>100%</span></div>
             <div class="chart-color-step chart-color-step--light" style="background:#BDE588;"><span class="chart-color-step-num">3</span><span class="chart-color-step-name">Soft Green<br>100%</span></div>
             <div class="chart-color-step" style="background:#4DA977;"><span class="chart-color-step-num">4</span><span class="chart-color-step-name">Leaf Green<br>70%</span></div>
@@ -715,8 +783,156 @@
           </div>
 
           <div class="icon-note" style="margin-top: var(--space-5);">
-            <p><strong>Validated, not just documented.</strong> Checked against the accepted color-vision-deficiency and contrast rules a chart palette needs: steps 1–3 separate cleanly, but the 4–6 tint pair (Leaf 70% vs. Deep 70%) sits close enough that even full-color vision struggles to tell them apart at a glance. Treat 4–6 as a last resort, not a default — reach for one of the secondary sets above before doubling into tints, and always pair every series with a direct value label so color is never the only thing carrying the data, per the brand's own accessibility note.</p>
+            <p><strong>Measured, not asserted.</strong> Every number here is separation in OKLab (×100), under protanopia and deuteranopia simulated at full severity — the target is 8, and a companion floor of 15 under ordinary colour vision catches pairs that are hard for everyone.</p>
+            <p style="margin-top: var(--space-3);"><strong>Steps 1–3 hold up.</strong> Leaf against Deep measures 19.9 simulated and 20.5 normal — clear. But they separate on <em>lightness</em>, not hue: Deep Green is so dark it reads as near-black rather than as a colour, and Soft Green sits at 1.43:1 against white. That is why the bar chart below gives the Soft Green bar a border, and why all three carry a direct value label.</p>
+            <p style="margin-top: var(--space-3);"><strong>Steps 4–6 do not.</strong> Leaf 70% against Deep 70% measures <strong>13.0 under ordinary colour vision</strong> — below the floor of 15, so full-colour readers struggle with the pair before colour blindness is even considered. Doubling a hue into tints is not a way to add series. Use the validated order below instead.</p>
           </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Extended categorical order · when three series genuinely aren't enough</p>
+          <p class="section-lede" style="max-width: 64ch;">Five slots, each snapped to an existing step on a Sprout ramp, in a fixed order that was chosen by measurement rather than taste. Assign slot 1, then 2, then 3 — never cycle, never skip, and never generate a sixth hue. Dark-mode steps are <em>selected</em> against the dark surface, not derived by flipping the light ones.</p>
+          <div class="token-table-scroll" tabindex="0" role="region" aria-label="Extended categorical order, slot by slot" style="margin-top: var(--space-4);">
+            <table class="token-table">
+              <thead>
+                <tr><th>Slot</th><th>Family</th><th>Light</th><th>Dark</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td>Leaf Green</td><td><span class="token-swatch" style="--c:#00843D">#00843D</span></td><td><span class="token-swatch" style="--c:#00843D">#00843D</span></td></tr>
+                <tr><td>2</td><td>Midnight Blue</td><td><span class="token-swatch" style="--c:#0F49C5">#0F49C5</span></td><td><span class="token-swatch" style="--c:#2168CE">#2168CE</span></td></tr>
+                <tr><td>3</td><td>Soft Green</td><td><span class="token-swatch" style="--c:#81AB40">#81AB40</span></td><td><span class="token-swatch" style="--c:#618030">#618030</span></td></tr>
+                <tr><td>4</td><td>Rich Red</td><td><span class="token-swatch" style="--c:#A80D19">#A80D19</span></td><td><span class="token-swatch" style="--c:#EA5062">#EA5062</span></td></tr>
+                <tr><td>5</td><td>Bright Yellow</td><td><span class="token-swatch" style="--c:#E08C00">#E08C00</span></td><td><span class="token-swatch" style="--c:#A45A00">#A45A00</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="icon-note" style="margin-top: var(--space-5);">
+            <p><strong>What the order buys you.</strong> Neighbouring slots are what actually touch in a stack, a bar group or a line chart, so that is what the order is tuned for: the worst adjacent pair measures 21.3 simulated / 27.5 normal in light, and 7.7 / 16.4 in dark. The dark figure sits in the 6–8 band, which is legal only alongside a second cue — direct labels, which this system already requires on every series.</p>
+            <p style="margin-top: var(--space-3);"><strong>Scatter, bubble and choropleth are a harder test</strong>, because any two marks can end up side by side rather than only neighbours. Under that all-pairs rule the ceiling is <strong>three series in light</strong> (slots 1, 2 and 5 — green, blue, yellow) and <strong>two in dark</strong>. Past that, fold the tail into "Other" or split into small multiples. More hues is never the answer.</p>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Sequential · one hue, more is darker</p>
+          <p class="section-lede" style="max-width: 64ch;">For magnitude — how much, not which one. One hue stepped light to dark, so the reader sees the quantity in the colour without consulting a legend. The anchor flips in dark mode: the ramp still runs low to high, but it starts from the dark end.</p>
+          <div class="dv-ramp" style="margin-top: var(--space-4);">
+            <div class="dv-ramp-step dv-ramp-step--ink" style="background:#57B370;">#57B370</div>
+            <div class="dv-ramp-step" style="background:#2C9C55;">#2C9C55</div>
+            <div class="dv-ramp-step" style="background:#00843D;">#00843D</div>
+            <div class="dv-ramp-step" style="background:#01632D;">#01632D</div>
+            <div class="dv-ramp-step" style="background:#023719;">#023719</div>
+          </div>
+          <p class="dv-ramp-caption">Light mode · green-400 → green-900. Monotone lightness, every adjacent gap clears the visible-step threshold, and the light end still reads at 2.60:1 against white.</p>
+          <div class="dv-ramp" style="margin-top: var(--space-4);">
+            <div class="dv-ramp-step" style="background:#01632D;">#01632D</div>
+            <div class="dv-ramp-step" style="background:#00843D;">#00843D</div>
+            <div class="dv-ramp-step" style="background:#2C9C55;">#2C9C55</div>
+            <div class="dv-ramp-step dv-ramp-step--ink" style="background:#57B370;">#57B370</div>
+            <div class="dv-ramp-step dv-ramp-step--ink" style="background:#8DD9A8;">#8DD9A8</div>
+          </div>
+          <p class="dv-ramp-caption">Dark mode · the same ramp re-anchored, green-700 → green-300. Low still reads as the quietest step and high as the loudest, but "quiet" now means dark-on-dark rather than pale-on-white — the low end clears the dark surface at 2.34:1. Inverting the light steps instead would put the ramp's palest class on a near-black card, which is the opposite of recessive.</p>
+
+          <p class="scale-label" style="margin-top: var(--space-6);">Worked example · heatmap</p>
+          <div class="dv-heatmap" style="margin-top: var(--space-4);">
+            <div></div>
+            <div class="dv-heatmap-head">Mon</div><div class="dv-heatmap-head">Tue</div><div class="dv-heatmap-head">Wed</div>
+            <div class="dv-heatmap-head">Thu</div><div class="dv-heatmap-head">Fri</div><div class="dv-heatmap-head">Sat</div>
+            <div class="dv-heatmap-row-head">Mill A</div>
+            <div class="dv-heatmap-cell" style="background:var(--dv-seq-1);color:#101D16;">12</div>
+            <div class="dv-heatmap-cell" style="background:var(--dv-seq-2);color:#fff;">31</div>
+            <div class="dv-heatmap-cell" style="background:var(--dv-seq-3);color:#fff;">48</div>
+            <div class="dv-heatmap-cell" style="background:var(--dv-seq-4);color:#fff;">66</div>
+            <div class="dv-heatmap-cell" style="background:var(--dv-seq-5);color:#fff;">81</div>
+            <div class="dv-heatmap-cell" style="background:var(--dv-seq-3);color:#fff;">44</div>
+            <div class="dv-heatmap-row-head">Mill B</div>
+            <div class="dv-heatmap-cell" style="background:var(--dv-seq-2);color:#fff;">27</div>
+            <div class="dv-heatmap-cell" style="background:var(--dv-seq-1);color:#101D16;">15</div>
+            <div class="dv-heatmap-cell" style="background:var(--dv-seq-4);color:#fff;">63</div>
+            <div class="dv-heatmap-cell" style="background:var(--dv-seq-5);color:#fff;">88</div>
+            <div class="dv-heatmap-cell" style="background:var(--dv-seq-3);color:#fff;">52</div>
+            <div class="dv-heatmap-cell" style="background:var(--dv-seq-2);color:#fff;">29</div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-4);">Every cell carries its own number, so the ramp is a second reading of the data rather than the only one. The 2px gap between cells is the surface showing through — it keeps the two lightest classes apart without putting a border on all twelve.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Diverging · two hues around a neutral middle</p>
+          <p class="section-lede" style="max-width: 64ch;">For polarity — which side of zero, or of a target. Two hues running outward from a grey midpoint, with matching step counts on each arm so the two directions carry equal visual weight.</p>
+          <div class="dv-ramp" style="margin-top: var(--space-4);">
+            <div class="dv-ramp-step" style="background:#0F49C5;">#0F49C5</div>
+            <div class="dv-ramp-step dv-ramp-step--ink" style="background:#55A5EB;">#55A5EB</div>
+            <div class="dv-ramp-step dv-ramp-step--ink" style="background:#DBDDDC;">#DBDDDC</div>
+            <div class="dv-ramp-step dv-ramp-step--ink" style="background:#E08C00;">#E08C00</div>
+            <div class="dv-ramp-step" style="background:#C27200;">#C27200</div>
+          </div>
+          <p class="dv-ramp-caption">Below target ← Midnight Blue · neutral · Bright Yellow → above target. The two poles measure 30.9 simulated and 37.8 normal — about as far apart as this palette gets.</p>
+          <div class="icon-note" style="margin-top: var(--space-5);">
+            <p><strong>Not red-to-green — this is the one place the brand's own greens must step aside.</strong> Rich Red against Leaf Green looks like a 30.0 separation to full-colour vision, which is why it feels like the obvious choice. Simulate deuteranopia and it collapses to <strong>6.5</strong>: the two ends of the scale become the same colour, and the chart now says nothing to roughly one man in twelve. Blue-to-yellow keeps the same "bad ↔ good" reading for everyone. Green stays the lead hue everywhere else in this system; it just cannot be half of a diverging pair.</p>
+          </div>
+
+          <p class="scale-label" style="margin-top: var(--space-6);">Worked example · diverging bar</p>
+          <div class="dv-diverging" style="margin-top: var(--space-4);">
+            <div class="dv-diverging-row">
+              <span class="dv-diverging-label">North America</span>
+              <span class="dv-diverging-track">
+                <span class="dv-diverging-bar" style="background:var(--dv-div-pos-2); left:50%; width:21%;"></span>
+                <span class="dv-diverging-value" style="left:73%;">+8.4%</span>
+              </span>
+            </div>
+            <div class="dv-diverging-row">
+              <span class="dv-diverging-label">Latin America</span>
+              <span class="dv-diverging-track">
+                <span class="dv-diverging-bar" style="background:var(--dv-div-pos-1); left:50%; width:9%;"></span>
+                <span class="dv-diverging-value" style="left:61%;">+3.6%</span>
+              </span>
+            </div>
+            <div class="dv-diverging-row">
+              <span class="dv-diverging-label">Europe</span>
+              <span class="dv-diverging-track">
+                <span class="dv-diverging-bar" style="background:var(--dv-div-neg-1); left:38.5%; width:11.5%;"></span>
+                <span class="dv-diverging-value" style="right:63.5%;">−4.6%</span>
+              </span>
+            </div>
+            <div class="dv-diverging-row">
+              <span class="dv-diverging-label">Asia Pacific</span>
+              <span class="dv-diverging-track">
+                <span class="dv-diverging-bar" style="background:var(--dv-div-neg-2); left:21.5%; width:28.5%;"></span>
+                <span class="dv-diverging-value" style="right:80.5%;">−11.4%</span>
+              </span>
+            </div>
+          </div>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-4);">Change against last quarter. The zero rule is the only line drawn at full weight — it is the thing every bar is measured against. Direction is carried by which side of it a bar sits on, so the colour is reinforcing the reading rather than being it.</p>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Status · a reserved scale, never a series</p>
+          <p class="section-lede" style="max-width: 64ch;">Status colours mean a state, and only a state. They are deliberately kept off the categorical slots so a status colour can never be mistaken for "series 4" — and they never travel without an icon and a word, because a colour on its own cannot say <em>critical</em>.</p>
+          <div class="dv-status-row" style="margin-top: var(--space-4);">
+            <span class="dv-status-chip"><span class="material-symbols-rounded" style="color:#01632D;" aria-hidden="true">check_circle</span>On target</span>
+            <span class="dv-status-chip"><span class="material-symbols-rounded" style="color:#C27200;" aria-hidden="true">warning</span>Watch</span>
+            <span class="dv-status-chip"><span class="material-symbols-rounded" style="color:#C50F1F;" aria-hidden="true">error</span>Off target</span>
+            <span class="dv-status-chip"><span class="material-symbols-rounded" style="color:var(--text-muted);" aria-hidden="true">remove</span>No data</span>
+          </div>
+          <div class="icon-note" style="margin-top: var(--space-5);">
+            <p><strong>The collision rule.</strong> When a series genuinely <em>means</em> good or bad — an error rate, a pass/fail count — it wears status colours. When it is just another category, it wears its categorical slot. Never both in the same chart, and never a status colour on a series that has no state to report.</p>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Emphasis · the most underused form here</p>
+          <p class="section-lede" style="max-width: 64ch;">When one series is the point and the others are context, colouring all five is actively unhelpful — it spends the reader's attention evenly on things that don't deserve it equally. One line in Leaf Green, the rest in the de-emphasis grey, and the chart makes its own argument.</p>
+          <svg class="dv-emphasis-chart" viewBox="0 0 460 150" role="img" aria-label="Orders per week for five mills. Mill A rises from 4.2 to 13.1 thousand while the other four stay flat between 3 and 6 thousand." style="margin-top: var(--space-4);">
+            <line x1="0" y1="132" x2="460" y2="132" stroke="var(--border)" stroke-width="1"/>
+            <polyline class="dv-emphasis-path dv-emphasis-path--muted" points="16,96 126,101 236,92 346,99 446,94"/>
+            <polyline class="dv-emphasis-path dv-emphasis-path--muted" points="16,110 126,104 236,112 346,106 446,109"/>
+            <polyline class="dv-emphasis-path dv-emphasis-path--muted" points="16,84 126,89 236,86 346,82 446,88"/>
+            <polyline class="dv-emphasis-path dv-emphasis-path--muted" points="16,118 126,121 236,115 346,120 446,116"/>
+            <polyline class="dv-emphasis-path dv-emphasis-path--lead" points="16,100 126,82 236,64 346,40 446,20"/>
+            <text x="16" y="114" class="dv-emphasis-label">4.2</text>
+            <text x="446" y="14" class="dv-emphasis-label" text-anchor="end">13.1</text>
+            <text x="446" y="128" class="dv-emphasis-label dv-emphasis-label--muted" text-anchor="end">4 other mills</text>
+          </svg>
+          <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-4);">Five series, one colour and a grey. No legend is needed — the highlighted line is named in the title, and the grey group is labelled once as a group rather than four times individually.</p>
         </div>
 
         <div class="scale-block" style="margin-top: var(--space-7);">
@@ -739,7 +955,7 @@
           <div class="bar-chart">
             <div class="bar-chart-col">
               <span class="bar-chart-value">4.2</span>
-              <div class="bar-chart-bar" style="height: 32%; background:#00843D;"></div>
+              <div class="bar-chart-bar" style="height: 32%; background:var(--dv-seq-3);"></div>
               <span class="bar-chart-label">Q1</span>
             </div>
             <div class="bar-chart-col">
@@ -798,7 +1014,7 @@
               <text x="50" y="54" class="dataviz-donut-center">3 regions</text>
             </svg>
             <div class="dataviz-donut-legend">
-              <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#00843D;"></span>North<span class="dataviz-donut-legend-value">45%</span></div>
+              <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:var(--dv-seq-3);"></span>North<span class="dataviz-donut-legend-value">45%</span></div>
               <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#03441F;"></span>South<span class="dataviz-donut-legend-value">35%</span></div>
               <div class="dataviz-donut-legend-item"><span class="dataviz-donut-swatch" style="background:#BDE588;"></span>East<span class="dataviz-donut-legend-value">20%</span></div>
             </div>
@@ -832,6 +1048,9 @@
             </div>
           </div>
           <p class="section-lede" style="max-width: 62ch; margin-top: var(--space-5);">The rule from the swatch page, actually exercised: <em>“if more than six colors are needed, add one of these three color sets.”</em> Six greens from the tint ladder carry regions one through six, then the seventh and eighth reach into Midnight Blue Mid (<code>#003366</code>) and Sky Blue Deep (<code>#007681</code>) — one set, added whole, not two colors borrowed from two different sets. Series order stays fixed, so the same region keeps the same color from chart to chart.</p>
+          <div class="icon-note" style="margin-top: var(--space-4);">
+            <p><strong>This is not the same answer as “Extended categorical order” above, and both belong here.</strong> That scale is built from Sprout's own ramps and ordered by measured adjacent contrast — it's what to reach for when you are building a screen. This one reproduces what the brand guidelines actually specify (<code>#003366</code>, <code>#007681</code>, <code>#BCEDFF</code> and the two sets beside them), which is what you'll meet in brand-produced decks, print and anything coming back from the studio. Match the surface you're working on: the measured scale for product UI, the documented sets when your work has to sit next to the guidelines' own artwork.</p>
+          </div>
         </div>
 
         <div class="scale-block" style="margin-top: var(--space-7);">
@@ -929,8 +1148,48 @@
         </div>
 
         <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Chart anatomy · what carries weight, and what recedes</p>
+          <dl class="term-grid">
+            <div class="term-item">
+              <dt>Marks</dt>
+              <dd>Thin over heavy. Lines at 2px, dots at 8px or more so they are a real hover target, and a 2px gap in the surface colour between adjacent fills — stacked segments and neighbouring bars alike — so two similar steps never melt into one shape.</dd>
+            </div>
+            <div class="term-item">
+              <dt>Axes &amp; gridlines</dt>
+              <dd>Recessive. A hairline in the border token, never in a series colour. The only line that earns full weight is a baseline the data is actually read against — a zero rule on a diverging chart, or a target line.</dd>
+            </div>
+            <div class="term-item">
+              <dt>Labels</dt>
+              <dd>Selective, not exhaustive. First and last point on a trend; every bar on a small bar chart; every cell on a heatmap. A number on every point of a six-point line is noise. Labels wear text tokens — never the series colour.</dd>
+            </div>
+            <div class="term-item">
+              <dt>Legend</dt>
+              <dd>Present whenever there are two or more series, so identity is never colour alone. A single series needs none — the title already names it. At four series or fewer, direct-label as well and the legend becomes a backstop rather than the primary key.</dd>
+            </div>
+            <div class="term-item">
+              <dt>One axis</dt>
+              <dd>Never two y-scales on one chart. Two measures at different scales become two charts, small multiples, or both indexed to a common base. A dual axis lets the author choose where the lines cross, which means it can be made to say anything.</dd>
+            </div>
+            <div class="term-item">
+              <dt>Interaction</dt>
+              <dd>An on-screen chart is interactive by default: a crosshair and tooltip on line and area, a per-mark tooltip on bar, dot and cell, with hit targets larger than the marks themselves. The static examples on this page show mark specs only.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
+          <p class="scale-label">Accessibility · the chart is not the only way in</p>
+          <div class="icon-note">
+            <p><strong>Every chart needs a non-visual reading.</strong> Give the <code>&lt;svg&gt;</code> <code>role="img"</code> and an <code>aria-label</code> that states the finding, not the filename — "Orders rose from 4.2 to 11.5 thousand over six weeks," not "line chart." Where the underlying numbers matter, ship a table view alongside; it is also the relief that makes the lighter steps legal, since several of them sit below 3:1 against white by design.</p>
+            <p style="margin-top: var(--space-3);"><strong>Colour is never the only channel.</strong> Direct labels, a legend, position against a baseline, or a pattern fill — at least one of these carries the data on its own. This is the same rule the brand states as "functionality always takes precedent over colour," expressed as something you can check.</p>
+            <p style="margin-top: var(--space-3);"><strong>Dark mode is selected, not flipped.</strong> Inverting light-mode steps produces colours that fail the band against a dark surface. Each mode gets its own steps off the same ramps, measured against its own surface — which is why the table above lists two columns rather than one.</p>
+          </div>
+        </div>
+
+        <div class="scale-block" style="margin-top: var(--space-7);">
           <div class="icon-note">
             <p><strong>Don'ts.</strong> Never round the corners on functional/template data — it isn't replicable everywhere this data renders. Never let color alone carry the difference between series; a legend or a direct label always accompanies it. Never reach for a secondary colorway "sporadically" — it's an intentional accessibility or brand-architecture choice, not decoration. And never build a chart that looks like data but communicates nothing of importance — if the content next to it is really a bullet list, use a bullet list.</p>
+            <p style="margin-top: var(--space-3);">Never solve "too many series" by inventing a hue — a generated ninth colour is indistinguishable from one already in the set. Never put two y-axes on one chart. Never run a diverging scale from red to green. Never colour nominal bars by their own value, which spends the identity channel re-encoding what bar length already shows. And never mix the functional and expressive treatments in a single chart: pick the job, then commit to it.</p>
           </div>
         </div>
 

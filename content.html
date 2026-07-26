@@ -158,7 +158,7 @@
         <div class="component-grid">
 <div class="component-legend">
             <span class="material-symbols-rounded" aria-hidden="true">info</span>
-            <span><strong>A note on these demos:</strong> controls are live where it matters — checkboxes, accordions, toggles, and combobox menus genuinely respond — but actions like Log In, Save, or Delete are illustrative only and won’t submit or persist anything.</span>
+            <span><strong>A note on these demos:</strong> controls are live where it matters — checkboxes, accordions, and toggles genuinely respond — but actions like Log In, Save, or Delete are illustrative only and won’t submit or persist anything, and the combobox's open-menu states are static illustrations of each variant, not an interactive dropdown.</span>
           </div>
 <div class="component-heading" id="accordion">
             <h2 class="component-heading-title">Accordion</h2>
@@ -565,18 +565,18 @@
               <span class="chip-matrix-header">+ Lead + Close</span>
 
               <span class="chip-matrix-row-label">Large</span>
-              <div class="chip-row"><span class="chip chip--lg" role="button" tabindex="0">Chip</span></div>
-              <div class="chip-row"><span class="chip chip--lg" role="button" tabindex="0"><span class="chip-lead"><span class="material-symbols-rounded">person</span></span>Chip</span></div>
+              <div class="chip-row"><span class="chip chip--lg">Chip</span></div>
+              <div class="chip-row"><span class="chip chip--lg"><span class="chip-lead"><span class="material-symbols-rounded">person</span></span>Chip</span></div>
               <div class="chip-row"><span class="chip chip--lg"><span class="chip-lead"><span class="material-symbols-rounded" aria-hidden="true">person</span></span>Chip<button class="chip-close" aria-label="Remove Chip"><span class="material-symbols-rounded">close</span></button></span></div>
 
               <span class="chip-matrix-row-label">Medium</span>
-              <div class="chip-row"><span class="chip" role="button" tabindex="0">Chip</span></div>
-              <div class="chip-row"><span class="chip" role="button" tabindex="0"><span class="chip-lead"><span class="material-symbols-rounded">person</span></span>Chip</span></div>
+              <div class="chip-row"><span class="chip">Chip</span></div>
+              <div class="chip-row"><span class="chip"><span class="chip-lead"><span class="material-symbols-rounded">person</span></span>Chip</span></div>
               <div class="chip-row"><span class="chip"><span class="chip-lead"><span class="material-symbols-rounded" aria-hidden="true">person</span></span>Chip<button class="chip-close" aria-label="Remove Chip"><span class="material-symbols-rounded">close</span></button></span></div>
 
               <span class="chip-matrix-row-label">Small</span>
-              <div class="chip-row"><span class="chip chip--sm" role="button" tabindex="0">Chip</span></div>
-              <div class="chip-row"><span class="chip chip--sm" role="button" tabindex="0"><span class="chip-lead"><span class="material-symbols-rounded">person</span></span>Chip</span></div>
+              <div class="chip-row"><span class="chip chip--sm">Chip</span></div>
+              <div class="chip-row"><span class="chip chip--sm"><span class="chip-lead"><span class="material-symbols-rounded">person</span></span>Chip</span></div>
               <div class="chip-row"><span class="chip chip--sm"><span class="chip-lead"><span class="material-symbols-rounded" aria-hidden="true">person</span></span>Chip<button class="chip-close" aria-label="Remove Chip"><span class="material-symbols-rounded">close</span></button></span></div>
             </div>
           </div>
@@ -590,9 +590,9 @@
               <span class="chip-matrix-header">Disabled</span>
 
               <span class="chip-matrix-row-label">Plain</span>
-              <div class="chip-row"><span class="chip" role="button" tabindex="0">Chip</span></div>
-              <div class="chip-row"><span class="chip chip--selected" role="button" tabindex="0">Chip</span></div>
-              <div class="chip-row"><span class="chip" role="button" tabindex="0" aria-disabled="true">Chip</span></div>
+              <div class="chip-row"><span class="chip">Chip</span></div>
+              <div class="chip-row"><span class="chip chip--selected">Chip</span></div>
+              <div class="chip-row"><span class="chip" aria-disabled="true">Chip</span></div>
 
               <span class="chip-matrix-row-label">With close</span>
               <div class="chip-row"><span class="chip">Chip<button class="chip-close" aria-label="Remove Chip"><span class="material-symbols-rounded">close</span></button></span></div>
@@ -608,7 +608,7 @@
 
           <div class="component">
             <p class="component-label">Chip · filter usage</p>
-            <div class="chip-row" style="margin-bottom: var(--space-4);">
+            <div class="chip-row" id="chip-filter-demo" style="margin-bottom: var(--space-4);">
               <span class="chip" role="button" tabindex="0">All</span>
               <span class="chip chip--selected">Meats<button class="chip-close" aria-label="Remove Meats"><span class="material-symbols-rounded">close</span></button></span>
               <span class="chip chip--selected">Seafood<button class="chip-close" aria-label="Remove Seafood"><span class="material-symbols-rounded">close</span></button></span>

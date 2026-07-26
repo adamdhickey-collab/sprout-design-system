@@ -131,7 +131,7 @@
         </div>
 
         <div class="scale-block">
-          <p class="scale-label">How the tokens are structured</p>
+          <h2 class="scale-label">How the tokens are structured</h2>
           <p class="card-body" style="max-width: 68ch; margin-bottom: var(--space-5);">Every color, space, radius, and shadow in Sprout is a CSS custom property, layered in two tiers. <strong>Primitives</strong> are the raw values (<code>--green-600</code>, <code>--space-5</code>) — see the <a href="index.html#color">Color</a> and <a href="index.html#space">Layout &amp; shape</a> foundations for the full scale. <strong>Semantic tokens</strong> point at a primitive for a specific purpose (<code>--brand</code>, <code>--surface</code>, <code>--text-muted</code>) and are what components actually use, so a single re-point in <code>[data-theme="dark"]</code> updates every component at once. The full mapping is on the <a href="system.html#themes">Themes</a> page.</p>
           <pre class="component-code component-code--visible"><code>/* Reference a token the same way any component does */
 .my-card {
@@ -144,7 +144,7 @@
         </div>
 
         <div class="scale-block">
-          <p class="scale-label">Adding Sprout to a codebase</p>
+          <h2 class="scale-label">Adding Sprout to a codebase</h2>
           <div class="checklist">
             <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">looks_one</span><span><strong>Copy the source.</strong> <code>styles.css</code>, the <code>Cargill Fonts/</code> folder, and <code>assets/</code> are the entire dependency — no build step, no package manager. Copy all three into your project.</span></div>
             <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">looks_two</span><span><strong>Link the stylesheet</strong> and keep the font <code>&lt;link&gt;</code>/<code>&lt;preload&gt;</code> tags from any page's <code>&lt;head&gt;</code> here as a reference — Big Caslon and Helvetica Now won't load without them.</span></div>
@@ -154,7 +154,7 @@
         </div>
 
         <div class="scale-block">
-          <p class="scale-label">Before you ship a new component</p>
+          <h2 class="scale-label">Before you ship a new component</h2>
           <p class="card-body" style="max-width: 68ch; margin-bottom: var(--space-5);">This checklist exists because of a real bug class found in this system: components that looked correct in Light mode broke under Dark — a wordmark that went invisible, destructive-red text that dropped to 2.9:1 contrast, white text baked onto a fill that turns lime in Dark mode. All from the same root cause below.</p>
           <div class="checklist">
             <div class="checklist-item"><span class="material-symbols-rounded" aria-hidden="true">toggle_on</span><span><strong>Know which tokens re-point in Dark mode.</strong> <code>--brand</code>, <code>--brand-deep</code>, <code>--surface</code>, and the <code>--text-*</code> family intentionally change value under <code>[data-theme="dark"]</code>. Most primitives (<code>--green-600</code>, <code>--red-400</code>, <code>--neutral-1000</code>) do not.</span></div>
