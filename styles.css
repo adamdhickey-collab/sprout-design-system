@@ -181,6 +181,44 @@
       --accent-gold:    #C7A86A;                 /* secondary accent */
       --on-accent:      #FFFFFF;                 /* text/icon color on top of --brand */
 
+      /* ---- Data visualization scales ----
+         Four scales, four jobs: categorical says WHICH series, sequential says HOW
+         MUCH, diverging says WHICH SIDE of a baseline, status says WHAT STATE. They
+         are not interchangeable, and a chart never mixes two of them.
+         Every value is an existing step off a ramp above, chosen by measurement: each
+         sits inside the mode's OKLCH lightness band and above the chroma floor, and
+         the separations were checked in OKLab under simulated protanopia and
+         deuteranopia. Dark steps are re-selected against the dark surface in the
+         [data-theme="dark"] block — they are NOT the light steps inverted.
+         Don't hand-pick a replacement and don't add a slot 6; the Data visualization
+         section of system.html records what each number is and why. */
+      --dv-cat-1: var(--green-600);        /* Leaf Green    — always leads */
+      --dv-cat-2: var(--blue-700);         /* Midnight Blue */
+      --dv-cat-3: var(--soft-green-600);   /* Soft Green    */
+      --dv-cat-4: var(--red-700);          /* Rich Red      */
+      --dv-cat-5: var(--yellow-600);       /* Bright Yellow */
+
+      --dv-seq-1: var(--green-400);        /* low  */
+      --dv-seq-2: var(--green-500);
+      --dv-seq-3: var(--green-600);
+      --dv-seq-4: var(--green-700);
+      --dv-seq-5: var(--green-900);        /* high */
+
+      /* Blue↔yellow, never red↔green: red against green collapses to a separation of
+         6.5 under deuteranopia, which erases the two ends of the scale. */
+      --dv-div-neg-2: var(--blue-700);     /* furthest below the baseline */
+      --dv-div-neg-1: var(--blue-400);
+      --dv-div-mid:   var(--neutral-300);  /* neutral middle — grey, never a hue */
+      --dv-div-pos-1: var(--yellow-600);
+      --dv-div-pos-2: var(--yellow-700);   /* furthest above the baseline */
+
+      /* Reserved. Never reused as a categorical slot, never shipped without an icon
+         and a word beside them. */
+      --dv-status-good:     var(--green-700);
+      --dv-status-warning:  var(--yellow-700);
+      --dv-status-critical: var(--red-600);
+      --dv-status-none:     var(--text-muted);
+
       /* Padding scale, from Cargill Sprout · Foundations · Padding & Spacing */
       --padding-xs:   2px;
       --padding-sm:   4px;
@@ -5430,6 +5468,36 @@
       --soft-green-50:  #18241C;  /* light-green hover/selected → subtle dark */
       --soft-green-100: #1F2D23;
       --soft-green-200: #2F5A3C;  /* focus ring stays visible on dark        */
+
+      /* ---- Data visualization scales · dark ----
+         Re-selected against the dark card surface (#101D16), not inverted: flipping
+         the light steps puts the palest class of a ramp on a near-black card, which
+         is the opposite of recessive, and drops several hues out of the dark
+         lightness band. Slot 1 is the one step that holds in both modes.
+         Worst adjacent categorical pair here measures 7.7 simulated / 16.4 normal —
+         the simulated figure sits in the 6–8 band, which is legal only because every
+         series in this system also carries a direct label. */
+      --dv-cat-2: var(--blue-600);
+      --dv-cat-3: var(--soft-green-700);
+      --dv-cat-4: var(--rich-red-mid);
+      --dv-cat-5: var(--yellow-800);
+
+      --dv-seq-1: var(--green-700);        /* low — the ramp's anchor flips */
+      --dv-seq-2: var(--green-600);
+      --dv-seq-3: var(--green-500);
+      --dv-seq-4: var(--green-400);
+      --dv-seq-5: var(--green-300);        /* high */
+
+      /* --dv-div-mid needs no entry: it points at --neutral-300, which this block
+         already repoints to #3A4A41. Poles measure 27.8 simulated / 32.6 normal. */
+      --dv-div-neg-2: var(--blue-600);
+      --dv-div-neg-1: var(--blue-500);
+      --dv-div-pos-1: var(--yellow-600);
+      --dv-div-pos-2: var(--yellow-700);
+
+      --dv-status-good:     var(--green-400);
+      --dv-status-warning:  var(--yellow-600);
+      --dv-status-critical: var(--rich-red-mid);
     }
 
     /* ---- Dark theme · fixes for rules that hard-code a light value ---- */
