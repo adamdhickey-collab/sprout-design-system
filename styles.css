@@ -1828,6 +1828,25 @@
       color: var(--text-muted);
     }
 
+    /* ---------- Wide token tables · horizontal scroll ----------
+       Four columns of monospace token names and hex values give these tables a
+       min-content width of ~580px, and a table can't shrink below that — so on
+       a phone the widest one dragged the whole document 221px wider than the
+       viewport. The table now scrolls inside its own frame, the treatment
+       .btn-matrix and .avatar-matrix already use for dense reference grids.
+       The wrapper is a focusable, labelled region so the scroll is reachable by
+       keyboard, and padding-bottom keeps a classic scrollbar off the table's
+       bottom border. */
+    .token-table-scroll {
+      overflow-x: auto;
+      border-radius: var(--corner-radius-base);
+      padding-bottom: 4px;
+    }
+    .token-table-scroll:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--soft-green-200);
+    }
+
     .token-table {
       width: 100%;
       border-collapse: collapse;
@@ -2562,6 +2581,7 @@
       .dv-seq, .dv-set-row { grid-template-columns: repeat(2, 1fr); }
       .dv-cats span { font-size: 8px; }
     }
+
 
     /* ---------- Components ---------- */
     .component-grid {
