@@ -421,9 +421,14 @@
 
       function go(item) {
         close();
-        if (item.page === currentPage() && item.anchor) {
-          sproutJumpToHash(item.anchor);
-          history.pushState(null, '', item.anchor);
+        if (item.page === currentPage()) {
+          // Already here — an empty anchor (e.g. the page's own index entry)
+          // means there's nothing left to do but close, not reload the page
+          // we're already on.
+          if (item.anchor) {
+            sproutJumpToHash(item.anchor);
+            history.pushState(null, '', item.anchor);
+          }
         } else {
           location.href = item.page + item.anchor;
         }
@@ -606,12 +611,6 @@
       document.body.removeChild(ta);
       done();
     }
-    function sproutEscape(str) {
-      return String(str).replace(/[&<>"]/g, function (c) {
-        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
-      });
-    }
-
     // Click-to-copy on tonal-ramp token swatches · copies the displayed hex.
     (function () {
       document.querySelectorAll('.palette-swatch').forEach((swatch) => {
@@ -625,6 +624,60 @@
         swatch.addEventListener('click', copy);
         swatch.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copy(); }
+        });
+      });
+    })();
+
+    // Bare href="#" placeholder links (breadcrumbs, footer, "Forgot password?",
+    // file-upload "Browse", etc. — 60+ across the site) jump the page to the top
+    // with no other feedback, since they're real anchor navigation to nothing.
+    // One delegated guard covers all of them, present and future; a real anchor
+    // link always names a fragment (href="#section"), so the exact-match
+    // selector can't accidentally catch real in-page navigation.
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href="#"]');
+      if (a) e.preventDefault();
+    });
+
+    // Tabs · WAI-ARIA tabs pattern. Previously had zero interactivity — clicking
+    // a tab did nothing at all (aria-selected/tab--active never changed after
+    // the initial static markup), and there was no arrow-key navigation between
+    // tabs. Applies to every [role="tablist"] on the page uniformly. Only one
+    // tab group (Project sections) has a real tabpanel to show/hide; the rest
+    // just toggle their own selected/active state, matching how far the other
+    // "live where it matters" demos on this site go (visual state, not full
+    // app behavior) — see the page's own "note on these demos" banner.
+    (function () {
+      document.querySelectorAll('[role="tablist"]').forEach(tablist => {
+        const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+        if (!tabs.length) return;
+
+        function select(tab) {
+          tabs.forEach(t => {
+            const isSelected = t === tab;
+            t.setAttribute('aria-selected', String(isSelected));
+            t.classList.toggle('tab--active', isSelected);
+            t.tabIndex = isSelected ? 0 : -1;
+            const panelId = t.getAttribute('aria-controls');
+            const panel = panelId && document.getElementById(panelId);
+            if (panel) panel.hidden = !isSelected;
+          });
+        }
+
+        tabs.forEach(tab => {
+          tab.tabIndex = tab.classList.contains('tab--active') ? 0 : -1;
+          tab.addEventListener('click', () => { if (!tab.disabled) select(tab); });
+          tab.addEventListener('keydown', (e) => {
+            const enabled = tabs.filter(t => !t.disabled);
+            const idx = enabled.indexOf(tab);
+            if (idx === -1) return;
+            let next = null;
+            if (e.key === 'ArrowRight') next = enabled[(idx + 1) % enabled.length];
+            else if (e.key === 'ArrowLeft') next = enabled[(idx - 1 + enabled.length) % enabled.length];
+            else if (e.key === 'Home') next = enabled[0];
+            else if (e.key === 'End') next = enabled[enabled.length - 1];
+            if (next) { e.preventDefault(); select(next); next.focus(); }
+          });
         });
       });
     })();
