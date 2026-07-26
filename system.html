@@ -174,79 +174,81 @@
         </div>
 
         <div class="scale-block">
-          <p class="scale-label">Global semantic tokens · Light / Dark</p>
-          <table class="token-table">
-            <thead>
-              <tr>
-                <th>Token</th>
-                <th>Light Mode</th>
-                <th>Dark Mode</th>
-                <th>Use</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="token-name">sds-color-background-page</td>
-                <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
-                <td><span class="token-swatch" style="--c:#023719">#023719</span></td>
-                <td>Page-level surface</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-background-component</td>
-                <td><span class="token-swatch" style="--c:#F5F9ED">#F5F9ED</span></td>
-                <td><span class="token-swatch" style="--c:#03441F">#03441F</span></td>
-                <td>Soft card / panel fill</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-background-brand</td>
-                <td><span class="token-swatch" style="--c:#00843D">#00843D</span></td>
-                <td><span class="token-swatch" style="--c:#BDE588">#BDE588</span></td>
-                <td>Primary action surfaces</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-background-disabled</td>
-                <td><span class="token-swatch" style="--c:#F3F4F3">#F3F4F3</span></td>
-                <td><span class="token-swatch" style="--c:#404945">#404945</span></td>
-                <td>Disabled control fills</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-text-primary</td>
-                <td><span class="token-swatch" style="--c:#101C16">#101C16</span></td>
-                <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
-                <td>Default body text</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-text-secondary</td>
-                <td><span class="token-swatch" style="--c:#404945">#404945</span></td>
-                <td><span class="token-swatch" style="--c:rgba(255,255,255,0.85)">85% white</span></td>
-                <td>Supporting copy</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-text-muted</td>
-                <td><span class="token-swatch" style="--c:#707773">#707773</span></td>
-                <td><span class="token-swatch" style="--c:rgba(255,255,255,0.7)">70% white</span></td>
-                <td>Helper / metadata</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-text-on-brand</td>
-                <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
-                <td><span class="token-swatch" style="--c:#101C16">#101C16</span></td>
-                <td>Text on brand surfaces</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-border-primary</td>
-                <td><span class="token-swatch" style="--c:#DBDDDC">#DBDDDC</span></td>
-                <td><span class="token-swatch" style="--c:rgba(255,255,255,0.12)">12% white</span></td>
-                <td>Default borders / dividers</td>
-              </tr>
-              <tr>
-                <td class="token-name">sds-color-text-error</td>
-                <td><span class="token-swatch" style="--c:#C50F1F">#C50F1F</span></td>
-                <td><span class="token-swatch" style="--c:#F87171">#F87171</span></td>
-                <td>Error messages</td>
-              </tr>
-            </tbody>
-          </table>
+          <p class="scale-label" id="tokens-semantic-label">Global semantic tokens · Light / Dark</p>
+          <div class="token-table-scroll" tabindex="0" role="region" aria-labelledby="tokens-semantic-label">
+            <table class="token-table">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Light Mode</th>
+                  <th>Dark Mode</th>
+                  <th>Use</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="token-name">sds-color-background-page</td>
+                  <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
+                  <td><span class="token-swatch" style="--c:#023719">#023719</span></td>
+                  <td>Page-level surface</td>
+                </tr>
+                <tr>
+                  <td class="token-name">sds-color-background-component</td>
+                  <td><span class="token-swatch" style="--c:#F5F9ED">#F5F9ED</span></td>
+                  <td><span class="token-swatch" style="--c:#03441F">#03441F</span></td>
+                  <td>Soft card / panel fill</td>
+                </tr>
+                <tr>
+                  <td class="token-name">sds-color-background-brand</td>
+                  <td><span class="token-swatch" style="--c:#00843D">#00843D</span></td>
+                  <td><span class="token-swatch" style="--c:#BDE588">#BDE588</span></td>
+                  <td>Primary action surfaces</td>
+                </tr>
+                <tr>
+                  <td class="token-name">sds-color-background-disabled</td>
+                  <td><span class="token-swatch" style="--c:#F3F4F3">#F3F4F3</span></td>
+                  <td><span class="token-swatch" style="--c:#404945">#404945</span></td>
+                  <td>Disabled control fills</td>
+                </tr>
+                <tr>
+                  <td class="token-name">sds-color-text-primary</td>
+                  <td><span class="token-swatch" style="--c:#101C16">#101C16</span></td>
+                  <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
+                  <td>Default body text</td>
+                </tr>
+                <tr>
+                  <td class="token-name">sds-color-text-secondary</td>
+                  <td><span class="token-swatch" style="--c:#404945">#404945</span></td>
+                  <td><span class="token-swatch" style="--c:rgba(255,255,255,0.85)">85% white</span></td>
+                  <td>Supporting copy</td>
+                </tr>
+                <tr>
+                  <td class="token-name">sds-color-text-muted</td>
+                  <td><span class="token-swatch" style="--c:#707773">#707773</span></td>
+                  <td><span class="token-swatch" style="--c:rgba(255,255,255,0.7)">70% white</span></td>
+                  <td>Helper / metadata</td>
+                </tr>
+                <tr>
+                  <td class="token-name">sds-color-text-on-brand</td>
+                  <td><span class="token-swatch" style="--c:#FFFFFF">#FFFFFF</span></td>
+                  <td><span class="token-swatch" style="--c:#101C16">#101C16</span></td>
+                  <td>Text on brand surfaces</td>
+                </tr>
+                <tr>
+                  <td class="token-name">sds-color-border-primary</td>
+                  <td><span class="token-swatch" style="--c:#DBDDDC">#DBDDDC</span></td>
+                  <td><span class="token-swatch" style="--c:rgba(255,255,255,0.12)">12% white</span></td>
+                  <td>Default borders / dividers</td>
+                </tr>
+                <tr>
+                  <td class="token-name">sds-color-text-error</td>
+                  <td><span class="token-swatch" style="--c:#C50F1F">#C50F1F</span></td>
+                  <td><span class="token-swatch" style="--c:#F87171">#F87171</span></td>
+                  <td>Error messages</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div class="scale-block">
@@ -355,7 +357,7 @@
 
         <div class="scale-block">
           <p class="scale-label">Brand canvas · single color graphic</p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-4);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: var(--space-4);">
             <!-- Dark composition: Deep leaf on a deeper-green ground — low leaf/bg contrast,
                  so white text clears AA (7:1+) over both the leaf and the background. -->
             <div class="brand-canvas" style="--brand-canvas-bg: var(--green-900); --leaf-device-fill: var(--green-700);">
@@ -402,7 +404,7 @@
 
         <div class="scale-block" style="margin-top: var(--space-7);">
           <p class="scale-label">Leaf as window · a photo inside the leaf silhouette</p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: var(--space-4);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: var(--space-4);">
             <div class="leaf-window-canvas" style="background: var(--soft-green-50);">
               <div class="leaf-window">
                 <img class="leaf-window-img" src="assets/brand-photography/world-farmer-portrait.png" alt="A smiling farmer, portrait, with grazing cattle in the background" style="object-position: 50% 44%;" />
@@ -426,7 +428,7 @@
 
         <div class="scale-block" style="margin-top: var(--space-7);">
           <p class="scale-label">Leaf over image · the leaf rides on top of a full-bleed photo</p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: var(--space-4);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: var(--space-4);">
             <div class="leaf-over-image" style="--leaf-device-fill: var(--green-600);">
               <img class="leaf-over-image-img" src="assets/brand-photography/systems-wind-turbine-detail.png" alt="Detail of a wind turbine against a blue sky" style="object-position: 55% 50%;" />
               <div class="leaf-over-image-scrim" aria-hidden="true"></div>
