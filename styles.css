@@ -181,43 +181,53 @@
       --accent-gold:    #C7A86A;                 /* secondary accent */
       --on-accent:      #FFFFFF;                 /* text/icon color on top of --brand */
 
-      /* ---- Data visualization scales ----
-         Four scales, four jobs: categorical says WHICH series, sequential says HOW
-         MUCH, diverging says WHICH SIDE of a baseline, status says WHAT STATE. They
-         are not interchangeable, and a chart never mixes two of them.
-         Every value is an existing step off a ramp above, chosen by measurement: each
-         sits inside the mode's OKLCH lightness band and above the chroma floor, and
-         the separations were checked in OKLab under simulated protanopia and
-         deuteranopia. Dark steps are re-selected against the dark surface in the
-         [data-theme="dark"] block — they are NOT the light steps inverted.
-         Don't hand-pick a replacement and don't add a slot 6; the Data visualization
-         section of system.html records what each number is and why. */
-      --dv-cat-1: var(--green-600);        /* Leaf Green    — always leads */
-      --dv-cat-2: var(--blue-700);         /* Midnight Blue */
-      --dv-cat-3: var(--soft-green-600);   /* Soft Green    */
-      --dv-cat-4: var(--red-700);          /* Rich Red      */
-      --dv-cat-5: var(--yellow-600);       /* Bright Yellow */
+      /* ---- Data visualization ----
+         Brand Guidelines 2026 v2.0 · Data visualization · Process (p.118).
+         The brand publishes one fixed order — lead with Leaf Green, then Deep Green,
+         then Soft Green, then tints of the same order — and three extension sets to
+         be added whole when more than six colours are needed. Every value below is
+         transcribed from the guidelines, not derived: --dv-4/5/6 are the printed 70%
+         tints of 1/2/3 on white, and the three sets each follow the same 3 base +
+         3 tint structure as the greens.
+         These are brand values, so they do NOT flip per theme. Chart demos render on
+         --dv-canvas, a fixed light surface, the way the guidelines print them — see
+         the note in the Data visualization section of system.html. */
+      --dv-1: #00843D;   /* Cargill Leaf Green 100% */
+      --dv-2: #03441F;   /* Deep Green         100% */
+      --dv-3: #BDE588;   /* Soft Green         100% */
+      --dv-4: #4DA977;   /* Cargill Leaf Green  70% */
+      --dv-5: #4F7C62;   /* Deep Green          70% */
+      --dv-6: #D1EDAC;   /* Soft Green          70% */
 
-      --dv-seq-1: var(--green-400);        /* low  */
-      --dv-seq-2: var(--green-500);
-      --dv-seq-3: var(--green-600);
-      --dv-seq-4: var(--green-700);
-      --dv-seq-5: var(--green-900);        /* high */
+      /* Extension set · blues */
+      --dv-blue-1: #003366;   /* Midnight Blue Mid */
+      --dv-blue-2: #007681;   /* Sky Blue Deep     */
+      --dv-blue-3: #BCEDFF;   /* Sky Blue Light    */
+      --dv-blue-4: #476590;
+      --dv-blue-5: #3E9BAB;
+      --dv-blue-6: #D2ECFC;
 
-      /* Blue↔yellow, never red↔green: red against green collapses to a separation of
-         6.5 under deuteranopia, which erases the two ends of the scale. */
-      --dv-div-neg-2: var(--blue-700);     /* furthest below the baseline */
-      --dv-div-neg-1: var(--blue-400);
-      --dv-div-mid:   var(--neutral-300);  /* neutral middle — grey, never a hue */
-      --dv-div-pos-1: var(--yellow-600);
-      --dv-div-pos-2: var(--yellow-700);   /* furthest above the baseline */
+      /* Extension set · reds & yellows */
+      --dv-warm-1: #9E2A2F;   /* Rich Red Deep      */
+      --dv-warm-2: #FF7F4D;   /* Bright Yellow Deep */
+      --dv-warm-3: #FFD77D;   /* Bright Yellow Light*/
+      --dv-warm-4: #E46E67;
+      --dv-warm-5: #F7AF7C;
+      --dv-warm-6: #FFEDB8;
 
-      /* Reserved. Never reused as a categorical slot, never shipped without an icon
-         and a word beside them. */
-      --dv-status-good:     var(--green-700);
-      --dv-status-warning:  var(--yellow-700);
-      --dv-status-critical: var(--red-600);
-      --dv-status-none:     var(--text-muted);
+      /* Extension set · earth */
+      --dv-earth-1: #4B351D;  /* Earth Deep  */
+      --dv-earth-2: #D8C092;  /* Earth Light */
+      --dv-earth-3: #92856A;
+      --dv-earth-4: #7A6450;
+      --dv-earth-5: #B5A382;
+      --dv-earth-6: #CABFBC;
+
+      /* The paper the guidelines print these on. Chart demos keep it in both themes
+         so a 100% Deep Green bar stays visible instead of vanishing into a dark card. */
+      --dv-canvas:     #FFFFFF;
+      --dv-canvas-ink: #14140F;
+      --dv-canvas-rule:#D8DAD5;
 
       /* Padding scale, from Cargill Sprout · Foundations · Padding & Spacing */
       --padding-xs:   2px;
@@ -2318,409 +2328,240 @@
       margin: 0;
     }
 
-    /* ---------- Data visualization ---------- */
-    /* Categorical sequence · Brand Guidelines · Data visualization · Process. The brand
-       fixes the series order — Leaf Green 100 → Deep Green 100 → Soft Green 100 → the same
-       three at 70% — rather than letting a chart cycle hues freely. Validated against the
-       CVD/contrast rules a chart palette actually needs (see the caveat note below): the
-       first three pass cleanly, but the two 70% tints sit close enough to fail a strict
-       normal-vision separation check, so they're marked as a last resort, not a default. */
-    .dataviz-sequence {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-3);
-    }
-    .chart-color-step {
-      flex: 1 1 90px;
-      min-width: 90px;
-      border-radius: var(--corner-radius-base);
-      padding: var(--space-3);
-      box-sizing: border-box;
-      color: #fff;
-    }
-    .chart-color-step-num {
-      font-family: var(--font-sans);
-      font-size: 12px;
-      font-weight: 700;
-      opacity: 0.85;
-    }
-    .chart-color-step-name {
-      display: block;
-      font-family: var(--font-micro);
-      font-size: 11px;
-      margin-top: var(--space-5);
-      opacity: 0.85;
-    }
-    .chart-color-step--light { color: var(--text); }
+    /* ---------- Data visualization ----------
+       Brand Guidelines 2026 v2.0 · Data visualization · Process (p.118) and
+       Application to data sets (p.119). The palette itself lives in the --dv-* tokens
+       at the top of this file; everything here is presentation for the two pages'
+       swatch boards and worked charts.
+       Note the fixed light canvas: the guidelines specify these values against the
+       printed page, so the chart demos keep --dv-canvas in both themes rather than
+       restating the palette for dark. A 100% Deep Green bar on a near-black card is
+       invisible, and inventing a dark variant would be this system speaking over the
+       guidelines rather than reproducing them. */
 
-    .dataviz-extension-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-6);
-      margin-top: var(--space-4);
+    /* Numbered sequence · "Start with these colors and tints". Six blocks in the
+       brand's fixed order — Leaf, Deep, Soft, then the same three at 70%. */
+    .dv-seq {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-radius: var(--corner-radius-base);
+      overflow: hidden;
     }
-    .dataviz-extension-set {
+    .dv-seq-step {
+      background: var(--c);
+      color: #fff;
+      padding: var(--space-4);
+      min-height: 156px;
       display: flex;
       flex-direction: column;
-      gap: var(--space-2);
     }
-    .dataviz-extension-label {
+    .dv-seq-step--ink { color: var(--dv-canvas-ink); }   /* the two pale greens */
+    .dv-seq-num {
+      font-family: var(--font-sans);
+      font-size: 30px;
+      line-height: 1;
+    }
+    .dv-seq-name {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: auto;
+    }
+    .dv-seq-tint {
+      font-family: var(--font-sans);
+      font-size: 13px;
+    }
+
+    /* Extension sets · "If more than six colors are needed, add one of these three
+       color sets". Each set is added whole, so each renders as one unbroken row. */
+    .dv-sets {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+    .dv-set-label {
       font-family: var(--font-micro);
       font-size: 12px;
       color: var(--text-muted);
+      margin-bottom: var(--space-2);
     }
-    .dataviz-extension-swatches { display: flex; gap: 4px; }
-    .dataviz-extension-swatches span {
-      width: 28px;
-      height: 28px;
-      border-radius: var(--radius-sm, 4px);
-      display: block;
-    }
-
-    /* Functional vs Expressive · Data visualization · Examples. Two different jobs, not
-       two skins: functional data is the everyday, template-driven chart (square corners —
-       rounded corners aren't replicable across every platform that renders it) while
-       expressive data is reserved for high-craft moments (reports, brochures) where a
-       bolder, bespoke treatment — rounded corners, display-type callouts — is earned. */
-    .dataviz-cards {
+    .dv-set-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: var(--space-5);
+      grid-template-columns: repeat(6, 1fr);
+      border-radius: var(--corner-radius-base);
+      overflow: hidden;
     }
-    .dataviz-card {
-      border-radius: var(--corner-radius-md);
-      padding: var(--space-6);
+    .dv-swatch {
+      background: var(--c);
+      color: #fff;
+      padding: var(--space-3);
+      min-height: 132px;
       display: flex;
       flex-direction: column;
-      gap: var(--space-4);
     }
-    .dataviz-card--functional {
-      background: var(--surface);
-      border: 1px solid var(--border);
-    }
-    .dataviz-card--expressive {
-      background: var(--surface-deep);
-      color: #fff;
-    }
-    .dataviz-card-eyebrow {
+    .dv-swatch--ink { color: var(--dv-canvas-ink); }
+    .dv-swatch-name {
       font-family: var(--font-micro);
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
-    .dataviz-card--functional .dataviz-card-eyebrow { color: var(--text-muted); }
-    .dataviz-card--expressive .dataviz-card-eyebrow { color: var(--soft-green-400); }
-    .dataviz-card-body {
-      font-family: var(--font-sans);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-    .dataviz-card--functional .dataviz-card-body { color: var(--text-soft); }
-    .dataviz-card--expressive .dataviz-card-body { color: rgba(255,255,255,0.85); }
-    .dataviz-hero-number {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 4vw, 56px);
-      line-height: 1;
-      letter-spacing: var(--display-tracking);
-      color: var(--soft-green-400);
-    }
-
-    /* Worked bar-chart example · uses only the three safe, validated steps from the
-       sequence above (never the confusable 70% pair), each bar carrying a direct value
-       label — color differentiates, the label is what actually reads (brand's own
-       accessibility note: "data is a functional element and functionality should always
-       take precedent over color"). */
-    .bar-chart {
-      display: flex;
-      align-items: flex-end;
-      gap: var(--space-4);
-      height: 180px;
-      padding: 0 var(--space-2);
-    }
-    .bar-chart-col {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      height: 100%;
-      gap: var(--space-2);
-    }
-    .bar-chart-value {
-      font-family: var(--font-sans);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .bar-chart-bar {
-      width: 100%;
-      max-width: 48px;
-      border-radius: 2px 2px 0 0; /* functional data: never fully rounded, see Don'ts below */
-    }
-    .bar-chart-label {
-      font-family: var(--font-micro);
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    /* Pictogram grid · Data visualization · Infographics ("functional... not illustration").
-       Reuses a single Material Symbols glyph rather than drawing a figure — the technique is
-       proportion-by-repetition (isotype charts), same job as the brand's silhouette grid. */
-    .pictogram-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: var(--space-2);
-      max-width: 260px;
-    }
-    .pictogram-grid .material-symbols-rounded {
-      font-size: 32px;
-      color: var(--border);
-    }
-    .pictogram-grid .material-symbols-rounded.is-active { color: var(--brand); }
-
-    /* KPI tile row · Data visualization · a small-multiples functional stat, distinct from
-       the single expressive hero number above. Square corners (2px, matching .bar-chart-bar's
-       own "never fully rounded" threshold) since this is everyday functional data, not a
-       high-craft moment. */
-    .kpi-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: var(--space-4);
-    }
-    .kpi-tile {
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: var(--space-4);
-      background: var(--surface);
-    }
-    .kpi-tile-label {
-      font-family: var(--font-micro);
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-    .kpi-tile-value {
-      font-family: var(--font-sans);
-      font-weight: 700;
-      font-size: 28px;
-      color: var(--text);
-      margin-top: var(--space-2);
-      font-variant-numeric: tabular-nums;
-    }
-    .kpi-tile-delta {
-      font-family: var(--font-micro);
-      font-size: 12px;
-      margin-top: 2px;
-    }
-    .kpi-tile-delta--positive { color: var(--green-600); } /* "positive news," not "arrow points up" — a falling response time still earns this class */
-
-    /* Donut chart · Data visualization · a categorical (identity) job, same three validated
-       steps 1–3 as the bar chart above — never the confusable 70% tints. Direct-labeled in
-       the legend rather than relying on the ring's color alone, per the brand's own
-       accessibility note. */
-    .dataviz-donut-wrap {
-      display: flex;
-      align-items: center;
-      gap: var(--space-6);
-      flex-wrap: wrap;
-    }
-    .dataviz-donut { flex-shrink: 0; }
-    .dataviz-donut-center {
-      font-family: var(--font-sans);
-      font-size: 13px;
-      font-weight: 700;
-      fill: var(--text);
-      text-anchor: middle;
-    }
-    .dataviz-donut-legend {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-    }
-    .dataviz-donut-legend-item {
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      font-family: var(--font-sans);
-      font-size: 14px;
-      color: var(--text);
-    }
-    .dataviz-donut-swatch {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .dataviz-donut-legend-value {
-      font-weight: 700;
-      margin-left: var(--space-2);
-      font-variant-numeric: tabular-nums;
-    }
-
-    /* Line / trend chart · Data visualization · the "change over time" job, a single
-       sequential series rather than categorical — one hue, per the color-formula rule, with
-       selective direct labels (first + last point only, never a number on every point). */
-    .dataviz-line-chart { width: 100%; max-width: 420px; height: auto; }
-    .dataviz-line-path { fill: none; stroke: var(--green-600); stroke-width: 2; }
-    .dataviz-line-dot { fill: var(--green-600); }
-    .dataviz-line-label {
-      font-family: var(--font-micro);
-      font-size: 11px;
-      fill: var(--text);
-    }
-    .dataviz-line-grid { stroke: var(--border); stroke-width: 1; }
-
-    /* ---------- Data visualization · colour scales by job ----------
-       Three scales doing three different jobs. Categorical answers "which series",
-       sequential answers "how much", diverging answers "which side of zero". They
-       are not interchangeable and a chart never mixes two of them. Every hex below
-       is a step off an existing Sprout ramp, chosen by measurement rather than by
-       eye — see the notes in the Data visualization section for what was measured. */
-    .dv-ramp {
-      display: flex;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .dv-ramp-step {
-      flex: 1;
-      min-height: 56px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding: var(--space-2) 4px;
+    .dv-swatch-spec {
       font-family: var(--font-micro);
       font-size: 10px;
-      color: #fff;
-      text-align: center;
+      line-height: 1.5;
+      margin-top: auto;
+      opacity: 0.9;
     }
-    .dv-ramp-step--ink { color: var(--text); }   /* light steps need dark ink on them */
-    .dv-ramp-caption {
+    .dv-caption {
       font-family: var(--font-micro);
       font-size: 12px;
+      line-height: 1.5;
       color: var(--text-muted);
-      margin-top: var(--space-2);
+      margin-top: var(--space-3);
+      max-width: 74ch;
     }
 
-    /* Heatmap · the sequential ramp's natural home. A 2px surface-coloured gap
-       between cells keeps the lightest classes legible against each other without
-       drawing a border on every cell. */
-    .dv-heatmap {
+    /* Worked charts · p.119. Every chart keeps the guidelines' white canvas and carries
+       a direct value label on every mark, per the page's own accessibility note:
+       "clear labelling and use of spaces between shapes is much more important". */
+    .dv-grid {
       display: grid;
-      grid-template-columns: auto repeat(6, 1fr);
-      gap: 2px;
-      max-width: 520px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-5);
     }
-    .dv-heatmap-cell {
-      aspect-ratio: 1 / 1;
+    .dv-chart {
+      margin: 0;
+      background: var(--dv-canvas);
+      border: 1px solid var(--dv-canvas-rule);
+      border-radius: var(--corner-radius-base);
+      padding: var(--space-5);
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+    }
+    .dv-chart figcaption {
       font-family: var(--font-micro);
-      font-size: 11px;
-      font-variant-numeric: tabular-nums;
-      border-radius: 2px;
+      font-size: 12px;
+      color: #5A6560;
+      margin-top: auto;
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--dv-canvas-rule);
     }
-    .dv-heatmap-head {
+
+    /* Bar charts · the 2px–4px gap between bars is the "use of spaces between shapes"
+       the guidelines ask for, doing the separating work that colour must not do alone. */
+    .dv-plot {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-micro);
-      font-size: 11px;
-      color: var(--text-muted);
+      align-items: flex-end;
+      gap: 4px;
+      height: 170px;
+      border-bottom: 1px solid var(--dv-canvas-rule);
     }
-    .dv-heatmap-row-head {
+    .dv-col {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: flex-end;
-      padding-right: var(--space-2);
+      align-items: center;
+      gap: 3px;
+    }
+    .dv-col b {
       font-family: var(--font-micro);
-      font-size: 11px;
-      color: var(--text-muted);
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--dv-canvas-ink);
+      font-variant-numeric: tabular-nums;
+    }
+    .dv-bar { display: block; width: 100%; }
+    /* Sixteen series in the same card as the nine-series charts: tighten the gap and
+       the label so the marks stay separated rather than dropping the spacing that the
+       guidelines call for. */
+    .dv-plot--dense { gap: 2px; }
+    .dv-plot--dense .dv-col { gap: 2px; }
+    .dv-plot--dense .dv-col b { font-size: 8px; }
+    /* Half as many labels as bars, each spanning its pair, so the axis stays readable
+       instead of ellipsing every entry down to one letter. */
+    .dv-cats--dense { gap: 2px; }
+    .dv-cats--dense span { flex: 1 1 0; }
+    .dv-cats {
+      display: flex;
+      gap: 4px;
+      margin-top: 6px;
+      margin-bottom: var(--space-4);
+    }
+    .dv-cats span {
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+      font-family: var(--font-micro);
+      /* 9px, and the longest category ("Quoditem") still ellipses in a two-up card —
+         it needs ~50px against a ~40px column, which no type size recovers. Left to
+         ellipse rather than rotated or abbreviated: every bar carries its value
+         directly above it, so the axis label is the second reading, not the only one. */
+      font-size: 9px;
+      color: #5A6560;
+      overflow: hidden;
+      text-overflow: ellipsis;
       white-space: nowrap;
     }
 
-    /* Diverging bar · bars grow left or right of a shared zero rule. The zero line
-       is the only gridline that earns full weight here — it is the thing every bar
-       is being read against. */
-    .dv-diverging { max-width: 560px; }
-    .dv-diverging-row {
-      display: grid;
-      grid-template-columns: 132px 1fr;
-      align-items: center;
-      gap: var(--space-3);
-      margin-bottom: 6px;
-    }
-    .dv-diverging-label {
-      font-family: var(--font-micro);
-      font-size: 12px;
-      color: var(--text-soft);
-      text-align: right;
-    }
-    .dv-diverging-track {
-      position: relative;
-      height: 26px;
+    /* Donut · segment order follows the same fixed sequence as the bars. */
+    .dv-donut-wrap {
       display: flex;
-      align-items: center;
+      justify-content: center;
+      padding: var(--space-2) 0 var(--space-4);
     }
-    .dv-diverging-track::before {          /* the zero rule */
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: -3px;
-      bottom: -3px;
-      width: 1px;
-      background: var(--text-muted);
+    .dv-donut { width: 170px; height: 170px; }
+    .dv-donut circle {
+      fill: none;
+      stroke-width: 13;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
     }
-    .dv-diverging-bar {
-      position: absolute;
-      height: 18px;
-      border-radius: 2px;
+    .dv-donut-center {
+      font-family: var(--font-display);
+      font-size: 17px;
+      fill: var(--dv-canvas-ink);
+      text-anchor: middle;
     }
-    .dv-diverging-value {
-      position: absolute;
-      font-family: var(--font-micro);
-      font-size: 11px;
-      font-variant-numeric: tabular-nums;
-      color: var(--text);
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    /* Status · a reserved scale. These never stand in for "series 4", and they never
-       travel without an icon and a word — colour alone cannot say "critical". */
-    .dv-status-row {
+    .dv-legend {
+      list-style: none;
+      margin: 0 0 var(--space-4);
+      padding: 0;
       display: flex;
       flex-wrap: wrap;
-      gap: var(--space-3);
+      justify-content: center;
+      gap: var(--space-2) var(--space-4);
     }
-    .dv-status-chip {
-      display: inline-flex;
+    .dv-legend li {
+      display: flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 12px 6px 8px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border);
-      background: var(--surface);
-      font-family: var(--font-micro);
-      font-size: 12px;
-      color: var(--text);
-    }
-    .dv-status-chip .material-symbols-rounded { font-size: 16px; }
-
-    /* Emphasis · one series in the accent hue, every other series in the
-       de-emphasis grey. The most underused form in the set. */
-    .dv-emphasis-chart { width: 100%; max-width: 460px; height: auto; }
-    .dv-emphasis-path { fill: none; stroke-width: 2; }
-    .dv-emphasis-path--muted { stroke: var(--neutral-350); }
-    .dv-emphasis-path--lead  { stroke: var(--green-600); }
-    [data-theme="dark"] .dv-emphasis-path--lead { stroke: var(--accent-lime); }
-    .dv-emphasis-label {
       font-family: var(--font-micro);
       font-size: 11px;
-      fill: var(--text);
+      color: var(--dv-canvas-ink);
     }
-    .dv-emphasis-label--muted { fill: var(--text-muted); }
+    .dv-legend i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dv-legend b { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+    @media (max-width: 900px) {
+      .dv-seq, .dv-set-row { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .dv-seq, .dv-set-row { grid-template-columns: repeat(2, 1fr); }
+      .dv-cats span { font-size: 8px; }
+    }
 
     /* ---------- Components ---------- */
     .component-grid {
@@ -5469,35 +5310,10 @@
       --soft-green-100: #1F2D23;
       --soft-green-200: #2F5A3C;  /* focus ring stays visible on dark        */
 
-      /* ---- Data visualization scales · dark ----
-         Re-selected against the dark card surface (#101D16), not inverted: flipping
-         the light steps puts the palest class of a ramp on a near-black card, which
-         is the opposite of recessive, and drops several hues out of the dark
-         lightness band. Slot 1 is the one step that holds in both modes.
-         Worst adjacent categorical pair here measures 7.7 simulated / 16.4 normal —
-         the simulated figure sits in the 6–8 band, which is legal only because every
-         series in this system also carries a direct label. */
-      --dv-cat-2: var(--blue-600);
-      --dv-cat-3: var(--soft-green-700);
-      --dv-cat-4: var(--rich-red-mid);
-      --dv-cat-5: var(--yellow-800);
-
-      --dv-seq-1: var(--green-700);        /* low — the ramp's anchor flips */
-      --dv-seq-2: var(--green-600);
-      --dv-seq-3: var(--green-500);
-      --dv-seq-4: var(--green-400);
-      --dv-seq-5: var(--green-300);        /* high */
-
-      /* --dv-div-mid needs no entry: it points at --neutral-300, which this block
-         already repoints to #3A4A41. Poles measure 27.8 simulated / 32.6 normal. */
-      --dv-div-neg-2: var(--blue-600);
-      --dv-div-neg-1: var(--blue-500);
-      --dv-div-pos-1: var(--yellow-600);
-      --dv-div-pos-2: var(--yellow-700);
-
-      --dv-status-good:     var(--green-400);
-      --dv-status-warning:  var(--yellow-600);
-      --dv-status-critical: var(--rich-red-mid);
+      /* No --dv-* entries here on purpose. The guidelines publish one set of data
+         visualization values and specify them against the printed page, so they are
+         brand constants rather than themed tokens. The demos carry their own light
+         canvas (--dv-canvas) into dark mode instead of restating the palette. */
     }
 
     /* ---- Dark theme · fixes for rules that hard-code a light value ---- */
